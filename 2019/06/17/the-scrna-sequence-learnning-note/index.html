@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>单细胞测序技术的学习笔记-原理</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Jiaxuan Wang">
+  <meta name="description" content="单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="单细胞测序技术的学习笔记-原理">
+    <meta name="twitter:description" content="单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了
+">
+    <meta name="twitter:image" content="https://2kx82c2gbmp9ti6ch2ilw19c-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/10x-product-family-all-v2.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="单细胞测序技术的学习笔记-原理">
+  <meta property="og:description" content="单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了
+">
+  <meta property="og:url" content="/2019/06/17/the-scrna-sequence-learnning-note/">
+  <meta property="og:image" content="https://2kx82c2gbmp9ti6ch2ilw19c-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/10x-product-family-all-v2.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2019/06/17/the-scrna-sequence-learnning-note/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/weibo_username" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="fab fa-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">单细胞测序技术的学习笔记-原理</h1>
+      <p class="post-meta">@Jiaxuan Wang · Jun 17, 2019 · 7 min read</p>
+    </header>
+    <article class="post-content"><p>单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了</p>
+
+<h1 id="单细胞测序">单细胞测序</h1>
+
+<h2 id="为什么关注单细胞">为什么关注单细胞</h2>
+
+<p>单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了。刚刚问了师弟，还是在准备引入。</p>
+
+<p>不过怎么说，单细胞测序可以让我们获得细胞层面上的信息。甚至结合抗体技术和酶切技术，达到特异结合和筛选某种特定类型的基因片段。从而在单细胞平台上，可以进一步扩展。比如VDJ、ATAC等等。</p>
+
+<p>总之，个人觉得这是引领最近五年的<code>技术之光</code>。新的、好的技术当然要跟的上发展，否则是要被淘汰的。<font color = red>可怕</font>。</p>
+
+<h2 id="单细胞测序的平台">单细胞测序的平台</h2>
+
+<p>单细胞测序从北大的汤富酬课题组开始<sup><a href="#ref01">[1]</a></sup>, 到今日, 单细胞测序技术已经发展了十年, 这十年内（09-19），诞生了很多不同的测序技术。其中最著名的：一个是<code>Fluidigm</code>公司的<code>C1</code>测序平台。另一个是<code>10xgenomics</code>公司的<code>Chromium</code>单细胞测序平台。</p>
+
+<p><img src="https://img1.dxycdn.com/2018/0809/396/3293780975200636019-8w.png!w640" alt="img" /></p>
+
+<p>从最开始的检测几个细胞一直到<code>10xgenomics</code>、<code>CEL-seq</code>、<code>MARS-seq</code>,<code>Smart-seq2</code>等技术的兴起，到目前普遍的CNS级别文章的百万级别的单细胞测序。可以说，单细胞是目前测序领域中最火热，技术迭代最快的技术。</p>
+
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/tsFaRo4_VdQpY_OeevMJzw">《Nature丨400亿个细胞！科学家首次全面测序人体免疫系统关键元件》</a></p>
+</blockquote>
+
+<h3 id="fluidigm-c1单细胞测序-微量建库">Fluidigm C1单细胞测序(微量建库)</h3>
+
+<p><code>Fluidigm C1</code>平台，是最早被应用于<code>Single Cell</code>领域的<strong>商业化单细胞</strong>测序技术，大约在几个小时中可以捕获96个左右的细胞，进行各类的Single-Cell测序建库。当然，通量还是比较小。</p>
+
+<p>并且我们要有一个清晰的认识:</p>
+
+<p>基于<code>Fluidigm C1</code>的Smart-seq测序技术, 其实真正的技术本质是微量建库. 因为采用了活性极高的高保真聚合酶以及针对扩增全长的特异性引物. 可以保证Smart-seq测序在极低的模板起始量(皮克级)下, 达到一个很好的测序效果.</p>
+
+<p>但是因为Smart-seq通量低, 单个细胞的测序价格昂贵, 所以一般测序的时候都是采用2-4个细胞混合测序的策略.</p>
+
+<blockquote>
+<p>万一某个细胞不正常呢,是吧.</p>
+
+<p><cite>惨兮兮</cite></p>
+</blockquote>
+
+<p><img src="http://cn.fluidigm.com/binaries/content/gallery/fluidigm/full-images/instruments/c1-images/c1_front_1.jpg" alt="C1" /></p>
+
+<h1 id="10x-genomics测序平台">10X Genomics测序平台</h1>
+
+<p>通量低，单个细胞的成本高也是14年之前，影响单细胞测序技术普及的主要因素，令人亢奋的是，在*2014-2015*年间几个性技术诞生了，仿佛寒武纪大爆发一般，<code>MARS-Seq</code>、<code>CytoSeq</code>、<code>Drop-Seq</code>、<code>inDrop</code>技术在这两年中扎堆出现，真正引爆了<code>Single-Cell</code>这个领域。而在*2017-2018*年，商业化的测序平台（<code>10X Genomics®</code>, <code>BD Rhapsody®</code>），逐渐浮出水面，才最终让<code>Single-Cell</code>测序技术走进了大众。</p>
+
+<p><img src="https://2kx82c2gbmp9ti6ch2ilw19c-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/10x-product-family-all-v2.png" alt="Solution Family" /></p>
+
+<p>经过上面这么一说，我觉得两者就不用放在一起比较了。明显的事情&hellip;..但是我们可以说一说，14年之后的单细胞测序技术之间的主要差异<sup><a href="#ref02">[2]</a></sup>。</p>
+
+<p><img src="https://img1.dxycdn.com/2018/0809/468/3293783535001463838-8w.png!w640" alt="img" /></p>
+
+<p>主要讲讲两个现在的主流技术，<code>BD Rhapsody</code>以及<code>10X Genomics</code>。从诞生年代来看，两者不分伯仲，<code>10X Genomics</code>起源自<code>Drop-Seq</code>技术，得益于哈佛大学研究所的工作。</p>
+
+<p><code>10X Genomics</code>和<code>Drop-Seq</code>具有类似的技术原理。从横向孔道中逐一输入凝胶微珠，第一纵向孔道输入细胞，凝胶微珠与细胞碰撞后会吸附在凝胶微珠上，并通过微流控技术，将之输入到第二纵向孔道，即油相孔道中。这时候，就形成了一个个油滴，最终输出并收集在<code>EP</code>管中。每一个油滴中会落入一个细胞以及一个凝胶微珠，那么在每一个凝胶微珠中上长满了不同的<code>Cell Barcode</code>和`<code>UMI Barcode</code>连接形成的序列，再加上一端<code>PolyT</code>的抓手，构成我们的捕获凝胶微珠。而这个凝胶微珠抓手就会使用<code>oligo dT</code>抓住<code>mRNA</code>构建文库。</p>
+
+<p><img src="https://img1.dxycdn.com/2018/0809/570/3293783255828286461-8w.png!w640" alt="img" /></p>
+
+<p><code>BD</code>的技术不再采用利用微流控孔道射出细胞和射出的磁珠碰撞的过程，进行单细胞捕获的技术，转而采用<code>CytoSeq</code>特有的蜂窝板技术。该技术用*20W+*的微孔（该数量级远大于Input细胞数量），保证单孔中的单细胞捕获。同时避免了<code>10X</code>中存在的概率碰撞影响捕获效率的问题，采用微孔捕获相对会有更好的捕获效率（来自两家企业商业宣传资料比对），保证Input细胞的全面使用。</p>
+
+<p><img src="https://img1.dxycdn.com/2018/0809/205/3293783485609037932-8w.png!w640" alt="img" /></p>
+
+<p>以上关于<code>10x</code>和<code>BD</code>的资料主要来自烈冰生物的公众号：</p>
+
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/NxkahJbKsot9qKlZqQF5hA">单细胞测序知多少——single cell分选平台（10X Genomics，BD Rhapsody）</a></p>
+</blockquote>
+
+<p>我们主要介绍<code>10x</code>技术的建库测序和分析内容</p>
+
+<table>
+<thead>
+<tr>
+<th>10X Genomics   単细胞DNA</th>
+<th>10X Genomics 单细胞RNA</th>
+<th>10X Genomics 単细胞免疫组库</th>
+<th>BD Rhapsody 单细胞</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>単细胞CNV检测</td>
+<td>单细胞3&rsquo;转录组测序检测</td>
+<td>单细胞TCR+5&rsquo;基因表达检测</td>
+<td>定制灵活单细胞靶向基因表达检测</td>
+</tr>
+
+<tr>
+<td>单细胞ATAC检测</td>
+<td>单细胞5”转录组测序检测</td>
+<td>单细胞BCR+5&rsquo;基因表达检测</td>
+<td>单细胞蛋白组及转录组联合检测</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>单细胞TCR+BCR+5&rsquo;基因表达检测</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="提取和建库">提取和建库</h1>
+
+<p>目前主要用的10x的*The Chromium Single Cell Gene Expression Solution*。所以下面主要讲的是10x的<code>Chromium</code>文库制备。</p>
+
+<h2 id="步骤1-gem生成和标签化">步骤1 GEM生成和标签化</h2>
+
+<ol>
+<li>配置单细胞反应混合液</li>
+<li>单细胞 <code>3‘</code>芯片加样</li>
+</ol>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551862246550.png" alt="1551862246550" /></p>
+
+<ol>
+<li>运行<code>Chromium controller</code>制备GEMs</li>
+<li>将制备好的GEMs转移到PCR管内</li>
+</ol>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551862277443.png" alt="1551862277443" /></p>
+
+<h2 id="步骤2-gem反转录以及纯化">步骤2 GEM反转录以及纯化</h2>
+
+<ol>
+<li><code>GEMs-RT</code>孵育体系在PCR仪上进行</li>
+<li>反转录体系的纯化（<code>Silane DynaBeads</code>）</li>
+<li><code>cDNA</code>扩增反应（实验室常说的<strong>第一轮pcr扩增</strong>）</li>
+</ol>
+
+<p>PCR循环数可以根据细胞的数量进行调整</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551856416733.png" alt="1551856416733" /></p>
+
+<ol>
+<li>Post cDNA扩增反应纯化-<code>SPRIselect</code></li>
+<li>cDNA扩增后的质控</li>
+</ol>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551856549451.png" alt="1551856549451" /></p>
+
+<h2 id="步骤3-文库构建">步骤3 文库构建</h2>
+
+<ol>
+<li>配置<code>Fragmentation Mix</code>,设置程序。在体系里进行断裂、末端补平、加A</li>
+<li>纯化(<code>SPRIselcet</code>)</li>
+<li>加接头</li>
+<li>纯化(<code>SPRIselcet</code>)</li>
+<li>PCR加入样本的<code>sample index</code>（<strong>第二轮PCR</strong>）</li>
+</ol>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551858184891.png" alt="1551858184891" /></p>
+
+<ol>
+<li>纯化(<code>SPRIselcet</code>)</li>
+<li>文库质检</li>
+</ol>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551858225268.png" alt="1551858225268" /></p>
+
+<h2 id="步骤4-文库测序">步骤4 文库测序</h2>
+
+<p>构建完成的文库包含完整的 Illumina P5和P7末端。单细胞3&rsquo;  V2 *16bp*的<code>barcades</code>位于<code>Read1</code>的起始点。样本 Index 称为 i7 index read。Read1和Read2是标准的，用于成对的测序引物位点。Read1用于<em>16bp</em> Barcode和*10bp*的UM测序，反之，Read2 用于插入的 cDNA 测序。而区分样本的<code>sample index</code>则本身就有已经平衡的*8bp*的核酸序列。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551862299572.png" alt="1551862299572" /></p>
+
+<p>单细胞转录组的文库的测序覆盖度一般推荐是<em>50000</em> raw reads/细胞。根据选用的测序平合,调整上样浓度单细胞文库。其实这一步就是就是普通的二代测序了，已验证的测序平台有<code>illumina  Miseq</code>、 <code>Nextseq500/550</code>和 <code>Hiseq 2500</code>。</p>
+
+<p>建议测序长度（循环，这个循环不是PCR循环，而是SBS测序系统中的合成—洗脱—合成）</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551858804141.png" alt="1551858804141" /></p>
+
+<p>同时下图的透漏了这一理论基础，index和接头序列的多样性和长度是匹配的。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551862336368.png" alt="1551862336368" /></p>
+
+<p>做一次10x的建库和测序需要花费的时间周期：</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551921542972.png" alt="1551921542972" /></p>
+
+<h1 id="参考文献">参考文献:</h1>
+
+<p><p id = "ref01">[1] Tang, Fuchou, Catalin Barbacioru, Yangzhou Wang, Ellen Nordman, Clarence Lee, Nanlan Xu, Xiaohui Wang, 等. 《MRNA-Seq Whole-Transcriptome Analysis of a Single Cell》. Nature Methods 6, 期 5 (2009年5月): 377–82. <a href="https://doi.org/10.1038/nmeth.1315">https://doi.org/10.1038/nmeth.1315</a>.</p>
+
+<p><p id = "ref02">[2] Trapnell, Cole, Davide Cacchiarelli, Jonna Grimsby, Prapti Pokharel, Shuqiang Li, Michael Morse, Niall J Lennon, Kenneth J Livak, Tarjei S Mikkelsen和John L Rinn. 《The Dynamics and Regulators of Cell Fate Decisions Are Revealed by Pseudotemporal Ordering of Single Cells》. Nature Biotechnology 32, 期 4 (2014年4月): 381–86. <a href="https://doi.org/10.1038/nbt.2859">https://doi.org/10.1038/nbt.2859</a>.</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3"><span class="tag">专业相关</span></a></li>
+        
+          <li><a href="/tags/%E5%8D%95%E7%BB%86%E8%83%9E"><span class="tag">单细胞</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2019-06-17</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019 Woney&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

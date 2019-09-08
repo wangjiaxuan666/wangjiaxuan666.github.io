@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用R语言来个有意思的图-华夫瓷砖图</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Jiaxuan Wang">
+  <meta name="description" content="最近的事情 最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="用R语言来个有意思的图-华夫瓷砖图">
+    <meta name="twitter:description" content="最近的事情 最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时">
+    <meta name="twitter:image" content="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-6-1.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用R语言来个有意思的图-华夫瓷砖图">
+  <meta property="og:description" content="最近的事情 最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时">
+  <meta property="og:url" content="/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/">
+  <meta property="og:image" content="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-6-1.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/weibo_username" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="fab fa-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用R语言来个有意思的图-华夫瓷砖图</h1>
+      <p class="post-meta">@Jiaxuan Wang · Jun 1, 2019 · 5 min read</p>
+    </header>
+    <article class="post-content">
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="/rmarkdown-libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/selectize/selectize.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+
+<div id="section" class="section level1">
+<h1>最近的事情</h1>
+<p>最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时间都在<em>制作</em>和熟练<code>ppt</code>中, 要不就是在准备人生大事. 当然这些都是借口, 其实主要的业务时间都是在搞博客.</p>
+<p>就是依据<a href="https://github.com">github</a>和<a href="https://gohugo.io/">hugo</a>搭建自己的网页, 之前也曾经用了hexo来搭建自己的<a href="www.wangjiaxuan888.github.io">博客</a>, 吭哧吭哧弄了好几天, 终于弄的差不多的时候. 发现两个问题.:</p>
+<ul>
+<li>界面虽然美轮美奂, 各类前端插件弄得是五彩缤纷, 但是最重要的是写文章的界面丑, 可以理解为形式大于内容吧.</li>
+<li>另外一点, 就是对<code>rMrakdown</code>的支持不够, 不方便, 毕竟我还是一个主要的业余兴趣是在<code>R</code>语言可视化和数据分析上的. 这一点迫使我重新去<a href="www.google.com">谷歌</a>了, <code>rmarkdown</code>如何发布在网上.</li>
+</ul>
+<p>最后找到的就是通过<code>blogdown</code>构建基于<code>hugo</code>的主题, 后面在hugo的主题官网上, 找到了一个国人开发的主题<code>Nuo</code>, 在此基础上, 完成了对自己博客的初步搭建.</p>
+<p>经过不断的DIY修改, 目前这个blog已经完成了, 并且已经放在<code>github</code>上托管, 但是域名设置为和微信公众号一样, <a href="https://abego.cn">Abego</a>. 因为我是用markdown写文章, 用rmarkdown写<kbd>R</kbd>的文章. 所以在博客中浏览, 游戏体验会极好!</p>
+<blockquote>
+<p>微信我看是堕落了, 毕竟年终奖发的那么多, 可能是觉得尽善尽美了. 作为用户,觉得新的,好的东西越来越少. 微信公众号作为国内应该是最大自媒体平台. 到现在还是不支持markdown, 真不知道都在忙些什么.</p>
+<p><cite> – 落后就是要挨打的</cite></p>
+</blockquote>
+</div>
+<div id="section-1" class="section level1">
+<h1>进入整体</h1>
+<center>
+<font size = 5, color = green>开始正题 creat the waffle plot</font>
+</center>
+</div>
+<div id="section-2" class="section level1">
+<h1>什么华夫饼图</h1>
+<p>我也不知道为什么大家要叫这种图为“waffle plot”, 翻译过来就是华夫饼图. 其实我连什么是华夫饼都不是特别确定. 所以我觉得作为一个有同年的人, 我觉得还是叫它“瓷砖图”更有意思点. 就像我们小时候扣的马赛克瓷砖, 但是为了各位能在百度或这个谷歌,乃至微信的搜一搜能快速找到我的这篇文章, 我也觉得还是叫华夫饼图, 其实饼图又是另一种图形的,随意干脆叫华夫图算了.</p>
+<div id="section-3" class="section level2">
+<h2>配置环境</h2>
+<p>这个华夫饼图是我在<code>twitte</code>上发现的, 国内的<kbd>R</kbd>语言的大环境还是相对薄弱的, 到了<code>twitte</code>上, 就可以跟全世界各地的人进行学习他们的代码, 和接触优秀的<kbd>R</kbd>包和作者.</p>
+<p>这个华夫饼图是需要安装<kbd>R</kbd>的, 不是对<code>ggplot2</code>这些已有的<kbd>R</kbd>包的脑洞大发 , 而是作者有了这个想法后<sup><a href="#ref01">[1]</a></sup>, 发现没有现成的包来做这种事, 就自己写的<kbd>R</kbd>, 真是有能力任性啊.</p>
+<p>诺, 原文作者的tweet(rmarkdown不支持shortcode,尴尬)</p>
+<p>所以我们需要先安装R包<code>waffle</code>和<a href="https://github.com/hrbrmstr/hrbrthemes"><code>hrbrthemes</code></a>(这是一个主题包, 和之前说的bbc_style是一样的).</p>
+<pre class="r"><code># devtools::install_github(&quot;hrbrmstr/waffle&quot;)
+# devtools::install_github(&quot;hrbrmstr/hrbrthemes&quot;)
+# install.packages(&quot;tidyverse&quot;)
+
+library(hrbrthemes)
+library(waffle)
+library(tidyverse)
+library(DT)</code></pre>
+</div>
+<div id="section-4" class="section level2">
+<h2>需要一个数据</h2>
+<pre class="r"><code>xdf &lt;- tibble(
+              parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+              values = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+              fct = c(rep(&quot;Thing 1&quot;, 3), rep(&quot;Thing 2&quot;, 3), rep(&quot;Thing 3&quot;, 3))
+              )</code></pre>
+<p>我们可以先看看这个数据的格式<sup><a href="#ref02">[2]</a></sup>:</p>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"top","filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"factor\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"6\" data-max=\"40\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption style=\"caption-side: top; text-align: left;\">\n  Table 1: \n  <em>本文所用的数据格式展示<\/em>\n<\/caption>","data":[["行名1","行名2","行名3","行名4","行名5","行名6","行名7","行名8","行名9"],["Jan","Feb","Mar","Jan","Feb","Mar","Jan","Feb","Mar"],[10,20,30,6,14,40,30,20,10],["Thing 1","Thing 1","Thing 1","Thing 2","Thing 2","Thing 2","Thing 3","Thing 3","Thing 3"]],"container":"<table class=\"cell-boeder stripe\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>parts<\/th>\n      <th>values<\/th>\n      <th>fct(谁知道什么事情)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"button":["copy","csv","excel","pdf","print"],"columnDefs":[{"className":"dt-center","targets":[0,1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="section-5" class="section level2">
+<h2>开始画图</h2>
+<p>可以看到<code>xdf</code>这个数据是有3col,和9row的数据框, 其中有数字(value),是连续型变量, 在华夫饼图中,这就是<code>瓷砖</code>的个数, 另外的parts和fct就是因子了, 问题是这里有两个变量因子, 这部分我们就需要通过分面和颜色的变量来表示的. 当然也可以直接分选出来一个变量.</p>
+<div id="section-6" class="section level3">
+<h3>挑选两个变量作图</h3>
+<p>例如:我们取<code>事件1</code>作为颜色标注, values作为y轴画图.</p>
+<pre class="r"><code>xdf %&gt;% filter(fct == &quot;Thing 1&quot;) -&gt; xdf_1
+ggplot(xdf_1, aes(fill=parts, values=values)) +
+  geom_waffle(color = &quot;white&quot;, size=1, n_rows = 6) + # color规定border边界颜色, size规定大小, n_rows规定瓷砖的排布
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = &quot;Faceted Waffle Geoms&quot;,
+    subtitle = &quot;a amazing plot&quot;
+    )</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="section-7" class="section level3">
+<h3>挑选多个变量作图(三个)</h3>
+<p>很显然, 三个变量最好的方法就是分面, 如果四个变量就是横纵坐标一起分面.如下:</p>
+<pre class="r"><code>ggplot(xdf, aes(fill=parts, values=values)) +
+  geom_waffle(color = &quot;white&quot;, size=1.125, n_rows = 6) +
+  facet_wrap(~fct, ncol=1) +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = &quot;Faceted Waffle Geoms&quot;
+  ) +
+  theme_ipsum_rc(grid=&quot;&quot;) +
+  theme_enhance_waffle()</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="section-8" class="section level3">
+<h3>一个变量画图</h3>
+<p>多个变量需要用到上述的<code>ggplot2</code>, 还要修改主题和几何构象<code>geom_waffle</code>, 真是麻烦. 那如果就一个变量呢, 问题就变得简单多了.</p>
+<pre class="r"><code>parts &lt;- c(80, 30, 20, 10)#构建一个向量
+parts</code></pre>
+<pre><code>## [1] 80 30 20 10</code></pre>
+<pre class="r"><code>waffle(parts, rows = 8)</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>当然有时候我们也需要规定行名和列名, 这个时候需要构建一个数据框,如下:</p>
+<pre class="r"><code>parts &lt;- data.frame(     
+           names = LETTERS[5:8],
+           vals = c(80, 30, 20, 10)
+           )
+waffle(parts)</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+构建一个因子型向量也是可以的</p>
+<pre class="r"><code>parts &lt;- c(&#39;Un-breached\nUS Population&#39; = (318 - 11 - 79), &#39;Premera&#39; = 11, &#39;Anthem&#39; = 79)
+waffle(
+  parts, rows = 8, size = 1, 
+  colors = c(&quot;#969696&quot;, &quot;#1879bf&quot;, &quot;#009bda&quot;), legend_pos = &quot;bottom&quot;
+  )</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="section-9" class="section level2">
+<h2>高级的玩法</h2>
+<p>其实作者提供了一个<code>ggplot2</code>的几何对象<code>geom_waffle</code>, 自然就是给予很大的可能性. 我们可以在此基础上来点有意思的.</p>
+<div id="section-10" class="section level3">
+<h3>掰弯它!<sup><a href="#ref03">[3]</a></sup></h3>
+<pre class="r"><code>waffle(parts, rows=8) + coord_polar()</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="section-11" class="section level3">
+<h3>多重几何构象</h3>
+<p><code>geom_waffle</code>是将<code>瓷砖</code>代表点来做图形的可视化, 但这个也意味着,其实本来而言, 他可以代替点来展现数据.
+但是更高级的玩法可能还要各位开一开脑洞. 目前官方推荐的就是这样的一个<code>瓷砖柱形图</code>. 这个用处很大, 因为比传统的堆积图应该好看和更高大上一点. 值得玩一玩</p>
+<p>推荐组学数据: <code>16s堆积图</code>, <code>上下调基因</code>, <code>转录因子家族数目比例</code>…</p>
+<pre class="r"><code>p1 &lt;- ggplot(xdf, aes(fill = fct, values = values)) + 
+      geom_waffle(color = &quot;white&quot;, size = .25, n_rows = 3, flip = TRUE) +
+      facet_wrap(~parts, nrow = 1, strip.position = &quot;bottom&quot;)
+p2 &lt;- p1 + scale_x_discrete() + 
+            scale_y_continuous(labels = function(x) x * 3, expand = c(0,0))
+p3 &lt;- p2 + ggthemes::scale_fill_tableau(name=NULL) +
+        coord_equal() +
+        labs(
+          title = &quot;我也不知道啥意思&quot;,
+          subtitle = &quot;数据来自瞎弄&quot;,
+          x = &quot;Month&quot;,
+          y = &quot;Count&quot;
+        ) +
+        theme_minimal(base_family = &quot;Roboto Condensed&quot;) +
+        theme(panel.grid = element_blank(), axis.ticks.y = element_line()) +
+        guides(fill = guide_legend(reverse = TRUE))
+print(p3)</code></pre>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+# 图片的合并</p>
+<p>这个华夫饼图的<kbd>R</kbd>, 本身就带了一个合并图层的函数<code>iron</code>, 挺有意思的, 但是结果并不是特别完善, 单个华夫饼图拼凑在一起结果还可以, 但是如果是复杂的就不行了.</p>
+<p>用兴趣的可以试试<code>iron(p1, p2, p3)</code>,看看效果.</p>
+<p>我还是用cowplot来拼凑一下吧.</p>
+<p><img src="/post/2019-06-02-waffle-plot-make-me-have-a-fun-in-weekend_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="section-12" class="section level1">
+<h1>参考资料</h1>
+<ol style="list-style-type: decimal">
+<li><p id="ref01">
+<a href="https://github.com/hrbrmstr/">华夫饼图作者的同性交友平台</a>
+</p></li>
+<li><p id="ref03">
+<a href="https://rstudio.github.io/DT/">DT包展示数据</a>
+</p></li>
+<li><p id="ref02">
+<a href="https://wangjiaxuan888.github.io/">我自己</a>
+</p></li>
+</ol>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="tag">可视化</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2019-06-01</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019 Woney&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用R计算离散系数寻找转录组中的内参基因</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Jiaxuan Wang">
+  <meta name="description" content="一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="用R计算离散系数寻找转录组中的内参基因">
+    <meta name="twitter:description" content="一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。
+">
+    <meta name="twitter:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551546996182.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用R计算离散系数寻找转录组中的内参基因">
+  <meta property="og:description" content="一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。
+">
+  <meta property="og:url" content="/2019/08/12/the-cv-of-gene-expression/">
+  <meta property="og:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551546996182.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2019/08/12/the-cv-of-gene-expression/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/weibo_username" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="fab fa-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用R计算离散系数寻找转录组中的内参基因</h1>
+      <p class="post-meta">@Jiaxuan Wang · Aug 12, 2019 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。</p>
+
+<h1 id="背景">背景</h1>
+
+<p>在一些实验设计，老师比较关注的是在不同品系间的内参基因。类比于<code>18s</code>和<code>actin</code>，内参基因首先的定义就是不受内外因素的影响，表达量趋向恒定的一类基因。虽然这些基因一般都是一些非常<strong>重要</strong>以及<strong>“基础”</strong>的管家基因。虽然一般做<code>qPCR</code>等实验，用<code>18s</code>、<code>GAPDH</code>、<code>actin</code>这些内参基因就足够了。但是一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。</p>
+
+<p>言归正传，如何根据基因的表达量来进行**内参基因的筛选呢。</p>
+
+<p>目前，我的常用方法是计算*Unigene*的离散系数*CV*。简单讲就是CV=标准差/平均数，数值越小，这个基因在不同样本间的表达量的变化越小。</p>
+
+<p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D46/sign=bdbcfa5a8182b90139adc235728da7c1/e850352ac65c103821031fbfb9119313b07e894a.jpg" alt="img" /></p>
+
+<p>这个定义可以看</p>
+
+<blockquote>
+  <p>
+变异系数是衡量资料中各观测值变异程度的另一个统计量。当进行两个或多个资料变异程度的比较时，如果度量单位与平均数相同，可以直接利用标准差来比较。如果单位和（或）平均数不同时，比较其变异程度就不能采用标准差，而需采用标准差与平均数的比值（相对值）来比较。标准差与平均数的比值称为变异系数，记为CV
+</p>
+  <footer>
+    <strong>变异系数</strong>
+    
+      <cite><a href="https://baike.baidu.com/item/%E5%8F%98%E5%BC%82%E7%B3%BB%E6%95%B0%3e%20" target="_blank" rel="external">百度百科</a></cite>
+    
+  </footer>
+</blockquote>
+
+<p>当然，这个*CV*来计算，并得到内参基因，是否有文献支持，说实话，因为我没有这方面的研究背景，所以并不清楚，只是从统计学上讲，*CV*是非常不错的筛选标准。</p>
+
+<p>如果各位老师，有更好的统计参数来衡量和筛选，非常欢迎与我说明，<strong>不胜感激</strong>！但是目前看, CV值是个很不错的标准, 甚至有人为此写了一个R包. 有兴趣的老师可以去看一下这边文章.</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1565164989970.png" alt="1565164989970" /></p>
+
+<h1 id="用r来计算cv">用R来计算CV</h1>
+
+<p>今天的主要内容是如何利用*R*来计算*CV*，以前，我会选择用<code>excel</code>来进行计算<em>CV</em></p>
+
+<p>其实<code>excel</code>计算起来并不复杂，用函数<strong>STDEV()</strong>和<strong>AVERAGE()</strong>，就可以了，只需要计算两个值的比值就可以。</p>
+
+<p>但是为什么用*R*来计算，因为*R*首先是专业的统计软件，（并不是<strong>绘图软件</strong>！！！），并且用*R*会显得有逼格嘛，哈哈</p>
+
+<p>其实主要是写一个脚本，以后遇到这样的分析，就可以自动跑出来了啦，这是最重要的</p>
+
+<p>为什么大家会认为<strong>R</strong>是绘图软件，我觉得这锅要*Haddly*来背（<code>ggplot2</code>的作者）</p>
+
+<h2 id="开始用r之前">开始用R之前</h2>
+
+<p>因为，我的*R*主要是靠自学和看书，我看的第一本是*Haddly*的《ggplot2：图形绘画与艺术》，第二本是*Haddly*的《R for data science》，目前第三本估计还是*Haddly*的《advance R》。</p>
+
+<p>兄弟，发现问题了没。所以我的*R*命令很多都依赖*Haddly*的R包。但其实*Haddly*只是众多*R*开发者之一，虽然无疑*Haddly*是改变*R*的人，但是*R*是一个社区，很多其他人R包也是很优秀的。所以我的命令有的时候就很不协调和冗余，这是因为为了兼顾*Haddly*的包特有的格式。比如<code>tibble</code>和*R*自带的<code>data.frame</code>之间的行名之间的冲突。今天我才稍微知道了<code>colunm_to_rownames</code>命令如何协调两者。</p>
+
+<p>所以各位看官，看我的命令一定要知道为什么这样，以及换成简单命令。或者你也学学*Haddly*的R包吧</p>
+
+<h2 id="命令行">命令行</h2>
+
+<p>在开始之前，推荐一个IDE和文本编辑器。</p>
+
+<h3 id="sublime文本编辑器">sublime文本编辑器</h3>
+
+<p>在此之前，之前有个老师向我推荐了<code>sublime</code>这个文本编辑器，这个编辑器真心<strong>牛逼</strong>，针对*R*的脚本，实现了非常美观的代码高亮。非常nice</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551546996182.png" alt="1551546996182" /></p>
+
+<p>另外，在安装一些插件后，就可以变成*R*的IDE，这个非常完美了。我即嫌弃<strong>Rgui</strong>的简陋界面，又嫌弃<strong>Rstudio</strong>的繁琐界面。</p>
+
+<p>终于在安装<code>sublime</code>后，既有<strong>Rgui</strong>的简洁界面，又有<strong>Rstudio</strong>的代码补全。</p>
+
+<p>我好喜欢这个<code>sublime</code>，哈哈哈</p>
+
+<h3 id="用r计算离散系数">用R计算离散系数</h3>
+
+<p>注释看代码行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.2 win 10</span>
+<span style="color:#f92672">require</span>(tidyverse)
+<span style="color:#f92672">require</span>(matrixStats)<span style="color:#75715e">#这个包有rowSds函数，计算一行的sd标准差</span>
+path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#75715e"># 这是我的工作目录桌面</span>
+inname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all.sample.annot.xls&#34;</span>
+<span style="color:#66d9ef">setwd</span>(path)
+dat<span style="color:#f92672">=</span>read_tsv(inname, col_names <span style="color:#f92672">=</span> T)
+nms <span style="color:#f92672">&lt;-</span> str_subset(<span style="color:#66d9ef">colnames</span>(dat),pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pm|km&#34;</span>)
+<span style="color:#66d9ef">dim</span>(dat)
+dat_m <span style="color:#f92672">&lt;-</span> dat <span style="color:#f92672">%&gt;%</span> filter(<span style="color:#66d9ef">rowSums</span>(<span style="color:#ae81ff">.</span>[nms]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span>
+         mutate(mean <span style="color:#f92672">=</span> <span style="color:#66d9ef">rowMeans</span>(<span style="color:#ae81ff">.</span>[nms]),sd <span style="color:#f92672">=</span> rowSds(<span style="color:#66d9ef">as.matrix</span>(<span style="color:#ae81ff">.</span>[nms]))) <span style="color:#f92672">%&gt;%</span>
+         mutate(CV <span style="color:#f92672">=</span> sd<span style="color:#f92672">/</span><span style="color:#66d9ef">mean</span>)
+dat_cv <span style="color:#f92672">&lt;-</span> dat_m
+write_tsv(dat_cv,<span style="color:#e6db74">&#34;unigene_cv.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
+dat_quan <span style="color:#f92672">&lt;-</span> quantile(dat_cv[[<span style="color:#e6db74">&#34;CV&#34;</span>]],prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)<span style="color:#75715e">#寻找排名前1%的最小CV值基因</span>
+dat_cv_fit <span style="color:#f92672">&lt;-</span> dat_cv <span style="color:#f92672">%&gt;%</span> arrange(CV) <span style="color:#f92672">%&gt;%</span> filter(mean <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>, CV <span style="color:#f92672">&lt;=</span> dat_quan)
+write_tsv(dat_cv_fit,<span style="color:#e6db74">&#34;unigene_cv_filter.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)</code></pre></div>
+<p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
+
+<h3 id="绘制图形">绘制图形</h3>
+
+<p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#绘制图形</span>
+p1 <span style="color:#f92672">&lt;-</span> ggplot(dat <span style="color:#f92672">=</span>dat_cv_fit, mapping <span style="color:#f92672">=</span> aes(x <span style="color:#f92672">=</span> <span style="color:#66d9ef">mean</span>, y <span style="color:#f92672">=</span> sd))<span style="color:#f92672">+</span>
+  geom_point(dat <span style="color:#f92672">=</span> dat_cv,aes(x <span style="color:#f92672">=</span> <span style="color:#66d9ef">mean</span>, y <span style="color:#f92672">=</span> sd),fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">+</span>
+  geom_point(dat <span style="color:#f92672">=</span> dat_cv_fit,aes(fill <span style="color:#f92672">=</span> id),shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">+</span>
+  labs(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The mean of Unigene RPKM&#34;</span>,y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The stdev of Unigene RPKM&#34;</span> ,title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CV value&#34;</span>)<span style="color:#f92672">+</span>
+  geom_vline(xintercept <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">2000</span>),linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey&#34;</span>)
+<span style="color:#75715e">#进行一点调整</span>
+p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</span> theme_bw()<span style="color:#f92672">+</span> theme(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)</code></pre></div>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138" /></p>
+
+<h2 id="检验结果">检验结果</h2>
+
+<p>毕竟是自己的脚本，*R*实现的优势是速度快，但是只要其中一个命令出错，就可能导致结果的差异。对于自己不熟悉的东西，尤其是计算类的，还是小心一点比较好。</p>
+
+<p>所以我在excel上，还是检查了一下，我的结果。还是一致的。可靠！</p>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>mean</th>
+<th>sd</th>
+<th>sd</th>
+<th>CV</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Unigene0047702</td>
+<td>105.8204</td>
+<td>8.716806</td>
+<td>8.716806</td>
+<td>0.082374</td>
+</tr>
+
+<tr>
+<td>Unigene0071345</td>
+<td>110.7748</td>
+<td>11.24985</td>
+<td>11.24985</td>
+<td>0.101556</td>
+</tr>
+
+<tr>
+<td>Unigene0024038</td>
+<td>235.0149</td>
+<td>26.4493</td>
+<td>26.4493</td>
+<td>0.112543</td>
+</tr>
+
+<tr>
+<td>Unigene0054875</td>
+<td>224.0919</td>
+<td>26.61498</td>
+<td>26.61498</td>
+<td>0.118768</td>
+</tr>
+
+<tr>
+<td>Unigene0003494</td>
+<td>143.8802</td>
+<td>18.38708</td>
+<td>18.38708</td>
+<td>0.127794</td>
+</tr>
+
+<tr>
+<td>Unigene0001501</td>
+<td>136.5825</td>
+<td>17.94474</td>
+<td>17.94474</td>
+<td>0.131384</td>
+</tr>
+
+<tr>
+<td>Unigene0061046</td>
+<td>132.6634</td>
+<td>17.51517</td>
+<td>17.51517</td>
+<td>0.132027</td>
+</tr>
+
+<tr>
+<td>Unigene0051467</td>
+<td>224.9567</td>
+<td>29.70607</td>
+<td>29.70607</td>
+<td>0.132052</td>
+</tr>
+
+<tr>
+<td>Unigene0002648</td>
+<td>635.3467</td>
+<td>84.06525</td>
+<td>84.06525</td>
+<td>0.132314</td>
+</tr>
+
+<tr>
+<td>Unigene0018474</td>
+<td>315.5729</td>
+<td>43.3001</td>
+<td>43.3001</td>
+<td>0.137211</td>
+</tr>
+
+<tr>
+<td>Unigene0064436</td>
+<td>179.2159</td>
+<td>24.72725</td>
+<td>24.72725</td>
+<td>0.137975</td>
+</tr>
+
+<tr>
+<td>Unigene0058797</td>
+<td>126.3847</td>
+<td>17.8765</td>
+<td>17.8765</td>
+<td>0.141445</td>
+</tr>
+
+<tr>
+<td>Unigene0053692</td>
+<td>139.5825</td>
+<td>20.52212</td>
+<td>20.52212</td>
+<td>0.147025</td>
+</tr>
+
+<tr>
+<td>……………..</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="后言">后言</h1>
+
+<p>其实，用*R*做离散系数的分析，就到此完结撒花了。</p>
+
+<p>其实，这个过程是挺曲折的，但是至少在这个过程中，增加了对*R*的理解。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2019-08-12</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019 Woney&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

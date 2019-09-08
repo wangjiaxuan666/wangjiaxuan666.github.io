@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>数据分析预处理:归一化,标准化和中心化</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Jiaxuan Wang">
+  <meta name="description" content="其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。
+而是懂算法, 懂原理!
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="数据分析预处理:归一化,标准化和中心化">
+    <meta name="twitter:description" content="其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。
+而是懂算法, 懂原理!
+">
+    <meta name="twitter:image" content="/media/dataviz.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="数据分析预处理:归一化,标准化和中心化">
+  <meta property="og:description" content="其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。
+而是懂算法, 懂原理!
+">
+  <meta property="og:url" content="/2019/05/31/what-should-we-do-before-the-data-analysis/">
+  <meta property="og:image" content="/media/dataviz.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2019/05/31/what-should-we-do-before-the-data-analysis/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/weibo_username" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="fab fa-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">数据分析预处理:归一化,标准化和中心化</h1>
+      <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。</p>
+
+<p>而是懂算法, 懂原理!</p>
+
+<p>[TOC]</p>
+
+<h1 id="前言">前言</h1>
+
+<p>其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。</p>
+
+<p>随着不断的工作的积累，慢慢的对自己的工作也多了几分认识。在高通量测序这个行业中的技术支撑，在单纯的技术方面可以分为三个阶段。</p>
+
+<ol>
+<li>懂的如何看结果，如何解读结果</li>
+<li>懂原理</li>
+<li>懂如何优化结果</li>
+</ol>
+
+<p>但是作为技术支撑，势必是要懂些生信分析，但是同样的生信分析也是分为三个等级</p>
+
+<ol>
+<li>会跑流程</li>
+<li>懂流程的细节</li>
+<li>懂算法和原理</li>
+</ol>
+
+<p>比如我一直在看的WGCNA文献，其实整体看下来，WGCNA分析是图形难画吗？是涉及什么高深的生物知识吗？其实都不是，反而通篇的如何用<strong>图论和算法</strong>来进行分析。可以说WGCNA分析其实就是个<strong>算法包</strong>。详情请看</p>
+
+<p><a href="/2019/05/31/what-is-wgcna-when-to-use/">图论好难, Network理论和WGCNA分析</a></p>
+
+<h1 id="数据处理">数据处理</h1>
+
+<p>其实今天要说的是关于数据的处理，因为在<code>PCA</code>分析中，<code>pcromp</code>函数主成分的时候，是有三个参数的，其中有两个参数在其他的分析中也是很常见的。在*R*中函数名称往往是<code>scale</code>和<code>center</code>。以前总是不理解。那是因为没什么必要去了解，但是当自己上台去讲如何用<code>pheatmap</code>绘制热图时，就需要知道了，因为热图绘制中有一个非常重要的参数是<code>scale = &quot;row&quot;</code>,也就是对行进行均一化。虽然我也能简单说几句，行均一化是因为可以降低变异范围，将所有基因在同一个范围内方便直观进行比较。其实自己心里明白，这是当支撑久了一种经验上的说法，其实真正的原理自己完全不清楚，禁不起推敲。</p>
+
+<p>因为搜索了相关的资料，第二天在讲课的时候，顺手就做了一个函数，解释了原理。课下的时候也正好被老师问起这些处理，自己把自己的理解讲了一番。也算是学有所用吧。</p>
+
+<p>更多就放在公众号里，记录一下关于数据的预处理的一些认识。</p>
+
+<h2 id="标准化scale">标准化scale</h2>
+
+<p>scale处理广泛应用在数据分析中，其本质是将数据特征重新缩放，并且它们将具有标准正态分布的性质（*其实我发现如果原始数据不是正态分布，标准化后，还是一样，不会变成正态分布*）</p>
+
+<p>所以其实标准化最重要的作用应该是将原本的<strong>特征值重新缩放</strong>，并且能局限在某个范围，并且这个范围还是一个标准差为*1*，平均值为*0*的这样的一个分布范围。更符合<strong>数据美学</strong>。但其实只是一种特征值缩放的手段。</p>
+
+<p>标准化算法的公式是：
+$$
+z = \frac{x - \mu}{\sigma}
+$$
+其中u是平均值，sigma是标准差。因为我脑子不够用了，所以没办法用复杂的数学公式来实现计算，是不是真是标准差为*1*，平均值为*0*。偷懒的我在R上，自己写了一个函数。来验证一下，果真如此。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.3 win 10</span>
+scales<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">function</span>(x){
+  <span style="color:#66d9ef">return</span>((x<span style="color:#f92672">-</span><span style="color:#66d9ef">mean</span>(x))<span style="color:#f92672">/</span>sd(x))
+}
+dat <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">sample</span>(<span style="color:#ae81ff">10000</span>,<span style="color:#ae81ff">300</span>)
+dat1 <span style="color:#f92672">&lt;-</span> scales(dat)
+<span style="color:#66d9ef">as.integer</span>(<span style="color:#66d9ef">mean</span>(dat1))
+sd(dat1)
+
+d<span style="color:#f92672">&lt;-</span>density(dat1)
+plot(d)
+plot(d,main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据标准化（scale）&#34;</span>)</code></pre></div>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553598676492.png" alt="1553598676492" /></p>
+
+<h2 id="归一化-normalization">归一化（Normalization）</h2>
+
+<p><strong>归一化：</strong>把数据变成(０，１)或者（1,1）之间的小数。这样可以将数据的变异范围局限在一定范围，同时保存了数据之间原有的变异度。在某些<strong>图像算法</strong>和<strong>神经网络算法</strong>中用的比较多。</p>
+
+<p>归一化处理的算法是：
+$$
+X<em>{norm} = \frac{X - X</em>{min}}{X<em>{max}-X</em>{min}}
+$$
+上述的公式还是比较好理解的，就是看特征值在极差范围内的<strong>排序</strong>。在这种方法中，数据被缩放到固定范围[0,1]，作为被限定边界的补偿，得到的是，与标准化相反，归一化最终会得到较小的标准偏差，这可以抑制异常值的影响。</p>
+
+<p>这点我们通过*R*很容易就可以发现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> Norm <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">function</span>(x){
+     <span style="color:#66d9ef">return</span>((x<span style="color:#f92672">-</span><span style="color:#66d9ef">min</span>(x))<span style="color:#f92672">/</span>(<span style="color:#66d9ef">max</span>(x)<span style="color:#f92672">-</span><span style="color:#66d9ef">min</span>(x)))
+}
+<span style="color:#f92672">&gt;</span> dat2 <span style="color:#f92672">&lt;-</span> Norm(dat)
+<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">mean</span>(dat2)
+[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">0.516856</span>
+<span style="color:#f92672">&gt;</span> sd(dat2)
+[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">0.2819505</span></code></pre></div>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553600051347.png" alt="1553600051347" /></p>
+
+<p>可以看到上述的归一化的标准差sd 要比标准化处理的标准差sd要小很多，这也代表着归一化可以极大的抑制异常值对数据分析的影响。</p>
+
+<p>另外被压缩在固定范围内，对某些神经网络算法和机器学习算法会相应的减少计算量（<strong>其实我也不是很懂这些算法，但是机器学习还是了解一点点点点的）</strong></p>
+
+<p>但是一般我们仍然不选择归一化处理，而是优先选择标准化，原因是两者的作用都是压缩特征值，但是标准化可以保留原始数据的变异度，即有利于我们在相对变异小的范围内，进行数据分析。同时也有利于我们发现数据中的问题。而归一化很可能就会掩盖这个异常效应。</p>
+
+<p>这在我们的生信分析中尤为重要，因为生命本身是很复杂的活动，太多的因素会导致数据或多或少的出现异常值。如果我们能发现异常值，就可以有针对性的优化。</p>
+
+<p><strong>没有标准化的流程分析，只有最适合的参数和流程。相信这才是生信分析的个性化所在！</strong></p>
+
+<p>另外归一化还有非线性的归一化，弦函数和log对数处理，这个相信各位能自己写出来这个函数，不如留个小任务，待你去发掘！</p>
+
+<h2 id="中心化-center">中心化（center）</h2>
+
+<p>中心化的算法就比较简单了，
+$$
+z = {x - \mu}
+$$
+就是很简单的特征值减去平均值。这个处理就是压缩数据。但其实更多的是一种特征值变换，就是变成有正负了。实话实话，我不知道这个干嘛，网上资料很少，谷歌也没这么说。并且我自己理解用处也有限。只是降低了<strong>平均值</strong>，但是数据分布的重要衡量标准—标准差没有任何变化啊。所以我个人猜测中心化只适合一些特定场景下的数据处理。原理这么简单，到时候自己遇到了，就自己用用呗。</p>
+
+<p>也用函数探究一下：</p>
+
+<p>首先是原始矩阵的平均值和标准差，因为我担心中心化处理的效果太弱，只好拿原始数据来做比对。</p>
+
+<pre><code>&gt; mean(dat)
+[1] 5168.167
+&gt; sd(dat)
+[1] 2804.562
+</code></pre>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601528491.png" alt="1553601528491" /></p>
+
+<p>在看看中心化处理后的数据分布</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> dat3 <span style="color:#f92672">&lt;-</span> center(dat)
+<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">mean</span>(dat3)
+[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">-3.033596e-13</span>
+<span style="color:#f92672">&gt;</span> sd(dat3)
+[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">2804.562</span></code></pre></div>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601864693.png" alt="1553601864693" /></p>
+
+<h1 id="总结">总结</h1>
+
+<p>大数据分析，有事没事来个标准化（scales），出现调整不了的异常值，就用归一化（Normalization），线性归一化不行，就用非线性的。</p>
+
+<p>center等你想起来用的时候再用吧。</p>
+
+<p>到此结束，感谢各位关注，谢谢</p>
+
+<p>下期精彩预告：</p>
+
+<p><a href="/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/"><strong>《不懂语法画什么图「ggplot2」语法快速入门PPT》</strong></a></p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2019-05-31</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019 Woney&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

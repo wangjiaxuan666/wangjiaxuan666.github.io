@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用R画动图展现路线</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Jiaxuan Wang">
+  <meta name="description" content="马上就要秋季宣讲了, 之前春季宣讲自己算了下, 出差应该有个50天左右, 画个R包纪念下.
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="用R画动图展现路线">
+    <meta name="twitter:description" content="马上就要秋季宣讲了, 之前春季宣讲自己算了下, 出差应该有个50天左右, 画个R包纪念下.
+">
+    <meta name="twitter:image" content="/post/2019-06-29-the-busy-travl-of-spring-in-2019_files/figure-html/unnamed-chunk-3-1.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用R画动图展现路线">
+  <meta property="og:description" content="马上就要秋季宣讲了, 之前春季宣讲自己算了下, 出差应该有个50天左右, 画个R包纪念下.
+">
+  <meta property="og:url" content="/2019/08/25/the-spring-travl-gif-made-by-r/">
+  <meta property="og:image" content="/post/2019-06-29-the-busy-travl-of-spring-in-2019_files/figure-html/unnamed-chunk-3-1.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2019/08/25/the-spring-travl-gif-made-by-r/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">Github</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//weibo.com/weibo_username" rel="me" title="Weibo" aria-label="Weibo">
+            <span class="fab fa-weibo" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用R画动图展现路线</h1>
+      <p class="post-meta">@Jiaxuan Wang · Aug 25, 2019 · 2 min read</p>
+    </header>
+    <article class="post-content"><div id="section" class="section level1">
+<h1>开始之前</h1>
+<p>我之前用<code>leaflet</code>这个<kbd>R</kbd>包是画过自己的出差路线的, 但是无奈我的hugo主题并不支持我弄的太花哨, 所以<code>javascript</code>的动态路线是没办法展现的, 但是本地还是可以展现的, 所以本地只能自己看咯.
+想学<code>leaflet</code>动态地图的可以看我的<a href="https://abego.cn/2019/06/16/spring-business-travel-in-2019/">博客文章</a></p>
+<p>除此以外, 我还用<code>sf</code>这个R包画过.可以直接跳转<a href="#section-01">下面的附录</a>
+- 如果关注的是<code>geom_sf</code>怎么画的, 可以看我的<a href="https://mp.weixin.qq.com/s/8tXRCl8I2smIKgH25qRNTg">微信公众号文章</a></p>
+</div>
+<div id="section-1" class="section level1">
+<h1>主题</h1>
+<p>背景就不再多说了, 今天之所以又用R画图,是因为在<code>twitter</code>上看到的教程. 拿来学习一下, 并改称自己的出差版本.</p>
+<p>先构建画图数据</p>
+<p>想用<code>fontawesome</code>的图表来代替点, 所以就加载了<code>emojifont</code>包, 话说这个包还是Y叔的包.先搜索下图表.</p>
+<pre class="r"><code>search_fontawesome(&quot;plane&quot;)</code></pre>
+<pre><code>## [1] &quot;fa-paper-plane&quot;   &quot;fa-paper-plane-o&quot; &quot;fa-plane&quot;</code></pre>
+<pre class="r"><code>search_fontawesome(&quot;train&quot;)</code></pre>
+<pre><code>## [1] &quot;fa-train&quot;</code></pre>
+<pre class="r"><code>plane_city &lt;- c(&quot;哈尔滨&quot;, &quot;郑州&quot;, &quot;广州&quot;, &quot;北京&quot;, &quot;呼和浩特&quot;)
+search_fontawesome(&quot;train&quot;)</code></pre>
+<pre><code>## [1] &quot;fa-train&quot;</code></pre>
+<pre class="r"><code>post$emoji = ifelse(post$post_city %in% plane_city, fontawesome(&quot;fa-plane&quot;), 
+    fontawesome(&quot;fa-train&quot;))</code></pre>
+<p>然后就是画图了.</p>
+<pre class="r"><code>invisible(saveGIF({
+    
+    
+    for (i in seq) {
+        
+        p1 &lt;- ggplot(china) + geom_sf(size = 0.5, color = &quot;#f0f0f0&quot;, fill = &quot;#2a2a2a&quot;, 
+            show.legend = FALSE) + geom_text(data = post %&gt;% filter(post_city == 
+            i), aes(x = long, y = lat, label = emoji, size = t_day + 1), color = &quot;white&quot;, 
+            family = &quot;fontawesome-webfont&quot;, size = 6) + theme_void() + labs(title = &quot;The Spring Travl&quot;) + 
+            labs(caption = &quot;by 王家轩 \n&quot;) + theme(legend.background = element_rect(fill = &quot;#2a2a2a&quot;), 
+            legend.text = element_text(color = &quot;white&quot;), plot.background = element_rect(fill = &quot;#FFD300&quot;, 
+                color = &quot;#FFD300&quot;), panel.background = element_rect(fill = &quot;#FFD300&quot;, 
+                color = &quot;#FFD300&quot;), legend.position = c(0.11, 0.32), legend.key = element_rect(fill = &quot;#2a2a2a&quot;, 
+                color = NA), legend.title = element_text(color = &quot;white&quot;, size = 20, 
+                hjust = 0), plot.title = element_text(hjust = 0.5, size = 30, 
+                colour = &quot;#2A2A2A&quot;, face = &quot;bold&quot;), plot.subtitle = element_text(hjust = 0.5, 
+                size = 15, face = &quot;bold&quot;, colour = &quot;#73d055ff&quot;), plot.caption = element_text(hjust = 0.9, 
+                size = 15, face = &quot;bold&quot;, colour = &quot;black&quot;)) + scale_size_continuous(range = c(1, 
+            12))
+        
+        p3 &lt;- ggplot(data = NULL, aes(x = seq, y = 1)) + geom_line() + geom_point(aes(fill = (x = seq %in% 
+            i)), shape = 21, size = 5) + theme_void() + theme(legend.position = &quot;none&quot;) + 
+            scale_fill_manual(values = c(&quot;#b2d1e0&quot;, &quot;gold&quot;)) + geom_text(aes(x = i, 
+            y = 1, label = i), vjust = -1, size = 9, color = &quot;#2a2a2a&quot;)
+        
+        print(ggpubr::ggarrange(p1, p3, nrow = 2, ncol = 1, heights = c(1.4, 
+            0.3)))
+        
+    }
+    
+}, movie.name = &quot;nuclearExplosions.gif&quot;, interval = 1, ani.width = 1200, ani.height = 900))</code></pre>
+<p>效果如图:</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/nuclearExplosions.gif" /></p>
+</div>
+<div id="section-2" class="section level1">
+<h1>参考资料:</h1>
+<ol style="list-style-type: decimal">
+<li><p id="ref01">
+<a href="https://rstudio.github.io/leaflet/basemaps.html">Rstudio/leaflet</a>
+</p></li>
+<li><p id="ref03">
+<a href="https://stackoverflow.com/questions/32275213/how-do-i-connect-two-coordinates-with-a-line-using-leaflet-in-r">如何在leaflet中连线</a>
+</p></li>
+<li><p id="ref02">
+<a href="https://blog.csdn.net/cds86333774/article/details/51009057">低级市以上城市的经纬度</a>
+</p></li>
+</ol>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E9%9A%8F%E7%AC%94"><span class="tag">随笔</span></a></li>
+        
+          <li><a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="tag">可视化</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2019-08-25</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019 Woney&#39;s Blog</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
