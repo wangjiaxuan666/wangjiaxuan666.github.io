@@ -112,6 +112,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -301,36 +307,36 @@
 <h3 id="用r计算离散系数">用R计算离散系数</h3>
 
 <p>注释看代码行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.2 win 10</span>
-<span style="color:#f92672">require</span>(tidyverse)
-<span style="color:#f92672">require</span>(matrixStats)<span style="color:#75715e">#这个包有rowSds函数，计算一行的sd标准差</span>
-path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#75715e"># 这是我的工作目录桌面</span>
-inname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all.sample.annot.xls&#34;</span>
-<span style="color:#66d9ef">setwd</span>(path)
-dat<span style="color:#f92672">=</span>read_tsv(inname, col_names <span style="color:#f92672">=</span> T)
-nms <span style="color:#f92672">&lt;-</span> str_subset(<span style="color:#66d9ef">colnames</span>(dat),pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pm|km&#34;</span>)
-<span style="color:#66d9ef">dim</span>(dat)
-dat_m <span style="color:#f92672">&lt;-</span> dat <span style="color:#f92672">%&gt;%</span> filter(<span style="color:#66d9ef">rowSums</span>(<span style="color:#ae81ff">.</span>[nms]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span>
-         mutate(mean <span style="color:#f92672">=</span> <span style="color:#66d9ef">rowMeans</span>(<span style="color:#ae81ff">.</span>[nms]),sd <span style="color:#f92672">=</span> rowSds(<span style="color:#66d9ef">as.matrix</span>(<span style="color:#ae81ff">.</span>[nms]))) <span style="color:#f92672">%&gt;%</span>
-         mutate(CV <span style="color:#f92672">=</span> sd<span style="color:#f92672">/</span><span style="color:#66d9ef">mean</span>)
-dat_cv <span style="color:#f92672">&lt;-</span> dat_m
-write_tsv(dat_cv,<span style="color:#e6db74">&#34;unigene_cv.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
-dat_quan <span style="color:#f92672">&lt;-</span> quantile(dat_cv[[<span style="color:#e6db74">&#34;CV&#34;</span>]],prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)<span style="color:#75715e">#寻找排名前1%的最小CV值基因</span>
-dat_cv_fit <span style="color:#f92672">&lt;-</span> dat_cv <span style="color:#f92672">%&gt;%</span> arrange(CV) <span style="color:#f92672">%&gt;%</span> filter(mean <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>, CV <span style="color:#f92672">&lt;=</span> dat_quan)
-write_tsv(dat_cv_fit,<span style="color:#e6db74">&#34;unigene_cv_filter.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.2 win 10</span>
+<span style="color:#080;font-weight:bold">require</span>(tidyverse)
+<span style="color:#080;font-weight:bold">require</span>(matrixStats)<span style="color:#888">#这个包有rowSds函数，计算一行的sd标准差</span>
+path = <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#888"># 这是我的工作目录桌面</span>
+inname = <span style="color:#d20;background-color:#fff0f0">&#34;all.sample.annot.xls&#34;</span>
+<span style="color:#080">setwd</span>(path)
+dat=read_tsv(inname, col_names = T)
+nms &lt;- str_subset(<span style="color:#080">colnames</span>(dat),pattern = <span style="color:#d20;background-color:#fff0f0">&#34;pm|km&#34;</span>)
+<span style="color:#080">dim</span>(dat)
+dat_m &lt;- dat %&gt;% filter(<span style="color:#080">rowSums</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]) != <span style="color:#00d;font-weight:bold">0</span>) %&gt;%
+         mutate(mean = <span style="color:#080">rowMeans</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]),sd = rowSds(<span style="color:#080">as.matrix</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]))) %&gt;%
+         mutate(CV = sd/<span style="color:#080">mean</span>)
+dat_cv &lt;- dat_m
+write_tsv(dat_cv,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv.xls&#34;</span>,col_names = T)
+dat_quan &lt;- quantile(dat_cv[[<span style="color:#d20;background-color:#fff0f0">&#34;CV&#34;</span>]],prob = <span style="color:#00d;font-weight:bold">0.01</span>)<span style="color:#888">#寻找排名前1%的最小CV值基因</span>
+dat_cv_fit &lt;- dat_cv %&gt;% arrange(CV) %&gt;% filter(mean &gt;= <span style="color:#00d;font-weight:bold">100</span>, CV &lt;= dat_quan)
+write_tsv(dat_cv_fit,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv_filter.xls&#34;</span>,col_names = T)</code></pre></div>
 <p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
 
 <h3 id="绘制图形">绘制图形</h3>
 
 <p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#绘制图形</span>
-p1 <span style="color:#f92672">&lt;-</span> ggplot(dat <span style="color:#f92672">=</span>dat_cv_fit, mapping <span style="color:#f92672">=</span> aes(x <span style="color:#f92672">=</span> <span style="color:#66d9ef">mean</span>, y <span style="color:#f92672">=</span> sd))<span style="color:#f92672">+</span>
-  geom_point(dat <span style="color:#f92672">=</span> dat_cv,aes(x <span style="color:#f92672">=</span> <span style="color:#66d9ef">mean</span>, y <span style="color:#f92672">=</span> sd),fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">+</span>
-  geom_point(dat <span style="color:#f92672">=</span> dat_cv_fit,aes(fill <span style="color:#f92672">=</span> id),shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">+</span>
-  labs(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The mean of Unigene RPKM&#34;</span>,y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The stdev of Unigene RPKM&#34;</span> ,title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CV value&#34;</span>)<span style="color:#f92672">+</span>
-  geom_vline(xintercept <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">2000</span>),linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey&#34;</span>)
-<span style="color:#75715e">#进行一点调整</span>
-p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</span> theme_bw()<span style="color:#f92672">+</span> theme(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#绘制图形</span>
+p1 &lt;- ggplot(dat =dat_cv_fit, mapping = aes(x = <span style="color:#080">mean</span>, y = sd))+
+  geom_point(dat = dat_cv,aes(x = <span style="color:#080">mean</span>, y = sd),fill = <span style="color:#d20;background-color:#fff0f0">&#34;skyblue&#34;</span>,size = <span style="color:#00d;font-weight:bold">0.5</span>)+
+  geom_point(dat = dat_cv_fit,aes(fill = id),shape = <span style="color:#00d;font-weight:bold">21</span>,color =<span style="color:#d20;background-color:#fff0f0">&#34;red&#34;</span>,size = <span style="color:#00d;font-weight:bold">3</span>)+
+  labs(x = <span style="color:#d20;background-color:#fff0f0">&#34;The mean of Unigene RPKM&#34;</span>,y = <span style="color:#d20;background-color:#fff0f0">&#34;The stdev of Unigene RPKM&#34;</span> ,title = <span style="color:#d20;background-color:#fff0f0">&#34;The CV value&#34;</span>)+
+  geom_vline(xintercept = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">100</span>,<span style="color:#00d;font-weight:bold">2000</span>),linetype = <span style="color:#00d;font-weight:bold">4</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;grey&#34;</span>)
+<span style="color:#888">#进行一点调整</span>
+p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138" /></p>
 
 <h2 id="检验结果">检验结果</h2>
@@ -578,7 +584,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

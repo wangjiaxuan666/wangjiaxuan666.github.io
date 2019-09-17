@@ -115,6 +115,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -282,18 +288,18 @@ $$
 z = \frac{x - \mu}{\sigma}
 $$
 其中u是平均值，sigma是标准差。因为我脑子不够用了，所以没办法用复杂的数学公式来实现计算，是不是真是标准差为*1*，平均值为*0*。偷懒的我在R上，自己写了一个函数。来验证一下，果真如此。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.3 win 10</span>
-scales<span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">function</span>(x){
-  <span style="color:#66d9ef">return</span>((x<span style="color:#f92672">-</span><span style="color:#66d9ef">mean</span>(x))<span style="color:#f92672">/</span>sd(x))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.3 win 10</span>
+scales&lt;-<span style="color:#080;font-weight:bold">function</span>(x){
+  <span style="color:#080;font-weight:bold">return</span>((x-<span style="color:#080">mean</span>(x))/sd(x))
 }
-dat <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">sample</span>(<span style="color:#ae81ff">10000</span>,<span style="color:#ae81ff">300</span>)
-dat1 <span style="color:#f92672">&lt;-</span> scales(dat)
-<span style="color:#66d9ef">as.integer</span>(<span style="color:#66d9ef">mean</span>(dat1))
+dat &lt;- <span style="color:#080">sample</span>(<span style="color:#00d;font-weight:bold">10000</span>,<span style="color:#00d;font-weight:bold">300</span>)
+dat1 &lt;- scales(dat)
+<span style="color:#080">as.integer</span>(<span style="color:#080">mean</span>(dat1))
 sd(dat1)
 
-d<span style="color:#f92672">&lt;-</span>density(dat1)
+d&lt;-density(dat1)
 plot(d)
-plot(d,main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据标准化（scale）&#34;</span>)</code></pre></div>
+plot(d,main = <span style="color:#d20;background-color:#fff0f0">&#34;数据标准化（scale）&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553598676492.png" alt="1553598676492" /></p>
 
 <h2 id="归一化-normalization">归一化（Normalization）</h2>
@@ -307,14 +313,14 @@ $$
 上述的公式还是比较好理解的，就是看特征值在极差范围内的<strong>排序</strong>。在这种方法中，数据被缩放到固定范围[0,1]，作为被限定边界的补偿，得到的是，与标准化相反，归一化最终会得到较小的标准偏差，这可以抑制异常值的影响。</p>
 
 <p>这点我们通过*R*很容易就可以发现</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> Norm <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">function</span>(x){
-     <span style="color:#66d9ef">return</span>((x<span style="color:#f92672">-</span><span style="color:#66d9ef">min</span>(x))<span style="color:#f92672">/</span>(<span style="color:#66d9ef">max</span>(x)<span style="color:#f92672">-</span><span style="color:#66d9ef">min</span>(x)))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; Norm &lt;-<span style="color:#080;font-weight:bold">function</span>(x){
+     <span style="color:#080;font-weight:bold">return</span>((x-<span style="color:#080">min</span>(x))/(<span style="color:#080">max</span>(x)-<span style="color:#080">min</span>(x)))
 }
-<span style="color:#f92672">&gt;</span> dat2 <span style="color:#f92672">&lt;-</span> Norm(dat)
-<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">mean</span>(dat2)
-[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">0.516856</span>
-<span style="color:#f92672">&gt;</span> sd(dat2)
-[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">0.2819505</span></code></pre></div>
+&gt; dat2 &lt;- Norm(dat)
+&gt; <span style="color:#080">mean</span>(dat2)
+[<span style="color:#00d;font-weight:bold">1</span>] <span style="color:#00d;font-weight:bold">0.516856</span>
+&gt; sd(dat2)
+[<span style="color:#00d;font-weight:bold">1</span>] <span style="color:#00d;font-weight:bold">0.2819505</span></code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553600051347.png" alt="1553600051347" /></p>
 
 <p>可以看到上述的归一化的标准差sd 要比标准化处理的标准差sd要小很多，这也代表着归一化可以极大的抑制异常值对数据分析的影响。</p>
@@ -350,11 +356,11 @@ $$
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601528491.png" alt="1553601528491" /></p>
 
 <p>在看看中心化处理后的数据分布</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> dat3 <span style="color:#f92672">&lt;-</span> center(dat)
-<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">mean</span>(dat3)
-[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">-3.033596e-13</span>
-<span style="color:#f92672">&gt;</span> sd(dat3)
-[<span style="color:#ae81ff">1</span>] <span style="color:#ae81ff">2804.562</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; dat3 &lt;- center(dat)
+&gt; <span style="color:#080">mean</span>(dat3)
+[<span style="color:#00d;font-weight:bold">1</span>] <span style="color:#00d;font-weight:bold">-3.033596e-13</span>
+&gt; sd(dat3)
+[<span style="color:#00d;font-weight:bold">1</span>] <span style="color:#00d;font-weight:bold">2804.562</span></code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601864693.png" alt="1553601864693" /></p>
 
 <h1 id="总结">总结</h1>
@@ -476,7 +482,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

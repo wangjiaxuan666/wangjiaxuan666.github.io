@@ -112,6 +112,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -263,8 +269,8 @@
 <h1 id="ggtree的实操">ggtree的实操</h1>
 
 <p>第一步，当然是要得到树文件🌿，进化树也大致分为两种，一种是<purple>聚类树</purple>，根据样本之间的相关性计算距离，根据距离矩阵，算出聚类数。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">d <span style="color:#f92672">&lt;-</span> dist(data)<span style="color:#75715e">#计算样品间的距离</span>
-h <span style="color:#f92672">&lt;-</span> hclust(d)<span style="color:#75715e">#转换成聚类树的格式</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">d &lt;- dist(data)<span style="color:#888">#计算样品间的距离</span>
+h &lt;- hclust(d)<span style="color:#888">#转换成聚类树的格式</span></code></pre></div>
 <p>另外一种就是根据核苷酸的替代和变化，构建的进化树，可以用<code>MEGA X</code>，也可以使用<a href="https://www.ebi.ac.uk/Tools/msa/clustalo/">在线网站</a>制作。这种网站很多。尤其是就职的公司公众号，发布了不少这方面的教程。就不在自述了。</p>
 
 <h2 id="ggtree的操作文件">ggtree的操作文件</h2>
@@ -274,13 +280,13 @@ h <span style="color:#f92672">&lt;-</span> hclust(d)<span style="color:#75715e">
 <h3 id=" section01">用热图聚类的结果当作输入文件</h3>
 
 <p>将聚类热图的结果导出文件，这里可是能导出<code>pheatmap</code>的聚类结果奥。并且按照聚类的结果新增了<code>group</code>这一列，代表基因的分类情况。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span>
-<span style="color:#66d9ef">setwd</span>(path)
-<span style="color:#f92672">require</span>(pheatmap)
-p1 <span style="color:#f92672">&lt;-</span> pheatmap(mtcars,scale <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;row&#34;</span>,cutree_rows <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
-cut <span style="color:#f92672">&lt;-</span> cutree(p1<span style="color:#f92672">$</span>tree_row,k<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>) 
-dat_cut <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">cbind</span>(mtcars,<span style="color:#e6db74">&#34;group&#34;</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">cut</span>)
-write.table(dat_cut,<span style="color:#e6db74">&#34;heatmap_cut_id.xls&#34;</span>,sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">path = <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span>
+<span style="color:#080">setwd</span>(path)
+<span style="color:#080;font-weight:bold">require</span>(pheatmap)
+p1 &lt;- pheatmap(mtcars,scale = <span style="color:#d20;background-color:#fff0f0">&#34;row&#34;</span>,cutree_rows = <span style="color:#00d;font-weight:bold">4</span>)
+cut &lt;- cutree(p1$tree_row,k=<span style="color:#00d;font-weight:bold">4</span>) 
+dat_cut &lt;- <span style="color:#080">cbind</span>(mtcars,<span style="color:#d20;background-color:#fff0f0">&#34;group&#34;</span> = <span style="color:#080">cut</span>)
+write.table(dat_cut,<span style="color:#d20;background-color:#fff0f0">&#34;heatmap_cut_id.xls&#34;</span>,sep = <span style="color:#d20;background-color:#fff0f0">&#34;\t&#34;</span>)</code></pre></div>
 <h3 id="将热图的聚类书读出">将热图的聚类书读出</h3>
 
 <p>接下来，就要根据热图的聚类结果，导出聚类树🍀，如图</p>
@@ -288,10 +294,10 @@ write.table(dat_cut,<span style="color:#e6db74">&#34;heatmap_cut_id.xls&#34;</sp
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551597507666.png" alt="1551597507666" /></p>
 
 <p>安装<code>ggtree</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#66d9ef">if</span>（！<span style="color:#66d9ef">requireNamespace</span>（“BiocManager”，quietly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>））
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#080;font-weight:bold">if</span>（！<span style="color:#080">requireNamespace</span>（“BiocManager”，quietly = <span style="color:#080;font-weight:bold">TRUE</span>））
     install.packages（ “BiocManager”）
-BiocManager <span style="color:#f92672">::</span> install（“ggtree”，version <span style="color:#f92672">=</span>“<span style="color:#ae81ff">3.8</span>”）
-browseVignettes（ “ggtree”）<span style="color:#75715e">#打开帮助文档</span></code></pre></div>
+BiocManager :: install（“ggtree”，version =“<span style="color:#00d;font-weight:bold">3.8</span>”）
+browseVignettes（ “ggtree”）<span style="color:#888">#打开帮助文档</span></code></pre></div>
 <p>读取数据</p>
 
 <pre><code>require(ape)
@@ -304,10 +310,10 @@ write.tree(as.phylo(hc),file = &quot;mytree.nwk&quot;)
 <h3 id="将树文件导入r">将树文件导入R</h3>
 
 <p>用<code>read.tree</code>函数导入</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">require</span>(ggtree)
-inname <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;my_tree.nwk&#34;</span>
-tree <span style="color:#f92672">&lt;-</span> read.tree(inname)
-ggtree(tree) <span style="color:#f92672">+</span> geom_tiplab()<span style="color:#75715e">#这个文本没有打印完全，这个可以设置par全局画布的大小来改变，但是这里就不展开了，反正是栗子</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#080;font-weight:bold">require</span>(ggtree)
+inname &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;my_tree.nwk&#34;</span>
+tree &lt;- read.tree(inname)
+ggtree(tree) + geom_tiplab()<span style="color:#888">#这个文本没有打印完全，这个可以设置par全局画布的大小来改变，但是这里就不展开了，反正是栗子</span></code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551598226822.png" alt="1551598226822" /></p>
 
 <p>到此，我们已经有了树以及树文件。接下来就是<code>ggtree</code>登场的时间了.</p>
@@ -338,7 +344,7 @@ ggtree(tree) <span style="color:#f92672">+</span> geom_tiplab()<span style="colo
 <h4 id="layout布局美化">layout布局美化</h4>
 
 <p>首先最重要的当然是树图的<code>layout</code>了。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree,layout <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;circular&#34;</span>) </code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree,layout = <span style="color:#d20;background-color:#fff0f0">&#34;circular&#34;</span>) </code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551599015191.png" alt="1551599015191" /></p>
 
 <p>其中<code>ggtree</code>设置了很多布局参数。如下图：</p>
@@ -440,7 +446,7 @@ ggtree(tree) + xlim(-10, NA)#坐标轴限制某一范围内
 <h4 id="显示树尺度-纯copy帮助文档">显示树尺度（纯copy帮助文档）</h4>
 
 <p>要显示树比例，用户可以使用<code>geom_treescale()</code>图层。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree) <span style="color:#f92672">+</span> geom_treescale()</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree) + geom_treescale()</code></pre></div>
 <p><img src="data:image/png;base64,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" alt="img" /></p>
 
 <h4 id="显示节点-提示-纯copy帮助文档">显示节点/提示（纯copy帮助文档）</h4>
@@ -478,30 +484,30 @@ ggtree(tree) + xlim(-10, NA)#坐标轴限制某一范围内
 <ol>
 <li>用以下命令绘制图形，看图形得知node</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree) <span style="color:#f92672">+</span> geom_text2(aes(subset<span style="color:#f92672">=!</span>isTip, label<span style="color:#f92672">=</span>node), hjust<span style="color:#f92672">=</span><span style="color:#ae81ff">-.3</span>) <span style="color:#f92672">+</span> geom_tiplab()</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ggtree(tree) + geom_text2(aes(subset=!isTip, label=node), hjust=<span style="color:#00d;font-weight:bold">-.3</span>) + geom_tiplab()</code></pre></div>
 <ol>
 <li>用以下命令得知，所关注的node位置，毕竟样本太多的时候，眼睛是看不过来的。</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">MRCA(tree, tip<span style="color:#f92672">=</span><span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#39;A&#39;</span>, <span style="color:#e6db74">&#39;E&#39;</span>))<span style="color:#75715e">#这里的A和E就是所关注的样本名称</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">MRCA(tree, tip=<span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;A&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;E&#39;</span>))<span style="color:#888">#这里的A和E就是所关注的样本名称</span></code></pre></div>
 <ol>
 <li>用<code>viewClade</code>查看分枝</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">viewClade(p<span style="color:#f92672">+</span>geom_tiplab(), node<span style="color:#f92672">=</span><span style="color:#ae81ff">21</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">viewClade(p+geom_tiplab(), node=<span style="color:#00d;font-weight:bold">21</span>)</code></pre></div>
 <h4 id="geom图层美化分枝">geom图层美化分枝</h4>
 
 <p>知道了我们需要美化的分枝的node值，就可以进行美化</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree <span style="color:#f92672">&lt;-</span> groupClade(tree, <span style="color:#ae81ff">.</span>node<span style="color:#f92672">=</span><span style="color:#ae81ff">44</span>)
-ggtree(tree, aes(color<span style="color:#f92672">=</span>group, linetype<span style="color:#f92672">=</span>group))</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree &lt;- groupClade(tree, <span style="color:#00d;font-weight:bold">.</span>node=<span style="color:#00d;font-weight:bold">44</span>)
+ggtree(tree, aes(color=group, linetype=group))</code></pre></div>
 <p>我们也可规定多个节点</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree <span style="color:#f92672">&lt;-</span> groupClade(tree, <span style="color:#ae81ff">.</span>node<span style="color:#f92672">=</span><span style="color:#66d9ef">c</span>(<span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">47</span>))
-ggtree(tree, aes(color<span style="color:#f92672">=</span>group, linetype<span style="color:#f92672">=</span>group)) <span style="color:#f92672">+</span> geom_tiplab(aes(subset<span style="color:#f92672">=</span>(group<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)))</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree &lt;- groupClade(tree, <span style="color:#00d;font-weight:bold">.</span>node=<span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">44</span>, <span style="color:#00d;font-weight:bold">47</span>))
+ggtree(tree, aes(color=group, linetype=group)) + geom_tiplab(aes(subset=(group==<span style="color:#00d;font-weight:bold">2</span>)))</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551601780595.png" alt="1551601780595" /></p>
 
 <h4 id="groupotu美化端点">groupOTU美化端点</h4>
 
 <p>刚刚是关于分枝点（*node*）的美化，其实也有参数是进行树图最末端的端点进行美化的。端点就比较好理解，就是我们的样本名称。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree <span style="color:#f92672">&lt;-</span> groupOTU(tree, <span style="color:#ae81ff">.</span>node<span style="color:#f92672">=</span><span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;E&#34;</span>, <span style="color:#e6db74">&#34;F&#34;</span>, <span style="color:#e6db74">&#34;G&#34;</span>))<span style="color:#75715e">#DDFG是样本名称</span>
-ggtree(tree, aes(color<span style="color:#f92672">=</span>group)) <span style="color:#f92672">+</span> geom_tiplab()</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">tree &lt;- groupOTU(tree, <span style="color:#00d;font-weight:bold">.</span>node=<span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;D&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;E&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;F&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;G&#34;</span>))<span style="color:#888">#DDFG是样本名称</span>
+ggtree(tree, aes(color=group)) + geom_tiplab()</code></pre></div>
 <p><img src="data:image/png;base64,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" alt="img" /></p>
 
 <h4 id="高亮分枝">高亮分枝</h4>
@@ -628,7 +634,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -109,6 +109,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -246,9 +252,9 @@
 <h3 id="加载您需要的所有库">加载您需要的所有库</h3>
 
 <p>本手册中的一些步骤 - 以及通常在R中创建图表 - 需要安装和加载某些软件包。因此，您不必逐个安装和加载它们，您可以使用包中的<code>p_load</code>函数使用<code>pacman</code>以下代码一次性加载它们。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#用pacman中的加载函数，其实我也不知道这个比library好到哪里去了</span>
-<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#f92672">require</span>(pacman))install.packages(<span style="color:#e6db74">&#34;pacman&#34;</span>)
-pacman<span style="color:#f92672">::</span>p_load(<span style="color:#e6db74">&#39;dplyr&#39;</span>, <span style="color:#e6db74">&#39;tidyr&#39;</span>, <span style="color:#e6db74">&#39;gapminder&#39;</span>, <span style="color:#e6db74">&#39;ggplot2&#39;</span>,  <span style="color:#e6db74">&#39;ggalt&#39;</span>, <span style="color:#e6db74">&#39;forcats&#39;</span>, <span style="color:#e6db74">&#39;R.utils&#39;</span>, <span style="color:#e6db74">&#39;png&#39;</span>, <span style="color:#e6db74">&#39;grid&#39;</span>, <span style="color:#e6db74">&#39;ggpubr&#39;</span>, <span style="color:#e6db74">&#39;scales&#39;</span>,<span style="color:#e6db74">&#39;bbplot&#39;</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#用pacman中的加载函数，其实我也不知道这个比library好到哪里去了</span>
+<span style="color:#080;font-weight:bold">if</span>(!<span style="color:#080;font-weight:bold">require</span>(pacman))install.packages(<span style="color:#d20;background-color:#fff0f0">&#34;pacman&#34;</span>)
+pacman::p_load(<span style="color:#d20;background-color:#fff0f0">&#39;dplyr&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;tidyr&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;gapminder&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;ggplot2&#39;</span>,  <span style="color:#d20;background-color:#fff0f0">&#39;ggalt&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;forcats&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;R.utils&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;png&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;grid&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;ggpubr&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;scales&#39;</span>,<span style="color:#d20;background-color:#fff0f0">&#39;bbplot&#39;</span>)</code></pre></div>
 <h3 id="安装bbplot包">安装bbplot包</h3>
 
 <p><code>bbplot</code>不在CRAN上，所以你必须直接从Github安装它<code>devtools</code>。</p>
@@ -272,47 +278,47 @@ devtools::install_github('bbc/bbplot')
 <p>请注意，折线图中的线条颜色或条形图条形图的颜色不是从<code>bbc_style()</code>函数中开箱即用的，而是需要在其他标准<code>ggplot</code>图表函数中明确设置。</p>
 
 <p>下面的代码显示了如何<code>bbc_style()</code>在标准图表生成工作流程中使用它。这是一个非常简单的折线图的示例，使用<code>gapminder</code>包中的数据。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#Data for chart from gapminder package</span>
-line_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span>
-  filter(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Malawi&#34;</span>) 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#Data for chart from gapminder package</span>
+line_df &lt;- gapminder %&gt;%
+  filter(country == <span style="color:#d20;background-color:#fff0f0">&#34;Malawi&#34;</span>) 
 
-<span style="color:#75715e">#Make plot</span>
-line <span style="color:#f92672">&lt;-</span> ggplot(line_df, aes(x <span style="color:#f92672">=</span> year, y <span style="color:#f92672">=</span> lifeExp)) <span style="color:#f92672">+</span>
-  geom_line(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1380A1&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
-  geom_hline(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, colour<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#333333&#34;</span>) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span>
-  labs(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Living longer&#34;</span>,
-       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Life expectancy in Malawi 1952-2007&#34;</span>)</code></pre></div>
+<span style="color:#888">#Make plot</span>
+line &lt;- ggplot(line_df, aes(x = year, y = lifeExp)) +
+  geom_line(colour = <span style="color:#d20;background-color:#fff0f0">&#34;#1380A1&#34;</span>, size = <span style="color:#00d;font-weight:bold">1</span>) +
+  geom_hline(yintercept = <span style="color:#00d;font-weight:bold">0</span>, size = <span style="color:#00d;font-weight:bold">1</span>, colour=<span style="color:#d20;background-color:#fff0f0">&#34;#333333&#34;</span>) +
+  bbc_style() +
+  labs(title=<span style="color:#d20;background-color:#fff0f0">&#34;Living longer&#34;</span>,
+       subtitle = <span style="color:#d20;background-color:#fff0f0">&#34;Life expectancy in Malawi 1952-2007&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298117607.png" alt="1556298117607" /></p>
 
 <p>这是<code>bbc_style()</code>功能实际上在幕后做的事情。它实质上修改了<code>theme</code>函数中的某些参数<code>ggplot2</code>。</p>
 
 <p>例如，第一个参数是设置绘图的title元素的字体，大小，字体和颜色。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">## function () </span>
-<span style="color:#75715e">## {</span>
-<span style="color:#75715e">##     font &lt;- &#34;Helvetica&#34;</span>
-<span style="color:#75715e">##     ggplot2::theme(plot.title = ggplot2::element_text(family = font, </span>
-<span style="color:#75715e">##         size = 28, face = &#34;bold&#34;, color = &#34;#222222&#34;), plot.subtitle = ggplot2::element_text(family = font, </span>
-<span style="color:#75715e">##         size = 22, margin = ggplot2::margin(9, 0, 9, 0)), plot.caption = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         legend.position = &#34;top&#34;, legend.text.align = 0, legend.background = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         legend.title = ggplot2::element_blank(), legend.key = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         legend.text = ggplot2::element_text(family = font, size = 18, </span>
-<span style="color:#75715e">##             color = &#34;#222222&#34;), axis.title = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         axis.text = ggplot2::element_text(family = font, size = 18, </span>
-<span style="color:#75715e">##             color = &#34;#222222&#34;), axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5, </span>
-<span style="color:#75715e">##             b = 10)), axis.ticks = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         axis.line = ggplot2::element_blank(), panel.grid.minor = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         panel.grid.major.y = ggplot2::element_line(color = &#34;#cbcbcb&#34;), </span>
-<span style="color:#75715e">##         panel.grid.major.x = ggplot2::element_blank(), panel.background = ggplot2::element_blank(), </span>
-<span style="color:#75715e">##         strip.background = ggplot2::element_rect(fill = &#34;white&#34;), </span>
-<span style="color:#75715e">##         strip.text = ggplot2::element_text(size = 22, hjust = 0))</span>
-<span style="color:#75715e">## }</span>
-<span style="color:#75715e">## &lt;environment: namespace:bbplot&gt;</span></code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">## function () </span>
+<span style="color:#888">## {</span>
+<span style="color:#888">##     font &lt;- &#34;Helvetica&#34;</span>
+<span style="color:#888">##     ggplot2::theme(plot.title = ggplot2::element_text(family = font, </span>
+<span style="color:#888">##         size = 28, face = &#34;bold&#34;, color = &#34;#222222&#34;), plot.subtitle = ggplot2::element_text(family = font, </span>
+<span style="color:#888">##         size = 22, margin = ggplot2::margin(9, 0, 9, 0)), plot.caption = ggplot2::element_blank(), </span>
+<span style="color:#888">##         legend.position = &#34;top&#34;, legend.text.align = 0, legend.background = ggplot2::element_blank(), </span>
+<span style="color:#888">##         legend.title = ggplot2::element_blank(), legend.key = ggplot2::element_blank(), </span>
+<span style="color:#888">##         legend.text = ggplot2::element_text(family = font, size = 18, </span>
+<span style="color:#888">##             color = &#34;#222222&#34;), axis.title = ggplot2::element_blank(), </span>
+<span style="color:#888">##         axis.text = ggplot2::element_text(family = font, size = 18, </span>
+<span style="color:#888">##             color = &#34;#222222&#34;), axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5, </span>
+<span style="color:#888">##             b = 10)), axis.ticks = ggplot2::element_blank(), </span>
+<span style="color:#888">##         axis.line = ggplot2::element_blank(), panel.grid.minor = ggplot2::element_blank(), </span>
+<span style="color:#888">##         panel.grid.major.y = ggplot2::element_line(color = &#34;#cbcbcb&#34;), </span>
+<span style="color:#888">##         panel.grid.major.x = ggplot2::element_blank(), panel.background = ggplot2::element_blank(), </span>
+<span style="color:#888">##         strip.background = ggplot2::element_rect(fill = &#34;white&#34;), </span>
+<span style="color:#888">##         strip.text = ggplot2::element_text(size = 22, hjust = 0))</span>
+<span style="color:#888">## }</span>
+<span style="color:#888">## &lt;environment: namespace:bbplot&gt;</span></code></pre></div>
 <p>您可以通过调用<code>theme</code>具有所需参数的函数来修改图表的这些设置，或添加其他主题参数- 但请注意，要使其工作，您必须*在*调用<code>bbc_style</code>函数*后*调用它。否则<code>bbc_style()</code>将覆盖它。</p>
 
 <p>这将通过向<code>bbc_style()</code>函数中包含的内容添加额外的主题参数来添加一些网格线。整本食谱中有许多类似的例子。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">theme(panel.grid.major.x <span style="color:#f92672">=</span> element_line(color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#cbcbcb&#34;</span>), 
-        panel.grid.major.y<span style="color:#f92672">=</span>element_blank())</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">theme(panel.grid.major.x = element_line(color=<span style="color:#d20;background-color:#fff0f0">&#34;#cbcbcb&#34;</span>), 
+        panel.grid.major.y=element_blank())</code></pre></div>
 <h3 id="保存完成的图表">保存完成的图表</h3>
 
 <p>将<code>bbc_style()</code>图表添加到图表后，还有一个步骤可以让您的图表准备好发布。<code>finalise_plot()</code>，<code>bbplot</code>包的第二个功能，将左对齐标题，副标题，并在图的右下角添加一个源和一个图像的页脚。它还会将其保存到您指定的位置。该函数有五个参数：</p>
@@ -329,12 +335,12 @@ line <span style="color:#f92672">&lt;-</span> ggplot(line_df, aes(x <span style=
 </ul>
 
 <p><code>finalise_plot()</code>在标准工作流程中如何使用的示例。一旦您创建并最终确定了图表数据，标题并添加了该函数，就会调用此函数<code>bbc_style()</code>：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">finalise_plot(plot_name <span style="color:#f92672">=</span> my_line_plot,
-              <span style="color:#f92672">source</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Source: Gapminder&#34;</span>,
-              save_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;filename_that_my_plot_should_be_saved_to.png&#34;</span>,
-              width_pixels <span style="color:#f92672">=</span> <span style="color:#ae81ff">640</span>,
-              height_pixels <span style="color:#f92672">=</span> <span style="color:#ae81ff">450</span>,
-              logo_image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;placeholder.png&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">finalise_plot(plot_name = my_line_plot,
+              <span style="color:#080;font-weight:bold">source</span> = <span style="color:#d20;background-color:#fff0f0">&#34;Source: Gapminder&#34;</span>,
+              save_filepath = <span style="color:#d20;background-color:#fff0f0">&#34;filename_that_my_plot_should_be_saved_to.png&#34;</span>,
+              width_pixels = <span style="color:#00d;font-weight:bold">640</span>,
+              height_pixels = <span style="color:#00d;font-weight:bold">450</span>,
+              logo_image_path = <span style="color:#d20;background-color:#fff0f0">&#34;placeholder.png&#34;</span>)</code></pre></div>
 <p>因此，一旦你创建了你的情节并且相对满意它，你可以使用该<code>finalise_plot()</code>函数进行最后的调整并保存你的图表，以便你可以在RStudio之外查看它。</p>
 
 <p>值得一提的是，在早期这样做是个好主意，因为文本和其他元素的位置无法在RStudio Plots面板中准确呈现，因为这取决于您希望绘图的大小和宽高比，因此保存它并打开文件可以准确地表示图形的外观。</p>
@@ -342,40 +348,40 @@ line <span style="color:#f92672">&lt;-</span> ggplot(line_df, aes(x <span style=
 <p>finalise_plot（）函数不仅可以保存您的图表，还可以左对齐标题和副标题，这是BBC图形的标准，在右侧添加带有徽标的页脚，并允许您在左侧输入源文本。</p>
 
 <p>那么如何保存上面创建的示例图？</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">finalise_plot(plot_name <span style="color:#f92672">=</span> line,
-              <span style="color:#f92672">source</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Source: Gapminder&#34;</span>,
-              save_filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;images/line_plot_finalised_test.png&#34;</span>,
-              width_pixels <span style="color:#f92672">=</span> <span style="color:#ae81ff">640</span>,
-              height_pixels <span style="color:#f92672">=</span> <span style="color:#ae81ff">550</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">finalise_plot(plot_name = line,
+              <span style="color:#080;font-weight:bold">source</span> = <span style="color:#d20;background-color:#fff0f0">&#34;Source: Gapminder&#34;</span>,
+              save_filepath = <span style="color:#d20;background-color:#fff0f0">&#34;images/line_plot_finalised_test.png&#34;</span>,
+              width_pixels = <span style="color:#00d;font-weight:bold">640</span>,
+              height_pixels = <span style="color:#00d;font-weight:bold">550</span>)</code></pre></div>
 <hr />
 
 <h2 id="制作折线图">制作折线图</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#Prepare data</span>
-line_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span>
-  filter(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;China&#34;</span>) 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#Prepare data</span>
+line_df &lt;- gapminder %&gt;%
+  filter(country == <span style="color:#d20;background-color:#fff0f0">&#34;China&#34;</span>) 
 
-<span style="color:#75715e">#Make plot</span>
-line <span style="color:#f92672">&lt;-</span> ggplot(line_df, aes(x <span style="color:#f92672">=</span> year, y <span style="color:#f92672">=</span> lifeExp)) <span style="color:#f92672">+</span>
-  geom_line(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1380A1&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
-  geom_hline(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, colour<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#333333&#34;</span>) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span>
-  labs(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Living longer&#34;</span>,
-       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Life expectancy in China 1952-2007&#34;</span>)</code></pre></div>
+<span style="color:#888">#Make plot</span>
+line &lt;- ggplot(line_df, aes(x = year, y = lifeExp)) +
+  geom_line(colour = <span style="color:#d20;background-color:#fff0f0">&#34;#1380A1&#34;</span>, size = <span style="color:#00d;font-weight:bold">1</span>) +
+  geom_hline(yintercept = <span style="color:#00d;font-weight:bold">0</span>, size = <span style="color:#00d;font-weight:bold">1</span>, colour=<span style="color:#d20;background-color:#fff0f0">&#34;#333333&#34;</span>) +
+  bbc_style() +
+  labs(title=<span style="color:#d20;background-color:#fff0f0">&#34;Living longer&#34;</span>,
+       subtitle = <span style="color:#d20;background-color:#fff0f0">&#34;Life expectancy in China 1952-2007&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298166214.png" alt="1556298166214" /></p>
 
 <h2 id="制作一个多线图">制作一个多线图</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#Prepare data</span>
-multiple_line_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span>
-  filter(country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;China&#34;</span> <span style="color:#f92672">|</span> country <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;United States&#34;</span>) 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#Prepare data</span>
+multiple_line_df &lt;- gapminder %&gt;%
+  filter(country == <span style="color:#d20;background-color:#fff0f0">&#34;China&#34;</span> | country == <span style="color:#d20;background-color:#fff0f0">&#34;United States&#34;</span>) 
 
-<span style="color:#75715e">#Make plot</span>
-multiple_line <span style="color:#f92672">&lt;-</span> ggplot(multiple_line_df, aes(x <span style="color:#f92672">=</span> year, y <span style="color:#f92672">=</span> lifeExp, colour <span style="color:#f92672">=</span> country)) <span style="color:#f92672">+</span>
-  geom_line(size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span>
-  geom_hline(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, colour<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#333333&#34;</span>) <span style="color:#f92672">+</span>
-  scale_colour_manual(values <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#34;#FAAB18&#34;</span>, <span style="color:#e6db74">&#34;#1380A1&#34;</span>)) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span>
-  labs(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Living longer&#34;</span>,
-       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Life expectancy in China and the US&#34;</span>)</code></pre></div>
+<span style="color:#888">#Make plot</span>
+multiple_line &lt;- ggplot(multiple_line_df, aes(x = year, y = lifeExp, colour = country)) +
+  geom_line(size = <span style="color:#00d;font-weight:bold">1</span>) +
+  geom_hline(yintercept = <span style="color:#00d;font-weight:bold">0</span>, size = <span style="color:#00d;font-weight:bold">1</span>, colour=<span style="color:#d20;background-color:#fff0f0">&#34;#333333&#34;</span>) +
+  scale_colour_manual(values = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;#FAAB18&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;#1380A1&#34;</span>)) +
+  bbc_style() +
+  labs(title=<span style="color:#d20;background-color:#fff0f0">&#34;Living longer&#34;</span>,
+       subtitle = <span style="color:#d20;background-color:#fff0f0">&#34;Life expectancy in China and the US&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298193746.png" alt="1556298193746" /></p>
 
 <h2 id="制作条形图">制作条形图</h2>
@@ -400,34 +406,34 @@ bars &lt;- ggplot(bar_df, aes(x = country, y = lifeExp)) +
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298233958.png" alt="1556298233958" /></p>
 
 <h2 id="制作堆积条形图">制作堆积条形图</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#prepare data</span>
-stacked_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span> 
-  filter(year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2007</span>) <span style="color:#f92672">%&gt;%</span>
-  mutate(lifeExpGrouped <span style="color:#f92672">=</span> <span style="color:#66d9ef">cut</span>(lifeExp, 
-                    breaks <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">65</span>, <span style="color:#ae81ff">80</span>, <span style="color:#ae81ff">90</span>),
-                    labels <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#34;Under 50&#34;</span>, <span style="color:#e6db74">&#34;50-65&#34;</span>, <span style="color:#e6db74">&#34;65-80&#34;</span>, <span style="color:#e6db74">&#34;80+&#34;</span>))) <span style="color:#f92672">%&gt;%</span>
-  group_by(continent, lifeExpGrouped) <span style="color:#f92672">%&gt;%</span>
-  summarise(continentPop <span style="color:#f92672">=</span> <span style="color:#66d9ef">sum</span>(<span style="color:#66d9ef">as.numeric</span>(pop)))
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#prepare data</span>
+stacked_df &lt;- gapminder %&gt;% 
+  filter(year == <span style="color:#00d;font-weight:bold">2007</span>) %&gt;%
+  mutate(lifeExpGrouped = <span style="color:#080">cut</span>(lifeExp, 
+                    breaks = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">50</span>, <span style="color:#00d;font-weight:bold">65</span>, <span style="color:#00d;font-weight:bold">80</span>, <span style="color:#00d;font-weight:bold">90</span>),
+                    labels = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;Under 50&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;50-65&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;65-80&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;80+&#34;</span>))) %&gt;%
+  group_by(continent, lifeExpGrouped) %&gt;%
+  summarise(continentPop = <span style="color:#080">sum</span>(<span style="color:#080">as.numeric</span>(pop)))
 
-<span style="color:#75715e">#set order of stacks by changing factor levels</span>
-stacked_df<span style="color:#f92672">$</span>lifeExpGrouped <span style="color:#f92672">=</span> <span style="color:#66d9ef">factor</span>(stacked_df<span style="color:#f92672">$</span>lifeExpGrouped, levels <span style="color:#f92672">=</span> <span style="color:#66d9ef">rev</span>(<span style="color:#66d9ef">levels</span>(stacked_df<span style="color:#f92672">$</span>lifeExpGrouped)))
+<span style="color:#888">#set order of stacks by changing factor levels</span>
+stacked_df$lifeExpGrouped = <span style="color:#080">factor</span>(stacked_df$lifeExpGrouped, levels = <span style="color:#080">rev</span>(<span style="color:#080">levels</span>(stacked_df$lifeExpGrouped)))
 
-<span style="color:#75715e">#create plot</span>
-stacked_bars <span style="color:#f92672">&lt;-</span> ggplot(data <span style="color:#f92672">=</span> stacked_df, 
-                       aes(x <span style="color:#f92672">=</span> continent,
-                           y <span style="color:#f92672">=</span> continentPop,
-                           fill <span style="color:#f92672">=</span> lifeExpGrouped)) <span style="color:#f92672">+</span>
-  geom_bar(stat <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;identity&#34;</span>, 
-           position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fill&#34;</span>) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span>
-  scale_y_continuous(labels <span style="color:#f92672">=</span> scales<span style="color:#f92672">::</span>percent) <span style="color:#f92672">+</span>
-  scale_fill_viridis_d(direction <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>) <span style="color:#f92672">+</span>
-  geom_hline(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#333333&#34;</span>) <span style="color:#f92672">+</span>
-  labs(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;How life expectancy varies&#34;</span>,
-       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;% of population by life expectancy band, 2007&#34;</span>) <span style="color:#f92672">+</span>
-  theme(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>, 
-        legend.justification <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;left&#34;</span>) <span style="color:#f92672">+</span>
-  guides(fill <span style="color:#f92672">=</span> guide_legend(reverse <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>))</code></pre></div>
+<span style="color:#888">#create plot</span>
+stacked_bars &lt;- ggplot(data = stacked_df, 
+                       aes(x = continent,
+                           y = continentPop,
+                           fill = lifeExpGrouped)) +
+  geom_bar(stat = <span style="color:#d20;background-color:#fff0f0">&#34;identity&#34;</span>, 
+           position = <span style="color:#d20;background-color:#fff0f0">&#34;fill&#34;</span>) +
+  bbc_style() +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_viridis_d(direction = <span style="color:#00d;font-weight:bold">-1</span>) +
+  geom_hline(yintercept = <span style="color:#00d;font-weight:bold">0</span>, size = <span style="color:#00d;font-weight:bold">1</span>, colour = <span style="color:#d20;background-color:#fff0f0">&#34;#333333&#34;</span>) +
+  labs(title = <span style="color:#d20;background-color:#fff0f0">&#34;How life expectancy varies&#34;</span>,
+       subtitle = <span style="color:#d20;background-color:#fff0f0">&#34;% of population by life expectancy band, 2007&#34;</span>) +
+  theme(legend.position = <span style="color:#d20;background-color:#fff0f0">&#34;top&#34;</span>, 
+        legend.justification = <span style="color:#d20;background-color:#fff0f0">&#34;left&#34;</span>) +
+  guides(fill = guide_legend(reverse = <span style="color:#080;font-weight:bold">TRUE</span>))</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298295234.png" alt="1556298295234" /></p>
 
 <p>此示例显示了比例，但您可能希望制作显示数字值的堆积条形图 - 这很容易更改！</p>
@@ -441,56 +447,56 @@ stacked_bars <span style="color:#f92672">&lt;-</span> ggplot(data <span style="c
 <p>制作分组条形图与制作条形图非常相似。</p>
 
 <p>你只需要改变<code>position = &quot;identity&quot;</code>对<code>position = &quot;dodge&quot;</code>，并设置<code>fill</code>美观，而不是：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#Prepare data</span>
-grouped_bar_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span>
-  filter(year <span style="color:#f92672">==</span> <span style="color:#ae81ff">1967</span> <span style="color:#f92672">|</span> year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2007</span>) <span style="color:#f92672">%&gt;%</span>
-  select(country, year, lifeExp) <span style="color:#f92672">%&gt;%</span>
-  spread(year, lifeExp) <span style="color:#f92672">%&gt;%</span>
-  mutate(gap <span style="color:#f92672">=</span> <span style="color:#e6db74">`2007`</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">`1967`</span>) <span style="color:#f92672">%&gt;%</span>
-  arrange(desc(gap)) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#66d9ef">head</span>(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">%&gt;%</span>
-  gather(key <span style="color:#f92672">=</span> year, 
-         value <span style="color:#f92672">=</span> lifeExp,
-         <span style="color:#f92672">-</span>country,
-         <span style="color:#f92672">-</span>gap) 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#Prepare data</span>
+grouped_bar_df &lt;- gapminder %&gt;%
+  filter(year == <span style="color:#00d;font-weight:bold">1967</span> | year == <span style="color:#00d;font-weight:bold">2007</span>) %&gt;%
+  select(country, year, lifeExp) %&gt;%
+  spread(year, lifeExp) %&gt;%
+  mutate(gap = <span style="color:#d20;background-color:#fff0f0">`2007`</span> - <span style="color:#d20;background-color:#fff0f0">`1967`</span>) %&gt;%
+  arrange(desc(gap)) %&gt;%
+  <span style="color:#080">head</span>(<span style="color:#00d;font-weight:bold">5</span>) %&gt;%
+  gather(key = year, 
+         value = lifeExp,
+         -country,
+         -gap) 
   
-<span style="color:#75715e">#Make plot</span>
-grouped_bars <span style="color:#f92672">&lt;-</span> ggplot(grouped_bar_df, 
-                       aes(x <span style="color:#f92672">=</span> country, 
-                           y <span style="color:#f92672">=</span> lifeExp, 
-                           fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">as.factor</span>(year))) <span style="color:#f92672">+</span>
-  geom_bar(stat<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;identity&#34;</span>, position<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dodge&#34;</span>) <span style="color:#f92672">+</span>
-  geom_hline(yintercept <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, colour<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#333333&#34;</span>) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span>
-  scale_fill_manual(values <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#34;#1380A1&#34;</span>, <span style="color:#e6db74">&#34;#FAAB18&#34;</span>)) <span style="color:#f92672">+</span>
-  labs(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;We&#39;re living longer&#34;</span>,
-       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Biggest life expectancy rise, 1967-2007&#34;</span>)</code></pre></div>
+<span style="color:#888">#Make plot</span>
+grouped_bars &lt;- ggplot(grouped_bar_df, 
+                       aes(x = country, 
+                           y = lifeExp, 
+                           fill = <span style="color:#080">as.factor</span>(year))) +
+  geom_bar(stat=<span style="color:#d20;background-color:#fff0f0">&#34;identity&#34;</span>, position=<span style="color:#d20;background-color:#fff0f0">&#34;dodge&#34;</span>) +
+  geom_hline(yintercept = <span style="color:#00d;font-weight:bold">0</span>, size = <span style="color:#00d;font-weight:bold">1</span>, colour=<span style="color:#d20;background-color:#fff0f0">&#34;#333333&#34;</span>) +
+  bbc_style() +
+  scale_fill_manual(values = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;#1380A1&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;#FAAB18&#34;</span>)) +
+  labs(title=<span style="color:#d20;background-color:#fff0f0">&#34;We&#39;re living longer&#34;</span>,
+       subtitle = <span style="color:#d20;background-color:#fff0f0">&#34;Biggest life expectancy rise, 1967-2007&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298323487.png" alt="1556298323487" /></p>
 
 <h2 id="制作哑铃图">制作哑铃图</h2>
 
 <p>另一种显示差异的方法是哑铃图：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">library</span>(<span style="color:#e6db74">&#34;ggalt&#34;</span>)
-<span style="color:#f92672">library</span>(<span style="color:#e6db74">&#34;tidyr&#34;</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#080;font-weight:bold">library</span>(<span style="color:#d20;background-color:#fff0f0">&#34;ggalt&#34;</span>)
+<span style="color:#080;font-weight:bold">library</span>(<span style="color:#d20;background-color:#fff0f0">&#34;tidyr&#34;</span>)
 
-<span style="color:#75715e">#Prepare data</span>
-dumbbell_df <span style="color:#f92672">&lt;-</span> gapminder <span style="color:#f92672">%&gt;%</span>
-  filter(year <span style="color:#f92672">==</span> <span style="color:#ae81ff">1967</span> <span style="color:#f92672">|</span> year <span style="color:#f92672">==</span> <span style="color:#ae81ff">2007</span>) <span style="color:#f92672">%&gt;%</span>
-  select(country, year, lifeExp) <span style="color:#f92672">%&gt;%</span>
-  spread(year, lifeExp) <span style="color:#f92672">%&gt;%</span>
-  mutate(gap <span style="color:#f92672">=</span> <span style="color:#e6db74">`2007`</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">`1967`</span>) <span style="color:#f92672">%&gt;%</span>
-  arrange(desc(gap)) <span style="color:#f92672">%&gt;%</span>
-  <span style="color:#66d9ef">head</span>(<span style="color:#ae81ff">10</span>)
+<span style="color:#888">#Prepare data</span>
+dumbbell_df &lt;- gapminder %&gt;%
+  filter(year == <span style="color:#00d;font-weight:bold">1967</span> | year == <span style="color:#00d;font-weight:bold">2007</span>) %&gt;%
+  select(country, year, lifeExp) %&gt;%
+  spread(year, lifeExp) %&gt;%
+  mutate(gap = <span style="color:#d20;background-color:#fff0f0">`2007`</span> - <span style="color:#d20;background-color:#fff0f0">`1967`</span>) %&gt;%
+  arrange(desc(gap)) %&gt;%
+  <span style="color:#080">head</span>(<span style="color:#00d;font-weight:bold">10</span>)
 
-<span style="color:#75715e">#Make plot</span>
-ggplot(dumbbell_df, aes(x <span style="color:#f92672">=</span> <span style="color:#e6db74">`1967`</span>, xend <span style="color:#f92672">=</span> <span style="color:#e6db74">`2007`</span>, y <span style="color:#f92672">=</span> reorder(country, gap), group <span style="color:#f92672">=</span> country)) <span style="color:#f92672">+</span> 
-  geom_dumbbell(colour <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#dddddd&#34;</span>,
-                size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
-                colour_x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#FAAB18&#34;</span>,
-                colour_xend <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1380A1&#34;</span>) <span style="color:#f92672">+</span>
-  bbc_style() <span style="color:#f92672">+</span> 
-  labs(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;We&#39;re living longer&#34;</span>,
-       subtitle<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Biggest life expectancy rise, 1967-2007&#34;</span>)</code></pre></div>
+<span style="color:#888">#Make plot</span>
+ggplot(dumbbell_df, aes(x = <span style="color:#d20;background-color:#fff0f0">`1967`</span>, xend = <span style="color:#d20;background-color:#fff0f0">`2007`</span>, y = reorder(country, gap), group = country)) + 
+  geom_dumbbell(colour = <span style="color:#d20;background-color:#fff0f0">&#34;#dddddd&#34;</span>,
+                size = <span style="color:#00d;font-weight:bold">3</span>,
+                colour_x = <span style="color:#d20;background-color:#fff0f0">&#34;#FAAB18&#34;</span>,
+                colour_xend = <span style="color:#d20;background-color:#fff0f0">&#34;#1380A1&#34;</span>) +
+  bbc_style() + 
+  labs(title=<span style="color:#d20;background-color:#fff0f0">&#34;We&#39;re living longer&#34;</span>,
+       subtitle=<span style="color:#d20;background-color:#fff0f0">&#34;Biggest life expectancy rise, 1967-2007&#34;</span>)</code></pre></div>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1556298595175.png" alt="1556298595175" /></p>
 
 <h2 id="制作直方图">制作直方图</h2>
@@ -1166,7 +1172,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

@@ -112,6 +112,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -362,12 +368,12 @@
 <h2 id="scetion-05">5. 代码</h2>
 
 <p>以本站的一段 <code>JavaScript</code> 代码做演示。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Initialize video.js player
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;my-player&#39;</span>) <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
-  <span style="color:#75715e">/* eslint-disable no-undef */</span>
-  <span style="color:#a6e22e">videojs</span>(<span style="color:#e6db74">&#39;#my-player&#39;</span>, {
-    <span style="color:#a6e22e">aspectRatio</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;16:9&#39;</span>,
-    <span style="color:#a6e22e">fluid</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#888">// Initialize video.js player
+</span><span style="color:#888"></span><span style="color:#080;font-weight:bold">if</span> (<span style="color:#038">document</span>.getElementById(<span style="color:#d20;background-color:#fff0f0">&#39;my-player&#39;</span>) !== <span style="color:#080;font-weight:bold">null</span>) {
+  <span style="color:#888">/* eslint-disable no-undef */</span>
+  videojs(<span style="color:#d20;background-color:#fff0f0">&#39;#my-player&#39;</span>, {
+    aspectRatio: <span style="color:#d20;background-color:#fff0f0">&#39;16:9&#39;</span>,
+    fluid: <span style="color:#080;font-weight:bold">true</span>,
   });
 }
 </code></pre></div>
@@ -662,7 +668,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 

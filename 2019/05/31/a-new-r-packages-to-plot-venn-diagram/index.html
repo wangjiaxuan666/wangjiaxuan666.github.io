@@ -112,6 +112,12 @@
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
 
@@ -261,31 +267,31 @@
 <p>浪费我两个小时摸索这个*R*包。我也是<strong>傻包</strong></p>
 
 <h2 id="画少数组分的韦恩图">画少数组分的韦恩图</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#f92672">library</span>(nVennR)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#080;font-weight:bold">library</span>(nVennR)
 exampledf
-<span style="color:#75715e">#&gt;    Employee SAS Python R</span>
-<span style="color:#75715e">#&gt; 1      A001   Y      Y Y</span>
-<span style="color:#75715e">#&gt; 2      A002   N      Y Y</span>
-<span style="color:#75715e">#&gt; 3      A003   Y      Y N</span>
-<span style="color:#75715e">#&gt; 4      A004   Y      Y Y</span>
-<span style="color:#75715e">#&gt; 5      A005   Y      N N</span>
-<span style="color:#75715e">#&gt; 6      A006   Y      N Y</span>
-<span style="color:#75715e">#&gt; 7      A007   N      N N</span>
-<span style="color:#75715e">#&gt; 8      A008   Y      N N</span>
-<span style="color:#75715e">#&gt; 9      A009   N      N Y</span>
-<span style="color:#75715e">#&gt; 10     A010   N      N Y</span>
-<span style="color:#75715e">#&gt; 11     A011   Y      Y Y</span>
-<span style="color:#75715e">#&gt; 12     A012   Y      Y Y</span>
-<span style="color:#75715e">#&gt; 13     A013   Y      N Y</span>
-<span style="color:#75715e">#&gt; 14     A014   Y      N Y</span>
-<span style="color:#75715e">#&gt; 15     A015   N      N Y</span>
-<span style="color:#75715e">#&gt; 16     A016   N      N Y</span>
-<span style="color:#75715e">#&gt; 17     A017   N      Y N</span>
-<span style="color:#75715e">#&gt; 18     A018   N      Y N</span>
-sas <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">subset</span>(exampledf, SAS <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
-python <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">subset</span>(exampledf, Python <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
-rr <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">subset</span>(exampledf, R <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
-myV <span style="color:#f92672">&lt;-</span> plotVenn(<span style="color:#66d9ef">list</span>(SAS<span style="color:#f92672">=</span>sas, PYTHON<span style="color:#f92672">=</span>python, R<span style="color:#f92672">=</span>rr), nCycles <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, outFile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;niubi.svg&#34;</span>)</code></pre></div>
+<span style="color:#888">#&gt;    Employee SAS Python R</span>
+<span style="color:#888">#&gt; 1      A001   Y      Y Y</span>
+<span style="color:#888">#&gt; 2      A002   N      Y Y</span>
+<span style="color:#888">#&gt; 3      A003   Y      Y N</span>
+<span style="color:#888">#&gt; 4      A004   Y      Y Y</span>
+<span style="color:#888">#&gt; 5      A005   Y      N N</span>
+<span style="color:#888">#&gt; 6      A006   Y      N Y</span>
+<span style="color:#888">#&gt; 7      A007   N      N N</span>
+<span style="color:#888">#&gt; 8      A008   Y      N N</span>
+<span style="color:#888">#&gt; 9      A009   N      N Y</span>
+<span style="color:#888">#&gt; 10     A010   N      N Y</span>
+<span style="color:#888">#&gt; 11     A011   Y      Y Y</span>
+<span style="color:#888">#&gt; 12     A012   Y      Y Y</span>
+<span style="color:#888">#&gt; 13     A013   Y      N Y</span>
+<span style="color:#888">#&gt; 14     A014   Y      N Y</span>
+<span style="color:#888">#&gt; 15     A015   N      N Y</span>
+<span style="color:#888">#&gt; 16     A016   N      N Y</span>
+<span style="color:#888">#&gt; 17     A017   N      Y N</span>
+<span style="color:#888">#&gt; 18     A018   N      Y N</span>
+sas &lt;- <span style="color:#080">subset</span>(exampledf, SAS == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+python &lt;- <span style="color:#080">subset</span>(exampledf, Python == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+rr &lt;- <span style="color:#080">subset</span>(exampledf, R == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+myV &lt;- plotVenn(<span style="color:#888;font-weight:bold">list</span>(SAS=sas, PYTHON=python, R=rr), nCycles = <span style="color:#00d;font-weight:bold">2000</span>, outFile = <span style="color:#d20;background-color:#fff0f0">&#34;niubi.svg&#34;</span>)</code></pre></div>
 <p>绘制的图形如下：</p>
 
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757458631.png" alt="1552757458631" /></p>
@@ -293,12 +299,12 @@ myV <span style="color:#f92672">&lt;-</span> plotVenn(<span style="color:#66d9ef
 <p>这个图不得不说是很高大上的。但是人类不友好啊，各位要是为了这么一张图，发表在文章中，花点时间是值得的，我就不研究了。没那个刚需。</p>
 
 <h2 id="美化图形">美化图形</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 <span style="color:#f92672">&lt;-</span> createVennObj(nSets <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, sSizes <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#66d9ef">rep</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>)))
-showSVG(nVennObj <span style="color:#f92672">=</span> myV3, opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, borderWidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- createVennObj(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#080">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
+showSVG(nVennObj = myV3, opacity = <span style="color:#00d;font-weight:bold">0.1</span>, borderWidth = <span style="color:#00d;font-weight:bold">3</span>)</code></pre></div>
 <p>设置透明度和边界宽度</p>
 
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757806458.png" alt="1552757806458" /></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">showSVG(nVennObj <span style="color:#f92672">=</span> myV3, setColors <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>(<span style="color:#e6db74">&#39;#d7100b&#39;</span>, <span style="color:#e6db74">&#39;teal&#39;</span>, <span style="color:#e6db74">&#39;yellow&#39;</span>, <span style="color:#e6db74">&#39;black&#39;</span>, <span style="color:#e6db74">&#39;#2b55b7&#39;</span>))</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">showSVG(nVennObj = myV3, setColors = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))</code></pre></div>
 <p>设置颜色</p>
 
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757905357.png" alt="1552757905357" /></p>
@@ -416,7 +422,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-
 
 
 
