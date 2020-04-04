@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>The Packages I Created in Weekend for PCA and Tidy Data</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="The Packages I Created in Weekend for PCA and Tidy Data">
+    <meta name="twitter:description" content="因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善
+">
+    <meta name="twitter:image" content="/media/r.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Packages I Created in Weekend for PCA and Tidy Data">
+  <meta property="og:description" content="因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善
+">
+  <meta property="og:url" content="/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/">
+  <meta property="og:image" content="/media/r.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">The Packages I Created in Weekend for PCA and Tidy Data</h1>
+      <p class="post-meta">@Wang Jiaxuan · Apr 4, 2020 · 5 min read</p>
+    </header>
+    <article class="post-content"><div id="section" class="section level2">
+<h2></h2>
+<p><a href="https://github.com/wangjiaxuan666/autopca">英文版</a>,但是英文版的说明文档还没更新及时.</p>
+</div>
+<div id="第一个r包-autopca" class="section level2">
+<h2>第一个R包-autopca</h2>
+<p>首先取名<code>autopca</code>,肯定是有野心,就是水平可能支撑不了野心. 但这个R包肯定会存在各式各样的bug!,但是我还是尽力修改的.毕竟新的需求和问题也会促进人的成长.尤其是这个<code>fix</code> 和<code>add</code>都是自愿性的.
+<a href="mailto:此时满心怨念的手动@我的" class="email">此时满心怨念的手动@我的</a><a href="https://github.com/laozhu/hugo-nuo">博客主题开发者</a>.</p>
+<p>现在想换博主题也换不了啊,投入大量心血,现在换要从头再来</p>
+<p>言归正穿,我的工作和组学数据处理有很大的关系，所以会经常用PCA分析，去展示样品重复性和批次效应。然而我自己有一个相对来说比较成熟的脚本的。<a href="https://mp.weixin.qq.com/s?__biz=MzI3NDEwMjgxMA==&amp;mid=2650602926&amp;idx=1&amp;sn=c6b11d5245d86e2f0c41c3058087c69a&amp;chksm=f31172dbc466fbcd410e84207b92fc151dd3ea984d7103b55fc484a57e74c736bce4e3e948ec&amp;token=874962840&amp;lang=en_US#rd">看我以前的微信公众号链接</a>
+但是每当我操作起来的时候，总是觉得不顺畅，尤其是升职以后，领导认为我的工作职责应该转向管理和协调。所以我现在很怕领导看我自己动手做分析。但实际情况是有时候不得不去
+自己动手。所以我希望能够把脚本进一步成熟，包装成R包，放在<a href="https://github.com/wangjiaxuan666/autopca">Github</a></p>
+<p>废话不多说,直接上R包.</p>
+<pre class="r"><code>#首先第一步肯定是下载R包,目前只能在github上下载安装
+#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;wangjiaxuan666/autopca&quot;)</code></pre>
+<p>目前<code>autopca</code>只有两个功能,一个是<code>pca_data_tidy</code>,主要负责是输入数据的清理.以保证符合输入数据的格式.另一个是<code>PCA</code>就是直接画图的R包.
+PCA分析使用函数<code>stat::prcomp</code>，而<code>prcomp</code>的分析结果给出了输入数据的每一行样方在主成分上的方差。</p>
+<p>简而言之,输入数据的行名,就是展现在PCA图中的点的名称.</p>
+<p>拿R自带的数据<code>iris</code>来举个例子:</p>
+<pre class="r"><code>head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<pre class="r"><code>names(iris)</code></pre>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;</code></pre>
+<p>可以发现<code>iris</code>中行名是每一株鸢尾花(样方), 而列名则是<strong>属性</strong>.画图如下:</p>
+<pre class="r"><code>library(autopca)
+irisgroup &lt;- iris[,5] 
+iristidy &lt;- iris[,-5]
+pca(iristidy,sample_group = as.data.frame(irisgroup))</code></pre>
+<pre><code>## ...Notice: the sequence of sample names
+## ...must be matched for the input data rownames
+## ...If not,the result probably is wrong</code></pre>
+<p><img src="/post/2020-04-04-the-packages-i-created-in-weekend-for-pca-and-tidy-data/index_files/figure-html/p1-1.png" width="672" />
+可见图中展现的点就是我们前文所述的样方,每一株的鸢尾花.可以发现不同品种的鸢尾花是存在明显的差异的. 现在我们基本明白输入数据的行名和列名的区别了.
+是不是可以直接开始<code>PCA</code>了. 不,还不行. 因为<code>iris</code>是内置的数据. 而现实中的数据则是五花八门.需要特别注意.所以我们需要先了解<code>pca_data_tidy</code>.</p>
+<title>
+图 1 可怕的现实数据
+</title>
+<p>目前,<code>pca_data_tidy</code> 主要是有两个参数:
+- data : 输入的数据(注意:pca_data_tidy会将输入数据转换行和列)
+- id: 列名所在的列</p>
+<p>举个例子,显示中,我们常用PCA来做组学数据,那么一个标准的组学数据样式应该,行名是基因,蛋白,代谢物等名称.而其余列名应该是样本表达量和注释信息.如下表格所示:</p>
+<pre class="r"><code>test = matrix(rnorm(200), 20, 10)
+test[1:10, seq(1, 10, 2)] = test[1:10, seq(1, 10, 2)] + 3
+test[11:20, seq(2, 10, 2)] = test[11:20, seq(2, 10, 2)] + 2
+test[15:20, seq(2, 10, 2)] = test[15:20, seq(2, 10, 2)] + 4
+colnames(test) = paste(&quot;Test&quot;, 1:10, sep = &quot;&quot;)
+rownames(test) = paste(&quot;Gene&quot;, 1:20, sep = &quot;&quot;)
+annot &lt;- c(rep(&quot;KEGG&quot;,20))
+test &lt;- data.frame(test,annot)
+kable(test[1:6,1:6]) %&gt;%
+  kable_styling(bootstrap_options = &quot;striped&quot;, full_width = F) %&gt;%
+  row_spec(0, bold = T, color = &quot;white&quot;, background = &quot;#74a825&quot;) %&gt;%
+  column_spec(1, bold = T, color = &quot;white&quot;, background = &quot;#D7261E&quot;)</code></pre>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test1
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test2
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test3
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test4
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test5
+</th>
+<th style="text-align:right;font-weight: bold;color: white !important;background-color: #74a825 !important;">
+Test6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene1
+</td>
+<td style="text-align:right;">
+3.765576
+</td>
+<td style="text-align:right;">
+-1.9103397
+</td>
+<td style="text-align:right;">
+3.355399
+</td>
+<td style="text-align:right;">
+1.5161813
+</td>
+<td style="text-align:right;">
+0.5011787
+</td>
+<td style="text-align:right;">
+2.5681461
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene2
+</td>
+<td style="text-align:right;">
+2.538155
+</td>
+<td style="text-align:right;">
+1.5752162
+</td>
+<td style="text-align:right;">
+1.928365
+</td>
+<td style="text-align:right;">
+0.1522152
+</td>
+<td style="text-align:right;">
+3.1132886
+</td>
+<td style="text-align:right;">
+0.4501553
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene3
+</td>
+<td style="text-align:right;">
+2.761006
+</td>
+<td style="text-align:right;">
+0.5923451
+</td>
+<td style="text-align:right;">
+2.470427
+</td>
+<td style="text-align:right;">
+2.0501339
+</td>
+<td style="text-align:right;">
+2.7646724
+</td>
+<td style="text-align:right;">
+-0.4826750
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene4
+</td>
+<td style="text-align:right;">
+1.550736
+</td>
+<td style="text-align:right;">
+-0.0637767
+</td>
+<td style="text-align:right;">
+2.069809
+</td>
+<td style="text-align:right;">
+-0.2450430
+</td>
+<td style="text-align:right;">
+4.1356550
+</td>
+<td style="text-align:right;">
+0.7681806
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene5
+</td>
+<td style="text-align:right;">
+2.478695
+</td>
+<td style="text-align:right;">
+-0.7541360
+</td>
+<td style="text-align:right;">
+3.448892
+</td>
+<td style="text-align:right;">
+-0.4973316
+</td>
+<td style="text-align:right;">
+2.2916132
+</td>
+<td style="text-align:right;">
+-0.2130808
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Gene6
+</td>
+<td style="text-align:right;">
+3.663645
+</td>
+<td style="text-align:right;">
+-0.5489310
+</td>
+<td style="text-align:right;">
+3.529279
+</td>
+<td style="text-align:right;">
+1.5112820
+</td>
+<td style="text-align:right;">
+2.6565405
+</td>
+<td style="text-align:right;">
+-0.7708516
+</td>
+</tr>
+</tbody>
+</table>
+<p>而PCA只需要分析表达量数值,所以输入数据必须是<code>numberic</code>.如果有其类型数据输入,例如<code>character</code>,<code>factor</code>等就会报错. 同样的<code>pca_data_tidy</code>也是需要注意这点,
+但是,<code>pca_data_tidy</code>可以自动过滤非数值的列.但是我仍然不建议各位依靠<code>pca_data_tidy</code>的自动识别.自己做的分析所需的数据,自己还是要注意的.
+同时,输入的数据必须是data.frame或者tibble::tibble格式的.否则也会报错.我们利用上述的<code>test</code>数据来举个例子.</p>
+<pre class="r"><code>#使用自动识别过滤非数值的列,不能保证每次都成功
+pca_data_tidy(as.data.frame(test)) -&gt; test_tidy</code></pre>
+<pre><code>## ... Notice: the input data is a data frame not a tibble
+## ... Problem: the input data vaule in every column must be numberic value
+## ... Problem: the error because the character type value in data
+## ... Successed! the pca data save in the object</code></pre>
+<p>可以使用str(),或者view()来查看test_tidy与test之间的差别,如果你做了,就会发现数据被转置行和列了. 如果这是对<code>tidy_test</code>进行PCA分析.就会发现:</p>
+<p>这就是说,我们的输入<code>pca_data_tidy</code>的数据,在经过处理产生的结果,如果直接放入PCA分析中.原本的行名会变成观察值,而输入数据的列名会变成样方.</p>
+<p>有点绕?看例子:</p>
+<pre class="r"><code>pca(test_tidy)</code></pre>
+<p><img src="/post/2020-04-04-the-packages-i-created-in-weekend-for-pca-and-tidy-data/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>但是这个PCA图,并不是完全的,主要有三个问题:</p>
+<ul>
+<li>缺乏PCA的参数</li>
+<li>没有显示样本的名称</li>
+<li>没有分组信息</li>
+</ul>
+<p>因此我在<code>pca</code>函数中添加了以下参数:</p>
+<ul>
+<li>data: put data form the function ‘pca_data_tidy’</li>
+<li>center: the prcomp param, detail see ‘?prcomp’</li>
+<li>retx: the prcomp param, detail see ‘?prcomp’</li>
+<li>str_sample: the ‘regexp’ for the sample name to become the target name</li>
+<li>str_group: the ‘regexp’ for the group name to become the target name</li>
+<li>scale: the prcomp param, detail see ‘?prcomp’</li>
+<li>rename: the method for change the sample and group names, two argment can choose, “diy” is for the creat a data for name,“replace” is use regexp to replace or change the name</li>
+<li>sample_group: a data for change the sample and group name, the rownames is sample and the first column is group</li>
+<li>dispaly_sample: if TRUE will add the text labels on points.</li>
+</ul>
+<p>其实参数就是三个大类, retx,center,scale都是pca分析的参数.而分组信息的添加有两种方式,第一种是<code>rename = diy</code>,这个时候需要自己输入一个命名矩阵.</p>
+<pre class="r"><code>as.data.frame(c(rep(&quot;A&quot;,5),rep(&quot;B&quot;,5))) -&gt; group
+rownames(group) &lt;- colnames(test[,-11])#第11列是注释信息
+colnames(group) &lt;- &quot;group&quot;
+head(group)</code></pre>
+<pre><code>##       group
+## Test1     A
+## Test2     A
+## Test3     A
+## Test4     A
+## Test5     A
+## Test6     B</code></pre>
+<p>当组成这样的矩阵后,就可以输入PCA中,就像:</p>
+<pre class="r"><code>pca(test_tidy,sample_group = group)#其中rename = diy是默认选项,等价于`pca(test_tidy,rename = diy,sample_group = group)`</code></pre>
+<pre><code>## ...Notice: the sequence of sample names
+## ...must be matched for the input data rownames
+## ...If not,the result probably is wrong</code></pre>
+<p><img src="/post/2020-04-04-the-packages-i-created-in-weekend-for-pca-and-tidy-data/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>另外一种命名方式就是<code>rename = replace</code>,这个比较难,主要针对会正则表达式的同学.比如你的样本名称是CK1-1_fpkm,CK1-2_fpkm,CK1-3_fpkm这样的.</p>
+<p>那其实用<code>rename = replace, str_group = "-.*", str_sample = "_.*"</code>就会很方便.</p>
+<p>好吧,这个功能我自己我也没测试过.因为一直没用上.</p>
+<p>还有一个参数<code>dispaly_sample</code>,就是 TRUE or FALSE, 如果是 TRUE 就显示样本名称, 反之则不显示. 简单!</p>
+<pre class="r"><code>pca(test_tidy,sample_group = group, display_sample = T)</code></pre>
+<pre><code>## ...Notice: the sequence of sample names
+## ...must be matched for the input data rownames
+## ...If not,the result probably is wrong</code></pre>
+<p><img src="/post/2020-04-04-the-packages-i-created-in-weekend-for-pca-and-tidy-data/index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+最后的最后,我其实想说:<strong>自从我写了这个R包,一次也没用上,全部都是自己造例子,太辛苦了.所以我决定公布出来,大家有需要的时候自己用下,有bug的时候,可以在直接在文章下面留言.
+不论是博客还是微信公众号都有相应的评论功能.</strong></p>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+          <li><a href="/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-04-04</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
