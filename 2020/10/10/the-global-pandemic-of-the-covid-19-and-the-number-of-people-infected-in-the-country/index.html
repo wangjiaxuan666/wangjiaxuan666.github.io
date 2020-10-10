@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>地图可视化-新冠肺炎全球感染人数</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="地图可视化展示新冠全球流行
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="地图可视化-新冠肺炎全球感染人数">
+    <meta name="twitter:description" content="地图可视化展示新冠全球流行
+">
+    <meta name="twitter:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200522194420881.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="地图可视化-新冠肺炎全球感染人数">
+  <meta property="og:description" content="地图可视化展示新冠全球流行
+">
+  <meta property="og:url" content="/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/">
+  <meta property="og:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200522194420881.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">地图可视化-新冠肺炎全球感染人数</h1>
+      <p class="post-meta">@Wang Jiaxuan · Oct 10, 2020 · 4 min read</p>
+    </header>
+    <article class="post-content"><div id="寻找数据" class="section level2">
+<h2>寻找数据</h2>
+<p>最开始在二月份的时候，新冠主要是在国内疯狂传播，所以当时基本上的数据都是主要来自丁香园的网站。当时有个非常火的Github项目，就是用<code>python</code>爬取丁香园的网站数据。当时还在放假，所以我还是抱着极大的兴趣，去学习了那个项目，最后也是成功的爬取了新冠肺炎的传播和感染数据，并将储蓄在本地。</p>
+<p>但是其实，那个项目的脚本，我只能说我懂70%，剩下的30%真的是有点难以入手。而且我不会python的数据处理，字典格式的数据对我来说太过于痛苦，所以后面自己就老老实实买了个python的教材，看了一半。觉得有所收获（半瓶晃荡），就去按照自己的想法写了个爬虫，把xx网站给爬了。但也仅限于此，后面python就荒废了。我又跑去学习制作R包了，因为我有很多脚本，一直缺乏系统的整理。所以就想边学习R包，边整理下。</p>
+<p>但是心里一直想找个机会用R来展现下全球的新冠肺炎病毒的情况。直到有一次看到了一个网站收录了新冠肺炎的数据。就像乘着有现成的数据做下新冠感染地图的可视化。</p>
+</div>
+<div id="画图构思" class="section level2">
+<h2>画图构思</h2>
+<p>最开始我的想法是画热图，根据大神的脚本，自己去做下修改，参考的图形如下，自己照葫芦画瓢，确实也画了出来，但是效果我觉得不好。原因在于，根本看不清具体情况。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200522191812590.png" /></p>
+<p>所以我就想画一个折线图，去展现全球各个国家感染人数的变化规律。但是这个好像没啥创意！画折线图的挑战不够，没啥意思。柱形图就更别说了！</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/covid19_cumulative_curves.png" /></p>
+<p>后面觉得还是用地图去展示国家的信息，用颜色来反馈新冠病毒传播。会比较好，就像下图一样</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/Climate_KoppenGeiger.png" /></p>
+<p>但是后面对脚本修修改改，觉得可以参考很早以前，看的一个图，用它的字体来进行展现，效果可能会更好。字体效果如下图。然后就用<code>showtext</code>来做到了这个效果。</p>
+<p>为了字体画了很多时间，不断试错，找教程，画图的一半精力都是放在字体的修改上的。但是收获是肯定很大的。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/EHl1a1hWsAEDLGk.jpg" /></p>
+<p>最终我的脚本画出来的效果如下，我个人在美观上，我给自己打满分，但是是在展现信息的程度，我觉得可能是不及格的，第一颜色区分度不够，这个我尝试了很久，没有好的解决办法，除非花费大量精力，去摸索log处理的可视化。不想做，我太懒了。还有就是我应该加个时间刻度，但是我没精力去做这个了。下次有机会做其他图，再摸索这个。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200522194420881.png" /></p>
+<p>脚本如下，有兴趣的可以尝试下：</p>
+<pre class="r"><code>#==============================
+#----王二狗Abego----------------
+#----2020-05-14----------------
+#----申明：地图本身有很强的ZZ性，我肯定爱国小青年，但是部分地区确实单独统计人数，并且在地图上也有自己的领域。所以只能捏着鼻子承认地图的名字，脚本中也做了备注。一句话，此生无悔入种花，来生还做种花人。-----
+#==============================
+
+#=======R packages require=====
+library(tidyverse)
+library(showtext)
+library(ggtext)
+library(rworldmap)
+library(sf)
+library(lubridate)
+#==============================
+
+rm(list = ls())
+font_paths(here::here(&quot;font&quot;))
+font_add(family = &quot;YouMurdererBB&quot;, regular = &quot;youmurdererbb_reg.ttf&quot;)
+font_add(&quot;heiti&quot;, &quot;simhei.ttf&quot;)
+
+theme_set(theme_minimal())
+theme_update(
+  axis.ticks = element_blank(),
+  axis.text = element_blank(),
+  panel.grid.major = element_line(color = &quot;#fbf7f8&quot;, 
+                                  size = 0.5),
+  panel.background = element_rect(color = NA, 
+                                  fill = &quot;#fbf7f8&quot;),
+  plot.background = element_rect(color = NA, 
+                                 fill = &quot;#fbf7f8&quot;),
+  plot.title = element_text(family = &quot;YouMurdererBB&quot;, 
+                            color = &quot;dark red&quot;,
+                            size = 350, 
+                            hjust = 0.5,
+                            margin = margin(t = 24, b = 6)),
+  plot.subtitle = element_text(family = &quot;YouMurdererBB&quot;, 
+                               color = &quot;dark red&quot;,
+                               size = 200, 
+                               hjust = 0.5,
+                               margin = margin(t = 0, b = 0)),
+  plot.caption = element_text(family = &quot;heiti&quot;, 
+                              color = &quot;dark red&quot;, 
+                              size = 50, 
+                              margin = margin(t = 0, b = 24)),
+  legend.position = &quot;top&quot;,
+  legend.text = element_text(family = &quot;YouMurdererBB&quot;, 
+                             color = &quot;dark red&quot;,
+                             size = 150),
+  legend.key.width = unit(5.2, &quot;lines&quot;),
+  legend.key.height = unit(0.8, &quot;lines&quot;)
+)
+
+#=======reshape data=========================
+
+df_corona &lt;- readr::read_csv(&quot;https://datahub.io/core/covid-19/r/time-series-19-covid-combined.csv&quot;)
+
+# Notice:fix april 17, China adjust death people number in wuhan beacuse the satistical error with the medical resource pressure.
+
+df_corona_days &lt;- 
+  df_corona %&gt;% 
+  dplyr::select(
+    date = Date,
+    country = `Country/Region`,
+    state = `Province/State`,
+    lat = Lat,
+    lng = Long,
+    infect = Confirmed,
+  ) %&gt;% 
+  mutate(infect = if_else(infect &lt;= 0, NA_real_, infect)) %&gt;%
+  group_by(country, date) %&gt;%
+  summarize(
+    infections = sum(infect, na.rm = T),
+    lat = first(lat),
+    lng = first(lng)
+  ) %&gt;% 
+  mutate(
+    yday = yday(date),
+    day = day(date),
+    month = month(date, label = T)
+  ) %&gt;%
+  ungroup() %&gt;% 
+  arrange(country, yday) %&gt;%
+  mutate(
+    country = case_when(
+      country == &quot;Tanzania&quot; ~      &quot;United Republic of Tanzania&quot;,
+      country == &quot;Congo (Brazzaville)&quot; ~            &quot;Republic of the Congo&quot;,
+      country == &quot;Holy See&quot; ~                          &quot;Vatican&quot;,
+      country == &quot;Guinea-Bissau&quot; ~                    &quot;Guinea Bissau&quot;,
+      country == &quot;North Macedonia&quot; ~                        &quot;Macedonia&quot;,
+      country == &quot;Taiwan*&quot; ~                           &quot;Taiwan&quot;,
+      country == &quot;West Bank and Gaza&quot; ~                        &quot;Palestine&quot;,
+      country == &quot;Timor-Leste&quot; ~                       &quot;East Timor&quot;,
+      country == &quot;Cabo Verde&quot; ~                       &quot;Cape Verde&quot;,
+      country == &quot;US&quot; ~         &quot;United States of America&quot;,
+      country == &quot;Eswatini&quot; ~                        &quot;Swaziland&quot;,
+      country == &quot;Korea, South&quot; ~                      &quot;South Korea&quot;,
+      country == &quot;Czechia&quot; ~                   &quot;Czech Republic&quot;,
+      country == &quot;Serbia&quot; ~               &quot;Republic of Serbia&quot;,
+      country == &quot;Cote d&#39;Ivoire&quot; ~                      &quot;Ivory Coast&quot;,
+      country == &quot;Congo (Kinshasa)&quot; ~ &quot;Democratic Republic of the Congo&quot;,
+      country == &quot;Burma&quot; ~                          &quot;Myanmar&quot;,
+      TRUE ~ country
+    ),
+    country = str_replace(country, &quot; and &quot;, &quot; &amp; &quot;),
+    country = str_replace(country, &quot;-&quot;, &quot; &quot;)
+  ) 
+# I didn&#39;t confirm taiwan or hongkong, Macao is a country but they count the ncov confirm peoplr number separatily, beside then they have the region in rworldmap. SO I HAVEM&#39;T TO PLOT THIS ALONELY, ONE CHINA, ONE COUNTRY.
+
+first_day &lt;- min(df_corona_days$yday)
+latest_day &lt;- max(df_corona_days$yday)
+n_countries &lt;- n_distinct(df_corona_days$country)
+max_infect_num &lt;- max(df_corona_days$infections)
+redgreen = colorRampPalette(c(&quot;#d66c78&quot;, &quot;#071582&quot;,&quot;#4a040c&quot;))(1000)
+#=============map data perparation=============================
+sf_world &lt;- st_as_sf(rworldmap::getMap(resolution = &quot;low&quot;)) %&gt;%
+  st_transform(crs = &quot;+proj=robin&quot;)
+
+showtext_auto()
+
+
+for(i in first_day:latest_day) {
+  print(i)
+  
+  df_corona_day &lt;-
+    df_corona_days %&gt;% 
+    filter(yday == i)
+  
+  sf_world_borders &lt;-
+    sf_world %&gt;% 
+    left_join(df_corona_day, by = c(&quot;SOVEREIGNT&quot; = &quot;country&quot;))
+  # the ship MS Zaandam and Diamond Princess isn&#39;t see as a country in rworldmap
+  
+  p &lt;- 
+    ggplot(sf_world_borders) +
+    geom_sf(aes(fill = infections), 
+            color = &quot;#f2eae8&quot;, 
+            alpha = 0.75,
+            size = 0.3) +
+    scale_x_continuous(breaks = seq(-180, 180, by = 30)) +
+    scale_y_continuous(breaks = c(seq(-80, 80, by = 20), 85)) +
+    scale_fill_gradientn(colours = redgreen,
+                         na.value = &quot;#badad0&quot;,
+                         limits = c(0, max_infect_num),
+                         guide = F,
+                         name = NULL,
+                         breaks= scales::pretty_breaks()) +
+    guides(fill = guide_legend(title.position = &quot;top&quot;, 
+                               title.hjust = 0.5, 
+                               nrow = 1,
+                               label.position = &quot;top&quot;)) +
+    labs(x = NULL, y = NULL,
+         title = &quot;Number of nCov-2019 Infections&quot;,
+         subtitle = &quot;Terrible, Highly Infectious Virus&quot;,
+         caption = &quot;Visualization by 王二狗 2020-05-15&quot;)
+  #为了动图，所以每一天都生成了图，后续用magick做动图
+  ggsave(here::here(&quot;plots&quot;, &quot;rworldmap&quot;, 
+                    glue::glue(&quot;corona_sum_yday_{sprintf(&#39;%03d&#39;, i)}.png&quot;)), 
+         plot = p,
+         width = 18, height = 11.74, device = &quot;png&quot;, type = &quot;cairo&quot;) 
+}
+</code></pre>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-10-10</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>

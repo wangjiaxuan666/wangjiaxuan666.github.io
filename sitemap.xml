@@ -14,42 +14,53 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</loc>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</loc>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -60,14 +71,8 @@
   </url>
   
   <url>
-    <loc>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/2020/02/10/my-first-r-packages-for-pca-analysisi/</loc>
-    <lastmod>2020-02-10T00:00:00+00:00</lastmod>
+    <loc>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</loc>
+    <lastmod>2020-04-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -236,14 +236,14 @@
       <h1 class="post-title">用R画动图展现路线</h1>
       <p class="post-meta">@Jiaxuan Wang · Aug 25, 2019 · 2 min read</p>
     </header>
-    <article class="post-content"><div id="section" class="section level1">
+    <article class="post-content"><div id="开始之前" class="section level1">
 <h1>开始之前</h1>
 <p>我之前用<code>leaflet</code>这个<kbd>R</kbd>包是画过自己的出差路线的, 但是无奈我的hugo主题并不支持我弄的太花哨, 所以<code>javascript</code>的动态路线是没办法展现的, 但是本地还是可以展现的, 所以本地只能自己看咯.
 想学<code>leaflet</code>动态地图的可以看我的<a href="https://abego.cn/2019/06/16/spring-business-travel-in-2019/">博客文章</a></p>
 <p>除此以外, 我还用<code>sf</code>这个R包画过.可以直接跳转<a href="#section-01">下面的附录</a>
 - 如果关注的是<code>geom_sf</code>怎么画的, 可以看我的<a href="https://mp.weixin.qq.com/s/8tXRCl8I2smIKgH25qRNTg">微信公众号文章</a></p>
 </div>
-<div id="section-1" class="section level1">
+<div id="主题" class="section level1">
 <h1>主题</h1>
 <p>背景就不再多说了, 今天之所以又用R画图,是因为在<code>twitter</code>上看到的教程. 拿来学习一下, 并改称自己的出差版本.</p>
 <p>先构建画图数据</p>
@@ -255,8 +255,7 @@
 <pre class="r"><code>plane_city &lt;- c(&quot;哈尔滨&quot;, &quot;郑州&quot;, &quot;广州&quot;, &quot;北京&quot;, &quot;呼和浩特&quot;)
 search_fontawesome(&quot;train&quot;)</code></pre>
 <pre><code>## [1] &quot;fa-train&quot;</code></pre>
-<pre class="r"><code>post$emoji = ifelse(post$post_city %in% plane_city, fontawesome(&quot;fa-plane&quot;), 
-    fontawesome(&quot;fa-train&quot;))</code></pre>
+<pre class="r"><code>post$emoji = ifelse(post$post_city %in% plane_city, fontawesome(&quot;fa-plane&quot;), fontawesome(&quot;fa-train&quot;))</code></pre>
 <p>然后就是画图了.</p>
 <pre class="r"><code>invisible(saveGIF({
     
@@ -272,9 +271,9 @@ search_fontawesome(&quot;train&quot;)</code></pre>
                 color = &quot;#FFD300&quot;), panel.background = element_rect(fill = &quot;#FFD300&quot;, 
                 color = &quot;#FFD300&quot;), legend.position = c(0.11, 0.32), legend.key = element_rect(fill = &quot;#2a2a2a&quot;, 
                 color = NA), legend.title = element_text(color = &quot;white&quot;, size = 20, 
-                hjust = 0), plot.title = element_text(hjust = 0.5, size = 30, 
-                colour = &quot;#2A2A2A&quot;, face = &quot;bold&quot;), plot.subtitle = element_text(hjust = 0.5, 
-                size = 15, face = &quot;bold&quot;, colour = &quot;#73d055ff&quot;), plot.caption = element_text(hjust = 0.9, 
+                hjust = 0), plot.title = element_text(hjust = 0.5, size = 30, colour = &quot;#2A2A2A&quot;, 
+                face = &quot;bold&quot;), plot.subtitle = element_text(hjust = 0.5, size = 15, 
+                face = &quot;bold&quot;, colour = &quot;#73d055ff&quot;), plot.caption = element_text(hjust = 0.9, 
                 size = 15, face = &quot;bold&quot;, colour = &quot;black&quot;)) + scale_size_continuous(range = c(1, 
             12))
         
@@ -283,8 +282,7 @@ search_fontawesome(&quot;train&quot;)</code></pre>
             scale_fill_manual(values = c(&quot;#b2d1e0&quot;, &quot;gold&quot;)) + geom_text(aes(x = i, 
             y = 1, label = i), vjust = -1, size = 9, color = &quot;#2a2a2a&quot;)
         
-        print(ggpubr::ggarrange(p1, p3, nrow = 2, ncol = 1, heights = c(1.4, 
-            0.3)))
+        print(ggpubr::ggarrange(p1, p3, nrow = 2, ncol = 1, heights = c(1.4, 0.3)))
         
     }
     
@@ -292,7 +290,7 @@ search_fontawesome(&quot;train&quot;)</code></pre>
 <p>效果如图:</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/nuclearExplosions.gif" /></p>
 </div>
-<div id="section-2" class="section level1">
+<div id="参考资料" class="section level1">
 <h1>参考资料:</h1>
 <ol style="list-style-type: decimal">
 <li><p id="ref01">

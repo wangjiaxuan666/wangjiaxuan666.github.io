@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -33,7 +33,29 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
-      <title>The Packages I Created in Weekend for PCA and Tidy Data</title>
+      <title>地图可视化-新冠肺炎全球感染人数</title>
+      <link>/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid>
+      <description>
+
+
+&lt;p&gt;地图可视化展示新冠全球流行&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>想画密度热点图没R包？没事，自己造</title>
+      <link>/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link>
+      <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid>
+      <description>&lt;p&gt;第二个R包！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>造包初体验-autopca自动分析PCA并绘图</title>
       <link>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link>
       <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
       
@@ -43,18 +65,6 @@ It makes use of a variety of open source projects including:
 
 
 &lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>开发一个自动化分析PCA的R包autopca(英文)</title>
-      <link>/2020/02/10/my-first-r-packages-for-pca-analysisi/</link>
-      <pubDate>Mon, 10 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/2020/02/10/my-first-r-packages-for-pca-analysisi/</guid>
-      <description>
-
-
 </description>
     </item>
     

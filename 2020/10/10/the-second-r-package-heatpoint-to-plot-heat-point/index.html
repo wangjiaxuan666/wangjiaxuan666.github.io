@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>想画密度热点图没R包？没事，自己造</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="第二个R包！
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="想画密度热点图没R包？没事，自己造">
+    <meta name="twitter:description" content="第二个R包！
+">
+    <meta name="twitter:image" content="/media/r.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="想画密度热点图没R包？没事，自己造">
+  <meta property="og:description" content="第二个R包！
+">
+  <meta property="og:url" content="/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/">
+  <meta property="og:image" content="/media/r.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">想画密度热点图没R包？没事，自己造</h1>
+      <p class="post-meta">@Wang Jiaxuan · Oct 10, 2020 · 4 min read</p>
+    </header>
+    <article class="post-content"><p>第二个R包！</p>
+
+<h2 id="密度热点图">密度热点图</h2>
+
+<p>这个事情起因是客户想要一个能够展现单细胞数据和普通转录组数据之间相似性的图。我推荐客户，可以考虑画一个散点图， 横坐标是单细胞数据，纵坐标是普通转录组数据。再用相关性来做检验相似性强弱。</p>
+
+<p>最开始是没想画密度热点图的，但是因为后面又看到一个文章。觉得自己想尝试一下，就用<code>ggplot2</code>包的<code>geom_hex</code>和<code>stat</code>包 的<code>cor.text</code>以及<code>lm</code>进行了尝试了。结果还可以！下图就是我自己造的数据生成的例图。大概就是这个样子的。只是细节可能还会调整一些。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200503152649499.png" alt="image-20200503152649499" style="zoom:20%;" /></p>
+
+<p>但是 <code>geom_hex</code>并不是我想象中最优解，只是当时客户催的紧要结果，而且实话说我也没有太多时间去摸索。就交付了。觉得不是最优解的原因是</p>
+
+<ol>
+<li>geom_hex统计每一个六边形区域内的点数，并不是每一个数值都有一个点在图中。简单理解，就是你有1000个数据画图，geom_hex可能就给你10个六边形（这是完全可能的），数据多的时候不明显，数据一旦少了就会非常明显。</li>
+<li>颜色变化不显著，因为是算一个hex中的频数，所以差异不会很明显。</li>
+</ol>
+
+<p>但是我们还是可以知道，密度热点图还是非常好看的，不是吗，遇到展示两组数据相似性的时候，帮助是非常大的。</p>
+
+<h2 id="自己造r包">自己造R包</h2>
+
+<p>五一时间，第一天去了新房子里钻孔，拧水龙头（自我感觉越来越熟练）。第二天去了上下九溜达了。第三天想着还是把这个脚本再完善一下。所以就鼓捣了一个R包。这个R包本质上不是为了画密度热点图。而是为了收录自己平时写的一些实用小脚本的。</p>
+
+<p>R包，我取名为<code>xbox</code>,目前收录了做数据框的列之间的T检验的`<code>col_ttest</code>，以及转置数据框，让行列互相颠倒的<code>df_t</code>, 还有根据KO id,给出KEGG数据库三个层级注释的<code>koid_to_pathway</code>，其次还有<code>tibble</code>和<code>data.frame</code>之间转换的<code>get_tb</code> 和 <code>get_df</code>。具体的用处和例子可以看帮助文档或者Github上的说明。点击<strong>阅读原文</strong>可以跳转Github。</p>
+
+<p>今天新增的功能就是画密度热点图的<code>heatpoint</code>和<code>plot</code></p>
+
+<p>例子如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">points = <span style="color:#00d;font-weight:bold">5000</span>
+x = <span style="color:#888;font-weight:bold">c</span>(rnorm(points/<span style="color:#00d;font-weight:bold">2</span>))
+y = x + rnorm(points/<span style="color:#00d;font-weight:bold">2</span>,sd=<span style="color:#00d;font-weight:bold">0.8</span>)
+x = <span style="color:#080">sign</span>(x)*<span style="color:#080">abs</span>(x)^<span style="color:#00d;font-weight:bold">1.3</span>
+heatpoint(x,y) -&gt; dat_result
+str(dat_result)
+<span style="color:#888">#&gt; List of 3</span>
+<span style="color:#888">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
+<span style="color:#888">#&gt;  $ cor.result:List of 3</span>
+<span style="color:#888">#&gt;  $ lm.result :List of 3</span>
+<span style="color:#888">#including the three list the plot data</span>
+<span style="color:#080">head</span>(dat_result$plot.data)
+<span style="color:#888">#&gt;              x           y    Density</span>
+<span style="color:#888">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
+<span style="color:#888">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
+<span style="color:#888">#&gt; 3 -0.229579517 -0.90045187 0.14522626</span>
+<span style="color:#888">#&gt; 4  1.381172256  1.48550963 0.05487725</span>
+<span style="color:#888">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
+<span style="color:#888">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
+<span style="color:#888"># and the result of cor</span>
+<span style="color:#888;font-weight:bold">data.frame</span>(dat_result$cor.result)
+<span style="color:#888">#&gt;         cor pvalue                               method</span>
+<span style="color:#888">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
+<span style="color:#888"># and the result of lm</span>
+str(dat_result$lm.result)
+<span style="color:#888">#&gt; List of 3</span>
+<span style="color:#888">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
+<span style="color:#888">#&gt;  $ method : symbol lm</span>
+<span style="color:#888">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span></code></pre></div>
+<p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">plot(dat_result)</code></pre></div>
+<p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/README-plot-1.png" alt="" /></p>
+
+<h2 id="heatpoint参数">Heatpoint参数</h2>
+
+<p><code>plot</code>没设置什么参数，但是<code>heatpoint</code>设置了很多参数了。只是大部分参数都设置了默认值。其实<code>heatpoint(x,y) -&gt; dat_result</code>等价于：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result &lt;- heatpoint(x,y,xlim = <span style="color:#080;font-weight:bold">NULL</span>,ylim = <span style="color:#080;font-weight:bold">NULL</span>,log = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>,grid = <span style="color:#00d;font-weight:bold">100</span>,only = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>,formula = y ~ x,<span style="color:#080;font-weight:bold">...</span>)</code></pre></div>
+<p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
+
+<h2 id="附">附</h2>
+
+<p>最开始没想造R包的，本质上是当个调包侠的。但是搜来搜去都没有什么好答案。最贴近的答案是网上一个叫Kamil Slowikowski的教程。链接是<a href="https://slowkow.com/notes/ggplot2-color-by-density/">https://slowkow.com/notes/ggplot2-color-by-density/</a>.</p>
+
+<p>BUT 我好像没测试成功在我的数据上，也就是说你跑他提供的例子是没问题的，但是我自己的数据就不行了。所以继续寻找。最后找到了一个非常牛的R包-LSD。讲实话，我看这个LSD的源代码看了挺久的，我觉得这个作者真的是很牛。以后继续学习吧。</p>
+
+<p>回到正题上，LSD提供了一个可行的方法，叫做<code>heatscatter</code>，但是这个函数是只出图，并且是<code>base::point</code>画图。这样不仅我会嫌弃它画图丑，还嫌弃我自己不会<code>base</code>画图，所以我也改不了，没办法让结果按照我的想法改进。</p>
+
+<p>所以，仔细学习了作者的代码，然后做改进，加入线性回归和相关性检验. 将计算和画图功能分开，用<code>ggplot2</code>进行可视化。完美！</p>
+
+<p>目前<code>heatpoint</code>功能已经整合在<code>xbox</code>包里了，放在<a href="https://github.com/wangjiaxuan666/xbox">gitub</a>上，欢迎使用并提出宝贵意见。</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="tag">可视化</span></a></li>
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-10-10</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
