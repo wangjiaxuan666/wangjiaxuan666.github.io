@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title></title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  
+  <meta name="description" content="为什么差异基因少, 差异到底是什么?
+经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。
+首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢
+">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="为什么差异基因少, 差异到底是什么?
+经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。
+首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢
+">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="为什么差异基因少, 差异到底是什么?
+经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。
+首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢
+">
+  <meta property="og:url" content="/1/01/01/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/1/01/01/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+      <p class="post-meta">@Jiaxuan Wang · Jan 1, 0001 · 1 min read</p>
+    </header>
+    <article class="post-content"><p>为什么差异基因少, 差异到底是什么?</p>
+
+<p>经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。</p>
+
+<p>首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢</p>
+
+<p>[TOC]</p>
+
+<h1 id="1-为什么差异基因少">1. 为什么差异基因少</h1>
+
+<p>经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。</p>
+
+<p>首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢</p>
+
+<p>从下往上依次是：</p>
+
+<ol>
+<li>通过<code>edgeR</code>或者<code>DESeq2</code>这类软件差异分析而来，筛选标准是<code>|FC| &gt; 2, FDR &lt; 0.05</code></li>
+<li><code>Tophat2</code>或者<code>Hiseq2</code>这类软件将测序*reads*比对上参考基因组，并进行定量分析。</li>
+<li>去除核糖体<code>rRNA</code></li>
+<li>质控</li>
+<li>测序</li>
+<li>测序文库建立</li>
+<li>实验设计</li>
+</ol>
+
+<p>以上任何一步出现问题都可能导致差异基因少。但是有经验的支撑肯定不会一个个区排查。因为每天都要处理很多项目问题。是不会这样采取一个个追溯寻根的去找项目问题。还是会从最有可能出现问题的地方入手。</p>
+
+<blockquote>
+<p>想起以前在《意林》还是《读者》看到一篇文章，里面写一个针掉进毛毯中，A会重新模拟角度和力度重新抛一个针去模拟掉落的位置。而B却会把毛毯划分成数个相同大小的区域。一个区域一个区域寻找。我个人肯定觉得A这个方法最快最高效。虽然B的方法最保险，但我所不喜。</p>
+</blockquote>
+
+<h1 id="2-一点点寻找原因">2. 一点点寻找原因</h1>
+
+<h2 id="2-1-检查样品相关性">2.1 检查样品相关性</h2>
+
+<p>简单来说，就是先看样品关系分析结果，例如<code>PCA</code>和<code>样品相关性图</code>。因为组间差异少，很可能和组内的差异大有关。因为从通俗意义上讲。我们关注的是处理导致的差异效应，也就是处理组相比于对照组发生的差异变化。</p>
+
+<p>CK组与T组的差异分析<code>公式</code>：
+$$
+Treat Effictive = Group Effictve_{(CK-vs-T)} - (Sample Effictive <em>{(CK)} + Sample Effictive</em>{(T)})
+$$</p>
+
+<blockquote>
+<p>注意：上述公式并不是某个算法，只是为了理解而列举出来的概念上的公式</p>
+</blockquote>
+
+<p>我们可以从空间上去理解，如下图，每个样本有成千上万的基因表达信息，假设所有样本中总共*5w*个基因组有检测到，那么所有样本在这*5w*个基因都有自己的定位（表达量）。也就是说样本间的差异距离是体现在N维空间的。同样的从N维上去理解。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554539656729.png" alt="1554539656729" /></p>
+
+<p>从上述公式我们就可以看到，组内的差异越大，越不利于组间的差异比较。相信这点还是比较好理解的。但是为什么我们要看<code>PCA图</code>呢。或者我们如何根据<code>PCA图</code>等到组间和组内的差异大小呢。</p>
+
+<p>因为<code>PCA</code>（主成分分析）就是通过<strong>重新构建坐标系，从而将高纬数据映射在低纬刻度上。</strong>这样我们就可以通过<code>PC1</code>和<code>PC2</code>的二维空间上近似反应的高纬层面上的数据分布。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554540059073.png" alt="1554540059073" /></p>
+
+<p><code>PCA</code>的原理不是本文中的重点，只需要明白<code>PCA</code>能干什么就可以。就不再赘述了。可以看到我们通过降维分析（PCA）将高纬数据映射在<code>PC1</code>和<code>PC2</code>上，那么同样的<code>PCA</code>图就可以反应样品之间的差异。</p>
+
+<p>一个好的分组应该，组内的生物学重复聚在一起，彼此距离相近。</p>
+
+<p>而不好的分组，组与组没有明显的界限，彼此重叠。这种分组差异小，就会导致差异基因少。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554540893753.png" alt="1554540893753" /></p>
+
+<h2 id="2-2-结尾从头看一篇">2.2 结尾从头看一篇</h2>
+
+<p>目前，各家的流程都是身经百战的，理论上，是不会存在大的<code>Bug</code>。也就以为着分析是很小概率出问题的。虽然上样品相关性可能是最有可能的原因。但是就算我们发现现样品相关性不好，也不要贸然下结论。而是因为从头再把所有结果看一些。</p>
+
+<p>从最开始的数据量、质控，核糖体比率，基因组比率，测序随机性和饱和性，以及最最要的表达量表。都需要进行核对。一个有经验的分析是可以很快的浏览完的。如果这些部分出现问题。依据<strong>前者最大</strong>的原理，这时候问题的主要的原因就要往前继续推了。就算后面样品相关性不好，也可能是前面这步的问题。</p>
+
+<p>所以还要继续往上走，找测序和建库，参考基因组等原因，去核对为什么基因组比对率低，<code>rRNA</code>含量高等等问题。</p>
+
+<p>但由于这部分实在太多，而且每个项目都不一样，不具有普适性，本文不再继续讨论。本主主要讨论的是，抛去建库测序分析的问题，单单说老师的实验设计导致差异基因少。（<strong>这才是项目问题的大头，而且是最难解决的</strong>）。毕竟客户自身的问题，你伤不起啊。无尽的扯皮，还不如多想想如何解决问题。</p>
+
+<h1 id="3-如何解决差异基因少">3. 如何解决差异基因少</h1>
+
+<p>让我们回到问题的本身，差异基因少，也就是说在所有的基因中满足<code>|FC| &gt; 2</code>, <code>FDR &lt; 0.05</code>的基因少。那么差异倍数<code>|FC|</code>和检验值<code>FDR</code>是什么呢。要回答这个问题。不了解点统计学还真的很难搞。让我们一点点来吧，</p>
+
+<h2 id="3-1-数据分布">3.1 数据分布</h2>
+
+<p>在统计学中，数据都是有分布。而且绝大部分还是符合正态分布。何为正态分布。就是极端情况是少见的，而常见的是靠近平均值的数据。啥，不难理解吧。比如人的身高，财富，头发多少，老鼠的体重等等都是符合正态分布的。《中庸》道：</p>
+
+<p><center>执其两端，庸其中于民</center></p>
+
+<p>连古人都知道正态分布呢，哈哈，开个玩笑</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554543134398.png" alt="1554543134398" /></p>
+
+<p>从上述图形，我们可以看出正态分布的大部数值都是接近整体的<code>平均值</code>，而极少数数据是<code>极端大</code>和<code>极端小</code>的。一个标准的正态分布。平均值平均值+-标准差的范围是占整体的<strong>68%</strong>，而平均值+-标准差*2的范围是占整体的<strong>95%</strong>。</p>
+
+<blockquote>
+<p>有没有想起检验值的0.05这个阈值，知道是怎么来的的吧</p>
+</blockquote>
+
+<p>但是我们在做实验，或者说现实生活中，我们不可能去获得每一个个体的数值，构建正态分布，要不然也用不到统计学了。我们以生物实验为主。我们一般是做三个生物学重复。其实这时候，也是根据三个样本的值计算平均值和方差去估算整体数据的分布范围。</p>
+
+<blockquote>
+<p>注意：正态分布的积分就是事件发生的概率，平且我们常说的p值也是这个分布的面积相关的。但是p值不是计算自身发生概率。p值还会考虑同等概率事件+极少概率事件。这里不再赘述。因为写起来太多了。</p>
+</blockquote>
+
+<h2 id="3-2-数据分布的差异">3.2 数据分布的差异</h2>
+
+<p>了解了数据分布，那这和我们的两组间的差异分析又有什么关系呢。当然有关系，<code>|FC|</code>我们可以简单理解为差异效应的大小的。但是<code>FDR</code>值又该如何理解。所以我们还是要继续讨论一点统计。</p>
+
+<p>统计上如何确定差异呢？这还是与分布有关系的。简单</p>
+
+<p>如果数据来自同一个分布，那么<code>p值</code>既有可能会非常大。但是还是存在极少的概率<code>p值</code>是小于*0.05*的，因为在标准的正态分布中，同一个分布随机抽取样本进行检验，<code>p值</code>是平均分配的。</p>
+
+<p>但是如果样本是来自两个不同的数据分布，<code>p值</code>就会非常小。这才是我们认为真正处理所导致的差异。</p>
+
+<p>但是很明显我们关注的对照组<code>CK</code>与处理组<code>T</code>组间的所有基因，绝大部分是不受我们处理影响，一部分基因是收到我们处理的影响的，那么两组之间的基因进行差异比较的时候，既有来自一个数据分布的（不受处理影响）也有一部分是两种分布（收到处理影响的）。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554546540742.png" alt="1554546540742" /></p>
+
+<h1 id="4-影响差异的因素">4. 影响差异的因素</h1>
+
+<p>从上面，我们可以得知，从统计上如何理解差异比较。那么回到我们的主题上，为什么我们的差异基因会少呢。|FC|是平均值的比较，检验值FDR是数据分布的统计检验。还是回到统计学上理解。</p>
+
+<p>两组间差异分析常用的检验是<code>T-test</code>。</p>
+
+<p>概念公式：</p>
+
+<p>$$
+P = \frac{信号}{噪音} = \frac{DifferentBetweenGroupMeans}{Variabity Of Groups}
+$$</p>
+
+<p>所以很明显我们可以看到检验p值以及根据p值而来的<code>FDR</code>值也是考虑<code>FC</code>的，只是这里的考虑是为了验证是否两组间有差异，并没有<code>|FC|</code>多大是变化，多小时没有变化的这个概念。所以后续差异分析还是考虑<code>|FC|</code> &gt; 2的。</p>
+
+<p>值得探究的是检验计算的分母<code>Variabity Of Groups</code>，这个概念和数据分布有很大的关系。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1554548761175.png" alt="1554548761175" /></p>
+
+<p>简单来讲：</p>
+
+<ul>
+<li>处理因素的强度和差异分析的效果最为相关，这里的因素包括实验设计内的和实验设计外的。很多老师反馈自己的实验设计的强度时适合的，但是并没有考虑那些实验设计以外的因素，比如物种差异，生物的稳态调节等等。</li>
+<li>还有就是数据的变异程度，如果组内相关性不好，组内差异大，就会导致三个样本预估的数据分布呈现一个非常宽的分布范围。这对于差异分析的检验来说时非常不利的。</li>
+<li>另外就是样本数了，根据中心回归原则，样本数越大，越接近数据的真实分布，会让数据分布的范围缩小，减少因为预估而导致对分布估算过大。这也是<code>16s</code>等微生物、生态实验设计中，样本数多的原因。因为微生物群落不稳定，受因素影响多。而样本数目多，可以很好的预估数据的真实分布范围。</li>
+<li>当然，我们最喜欢的就是调整参数。把<code>FDR&lt; 0.05</code>换成<code>P&lt; 0.05</code>,或者调整阈值等等。这往往来的最粗暴最简单。</li>
+</ul>
+
+<h1 id="5-如何避免差异基因少">5. 如何避免差异基因少</h1>
+
+<p>这是很高深的领域，首先如果有预实验或者类似实验设计的结果。都可以很好的帮助我们进行评估差异基因的数目。但是如果没有，就需要一定的计算。</p>
+
+<p>目前我知道有一个R包可以计算，改天有机会再说吧。</p></article>
+    <footer class="post-footer">
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -119,17 +119,6 @@
     </item>
     
     <item>
-      <title>为什么差异基因少, 差异到底是什么?</title>
-      <link>/2019/05/31/what-the-deg-mean/</link>
-      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/05/31/what-the-deg-mean/</guid>
-      <description>&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
-
-&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>图论好难, Network理论和WGCNA分析</title>
       <link>/2019/05/31/what-is-wgcna-when-to-use/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>

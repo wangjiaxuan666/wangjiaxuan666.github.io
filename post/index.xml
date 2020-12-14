@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>处理批次效应连续剧第一集(失败的R包)</title>
+      <link>/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link>
+      <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。
+</description>
+    </item>
     
     <item>
       <title>R绘图展示数据分布情况之ta弯了—圆波图</title>
@@ -246,17 +262,6 @@
     </item>
     
     <item>
-      <title>为什么差异基因少, 差异到底是什么?</title>
-      <link>/2019/05/31/what-the-deg-mean/</link>
-      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/05/31/what-the-deg-mean/</guid>
-      <description>&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
-
-&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>图论好难, Network理论和WGCNA分析</title>
       <link>/2019/05/31/what-is-wgcna-when-to-use/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
@@ -346,6 +351,19 @@
       
       <guid>/2015/07/23/hello-r-markdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com. You can embed an R code chunk like this: summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ##</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/01/</guid>
+      <description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;
+
+&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
+
+&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>处理批次效应连续剧第一集(失败的R包)</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="处理批次效应连续剧第一集(失败的R包)">
+    <meta name="twitter:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+    <meta name="twitter:image" content="/media/r.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="处理批次效应连续剧第一集(失败的R包)">
+  <meta property="og:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+  <meta property="og:url" content="/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/">
+  <meta property="og:image" content="/media/r.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">处理批次效应连续剧第一集(失败的R包)</h1>
+      <p class="post-meta">@Wang Jiaxuan · Dec 14, 2020 · 6 min read</p>
+    </header>
+    <article class="post-content"></p>
+<div id="遇到项目问题了" class="section level1">
+<h1>遇到项目问题了</h1>
+<p>事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。</p>
+<p>至于差异基因那些事，可以看我昨天的文章<a href="https://abego.cn/2019/05/31/what-the-deg-mean/">为什么差异基因少, 差异到底是什么?</a></p>
+<p>虽然后面也找了原因。但是原因只是一种双方扯皮时候的依据。问题还是要回到实际项目中，如何矫正这种批次效应。这就不得不开动自己的脑瓜子想想怎么矫正批次效应。</p>
+</div>
+<div id="看看什么是情况" class="section level1">
+<h1>看看什么是情况</h1>
+<p>具体项目是什么情况呢，我们一起来看看，当然了，数据是不能透漏的。我这边自己造了个假数据。用来做案例的重新。</p>
+<p>注意：本文中不仅用了我自己创建的R包<code>autopca</code>来画PCA图，还用了另一个自己的R包<code>xbox</code>中的数据格式转换功能。甚至还新建了我的第三个R包<code>fixbatch</code>。顾名思义，这个新R包目标是为了矫正批次效应。目标是很大的，但现实中批次效应这个范围太大，我第一能力不足，很难写个新算法，第二很难超越别人的R包。所以这个R包还是于己方便，做个大杂烩，以已有的R包做主题，然后再按照自己的思路和想法，做些修鞋匠的工作，就是些胶粘磨补而已。</p>
+<blockquote>
+<p>自己写的文章，用自己的R包，不算硬广吧！毕竟咱的R包也没人用，自己再不用，那就真的不仅垃圾，而且无用了。╮（╯＿╰）╭</p>
+</blockquote>
+<p>首先是加载R包，如果没有安装，请自行安装</p>
+<pre class="r"><code># BiocManager::install(&quot;edgeR&quot;)
+# BiocManager::install(&quot;preprocessCore&quot;)
+# devtools::install_github(&quot;wangjiaxuan666/autopca&quot;)
+# devtools::install_github(&quot;wangjiaxuan666/xbox&quot;)
+# devtools::install_github(&quot;wangjiaxuan666/fixbatch&quot;)
+# install.packages(&quot;patchwork&quot;)</code></pre>
+<p>如果那位大佬之前已经安装我的R包<code>autopca</code>or <code>xbox</code>。那可就惨了，一定要记得更新，因为我自己R包富含BUG。我之前每次使用自己的R包写脚本，都是写脚本10min，改自己的BUG至少3小时起。</p>
+<blockquote>
+<p>反而用自己的R包更浪费时间呢，难顶！</p>
+</blockquote>
+<p>所以如果用了我富含BUG的R包，一定要及时更新！一定要及时更新！一定要及时更新！重要的事情说三遍。</p>
+<p>就像这样，每次使用的时候，请用如下代码，选择Github来源更新方式。</p>
+<pre class="r"><code>#devtools::update_packages(&quot;autopca&quot;)
+#devtools::update_packages(&quot;xbox&quot;)
+#devtools::update_packages(&quot;fixbatch&quot;)</code></pre>
+<p>目前为止，R包已经全部更新和安装了，那就开始正文。批次效应是啥样，以及如何矫正。</p>
+<pre class="r"><code>require(autopca)
+require(xbox)
+require(fixbatch)
+require(tidyverse)
+require(edgeR)
+require(preprocessCore)
+require(patchwork)
+# read data
+setwd(r&quot;(D:\QQ_files\992914078\FileRecv)&quot;)
+dat = readr::read_tsv(&quot;gene_exp_data.xls&quot;)
+#用R包autopca中的pca_data_tidy函数整理数据，支持输入tibble或者dataframe格式数据
+dat_pca_nofix = pca_data_tidy(dat)</code></pre>
+<pre><code>## ... Notice: the input data is a tibble
+## ... Wonderful: the input data vaule in every column all be numberic value
+## ... Successed! the pca data save in the object</code></pre>
+<pre class="r"><code>#用R包autopca中的pca函数画图
+p1 &lt;- pca(dat_pca_nofix,rename = &quot;replace&quot;,
+          str_sample = &quot;_fpkm&quot;,
+          str_group = &quot;-\\d$&quot;,
+          display_sample = T,
+          add_ploy = T) + 
+      ggtitle(&quot;Unnormalised dat&quot;)
+print(p1)</code></pre>
+<p><img src="/post/2020-12-14-remove-the-batch-effect-series-1-a-imcomplete-r-package/index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+可以很明显的发现，这个一个非常差的重复性。同组的三个生物学重复，左边和右边都有，彼此撕裂。PC1占比40%多，但是这个因素却不是实验处理。而是一种“未知”神秘力量影响。</p>
+<blockquote>
+<p>剧透下，这个批次效应已经被解决了，神秘力量也知道是什么，但具体的就不再剧透了，连续剧要一集一集看。
+内心OS：我才不会说，是因为我没时间写文章</p>
+</blockquote>
+<p>最开始呢，我发现离群样本的基因表达箱线图的上限要比正常样本高一些。所以我首先想到了根据中位数的方法进行批次效应。</p>
+<p>没办法中位数矫正的方法，即是公司中口口相传的矫正方法，其实其形式和DeSeq2以及edgeR的矫正都有点异曲同工之妙。而且这个项目的箱线图确实很有规律。所以首先想到的是中位数矫正方法。</p>
+<blockquote>
+<p>当然edgeR和DeSeq2的矫正方法考虑的东西更多一些。但是如果你在Youtube上看过statquest的视频，就会知道edgeR和DeSeq2也是根据“稳定基因”计算矫正因子。和中位数矫正的方法真的很想。我甚至用了edgeR的calcNormFactors函数计算了校正因子，并假设测序数据量一样的情况，用矫正因子矫正数据，和中位数矫正的结果非常类似。</p>
+</blockquote>
+<p>中位数矫正的方法，主要用的是preprocessCore包，但是我利用这个R包，感觉效果不好，所以我想了这个问题。如果根据所有基因来进行中位数矫正批次效应，那肯定是不符合生物学规律的，因为肯定是有些基因就是发生很大的变化，如果这个变化的基因数目达到了一定的量级。那中位数矫正就不再是矫正了，而是矫正过枉了。而且所有基因都参与计算矫正，很难出现比较好的效果。</p>
+<p>所以我根据edgeR和DeSeq2的思想，想着如果大部分基因都是不发生变化的，我就专门找其中“可靠的，稳定表达的基因”来计算矫正因子，然后再回到整体数据中进行矫正。</p>
+<p>确定了这个思路，我就新建了四个函数，分别是计算变异系数的函数<code>col_cv</code>，以及计算基因表达量之和的<code>col_sum</code>以及寻找管家基因的<code>housekeep</code>，最后还有矫正数据的<code>norm_fix</code>。我将这四个函数打包成R包。其效果如下：</p>
+<pre class="r"><code>#构建数据 start-----------------------------
+y &lt;- matrix( rpois(1000, lambda=5), nrow=200 )
+n = dim(y)
+colnames(y) = paste(rep(&quot;sample&quot;,n[[2]]),1:n[[2]])
+rownames(y) = paste(rep(&quot;gene&quot;,n[[1]]),1:n[[1]])
+y = as.data.frame(y)
+y[,1] &lt;- (y[,1]*0.05)
+y[,2] &lt;- y[,2]*5
+#构建好数据 end-----------------------------
+
+#画图展示数据
+col &lt;- RColorBrewer::brewer.pal(n[[2]], &quot;Paired&quot;)
+par(mfrow=c(1,3))
+##原始数据
+boxplot(y, las=1, col=col, main=&quot;&quot;)
+title(main=&quot;A. Example: Unnormalised data&quot;,ylab=&quot;Gene Exp&quot;)
+##用preprocessCore函数矫正
+y_fix1 = preprocessCore::normalize.quantiles(as.matrix(y))
+boxplot(y_fix1, las=1, col=col, main=&quot;&quot;)
+title(main=&quot;C. Example: Normalised data by normalize.quantiles&quot;,ylab=&quot;Gene Exp&quot;)
+##用自建R包fixbatch中矫正
+y_fix2 = norm_fix(y,expcv = 1, exphigh = 1, explow = 0)</code></pre>
+<pre><code>## The stable housekeep gene number is 198</code></pre>
+<pre class="r"><code>boxplot(y_fix2, las=1, col=col, main=&quot;&quot;)
+title(main=&quot;C. Example: Normalised data by fixbatch&quot;,ylab=&quot;Gene Exp&quot;)</code></pre>
+<p><img src="/post/2020-12-14-remove-the-batch-effect-series-1-a-imcomplete-r-package/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>看起来效果还不错，然后雄赳赳，气昂昂的去实际操作，实践是检验标准的唯一真理！发现我就发现其没有任何效果！！！，不论是用我自己的R包，还是经典的preprocessCore包。都是没有效果的！！！</p>
+<pre class="r"><code>dat_df = get_df(dat)#change into data.frame
+#dat_df = column_to_rownames(dat,vars = id)</code></pre>
+<pre class="r"><code>dat_fix2 = norm_fix(dat_df,expcv = 0.3, exphigh = 0.8, explow = 0.4)</code></pre>
+<pre><code>## The stable housekeep gene number is 6507</code></pre>
+<pre class="r"><code># dat_fix2 = norm_fix(dat_df,expcv = 1, exphigh = 1, explow = 0)
+# 设置expcv = 1, exphigh = 1, explow = 0等同于原始的preprocessCore包！
+dat_pca_fix = pca_data_tidy(dat_fix2)</code></pre>
+<pre><code>## ... Notice: the input data is a data frame not a tibble
+## ... Wonderful: the input data vaule in every column all be numberic value
+## ... Successed! the pca data save in the object</code></pre>
+<pre class="r"><code>p2 &lt;- pca(dat_pca_fix,rename = &quot;replace&quot;,
+          str_sample = &quot;_fpkm&quot;,
+          str_group = &quot;-\\d$&quot;,
+          display_sample = T,
+          add_ploy = T) + 
+      ggtitle(&quot;Normalised dat&quot;)
+
+print(p1+p2+plot_annotation(tag_levels = &#39;A&#39;))</code></pre>
+<p><img src="/post/2020-12-14-remove-the-batch-effect-series-1-a-imcomplete-r-package/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="后续的思考" class="section level1">
+<h1>后续的思考</h1>
+<p>所以这个R包是失败的！我心好凉，我后续在这个R包里面加上<code>edgeR</code>的矫正方法，以及<code>sva</code>的矫正方法。这两个R包肯定是有用的！！！</p>
+<p>preprocessCore失败，我觉得是没用考虑生物问题。但我本来以为我利用管家基因的来计算矫正因子是正确的思路。但为什么结果也还是失败呢。</p>
+<p>今天在写公众号的时候，我突然想到，我对管家基因的定义是有问题的。</p>
+<p>因为我选择变异系数低的，以及表达量中间的基因，并不真正是管家基因！！甚至说，因为变异系数低，所以不论是离群样本，还是正常样本，我所挑选的管家基因，表达量是不会变化的，所以矫正因子在实际项目中，大概率永远都是1左右徘徊。</p>
+<p>我应该换思路：</p>
+<ol style="list-style-type: decimal">
+<li><strong>增加指定内参基因的功能</strong>，例如指定GAPDH,TBP,UBC,ACTB等基因</li>
+<li><strong>优化内参基因的选择方法</strong>，根据批次分组来分别选择，再取交集，计算矫正因子</li>
+</ol>
+<p>等我改好了，倒是再看看效果。</p>
+<p>加油，干饭人！</p>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+          <li><a href="/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-12-14</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
