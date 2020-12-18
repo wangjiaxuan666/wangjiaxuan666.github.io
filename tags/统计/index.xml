@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/%E7%BB%9F%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>处理批次效应连续剧第二集（R包小有成效）</title>
+      <link>/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid>
+      <description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>处理批次效应连续剧第一集(失败的R包)</title>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>处理批次效应连续剧第二集（R包小有成效）</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="自己写的fixbatch有效果了，小小激动一下，开心
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="处理批次效应连续剧第二集（R包小有成效）">
+    <meta name="twitter:description" content="自己写的fixbatch有效果了，小小激动一下，开心
+">
+    <meta name="twitter:image" content="/media/cover.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="处理批次效应连续剧第二集（R包小有成效）">
+  <meta property="og:description" content="自己写的fixbatch有效果了，小小激动一下，开心
+">
+  <meta property="og:url" content="/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/">
+  <meta property="og:image" content="/media/cover.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">处理批次效应连续剧第二集（R包小有成效）</h1>
+      <p class="post-meta">@Wang Jiaxuan · Dec 18, 2020 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>自己写的fixbatch有效果了，小小激动一下，开心</p>
+
+<h2 id="之前的事情">之前的事情</h2>
+
+<p>我周二时候写了个文章，当时是遇到了一个项目问题。是因为批次效应，导致了样本的聚类效果不好，所以我一来是想解决项目问题，二来就想趁此机会，学习下如何矫正批次效应。</p>
+
+<p>当然实际项目并不会给我时间矫正。用<code>sva</code>R包的<code>combat.r</code>矫正后，就已经把问题解决了。</p>
+
+<p>但是最开始的时候，发现了一个问题。就是我明明看到离群的八个样本的表达量箱线图，展现的极值，中位数都和其他正常样本不一样。但是想法也简单，先用中位数矫正的方法矫正下批次效应。看看效果。</p>
+
+<h3 id="preprocesscore矫正效果">preprocessCore矫正效果</h3>
+
+<p>但结果就是用经典的R包<code>preprocessCore</code>R包中位数矫正的结果就是矫正不好。甚至可以说矫正与否没有任何明显变化。只是左右颠倒了下位置,有啥用啊, PCA是相对距离,坐标轴的数字没有太多意义!</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218184741952.png" alt="image-20201218184741952" /></p>
+
+<p>后面我自己不是重新造了一个批次效应的数据，然后用<code>preprocessCore</code>做了矫正，但是效果没有任何变化，如下图，也就是说<code>preprocessCore</code>的中位数矫正的方法可能只是一种类似于标准化一样的功能，只是适用于将缩放到同一个范围尺度内。类似于<code>scale</code>和<code>log</code>一样的功能。</p>
+
+<p>本质上到这里，我就应该放弃用<code>preprocessCore</code>的中位数矫正的思路了。但是我去看<code>edgeR</code>的<code>calcNormFactors</code>函数时候，重新会想起矫正因子的作用，意识到其实<code>edgeR</code>和<code>Deseq2</code>这些差异的R包都会去计算校正因子，从矫正数据分布，然后再做统计检验。</p>
+
+<p>而且他们用的都是，表达量中间，以及差异变化比较小的“稳定基因”来计算，而不是用全部的基因来计算。突然之间，我想到了一个方法，就是用“管家基因”来计算矫正因子。</p>
+
+<p>然后我就分别根据自己之前的一篇文章，利用变异系数以及表达量之和来确定管家基因。并将脚本整理成函数，打包成了R包<code>fixbacth</code>。</p>
+
+<p>实现这个想法花不了多少时间，打包成R包也没画多久时间。但是没想到的时候，自己造的例子可以，如下图。</p>
+
+<p>但是真实的数据。这个利用管家基因的矫正思路是没有任何效果的。PCA矫正前面什么样子，矫正后还是什么样子，最多PC1的百分比变化了几个百分点。</p>
+
+<p>心凉凉的，一直没想到为什么，我决定放弃了。但后面准备写篇公众号，给大家说下，中位数矫正没用的时候。但写着公众号的时候，突然想到：</p>
+
+<p>我算来的的管家基因根本不是管家基因，<strong>因为我是把所有样本放在一起计算管家基因，最后得到的肯定是在各个样本中没有任何变化的基因</strong>。（因为这个基因只有在离群组和正常组中*表达量一致*，才会被我选择！！！）</p>
+
+<p>这不是垃圾嘛，我这样算出来肯定是矫正因子在<strong>1</strong>徘徊啊。肯定矫正没有任何效果，被自己的脑回路打败了~~</p>
+
+<p>所以我需要：</p>
+
+<ol>
+<li>区分批次效应分组</li>
+<li>分别计算每个批次组的“稳定基因”</li>
+<li>将各个批次组的稳定基因取交集，称为“共有的稳定基因”</li>
+<li>利用“共有的内参基因”来计算矫正因子</li>
+<li>再反哺到原始数据上</li>
+</ol>
+
+<p>具体思路如下：</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201217201517369.png" alt="image-20201217201517369" /></p>
+
+<p>说实话，目的是这样的，用R代码实现起来，困难的一度让我怀疑自己没能力实现自己的想法。虽然我也去Google搜索，但是答案都不让我满意。是，<code>tidyverse</code>我很熟，<code>tidyverse</code>全家桶我肯定实现我的目标。但我不是写脚本呀，我是想做成一个R包。如果我用<code>tidyverse</code>写R包，那我这个R包算是low到不行了，不仅加载一堆附属包，运算速度估计慢的一B。</p>
+
+<p>所以我想用<code>base</code>函数族来实现目标，但是搜到的都是<code>split</code>+<code>apply</code>的解决思路。我觉得太繁琐了，缺乏美感。我就去看<code>sva</code>的源码，发现别人写的代码就是好看。赞叹不已，然后推敲了一段时间，偷学了三行命令。</p>
+
+<p>自己在此基础上完成了构思，目前更新的R包<code>fixbatch</code>已经重新放在<code>GIthub</code>了。</p>
+
+<p>效果非常赞！心满意足，开心到爆炸！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#888"># BiocManager::install(&#34;edgeR&#34;)</span>
+<span style="color:#888"># BiocManager::install(&#34;preprocessCore&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/autopca&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/xbox&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/fixbatch&#34;)</span>
+<span style="color:#888"># install.packages(&#34;patchwork&#34;)</span>
+<span style="color:#888"># set workdir</span>
+
+<span style="color:#888"># 记得更新我的R包奥，要不然以前的BUG，得让你怀疑人生</span>
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;autopca&#34;</span>)
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;xbox&#34;</span>)
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;fixbatch&#34;</span>)
+<span style="color:#888"># 加载R包</span>
+<span style="color:#080;font-weight:bold">require</span>(autopca)
+<span style="color:#080;font-weight:bold">require</span>(xbox)
+<span style="color:#080;font-weight:bold">require</span>(fixbatch)
+<span style="color:#080;font-weight:bold">require</span>(tidyverse)
+<span style="color:#080;font-weight:bold">require</span>(preprocessCore)
+<span style="color:#080;font-weight:bold">require</span>(patchwork)</code></pre></div>
+<p>因为我自己构建的数据，离群的是&rdquo;A-CK-1,A-2,AT-1,AT-3,A-3&rdquo;样本，所以批次分组如下设计。一定要记得和数据的列名排序对应！</p>
+
+<table>
+<thead>
+<tr>
+<th>样本</th>
+<th>批次</th>
+<th>样本</th>
+<th>批次</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A-1_fpkm</td>
+<td>1</td>
+<td>B-1_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A-2_fpkm</td>
+<td>2</td>
+<td>B-2_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A-3_fpkm</td>
+<td>2</td>
+<td>B-3_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>AT-1_fpkm</td>
+<td>2</td>
+<td>BT-1_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>AT-2_fpkm</td>
+<td>1</td>
+<td>BT-2_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>AT-3_fpkm</td>
+<td>2</td>
+<td>BT-3_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A-CK-1_fpkm</td>
+<td>2</td>
+<td>BCK-1_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A-CK-2_fpkm</td>
+<td>1</td>
+<td>BCK-2_fpkm</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>A-CK-3_fpkm</td>
+<td>1</td>
+<td>BCK-3_fpkm</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>下面就是设计批次分组，并开始中位数矫正了</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#888">#不矫正的结果</span>
+dat_pca_nofix = pca_data_tidy(dat)
+p1 &lt;- pca(dat_pca_nofix,rename = <span style="color:#d20;background-color:#fff0f0">&#34;replace&#34;</span>,
+          str_sample = <span style="color:#d20;background-color:#fff0f0">&#34;_fpkm&#34;</span>,
+          str_group = <span style="color:#d20;background-color:#fff0f0">&#34;-\\d$&#34;</span>,
+          display_sample = T,
+          add_ploy = T) + 
+      ggtitle(<span style="color:#d20;background-color:#fff0f0">&#34;Unnormalised dat&#34;</span>)
+
+<span style="color:#888">#矫正的结果</span>
+bath = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>)<span style="color:#888">#设置批次分组</span>
+dat_df = get_df(dat)<span style="color:#888">#change into data.frame</span>
+
+dat_fix2 = norm_fix(dat_df,bath,expcv = <span style="color:#00d;font-weight:bold">0.5</span>, exphigh = <span style="color:#00d;font-weight:bold">0.8</span>, explow = <span style="color:#00d;font-weight:bold">0.4</span>)
+
+dat_pca_fix = pca_data_tidy(dat_fix2)
+
+p2 &lt;- pca(dat_pca_fix,rename = <span style="color:#d20;background-color:#fff0f0">&#34;replace&#34;</span>,
+          str_sample = <span style="color:#d20;background-color:#fff0f0">&#34;_fpkm&#34;</span>,
+          str_group = <span style="color:#d20;background-color:#fff0f0">&#34;-\\d$&#34;</span>,
+          display_sample = T,
+          add_ploy = T) + 
+      ggtitle(<span style="color:#d20;background-color:#fff0f0">&#34;Normalised dat&#34;</span>)
+
+p1+p2+plot_annotation(tag_levels = <span style="color:#d20;background-color:#fff0f0">&#39;A&#39;</span>)</code></pre></div>
+<p>可以看到效果是不错的，开心了，后续我会从GEO数据库里下载一些数据，做下进一步测试，以及利用PC的坐标来做下矫正效果的展示，毕竟现在完全是看图，主观性强。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218183724770.png" alt="image-20201218183724770" /></p>
+
+<p>不过现在我也是心满意足了, 毕竟<code>fixbatch</code>这个矫正的脚本算是目前,我最高最水平的脚本之一, 脚本复杂倒是不高, 但好在这个期间, 不断开发自己的想法, 并用一种比较满意的代码(越简单越满意)去实现. 感觉还是非常傲娇的.</p>
+
+<p>具体的代码,大家可以点击原文链接, 到我的<a href="https://github.com/wangjiaxuan666/fixbatch/blob/main/R/batch_housekeep.R">Github</a>上查看, 错误之处多谢指点.</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+          <li><a href="/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-12-18</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
