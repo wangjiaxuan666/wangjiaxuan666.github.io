@@ -7,10 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>处理批次效应连续剧第三集（R包基本OK）</title>
+      <link>/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>处理批次效应连续剧第二集（R包小有成效）</title>

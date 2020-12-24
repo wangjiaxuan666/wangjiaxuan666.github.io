@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>处理批次效应连续剧第三集（R包基本OK）</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="处理批次效应连续剧第三集（R包基本OK）">
+    <meta name="twitter:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+">
+    <meta name="twitter:image" content="/media/r.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="处理批次效应连续剧第三集（R包基本OK）">
+  <meta property="og:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+">
+  <meta property="og:url" content="/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/">
+  <meta property="og:image" content="/media/r.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6">
+
+
+<link rel="canonical" href="/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/styles/highlight.css">
+<script src="/scripts/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">分类</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">处理批次效应连续剧第三集（R包基本OK）</h1>
+      <p class="post-meta">@Wang Jiaxuan · Dec 24, 2020 · 8 min read</p>
+    </header>
+    <article class="post-content"><div id="前言" class="section level2">
+<h2>前言</h2>
+<p>主要是<code>fixbatch</code>做了下更新：</p>
+<ol style="list-style-type: decimal">
+<li>添加了指定内参基因的功能<code>housekeep_gene</code>，例如指定actinB，GAPDH等</li>
+<li>添加了`<code>edgeR</code>的利用count值，数据矫正后用CPM做定量分析的功能<code>edger_fix</code>，以期能解决批次效应</li>
+<li>增加<code>pvca</code>,计算各批次的影响大小</li>
+<li>增加<code>combat_fix</code>,根据<code>sva</code>包copy而来，对已知的批次效应进行矫正</li>
+</ol>
+<p>附带着也更新了<code>xbox</code>的功能</p>
+<ol style="list-style-type: decimal">
+<li><code>get_df</code>不管输入数据框是data.frame,tibble,还是matrix都支持转换成data.frame格式</li>
+<li><code>get_tb</code>不管输入数据框是data.frame,tibble,还是matrix都支持转换成tibble格式</li>
+<li>增加<code>dat2matrix</code>功能，将data.frame或者tibble格式转成matrix格式（其实我应该下次更新的时候，改成get_mt会统一，我感觉）</li>
+</ol>
+<p>也完善了<code>autopca</code>的一些报错机制</p>
+<p>但是这都是一些小的修补。最近主要是在学习<code>sva</code>的功能和使用方法。后面有时间的话，就将sva的功能整理到<code>fixbatch</code>中, 做个整合和补充，有点大杂烩的感觉。</p>
+<p>后面有时间的话，我会用<code>pkgdown</code>完善下说明文档。目前还是没时间去摸索<code>pkgdown</code>.</p>
+<pre class="r"><code>devtools::update_packages(&quot;fixbatch&quot;)
+devtools::update_packages(&quot;xbox&quot;)
+devtools::update_packages(&quot;autopca&quot;)</code></pre>
+</div>
+<div id="sva-学习笔记" class="section level2">
+<h2>sva 学习笔记</h2>
+<p>言归正穿，因为最近一直在看<code>sva</code>的说明文档，以及<code>Bioconductor</code>的<code>Gene Expression Normalization Workflow</code></p>
+<p>真的当自己去看这些东西的时候，才更清晰的认识到，之前<code>fixbatch</code>包中根据中位数矫正的<code>norm_fix</code>以及根据稳定基因计算矫正因子矫正的<code>edger_fix</code>.其实都应该算是一种数据标准化的，类似于<code>scale</code>,<code>rlog</code>乃至<code>vst</code>,就是一种将数据压缩再同一单位的量程内，并保留数据大小的相对关系的处理。</p>
+<p>但自己真去看<code>sva</code>的时候，才发现，其是将整个实验的变量分为<code>adjustment variables</code>和<code>variables of interest</code>,我简称为待修正变量（非关注变量）和关注变量。其中关注变量是实验设计中关注的差异效应（CK-VS-T），而非关注变量就是其他无关的，但是在实验过程引入的变量，例如实验的批次，试剂的批次，人员的批次，测序的批次，甚至包括材料本身的批次（背景噪音）。最极端的应该是医学上的研究。科研中是无法控制人的遗传背景，生活习性，以及饮食习惯，甚至年龄，性别有时候都无法选择。这些极大的个体之间的差异，会显著影响我们所关注的变量效应，所以真实的数据结果中包含的应该是，两组因素都含有的。</p>
+<div class="figure">
+<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201223230258676.png" alt="" />
+<p class="caption">image-20201223230258676</p>
+</div>
+<p>这就导致了我们在进行数据分析之前，要尽量从实验设计上避免此类非关注变量的影响。那么如果实验中真的有此类的非关注因素影响。又该怎么办呢。</p>
+<p>首先针对不同的情况要做如下区分：</p>
+<ol style="list-style-type: decimal">
+<li>是否已知有哪些非关注因素</li>
+<li>未知的非关注因素</li>
+</ol>
+<div id="已知非关注因素" class="section level3">
+<h3>已知非关注因素</h3>
+<p>假设我们已经知道了批次效应，那我们可以用PVCA(Bushel, 2013)来估计基因表达数据的主成分（PCA）的各个因素的方差比例。将高纬数据的总方差归因到每个给定因素的协变量。剩余未分配的方差分数被认为为“剩余”方差（“residual” variance）。</p>
+<p>PVCA有效地结合了主分量分析 （PCA）的算法， 减少了高纬数据的维度。同时通过方差分量分析 （VCA）， 将因素当作随机效应进行混合线性模型，来估计其所占到总方差的比例。所解释的方差是按每个因素对 PC 的贡献的加权平均值计算的，您可以选择通过设置 PC 解释的方差阈值来指定要包含的各要素数量。</p>
+<blockquote>
+<p>当然我也是一知半解的！0.o，看了不一定懂，懂了也说不出来，要不然为啥写学习笔记。写出来有时候就会自己反复思考。</p>
+</blockquote>
+<p>总之，我知道这个PVCA可以得到各个非关注因素的方差贡献度，这就足够了，我当然想看整个实验设计中，有哪些因素影响，以及各个因素影响的大小。</p>
+<p>PVCA本身是个Bioconductor 包，其输入数据必须是要biobase格式的。biobase我不熟悉。而且我不喜欢Bioconductor的R包，其复杂的输出格式，提示信息以及依赖关系（谁用谁知道）。</p>
+<p>后面发现Gihub上有前辈已经改过一次，可以用来直接适配咱们常用的数据框格式的。但是我下载用了以后发现，这尼玛，不行不行的。步步报错（考虑不全），各种依赖包不注释（非充分检查R包的依赖关系），</p>
+<blockquote>
+<p>实话说，这水平还不一定比我强呢！</p>
+</blockquote>
+<p>所以我还是将其改改，收录在我自己的R包<code>fixbatch</code>中吧，这个能算抄袭吗？毕竟我在原来的基础上，改的bug的也不少了。</p>
+<div class="figure">
+<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201224141212846.png" alt="" />
+<p class="caption">image-20201224141212846</p>
+</div>
+<p>pvca听起来很复杂，其实简单举个例子，就会知道其多么有用了。我们使用bladderEset数据集来做这个分析。这是一个包含了57个样本，5个批次的膀胱的芯片表达量数据，是biobase类型的数据集合。其实我们就用到两个其中，一个是数据表达矩阵(row:gene/feature, col:sample)，一个批次效应矩阵 (row:sample, col:factor)。</p>
+<pre class="r"><code># BiocManager::install(&quot;bladderdata&quot;)
+# pcva需要最新版本的fixbatch,没有更新的需要更新下
+# devtools::update_packages(&quot;fixbatch&quot;)
+library(bladderbatch)</code></pre>
+<pre><code>## 载入需要的程辑包：Biobase</code></pre>
+<pre><code>## 载入需要的程辑包：BiocGenerics</code></pre>
+<pre><code>## 载入需要的程辑包：parallel</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:parallel&#39;:
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+##     parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+##     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+##     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+##     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+##     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+##     union, unique, unsplit, which, which.max, which.min</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
+##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre class="r"><code>library(fixbatch)
+library(sva)</code></pre>
+<pre><code>## 载入需要的程辑包：mgcv</code></pre>
+<pre><code>## 载入需要的程辑包：nlme</code></pre>
+<pre><code>## This is mgcv 1.8-31. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<pre><code>## 载入需要的程辑包：genefilter</code></pre>
+<pre><code>## 载入需要的程辑包：BiocParallel</code></pre>
+<pre class="r"><code>library(limma)</code></pre>
+<pre><code>## 
+## 载入程辑包：&#39;limma&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:BiocGenerics&#39;:
+## 
+##     plotMA</code></pre>
+<pre class="r"><code>data(bladderdata)
+# 提取批次效应矩阵
+pheno = pData(bladderEset)
+# 提取表达矩阵
+edata = exprs(bladderEset)
+# analysis
+pvcaObj &lt;- pvca(edata, pheno[,-1], threshold = 0.7,inter = FALSE)
+# plot
+pvca_plot(pvcaObj)</code></pre>
+<p><img src="/post/2020-12-24-remove-the-batch-effect-series-3-r-package-more-power/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>我们可以看到其批次效应 （非关注因素）outcome, batch,总共加起来，占比才不到30%。而关注因素cancer才占比31%，而还有43%的解释度，还是未知的。</p>
+<table>
+<thead>
+<tr class="header">
+<th>outcome</th>
+<th>batch</th>
+<th>cancer</th>
+<th>resid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.087601</td>
+<td>0.1609</td>
+<td>0.3121</td>
+<td>0.439</td>
+</tr>
+</tbody>
+</table>
+<p>那么如果我们假设我们找不到其他的未知变量了，必须要从以上两个变量中选个，我们肯定选比例最大的<code>batch</code>, 因此我们就会用到combat来进行“已知非关注因素”的矫正。</p>
+<pre class="r"><code># 首先先创建一个包含需要矫正变量的矫正矩阵，但是我们关注的batch不用加进来，因为这是另一个参数的输入，因为没有需要矫正的变量。所以这是一个截距1的矩阵
+modcombat = model.matrix(~1, data=pheno)
+# 输入需要矫正的批次，只能一个变量，多了报错，后续会更新功能支持多个
+batch = pheno$batch
+# 开始矫正
+combat_edata = ComBat(dat=edata, batch=batch, mod=modcombat)</code></pre>
+<pre><code>## Found5batches</code></pre>
+<pre><code>## Adjusting for0covariate(s) or covariate level(s)</code></pre>
+<pre><code>## Standardizing Data across genes</code></pre>
+<pre><code>## Fitting L/S model and finding priors</code></pre>
+<pre><code>## Finding parametric adjustments</code></pre>
+<pre><code>## Adjusting the Data</code></pre>
+<p>combat 最大的有点是是会返回一个矫正后的表达矩阵。这点就可以方便进行后续的PCA和热图的绘制。<code>combat</code>是<code>sva</code>的功能，但是我把它简单包装下，放在我的<code>fixbatch</code>中，命名为<code>combat_fix</code>。</p>
+</div>
+<div id="未知非关注因素copy-sva-users-guide" class="section level3">
+<h3>未知非关注因素（copy sva users guide）</h3>
+<p>刚刚上面，我们是假设我们已知所有的非关注因素了，但其实还有至少50%左右的方差比，我们没有找到对应的因素。所以在这里可以利用<code>sva</code>的功能来寻找** surrogate variables（替代变量）**。</p>
+<p>开始之前，我们先用设计两个模型矩阵，一个是包含所有因素（包括关注因素和非关注因素），另一个是只有非关注因素的模型矩阵。</p>
+<pre class="r"><code># all variables
+mod = model.matrix(~as.factor(cancer), data=pheno)
+# adjustment variables(no variables need to djusting)
+mod0 = model.matrix(~1,data=pheno)</code></pre>
+<p>有了这两种模型矩阵，我们就可以去探究一些未知的非关注因素了。首先要确定目标的替代变量的数目，然后再计算其值。</p>
+<pre class="r"><code># caculate the number of the surrogate variables
+n.sv = num.sv(edata,mod,method=&quot;leek&quot;)
+# get the value of surrogate variables on every sample
+svobj = sva(edata,mod,mod0,n.sv=n.sv)</code></pre>
+<pre><code>## Number of significant surrogate variables is:  2 
+## Iteration (out of 5 ):1  2  3  4  5</code></pre>
+<p>结果中存储着预估替代变量的值，然后与最开始的两个模型矩阵进行合并，得到更新后的模型矩阵。</p>
+<pre class="r"><code>modSv = cbind(mod,svobj$sv)
+mod0Sv = cbind(mod0,svobj$sv)</code></pre>
+<p>至此，已经完成替代变量的计算和合并，现在利用已有的模型矩阵，用<code>limma</code>进行差异分析，其步骤如下：</p>
+<pre class="r"><code>fit = lmFit(edata,modSv)
+# 这个比较矩阵的设计是我最懵逼的地方，我现在还是不理解，但是这一步的目的是为了计算cancer-vs-normal的差异比较。
+contrast.matrix &lt;- cbind(&quot;C1&quot;=c(-1,1,0,rep(0,svobj$n.sv)),&quot;C2&quot;=c(0,-1,1,rep(0,svobj$n.sv)),&quot;C3&quot;=c(-1,0,1,rep(0,svobj$n.sv)))
+# 得到差异分析的模型
+fitContrasts = contrasts.fit(fit,contrast.matrix)
+# 得到差异结果
+eb = eBayes(fitContrasts)
+topTableF(eb, adjust=&quot;BH&quot;)</code></pre>
+<pre><code>##                    C1          C2        C3   AveExpr        F      P.Value
+## 207783_x_at -13.45607  0.26592268 -13.19015 12.938786 8622.529 1.207531e-69
+## 201492_s_at -13.27594  0.15357702 -13.12236 13.336090 8605.649 1.274450e-69
+## 208834_x_at -12.76411  0.06134018 -12.70277 13.160201 6939.501 4.749368e-67
+## 212869_x_at -13.77957  0.26008165 -13.51948 13.452076 6593.346 1.939773e-66
+## 212284_x_at -13.59977  0.29135767 -13.30841 13.070844 5495.716 2.893287e-64
+## 208825_x_at -12.70979  0.08250821 -12.62728 13.108072 5414.741 4.350100e-64
+## 211445_x_at -10.15890 -0.06633356 -10.22523  9.853817 5256.114 9.845076e-64
+## 213084_x_at -12.59345  0.03015520 -12.56329 13.046529 4790.107 1.260201e-62
+## 201429_s_at -13.33686  0.28358293 -13.05328 12.941208 4464.995 8.675221e-62
+## 214327_x_at -12.60146  0.20934783 -12.39211 11.832607 4312.087 2.257025e-61
+##                adj.P.Val
+## 207783_x_at 1.419929e-65
+## 201492_s_at 1.419929e-65
+## 208834_x_at 3.527673e-63
+## 212869_x_at 1.080599e-62
+## 212284_x_at 1.289423e-60
+## 208825_x_at 1.615555e-60
+## 211445_x_at 3.133969e-60
+## 213084_x_at 3.510132e-59
+## 201429_s_at 2.147888e-58
+## 214327_x_at 5.029329e-58</code></pre>
+<p>我摊牌了，这一趴，关于替代变量这部分，我是根据说明文档整理来的。但是这个比较组的设计我很懵逼，希望各位有大佬能给我解惑下，不胜感激！</p>
+<p>已知其变量顺序为： outcome batch cancer sv1 sv2</p>
+<p>而<code>contrast.matrix</code>内容如下：</p>
+<pre class="r"><code>print(contrast.matrix)</code></pre>
+<pre><code>##      C1 C2 C3
+## [1,] -1  0 -1
+## [2,]  1 -1  0
+## [3,]  0  1  1
+## [4,]  0  0  0
+## [5,]  0  0  0</code></pre>
+<p>那为啥<code>contrast.matrix</code>代表的是去掉批次效应后的cancer-vs-normal的差异比较呢。</p>
+<p>后续我找到答案，我也会及时更新的。</p>
+<p>总结下：目前<code>fixbatch</code>也算小有成就，不仅包含了<code>norm_fix</code>,<code>edger_fix</code>,以及<code>combat_fix</code>这些批次矫正的脚本，还有<code>pvca</code>这种探究因素效应的神器。在批次矫正中，应该是足够用了，功能暂时不想更新了。后续就是完善说明文档和补BUG吧。</p>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+          <li><a href="/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+        
+          <li><a href="/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3"><span class="tag">专业相关</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-12-24</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2020 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -14,49 +14,66 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/omics/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E7%BB%9F%E8%AE%A1/</loc>
+    <lastmod>2020-12-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</loc>
     <lastmod>2020-12-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/%E7%BB%9F%E8%AE%A1/</loc>
-    <lastmod>2020-12-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -88,18 +105,6 @@
   <url>
     <loc>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</loc>
     <lastmod>2020-04-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/omics/</loc>
-    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
