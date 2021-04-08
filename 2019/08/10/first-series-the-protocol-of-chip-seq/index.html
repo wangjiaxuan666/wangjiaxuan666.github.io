@@ -36,7 +36,7 @@
     <meta name="twitter:title" content="ChIP-seq的实验设计-第一个系列">
     <meta name="twitter:description" content="染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP. 其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.
 ">
-    <meta name="twitter:image" content="https://wangjiaxuan666.github.com/media/cover.jpg">
+    <meta name="twitter:image" content="/media/cover.jpg">
   
 
   
@@ -44,8 +44,8 @@
   <meta property="og:title" content="ChIP-seq的实验设计-第一个系列">
   <meta property="og:description" content="染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP. 其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.
 ">
-  <meta property="og:url" content="https://wangjiaxuan666.github.com/2019/08/10/first-series-the-protocol-of-chip-seq/">
-  <meta property="og:image" content="https://wangjiaxuan666.github.com/media/cover.jpg">
+  <meta property="og:url" content="./2019/08/10/first-series-the-protocol-of-chip-seq/">
+  <meta property="og:image" content="/media/cover.jpg">
 
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.82.0">
 
 
-<link rel="canonical" href="https://wangjiaxuan666.github.com/2019/08/10/first-series-the-protocol-of-chip-seq/">
+<link rel="canonical" href="./2019/08/10/first-series-the-protocol-of-chip-seq/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="https://wangjiaxuan666.github.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://wangjiaxuan666.github.com/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://wangjiaxuan666.github.com/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="https://wangjiaxuan666.github.com/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="https://wangjiaxuan666.github.com/icons/icon-152x152.png">
-<link rel="manifest" href="https://wangjiaxuan666.github.com/manifest.json">
+<link rel="icon" href="./favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="./icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="./icons/icon-152x152.png">
+<link rel="manifest" href="./manifest.json">
 
 
-<link rel="preload" href="https://wangjiaxuan666.github.com/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="./styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
-<link rel="preload" href="https://wangjiaxuan666.github.com/images/avatar.png" as="image">
-<link rel="preload" href="https://wangjiaxuan666.github.com/images/grey-prism.svg" as="image">
+<link rel="preload" href="./images/avatar.png" as="image">
+<link rel="preload" href="./images/grey-prism.svg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="https://wangjiaxuan666.github.com/styles/main-rendered.min.css">
+<link rel="stylesheet" href="./styles/main-rendered.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
 
@@ -112,8 +112,8 @@
 
 
 
-<link rel="stylesheet" href="https://wangjiaxuan666.github.com/styles/highlight.css">
-<script src="https://wangjiaxuan666.github.com/scripts/highlight.min.js"></script>
+<link rel="stylesheet" href="./styles/highlight.css">
+<script src="./scripts/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -149,9 +149,9 @@
     
     
   <header class="site-header">
-  <a href="https://wangjiaxuan666.github.com/"><img class="avatar" src="https://wangjiaxuan666.github.com/images/avatar.png" alt="Avatar"></a>
+  <a href="./"><img class="avatar" src="./images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="https://wangjiaxuan666.github.com/">Woney&#39;s Blog</a></h2>
+  <h2 class="title"><a href="./">Woney&#39;s Blog</a></h2>
   
   <p class="subtitle">生活 学习 工作</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -169,28 +169,28 @@
           
           
           ">
-          <a href="https://wangjiaxuan666.github.com/tags/">分类</a>
+          <a href="./tags/">分类</a>
         </li>
       
         <li class="menu-item
           
           
            is-active">
-          <a href="https://wangjiaxuan666.github.com/">主页</a>
+          <a href="./">主页</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://wangjiaxuan666.github.com/resume/">简历</a>
+          <a href="./resume/">简历</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://wangjiaxuan666.github.com/links/">Links</a>
+          <a href="./links/">Links</a>
         </li>
       
         <li class="menu-item
@@ -204,7 +204,7 @@
           
           
           ">
-          <a href="https://wangjiaxuan666.github.com/about/">About</a>
+          <a href="./about/">About</a>
         </li>
       
     </ul>
@@ -224,7 +224,7 @@
             <span class="fab fa-twitter" aria-hidden="true"></span>
           </a>
         </li><li class="social-item">
-          <a href="https://wangjiaxuan666.github.com/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+          <a href="./images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
             <span class="fab fa-weixin" aria-hidden="true"></span>
           </a>
         </li></ul>
@@ -340,7 +340,7 @@ $$
       
       <ul class="post-tags">
         
-          <li><a href="https://wangjiaxuan666.github.com/tags/chip"><span class="tag">Chip</span></a></li>
+          <li><a href="./tags/chip"><span class="tag">Chip</span></a></li>
         
       </ul>
       
@@ -421,7 +421,7 @@ $$
 
 
 
-<script src="https://wangjiaxuan666.github.com/scripts/index.min.js"></script>
+<script src="./scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {

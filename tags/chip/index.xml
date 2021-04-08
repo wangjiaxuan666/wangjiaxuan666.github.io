@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>chip on Woney&#39;s Blog</title>
-    <link>https://wangjiaxuan666.github.com/tags/chip/</link>
+    <link>./tags/chip/</link>
     <description>Recent content in chip on Woney&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://wangjiaxuan666.github.com/tags/chip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="./tags/chip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ChIP-seq的实验设计-第一个系列</title>
-      <link>https://wangjiaxuan666.github.com/2019/08/10/first-series-the-protocol-of-chip-seq/</link>
+      <link>./2019/08/10/first-series-the-protocol-of-chip-seq/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://wangjiaxuan666.github.com/2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
+      <guid>./2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
       <description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description>
     </item>
     

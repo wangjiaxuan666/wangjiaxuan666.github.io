@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>随笔 on Woney&#39;s Blog</title>
-    <link>https://wangjiaxuan666.github.com/tags/%E9%9A%8F%E7%AC%94/</link>
+    <link>./tags/%E9%9A%8F%E7%AC%94/</link>
     <description>Recent content in 随笔 on Woney&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://wangjiaxuan666.github.com/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="./tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>用R画动图展现路线</title>
-      <link>https://wangjiaxuan666.github.com/2019/08/25/the-spring-travl-gif-made-by-r/</link>
+      <link>./2019/08/25/the-spring-travl-gif-made-by-r/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://wangjiaxuan666.github.com/2019/08/25/the-spring-travl-gif-made-by-r/</guid>
+      <guid>./2019/08/25/the-spring-travl-gif-made-by-r/</guid>
       <description>
 
 
@@ -23,24 +23,24 @@
     
     <item>
       <title>2019年春季宣讲出差记录-附R包地图可视化</title>
-      <link>https://wangjiaxuan666.github.com/2019/06/16/spring-business-travel-in-2019/</link>
+      <link>./2019/06/16/spring-business-travel-in-2019/</link>
       <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://wangjiaxuan666.github.com/2019/06/16/spring-business-travel-in-2019/</guid>
+      <guid>./2019/06/16/spring-business-travel-in-2019/</guid>
       <description>
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet-measure/leaflet-measure.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://wangjiaxuan666.github.com/rmarkdown-libs/leaflet-measure/leaflet-measure.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;./rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;./rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;./rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;./rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;./rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;./rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;./rmarkdown-libs/leaflet-measure/leaflet-measure.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;./rmarkdown-libs/leaflet-measure/leaflet-measure.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;记录一下2019年春季宣讲的三个月,由于工作的原因，在春秋两季会集中出差一段时间。此外，还会有偶尔的生信培训班的出差任务。总之，一年总会出差个&lt;em&gt;2-3&lt;/em&gt;个月。 并且由于自己负责的区域比较远. 导致一次出差就要出差三周, 比如今天的春季宣讲,从&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;10&lt;/em&gt;号到&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;30&lt;/em&gt;日, 我在东北三省出差. 后面在广州呆了不到一个月, &lt;em&gt;5&lt;/em&gt;月&lt;em&gt;26&lt;/em&gt;日又跑到了京津翼地区外加内蒙古出差了三周, 也是刚刚在上周, 也是6月6日回到了广州. 再加上年前去的西安杨凌和山东青岛的生信培训班. 估摸着今年已经出差了三个月是足足的.&lt;/p&gt;
@@ -49,10 +49,10 @@
     
     <item>
       <title>Hello R Markdown</title>
-      <link>https://wangjiaxuan666.github.com/2015/07/23/hello-r-markdown/</link>
+      <link>./2015/07/23/hello-r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>https://wangjiaxuan666.github.com/2015/07/23/hello-r-markdown/</guid>
+      <guid>./2015/07/23/hello-r-markdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com. You can embed an R code chunk like this: summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ##</description>
     </item>
     
