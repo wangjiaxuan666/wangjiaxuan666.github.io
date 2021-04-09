@@ -1,163 +1,285 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
     <loc>./links/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./categories/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./post/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./categories/r/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./tags/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./tags/%E7%BB%9F%E8%AE%A1/</loc>
     <lastmod>2020-12-31T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./categories/omics/</loc>
     <lastmod>2020-12-24T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2020-12-24T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</loc>
     <lastmod>2020-12-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</loc>
     <lastmod>2020-12-18T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</loc>
     <lastmod>2020-12-14T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2020/12/05/the-circ-ridge-plot-to-display-data/</loc>
     <lastmod>2020-12-05T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
     <lastmod>2020-12-05T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</loc>
     <lastmod>2020-10-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</loc>
     <lastmod>2020-10-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</loc>
     <lastmod>2020-04-04T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/%E5%BE%AE%E7%94%9F%E7%89%A9/</loc>
     <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</loc>
     <lastmod>2019-09-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/09/05/organization-and-regulation-of-gene-transcription/</loc>
     <lastmod>2019-09-05T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./resume/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/08/25/the-spring-travl-gif-made-by-r/</loc>
     <lastmod>2019-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2019-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/%E5%8D%95%E7%BB%86%E8%83%9E/</loc>
     <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</loc>
     <lastmod>2019-08-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/08/12/the-quantitative-pcr-of-srna/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/08/12/the-cv-of-gene-expression/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>./tags/chip/</loc>
-    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/08/10/first-series-the-protocol-of-chip-seq/</loc>
     <lastmod>2019-08-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
+    <loc>./tags/chip/</loc>
+    <lastmod>2019-08-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</loc>
     <lastmod>2019-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</loc>
     <lastmod>2019-06-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</loc>
     <lastmod>2019-06-18T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/06/17/the-scrna-sequence-learnning-note/</loc>
     <lastmod>2019-06-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/06/16/spring-business-travel-in-2019/</loc>
     <lastmod>2019-06-16T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</loc>
     <lastmod>2019-06-01T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/31/what-is-wgcna-when-to-use/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/31/what-should-we-do-before-the-data-analysis/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/31/a-new-r-packages-to-plot-venn-diagram/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/31/deseq-analysis-the-different-expression-gene/</loc>
     <lastmod>2019-05-31T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/25/1/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</loc>
     <lastmod>2019-05-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>./tags/theme/</loc>
     <lastmod>2017-07-17T00:00:00+00:00</lastmod>
-  </url><url>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>./2015/07/23/hello-r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url><url>
-    <loc>./1/01/01/</loc>
   </url>
+  
+  <url>
+    <loc>./1/01/01/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>

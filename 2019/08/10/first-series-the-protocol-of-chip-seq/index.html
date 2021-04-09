@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2019/08/10/first-series-the-protocol-of-chip-seq/">
@@ -234,23 +234,32 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">ChIP-seq的实验设计-第一个系列</h1>
-      <p class="post-meta">@Jiaxuan Wang · Aug 10, 2019 · 8 min read</p>
+      <p class="post-meta">@Jiaxuan Wang · Aug 10, 2019 · 9 min read</p>
     </header>
     <article class="post-content"><p>染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.</p>
+
 <h1 id="chip-seq的实验设计指南">ChIP-seq的实验设计指南</h1>
+
 <p>染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.</p>
+
 <blockquote>
 <p>ChIP-seq可以用于寻找转录因子结合的DNA区域，以及寻找发生组蛋白修饰的基因组位置。</p>
 </blockquote>
+
 <p>尽管ChIP-seq做的人不少, 想做的人也不少，但如何进行ChIP-seq的实验设计，如何对结果进行分析和质量评估, 以及如何将数据和原始数据存档以方便后来的研究者可以使用. 目前为止都不是特别的明确, 不同的实验室在这些方面存在相当大的差异。</p>
-<p>问题就在于, 这些实验设计的差异最终都会影响ChIP实验的质量和结果。所以<a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟(后文简称ENCODE联盟). 为ChIP实验制定了一套<a href="https://genome.cshlp.org/content/22/9/1813.full">工作标准和指南</a>，这些标准和指南会定期更新。目前ENCODE联盟的实验指南包括<!-- raw HTML omitted -->抗体验证<!-- raw HTML omitted -->，<!-- raw HTML omitted -->生物学重复<!-- raw HTML omitted -->，<!-- raw HTML omitted -->测序深度<!-- raw HTML omitted -->，<!-- raw HTML omitted -->数据质量评估<!-- raw HTML omitted -->。今天重点就是围绕这个这个指南<!-- raw HTML omitted --><a href="#ref01">1</a><!-- raw HTML omitted -->,  弄清楚ChIP-seq那点事。</p>
+
+<p>问题就在于, 这些实验设计的差异最终都会影响ChIP实验的质量和结果。所以<a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟(后文简称ENCODE联盟). 为ChIP实验制定了一套<a href="https://genome.cshlp.org/content/22/9/1813.full">工作标准和指南</a>，这些标准和指南会定期更新。目前ENCODE联盟的实验指南包括<red>抗体验证</red>，<orange>生物学重复</orange>，<purple>测序深度</purple>，<green>数据质量评估</green>。今天重点就是围绕这个这个指南<sup><a href="#ref01">1</a></sup>,  弄清楚ChIP-seq那点事。</p>
+
 <h2 id="快速通道">快速通道</h2>
+
 <ul>
 <li><a href="#section-01">生物学重复</a></li>
 <li><a href="#section-02">数据量要求</a></li>
 <li><a href="#section-03">对照样本的设置</a></li>
 </ul>
+
 <p>ENCODE联盟已经对超过140种转录因子进行了超过一千次独立的ChIP-seq实验，并对多种动植物的100多种细胞类型进行了组蛋白修饰研究.  因此ENCODE联盟的ChIP-seq的实验指南还是非常权威的. 可以作为我们做chip实验的参考.</p>
+
 <div class="alert danger ">
   <p>
   	<span style="font-size: 1em; color: Tomato;">
@@ -260,7 +269,9 @@
   </p>
 </div>
 
+
 <p>ENCODE联盟)的实验指南整理了ChIP-seq研究可能遇到的问题：</p>
+
 <ol>
 <li>免疫沉淀, IP实验的抗体特异性和质量</li>
 <li>DNA测序深度的影响</li>
@@ -268,74 +279,122 @@
 <li>适当的对照实验</li>
 <li>生物复制和数据报告。</li>
 </ol>
+
 <h1 id="chip概述">ChIP概述</h1>
+
 <p>染色质免疫沉淀（ChIP）技术距今已经发展了十多年了。在ChIP-seq中，通过来对免疫沉淀技术来富集转录因子，辅因子或其他染色质蛋白能结合的DNA片段。</p>
+
 <p>早期是通过DNA杂交或者微芯片（ChIP-芯片）来鉴定chip富集到基因组DNA位点. 但是随着高通量测序技术(NGS)的快速发展. 目前常用的是运用二代测序仪器进行DNA测序, 这也是所谓的ChIP-seq技术。ChIP-seq现在已广泛用于许多转录因子，组蛋白修饰，染色质修饰复合物和其他染色质相关蛋白在各种生物体中的应用。</p>
-<p>全基因组ChIP实验的目标是绘制靶蛋白的结合位点，首先用化学试剂（通常是甲醛）处理细胞或组织，以使蛋白质与DNA共价交联。然后进行细胞破碎和超声处理. 消化完后, 利用核酸酶将染色质剪切成100-300bp的目标大小。然后通过用对<!-- raw HTML omitted -->目标因子<!-- raw HTML omitted -->特异的抗体纯化.</p>
+
+<p>全基因组ChIP实验的目标是绘制靶蛋白的结合位点，首先用化学试剂（通常是甲醛）处理细胞或组织，以使蛋白质与DNA共价交联。然后进行细胞破碎和超声处理. 消化完后, 利用核酸酶将染色质剪切成100-300bp的目标大小。然后通过用对<red>目标因子</red>特异的抗体纯化.</p>
+
 <p>这种方法适用于能与染色质结合的蛋白质（转录因子，修饰的组蛋白，RNA聚合酶等. 但是有些蛋白并没有特异抗体, 或者制备抗体的难度很高.  也可以通过融合表达标签,  产生具有标签的标记因子，并通过对标签特异的抗体来进行富集.</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884024137.png" alt="1563884024137"></p>
-<!-- raw HTML omitted -->
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884024137.png" alt="1563884024137" /></p>
+
+<p><title>图1 ChIP-seq的实验流程</title>
+ChIP-seq实验的好坏主要取绝于抗体的特异性和对目标分子的亲和能力. 抗体常出现的问题有两类, 第一个是对靶标的亲和能力不足, 另一个就是非特异性结合.</p>
+
 <p>正是因为这些因素. 所以需要对抗体识别抗原的效率和准确性进行验证. 验证方法至少要做到定性的维度. 常用的是qPCR验证和跑蛋白胶 . 在转录因子的ChIP-seq实验中推荐的是对IP下来的蛋白样品，跑蛋白胶. 比如下图A中, 用针对SIN3B的抗体进行IP实验, 跑胶结果显示如下, 左边是成功的, 右边是失败的.</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884849741.png" alt="1563884849741"></p>
-<!-- raw HTML omitted -->
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884849741.png" alt="1563884849741" />
+<title> ChIP-seq的流程图</title></p>
+
 <p>上图中的B图也是一种检验方法, 不过新增了阴性对照和上清液的检测.</p>
+
 <ul>
 <li>其中line1是input样本, 就是不做富集的DNA文库</li>
 <li>line2是IP样本的上清液去做的IP实验</li>
 <li>line3真正的IP样本</li>
 <li>line4是用IgG做mock-ip样本</li>
 </ul>
+
 <p>明显的，理论上讲只有IP样本才会有免疫荧光。</p>
+
 <p>除此以外，还可以跑PAGE胶，用考马斯蓝染色，并且切下先前在Western印迹上检测的条带并通过质谱法分析。使用MASCOT（Matrix Science）来富集到的蛋白进行质谱检验。这种方法当然是最准确的，不过成本相对昂贵的。打质谱一阵可能要几百大洋.</p>
+
 <blockquote class="pullquote left">
 	<p> 
 但是成本昂贵必然也有自己的优点, 除了检测准确以外, 往往还会发现IP下来的蛋白存在剪切异构体, 修饰和降解.这就是另外的生物学问题, 但是我个人感觉这个难度还是挺大的.因为质谱的结果就是峰图. 根据峰图的出峰时间和强度,想推测这些信息,本身就需要对质谱和这个蛋白非常了解.
 </p>
 </blockquote>
+
 <p>还需要额外注意的是组蛋白修饰化的抗体,  对IP的精度要求更高, 因为少量修饰组蛋白和大量的未修饰组蛋白的差异就在少数几个位点上. 同时抗体还需要很好的区分出来修饰的位点. 比如H3K9me1，H3K9me2和H3K9me3.</p>
+
 <p>综上所述, ChIP-seq实验室的抗体的有无和质量直接决定能不能做以及结果的准确性. 也是正是因为如此很难获取适合, 高质量的chip级抗体.  所以常常是通过对目的蛋白加标签的方式,  用对标签特异的抗体进行富集. 这种方法解决了大部分的蛋白都是没有自身序列的CHIP级别抗体的问题。</p>
+
 <p>然而，加标签是否影响了目标蛋白的活性和富集区域, 所以有的时候,严谨的老师也会加上一个mock-ip的对照. mock-ip的对照就是标签蛋白或者IgG的IP样本.</p>
+
 <h2 id="section-01">生物学重复</h2>
+
 <p>ChIP-seq一般价格相对比较贵, 每个样本2k-6k不等. 所以很多客户就比较纠结要不要做生物学重复,     做的话又需要几个.</p>
+
 <p>很多老师都是把多个IP样品混在一起,  就做一个混样测序就不做生物学重复. 这种混样的测序是值得推荐的, 但是依然最好要做生物学重复, 因为生物学重复即考虑生物学背景差异也考虑了技术和实验背景差异. 另外也不是说混样成一个, 人家审稿人就信你是一个混样啊. 谁知道是不是选了一个最好的结果. 这直接关系到结果的可靠性和普适性, 马虎不得.</p>
+
 <p>那做几个生物学重复呢, 一般我们推荐三个, 有钱并且严谨的老师就会喜欢再加一些. 但是<a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟根据细胞系,胚胎和组织样的实验情况. 进行了生物学重复的数量的评估. 结果显示:</p>
+
 <blockquote>
 <p>超过两个生物学重复的ChIP-seq实验没有显着改善位点发现</p>
 </blockquote>
+
 <p>所以, <a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟将标准设定为所有ChIP测量将在两个独立的生物学重复上进行. 但是这个情况也不可能是适合所用的情况. 联盟也说了质量指标值较差的实验，也需要更多的生物学重复.</p>
+
 <blockquote>
 <p>我是觉得基于IP的测序技术, 本身就是那么精确, 在大致范围内还是比较一致的.所以才导致生物学重复做2个就可以了. 但是任意一个精确的实验都是越多的重复越好. 只是受限于成本罢了.</p>
 </blockquote>
+
 <h2 id="section-02">数据量要求</h2>
+
 <p><a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟对于动物ChIP-seq实验，推荐是每个生物重复至少使用1000万个unique比对的片段. 对于一些更大基因组的物种, 比如植物每个生物学重复至少1000万个unique比对的片段</p>
+
 <p>算一算:
 $$
 数据量=\frac{{300bp}\ast{10M}}{0.75}
 $$
 因为双端PE150测序,两个reads算一个片段, 这样也就算出来,大概一个样本要测序4G到8G</p>
+
 <p>注意: 其中0.75的系数是因为肯定存在没有maping上基因组的reads啊, 还有多重比对的reads,</p>
+
 <h2 id="section-03">对照样本的设置</h2>
+
 <p>在ChIP-seq实验中, 建立适当的对照样本, 对于任何ChIP-seq实验的分析都是至关重要, 原因是:</p>
+
 <ol>
 <li>因为超声处理期间DNA断裂不均匀。尤其是开放染色质的一些区域会优先的被超声断裂.。</li>
 <li>此外, 还有由于测序平台的PCR扩增和检测的偏差导致的不均匀性</li>
 </ol>
+
 <p>也是因为以上两点的原因, 所以ChIP-seq一般都要设置对照, 设置ChIP-seq实验对照有两种常用的方法, 每种方法都可以减轻以上2点对call peak的影响：</p>
+
 <h3 id="input对照">input对照</h3>
+
 <p>与IP样本一样在相同的条件下, 进行交联和片段化, 并提取DNA,这部分的DNA是没经过IP的DNA,除此以外, 所有过程都一样的DNA样本</p>
+
 <h3 id="mock-ip对照">Mock-ip对照</h3>
+
 <p>使用与目标蛋白无关的非目标抗体（<code>IgG</code>或者<code>标签</code>）进行“模拟”的IP。这部分的对照是为了防止抗体的非特异性结合.</p>
+
 <p>对于两种类型的对照，ENCODE要求<code>对照组</code>的测序深度至少要等于或者要大于IP样品的测序深度。如果要在两个对照中选择一种类型的对照. 那么Mock-ip的对照组要比<code>input</code>对照组更贴近实际情况，input样本能做到的, Mcok-ip样本也能做到. 唯一需要注意的就是毕竟Mock-ip样本制备比较难, 而且很多标签或者抗体的非特异性结合的位点已经是众人皆知的了. 所以其实真正算起来, 应该是<code>input样本</code>反而用的比较多.</p>
+
 <p>无论使用何种对照类型，都需要使用相同的方案来构建ChIP和对照测序文库, 也就是意味着PCR扩增循环数，片段大小, 测序文库都应该尽量一致。</p>
+
 <p>到此这篇文章计算完成了, 其实内容并不多, 但因为是工作之余一边学一边整理的, 整体的逻辑应该是比较混乱. 我后面连续出三篇关于chip的文章.</p>
+
 <p>这是第一篇主要还是纠结前期的实验设计上. 第二篇想涉及一下分析的内容. 第三篇(如果有的话, 想具体看一篇文章, 解读一下文章的思路)</p>
+
 <p>完结撒花!</p>
+
 <h1 id="参考文献">参考文献:</h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></article>
+
+<p><p id = "ref01">[1] <a href="https://www.ncbi.nlm.nih.gov/pubmed/22955991">《ENCODE和modENCODE联盟的ChIP-seq指南和实践》</a>。 <em>PubMed</em> NCBI</p>
+
+<p><p id = "ref02">[2] <a href="https://galaxyproject.Nord, Alex">《Galaxy Platform Directory: Servers, Clouds, and Deployable Resources》</a></p>
+
+<p><p id = "ref03">[3] 《Mapping DNA-Protein   Interactions via ChIP-Seq》</p>
+
+<p><p id = "ref04">[4] <a href="https://doi.org/10.1038/nprot.2017.055">《Mapping Genome-Wide Transcription-Factor Binding Sites Using DAP-Seq》</a>. <em>Nature Protocols</em> 12, 期 8 (2017年8月): 1659–72.</p>
+
+<p><p id = "ref05">[5] <a href="http://fg.cns.utexas.edu/fg/course_notebook_chapter_ten.html">《chip-seq原理-详细》</a>. 见于 2019年7月11日</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">

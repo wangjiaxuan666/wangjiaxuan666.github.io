@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>可视化 on Woney&#39;s Blog</title>
@@ -7,7 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="./tags/%E5%8F%AF%E8%A7%86%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="./tags/%E5%8F%AF%E8%A7%86%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>R绘图展示数据分布情况之ta弯了—圆波图</title>
       <link>./2020/12/05/the-circ-ridge-plot-to-display-data/</link>
@@ -77,7 +81,7 @@
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid>
-      <description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内&lt;em&gt;R&lt;/em&gt;开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内*R*开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -121,7 +125,7 @@
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid>
-      <description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
     </item>
     
     <item>

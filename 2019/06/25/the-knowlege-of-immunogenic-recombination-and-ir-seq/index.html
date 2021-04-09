@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/">
@@ -237,15 +237,24 @@
       <p class="post-meta">@Jiaxuan Wang · Jun 25, 2019 · 10 min read</p>
     </header>
     <article class="post-content"><p>作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.</p>
+
 <h1 id="免疫组测序">免疫组测序</h1>
+
 <h2 id="背景知识">背景知识</h2>
+
 <p>在脊椎动物中🐒🐘, T/B细胞是适应性免疫系统的两大细胞群，在抗体的产生, 和免疫反应中具有非常重要的地位. 抗体多样性是免疫系统的重要特性。自然界的抗原种类极多，每种抗原还有不同的抗原决定簇，因此具有多种特异性的免疫球蛋白分子的种类也必定是极其众多的，可以有几百万种。可是，脊椎动物基因组内所有的基因总共不过几万个左右。因此，决不可能有那么多的免疫球蛋白基因去编码每一种特定的免疫球蛋白分子。</p>
+
 <p>所以为了产生足够多样的抗体, 脊椎动物🐻和人🤰的淋巴细胞在其成熟过程中会发生抗体基因的重排, 其目的是为了增加特异性识别抗体的多样性.</p>
-<p>但是在细胞高度特异和分化的动物, 基因发生重拍就意味着基因结构和编码产物发生变化. 这是一个非常危险⛔的<!-- raw HTML omitted -->行为<!-- raw HTML omitted -->. 但是面对外部环境多种多样的病原微生物的侵染, 以及为了能镇压自身细胞的叛变和清除衰老细胞. 多样性的特意识别分析-<!-- raw HTML omitted -->抗体<!-- raw HTML omitted --> 又是必不可少的.</p>
+
+<p>但是在细胞高度特异和分化的动物, 基因发生重拍就意味着基因结构和编码产物发生变化. 这是一个非常危险⛔️的<red>行为</red>. 但是面对外部环境多种多样的病原微生物的侵染, 以及为了能镇压自身细胞的叛变和清除衰老细胞. 多样性的特意识别分析-<red>抗体</red> 又是必不可少的.</p>
+
 <p>那么就要认真了解下, 生命是如何在这样的钢丝线上走的又稳又快. 🐟 和 🐻 掌兼得的. 又如何通过免疫组库测序(IR-seq)来进行研究.</p>
-<!-- raw HTML omitted -->
+
+<p><center>😂😂😂</center></p>
+
 <h2 id="免疫球蛋白的基因重排">免疫球蛋白的基因重排</h2>
-<p>首先是, 脊椎动物🐻淋巴细胞在其细胞成熟过程中会发生基因的重排已经是普识. 利根川进(<em>Tonegawa S</em>) 👨, 还因为揭示了免疫基因的重排基因获得了1987年的诺贝尔生理与医学奖🏆. 
+
+<p>首先是, 脊椎动物🐻淋巴细胞在其细胞成熟过程中会发生基因的重排已经是普识. 利根川进(<em>Tonegawa S</em>) 👨, 还因为揭示了免疫基因的重排基因获得了1987年的诺贝尔生理与医学奖🏆.
 <blockquote>
   <p>
 1987年，利根川教授因“发现抗体多样性的遗传学原理”成为首位亚洲/日本籍诺贝尔生理学或医学奖得主，也是免疫学领域“独得诺贝尔奖”的唯一一人。
@@ -257,43 +266,76 @@
     
   </footer>
 </blockquote></p>
+
 <p>大家都知道一个浆细胞只产生一种抗体分子, 而一个抗体分子有两条轻链(L)和两条重链(H)组成, 分别由三个独立的基因簇所编码, 其中两个编码轻链<code>kappa链</code>和 <code>lamada链</code>. 而另一个编码重链. 不同物种的编码基因簇所在染色体是不一致的.</p>
-<p>编码轻链的基因簇上分别有<!-- raw HTML omitted -->L<!-- raw HTML omitted -->, <!-- raw HTML omitted -->V<!-- raw HTML omitted -->, <!-- raw HTML omitted -->J<!-- raw HTML omitted -->,<!-- raw HTML omitted -->C<!-- raw HTML omitted --> 四类基因片段.其中 L前导片段<code>(leader segment)</code>, <!-- raw HTML omitted -->V<!-- raw HTML omitted --> 是可变片段(variable segment) ,<!-- raw HTML omitted -->J<!-- raw HTML omitted -->代表链接片段<code>(jioning segement)</code>, <!-- raw HTML omitted -->C<!-- raw HTML omitted -->代表恒定片段<code>(constant segement)</code>.</p>
-<p><img src="https://pic3.zhimg.com/80/v2-8a8dca9dd04912850ac05206ae92f44a_hd.jpg" alt="img"></p>
-<p>反观重链, 会有五类基因片段, 多出来的是 <!-- raw HTML omitted -->D <!-- raw HTML omitted -->多样性片段 , 同时,在重链的<!-- raw HTML omitted --> J<!-- raw HTML omitted -->和 <!-- raw HTML omitted -->C <!-- raw HTML omitted -->片段之间存在增强子.其中需要注意的一点是, 重链的C恒定区具有的片段就是决定抗体亚型的区域. 比如人的第14个染色体上的重链家族, 有八个<!-- raw HTML omitted -->C<!-- raw HTML omitted -->片段. (其中两个是假蛋白)这些片段决定抗体的亚型, 是<!-- raw HTML omitted -->IgM还是IgA, IgD等等其他的亚型<!-- raw HTML omitted -->.</p>
-<!-- raw HTML omitted -->
-<h3 id="抗体基因的重排机制--section-01">抗体基因的重排机制 {# section-01}</h3>
-<p>在胚胎细胞中，<!-- raw HTML omitted -->V<!-- raw HTML omitted -->、<!-- raw HTML omitted -->J<!-- raw HTML omitted -->、<!-- raw HTML omitted -->D<!-- raw HTML omitted -->和<!-- raw HTML omitted -->C<!-- raw HTML omitted -->基因是分散排列的，在<!-- raw HTML omitted -->B<!-- raw HTML omitted -->细胞发育成熟过程中，基因组中组成免疫球蛋白分子的各个基因开始发生重排，在轻链上,<!-- raw HTML omitted --> V<!-- raw HTML omitted -->区基因发生<!-- raw HTML omitted -->V—J<!-- raw HTML omitted -->重排,  而在重链上先是<!-- raw HTML omitted -->D<!-- raw HTML omitted -->片段和J片段相连, 然后V片段链接上<!-- raw HTML omitted -->D-J<!-- raw HTML omitted -->片段, 形成<!-- raw HTML omitted -->V-D-J<!-- raw HTML omitted -->复合体.  最后都会和C基因链接, 完成基因重排. 最终会转录成<code>mRNA</code>前体, 翻译成蛋白. 然后重链和轻链复合, 最后完成加工并运输锚定在膜上.</p>
+
+<p>编码轻链的基因簇上分别有<kbd>L</kbd>, <kbd>V</kbd>, <kbd>J</kbd>,<kbd>C</kbd> 四类基因片段.其中 L前导片段<code>(leader segment)</code>, <kbd>V</kbd> 是可变片段(variable segment) ,<kbd>J</kbd>代表链接片段<code>(jioning segement)</code>, <kbd>C</kbd>代表恒定片段<code>(constant segement)</code>.</p>
+
+<p><img src="https://pic3.zhimg.com/80/v2-8a8dca9dd04912850ac05206ae92f44a_hd.jpg" alt="img" /></p>
+
+<p>反观重链, 会有五类基因片段, 多出来的是 <kbd>D </kbd>多样性片段 , 同时,在重链的<kbd> J</kbd>和 <kbd>C </kbd>片段之间存在增强子.其中需要注意的一点是, 重链的C恒定区具有的片段就是决定抗体亚型的区域. 比如人的第14个染色体上的重链家族, 有八个<kbd>C</kbd>片段. (其中两个是假蛋白)这些片段决定抗体的亚型, 是<orange>IgM还是IgA, IgD等等其他的亚型</orange>.</p>
+
+<p><center>🐄🐄🐄</center></p>
+
+<h3 id=" section-01">抗体基因的重排机制</h3>
+
+<p>在胚胎细胞中，<kbd>V</kbd>、<kbd>J</kbd>、<kbd>D</kbd>和<kbd>C</kbd>基因是分散排列的，在<kbd>B</kbd>细胞发育成熟过程中，基因组中组成免疫球蛋白分子的各个基因开始发生重排，在轻链上,<kbd> V</kbd>区基因发生<kbd>V—J</kbd>重排,  而在重链上先是<kbd>D</kbd>片段和J片段相连, 然后V片段链接上<kbd>D-J</kbd>片段, 形成<kbd>V-D-J</kbd>复合体.  最后都会和C基因链接, 完成基因重排. 最终会转录成<code>mRNA</code>前体, 翻译成蛋白. 然后重链和轻链复合, 最后完成加工并运输锚定在膜上.</p>
+
 <p>这里有一点需要注意的是, 重链就一个, 但是轻链有两个<code>kappa链</code>和 <code>lamada链</code>.  只有<code>kappa链</code>重组失败, 才会启动<code>lamada链</code>与重链结合. 所以大部分的抗体都是<code>kappa链</code>链, 少部分是 <code>lamada链</code>.  同时, 一个浆细胞只能产生一种抗体, 但是浆细胞是二倍体. 不论是重链还是轻链都是有等位基因簇存在的. 因此, 免疫基因的重排是等位基因排斥的. 只要有一个等位基因发生基因重排, 那另一个等位基因的重排就会收到抑制. 轻链还是会出现同型性排斥, 就是一旦某个等位基因的<code>kappa链</code>链发生重组, 不仅另一个等位基因的重排,甚至 <code>lamada链</code>的两个等位基因的重排都会收到抑制.</p>
-<p><!-- raw HTML omitted -->重排过程选择的片段是随机的<!-- raw HTML omitted -->. 随机重排的结果可以产生10<!-- raw HTML omitted -->8<!-- raw HTML omitted -->—10<!-- raw HTML omitted -->10<!-- raw HTML omitted -->种免疫球蛋白分子。其次, 淋巴细胞在成熟后还会发生体细胞突变, 又极大的增加了抗体的多样性. 综合来看, H链和L链可能的组合数预计可达10<!-- raw HTML omitted -->11<!-- raw HTML omitted -->以上。小鼠每天生成的淋巴细胞为10<!-- raw HTML omitted -->8<!-- raw HTML omitted -->个，可见动物一生中还不可能使全部可能产生的基因组合得到表达。</p>
+
+<p><red>重排过程选择的片段是随机的</red>. 随机重排的结果可以产生10<sup>8</sup>—10<sup>10</sup>种免疫球蛋白分子。其次, 淋巴细胞在成熟后还会发生体细胞突变, 又极大的增加了抗体的多样性. 综合来看, H链和L链可能的组合数预计可达10<sup>11</sup>以上。小鼠每天生成的淋巴细胞为10<sup>8</sup>个，可见动物一生中还不可能使全部可能产生的基因组合得到表达。</p>
+
 <blockquote>
 <p>神奇的生命体, 不过计算哪里有问题, 也就1000天啊, 小鼠活不了三年???</p>
-<p><!-- raw HTML omitted --> 我自己小声BB<!-- raw HTML omitted --></p>
+
+<p><cite> 我自己小声BB</cite></p>
 </blockquote>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/VDJ_diagram_from_flyer.png" alt="img"></p>
-<p>由于抗体基因还可以通过<!-- raw HTML omitted -->倍增<!-- raw HTML omitted -->和<!-- raw HTML omitted -->歧化<!-- raw HTML omitted -->来增加数量, 所以就算在一个种系内, 比如人的不同个体间, 免疫基因的数目都是不一致的. 如下图, 我们可以清楚看到各种类型的链上, 所具有的可变区<!-- raw HTML omitted -->V<!-- raw HTML omitted --> 片段的基因组数目是不一样的. 而其他基因区域的数目. 还算稳定.</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image.imageformat.lightbox.1368136327.png" alt="img"></p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/VDJ_diagram_from_flyer.png" alt="img" /></p>
+
+<p>由于抗体基因还可以通过<green>倍增</green>和<green>歧化</green>来增加数量, 所以就算在一个种系内, 比如人的不同个体间, 免疫基因的数目都是不一致的. 如下图, 我们可以清楚看到各种类型的链上, 所具有的可变区<kbd>V</kbd> 片段的基因组数目是不一样的. 而其他基因区域的数目. 还算稳定.</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image.imageformat.lightbox.1368136327.png" alt="img" /></p>
+
 <h3 id="免疫基因的重排调控">免疫基因的重排调控</h3>
-<p>如此频繁的基因重组, 虽然能够为自身的免疫力, 提供大量并且 特异性的识别抗体分子, 但是生命是一种稳态. 如此频繁的<!-- raw HTML omitted -->重组<!-- raw HTML omitted -->与我们所理解的<!-- raw HTML omitted -->稳态<!-- raw HTML omitted -->, 相差甚远. 这其中必然涉及到精细的调控机制.</p>
-<p>其实, 在<!-- raw HTML omitted -->V-D-J<!-- raw HTML omitted -->等基因片段发生重组的部位, 是有保守型的特异性核苷酸序列, 被称为重组信号序列(recombinnation signal sequence,RSS). <code>RSS</code>主要有一个七寡核苷酸链CACAGTG，和一个九寡核甘酸链ACAAAAACC。<code>RSS</code>之间的间隔长度也是固定, 分别为<em>12bp</em>和<em>23bp</em>长短。这种“七聚体―间隔序列―九聚体”结构即为重组信号序列。在重组酶识别和作用下，带有<em>12bp</em>间隔序列<code>RSS</code>的基因片段只能和带有<em>23bp</em>间隔序列的片段相结合而发生重排，被称为<code>12</code>-<code>23</code>规则，它保证了基因片段连接的正确性。</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/the-molecular-genetics-of-immunoglobulins-28-728.jpg" alt="RSS"></p>
-<p>从图中可以看到, 不论是两中轻链的<!-- raw HTML omitted -->V-J<!-- raw HTML omitted -->结合, 还是重链的<!-- raw HTML omitted -->V-D-J<!-- raw HTML omitted -->结合, 都是需要这样的<code>7-12-9</code>,和<code>9-23-7</code>这样的序列结构.</p>
-<p>基因片段重组的酶，包括<code>RAG</code>蛋白、末端脱氧核苷酸转移酶<code>(TdT)</code>以及参与修复<code>DNA</code>双链断端的多种酶(如内切酶、外切酶、DNA合成酶等)。重组激活基因<code>(RAG)</code>编码的蛋白称为<code>RAG-1</code>和<code>RAG-2</code>。<code>RAG-1</code>识别七核苷酸和九核苷酸的信号, 招募<code>RAG-2</code>形成复合物行驶内切酶的作用, 这个过程只发生在<!-- raw HTML omitted -->T<!-- raw HTML omitted -->、<!-- raw HTML omitted -->B<!-- raw HTML omitted -->细胞不成熟阶段。因此, 也只有前<!-- raw HTML omitted -->B<!-- raw HTML omitted -->细胞和前T细胞中才能发生免疫基因的重排，而在成熟的<!-- raw HTML omitted -->T<!-- raw HTML omitted -->、<!-- raw HTML omitted -->B<!-- raw HTML omitted -->细胞中则无重排发生.</p>
+
+<p>如此频繁的基因重组, 虽然能够为自身的免疫力, 提供大量并且 特异性的识别抗体分子, 但是生命是一种稳态. 如此频繁的<red>重组</red>与我们所理解的<green>稳态</green>, 相差甚远. 这其中必然涉及到精细的调控机制.</p>
+
+<p>其实, 在<kbd>V-D-J</kbd>等基因片段发生重组的部位, 是有保守型的特异性核苷酸序列, 被称为重组信号序列(recombinnation signal sequence,RSS). <code>RSS</code>主要有一个七寡核苷酸链CACAGTG，和一个九寡核甘酸链ACAAAAACC。<code>RSS</code>之间的间隔长度也是固定, 分别为*12bp*和*23bp*长短。这种“七聚体―间隔序列―九聚体”结构即为重组信号序列。在重组酶识别和作用下，带有*12bp*间隔序列<code>RSS</code>的基因片段只能和带有*23bp*间隔序列的片段相结合而发生重排，被称为<code>12</code>-<code>23</code>规则，它保证了基因片段连接的正确性。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/the-molecular-genetics-of-immunoglobulins-28-728.jpg" alt="RSS" /></p>
+
+<p>从图中可以看到, 不论是两中轻链的<kbd>V-J</kbd>结合, 还是重链的<kbd>V-D-J</kbd>结合, 都是需要这样的<code>7-12-9</code>,和<code>9-23-7</code>这样的序列结构.</p>
+
+<p>基因片段重组的酶，包括<code>RAG</code>蛋白、末端脱氧核苷酸转移酶<code>(TdT)</code>以及参与修复<code>DNA</code>双链断端的多种酶(如内切酶、外切酶、DNA合成酶等)。重组激活基因<code>(RAG)</code>编码的蛋白称为<code>RAG-1</code>和<code>RAG-2</code>。<code>RAG-1</code>识别七核苷酸和九核苷酸的信号, 招募<code>RAG-2</code>形成复合物行驶内切酶的作用, 这个过程只发生在<kbd>T</kbd>、<kbd>B</kbd>细胞不成熟阶段。因此, 也只有前<kbd>B</kbd>细胞和前T细胞中才能发生免疫基因的重排，而在成熟的<kbd>T</kbd>、<kbd>B</kbd>细胞中则无重排发生.</p>
+
 <blockquote>
 <p>毕竟第一次基因重排是发生在分化成熟的过程中的 , 第二次基因重排改变的是C区, 也就是免疫分子的亚型, 不改变抗原特异性. 只是为了分化成高产量的奖细胞.</p>
 </blockquote>
-<p><code>RSS</code>的切割和链接保证了基因片段连接的方向性和正确性。但是这个切割形成的DNA末端并不是常见的断裂方式, 而是形成一个少见的<code>P</code>-核苷酸, 可能是为了避免<code>DNA</code>瞎链接吧. 同时在重排连接时，是通过倒转方式相连接。<!-- raw HTML omitted -->其实我也不懂这个倒转,小声BB<!-- raw HTML omitted -->. 不过这个方式保证了重组的准确,避免了出错. 这就是生命的奥秘啊.</p>
-<!-- raw HTML omitted -->
+
+<p><code>RSS</code>的切割和链接保证了基因片段连接的方向性和正确性。但是这个切割形成的DNA末端并不是常见的断裂方式, 而是形成一个少见的<code>P</code>-核苷酸, 可能是为了避免<code>DNA</code>瞎链接吧. 同时在重排连接时，是通过倒转方式相连接。<font size = 1>其实我也不懂这个倒转,小声BB</font>. 不过这个方式保证了重组的准确,避免了出错. 这就是生命的奥秘啊.</p>
+
+<p><center>🐯🐯🐯</center></p>
+
 <h2 id="免疫组库测序">免疫组库测序</h2>
+
 <p>作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的变异. 免疫系统依赖于免疫细胞的多样化过程，其在B细胞免疫球蛋白（也是B细胞受体BCR）和T细胞受体（TCR）中产生巨大的序列变异。这些大量但具有不同免疫受体和抗原特异性的淋巴细胞, 在识别出它们的特异性抗原后，淋巴细胞可以通过适当的病原体靶向效应物和随后的记忆功能进行克隆扩增。</p>
-<p>虽然功能不同，但BCR和TCR的组织相似且相应多样。两者都由两个不同的亚基链组成，每个链含有可变结构域，该可变结构域有助于异二聚体受体的抗原结合表面。编码这些可变结构域的基因的多样性机制我们已经在之前的[部分](# section-01)讲过了.</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1561462091373.png" alt="1561462091373"></p>
+
+<p>虽然功能不同，但BCR和TCR的组织相似且相应多样。两者都由两个不同的亚基链组成，每个链含有可变结构域，该可变结构域有助于异二聚体受体的抗原结合表面。编码这些可变结构域的基因的多样性机制我们已经在之前的<a href="# section-01">部分</a>讲过了.</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1561462091373.png" alt="1561462091373" /></p>
+
 <p>免疫细胞具有复杂的遗传多样化机制的产物。高通量测序<code>（NGS）</code>技术的最新进展已经改变了我们对核酸检测方式, 以及最近的单细胞分辨率下检测抗原受体库的能力都使这一领域突飞猛进.</p>
+
 <p>但是尽管RNA-Seq或基因组重测序等高通量测序技术应用已经流程化和标准化，但免疫库的高通量测序并没有“一刀切”的方法.</p>
-<!-- raw HTML omitted -->
+
+<p><center>🙉🙉🙉</center></p>
+
 <h3 id="免疫组测序的选择">免疫组测序的选择</h3>
+
 <p>目前主流的大多数方法只是针对针对单个亚基（通常是BCR重链，TCR a或TCR b链）。同时目前测序的区域主要集中在CDR3区, 这是因为目前最主流的测序平台illumina的最大读长是PE250, 也就是只能测通500bp的片段长短. 而一个全长的轻链和重链都不至于于此.</p>
-<p>但是, CDR3靶向策略可能不适用于某些应用，例如检查完整的SHM谱和/或大量突变的BCR.虽然CDR3是作用最关键的区域, 并且在J片段的上游和V区的下游涉及引物可以避免来自染色体上的非重组序列的污染. 但是还是读长太短了,得不到完整的全长序列. 
+
+<p>但是, CDR3靶向策略可能不适用于某些应用，例如检查完整的SHM谱和/或大量突变的BCR.虽然CDR3是作用最关键的区域, 并且在J片段的上游和V区的下游涉及引物可以避免来自染色体上的非重组序列的污染. 但是还是读长太短了,得不到完整的全长序列.
 <blockquote class="pullquote left">
 	<p> 
 另一个主要需要注意的是测序文库的核酸类型：基因组DNA还是转录物RNA。基因组DNA文库通常包含所有V-D-J受体重组体，无论它们是否最终编码成蛋白。
@@ -301,34 +343,61 @@
 </blockquote>
 HTS数据集中非生产性序列的存在对于研究淋巴细胞发育中的受体多样化和选择可能是有利的. 但还是造成PCR构建文库的困难性。
 当RNA用作输入材料时. 此外，PCR扩增的困难度下降了。同时高度表达的TCR和BCR RNA转录本也比其在DNA中丰富得多，但是RNA的定量可能受不同细胞中BCR 和TCR 总转录本丰度的影响。</p>
-<!-- raw HTML omitted -->
+
+<p><center>🦁🦁🦁</center></p>
+
 <h3 id="免疫组学的主要挑战">免疫组学的主要挑战</h3>
+
 <p>主要是来自, 需要对目标区域的序列进行多重PCR, 这一步说起来不难, 但是做起来需要考虑的点很多. 可以说免疫组的主要的挑战就来PCR策略的设计.</p>
+
 <blockquote>
 <p>需要对极其可变的模板混合物进行全面和无偏差的扩增。扩增偏差对于NGS定量影响巨大，因为不均匀的扩增效率会使克隆频率测量偏差。</p>
 </blockquote>
-<p>目前常常采用多重PCR，其中正向引物与V区段互补。反向引物设计在J区段或恒定区外显子。此外,还有格各式各样的其他方法<!-- raw HTML omitted -->[1]<!-- raw HTML omitted -->. 但测序的区域都是CDR3区域为主.</p>
-<!-- raw HTML omitted -->
+
+<p>目前常常采用多重PCR，其中正向引物与V区段互补。反向引物设计在J区段或恒定区外显子。此外,还有格各式各样的其他方法<sup>[1]</sup>. 但测序的区域都是CDR3区域为主.</p>
+
+<p><center>🐦🐦🐦</center></p>
+
 <h3 id="免疫组分析的内容">免疫组分析的内容</h3>
+
 <p>第一步肯定是数据处理，其中对原始序列读取进行过滤，组装和纠正错误; 和数据分析，因项目而异。这一步虽然不是分析的主要障碍，但序列错误可能会混淆测量再生多样性; 如果没有适当的校正，影响还是挺大的.</p>
+
 <p>同时,因为多重PCR可能引入的扩增偏差. 免疫组测序通常会在扩增之前将随机序列“条形码”(UMI)附加到PCR产物中。后续可以用于定量分析.</p>
+
 <p>鉴定抗原受体序列中存在的V，D和J区段是许多分析工作流程中常见的第一步,也就是所谓V-D-J分配和CDR3注释. 一般而言，VDJ分类工具通过NCBI 或IMGT 数据库来进行比对识别.</p>
+
 <p>接着就会研究lymphocyte subsets(这个不知道怎么翻译), 先称之为免疫单元吧,  不过概念好理解, 就是测序的片段, 一个片段就可以认为是一个免疫细胞.  类似于扩增子测序, 会研究免疫单元的丰富度和多样性, 还会研究种类和样本的分布等等.  感觉和16s非常相似.</p>
-<p>16s就有, 物种定量, a多样性, b多样性, 功能注释等等. 免疫组测序也有对应的分析内容. 关于这部分的详细分析内容. 会在<!-- raw HTML omitted -->下一篇文章10x 单细胞VDJ免疫组测序<!-- raw HTML omitted -->中具体展开.</p>
-<!-- raw HTML omitted -->
+
+<p>16s就有, 物种定量, a多样性, b多样性, 功能注释等等. 免疫组测序也有对应的分析内容. 关于这部分的详细分析内容. 会在<orange>下一篇文章10x 单细胞VDJ免疫组测序</orange>中具体展开.</p>
+
+<p><center>🐸🐸🐸</center></p>
+
 <h3 id="应用方向">应用方向</h3>
+
 <p><strong>免疫的动态变化</strong>: 免疫库不仅是给某一瞬时的免疫应答拍快照，更是可以研究生物体遇到外来抗原的个体史。在免疫系统处理了特定的威胁之后，如果另一个相同的威胁在未来升高，那么记忆细胞就会发展出来。可以通过用下一代测序分析免疫系统来研究这种免疫记忆。NGS的超高分辨率允许寻找表明暴露于病毒，真菌，其他感染因子或与自身免疫疾病相关的特定序列.</p>
+
 <p><strong>免疫谱的差异状态调查</strong>: 可以设置比较组, 关注不同时间点. 或者不同状态和处理下的对照组与处理组之间的差异.</p>
+
 <p><strong>医疗状态</strong> : 抗体或T细胞库的高分辨率表征同样支持新疗法和诊断的开发。通过NGS分析抗原受体支持新抗体的鉴定或开发可引发足够免疫原性的有效疫苗和佐剂制剂。此外，通过新一代测序的免疫分析在治疗性抗体，免疫疗法，疫苗或诊断的研究和开发中是非常宝贵的参考。</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1561458274965.png" alt="niubi"></p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1561458274965.png" alt="niubi" /></p>
+
 <h2 id="参考文献">参考文献:</h2>
+
 <p>[1] Calis, J. J. A., &amp; Rosenberg, B. R. (2014). Characterizing immune repertoires by high throughput sequencing: Strategies and applications. Trends in Immunology, 35(12), 581–590. <a href="https://doi.org/10.1016/j.it.2014.09.004">https://doi.org/10.1016/j.it.2014.09.004</a></p>
+
 <p>[2] 【科普】B细胞的养成之路（二）. (不详). 取读于 2019年6月25日, 从 知乎专栏 website: <a href="https://zhuanlan.zhihu.com/p/32448578">https://zhuanlan.zhihu.com/p/32448578</a></p>
+
 <p>[3] 【科普】B细胞的养成之路(一). (不详). 取读于 2019年6月25日, 从 知乎专栏 website: <a href="https://zhuanlan.zhihu.com/p/32448545">https://zhuanlan.zhihu.com/p/32448545</a></p>
+
 <p>[4] 免疫库谱测序| ArcherDX. (不详). 取读于 2019年6月25日, 从 <a href="https://archerdx.com/immunoverse">https://archerdx.com/immunoverse</a></p>
+
 <p>[5] AptaIT GmbH | Sequence analysis software for BCR profiling and antibody identification. (不详). 取读于 2019年6月25日, 从 aptait website: <a href="https://ngsdataanalysis.com/software/bcr/">https://ngsdataanalysis.com/software/bcr/</a></p>
+
 <p>[6] High-Definition Immunology. (2017, 六月 14). 取读于 2019年6月25日, 从 GEN - Genetic Engineering and Biotechnology News website: <a href="https://www.genengnews.com/uncategorized/high-definition-immunology/">https://www.genengnews.com/uncategorized/high-definition-immunology/</a></p>
+
 <p>[7] Ye, B., Smerin, D., Gao, Q., Kang, C., &amp; Xiong, X. (2018a). High-throughput sequencing of the immune repertoire in oncology: Applications for clinical diagnosis, monitoring, and immunotherapies. Cancer Letters, 416, 42–56. <a href="https://doi.org/10.1016/j.canlet.2017.12.017">https://doi.org/10.1016/j.canlet.2017.12.017</a></p>
+
 <p>[8] Ye, B., Smerin, D., Gao, Q., Kang, C., &amp; Xiong, X. (2018b). High-throughput sequencing of the immune repertoire in oncology: Applications for clinical diagnosis, monitoring, and immunotherapies. Cancer Letters, 416, 42–56. <a href="https://doi.org/10.1016/j.canlet.2017.12.017">https://doi.org/10.1016/j.canlet.2017.12.017</a></p></article>
     <footer class="post-footer">
       

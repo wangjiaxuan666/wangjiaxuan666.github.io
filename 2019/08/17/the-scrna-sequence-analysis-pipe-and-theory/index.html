@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/">
@@ -237,18 +237,29 @@
       <p class="post-meta">@Jiaxuan Wang · Aug 17, 2019 · 9 min read</p>
     </header>
     <article class="post-content"><p>本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理</p>
-<p>本文不是我原创的, <!-- raw HTML omitted -->各位看官请留意<!-- raw HTML omitted -->,而是从<code>Github</code>上搬运的, 虽然我一直也在<code>twitter</code>上收集各自关于单细胞的知识, 但是一直都没有做到很好的总结. 但是我后面在<code>twitter</code>上看到这篇文章, 觉得非常赞, 所以会拿过来当作自己的一个学习笔记. 并不是想抄袭. 只是拿来作为一个学习笔记. 并且我会在此基础上进行修改和删增的.我还是删掉蛮多的, 因为一些文献对我来说学习成本太高了.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>另外其实我的blog里的文章也是<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC-BY-NC 4.0协议</a>, 所以啦, 各位亲, <!-- raw HTML omitted -->转载需要做好说明出处<!-- raw HTML omitted -->, <!-- raw HTML omitted -->修改需要做出说明.<!-- raw HTML omitted --></p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1566028255510.png" alt="1566028255510"></p>
+
+<p>本文不是我原创的, <green>各位看官请留意</green>,而是从<code>Github</code>上搬运的, 虽然我一直也在<code>twitter</code>上收集各自关于单细胞的知识, 但是一直都没有做到很好的总结. 但是我后面在<code>twitter</code>上看到这篇文章, 觉得非常赞, 所以会拿过来当作自己的一个学习笔记. 并不是想抄袭. 只是拿来作为一个学习笔记. 并且我会在此基础上进行修改和删增的.我还是删掉蛮多的, 因为一些文献对我来说学习成本太高了.</p>
+
+<p><center><font size=4 color=#2664a2>感兴趣的可以看原作的原文: 原文<a href="https://github.com/crazyhottommy/scRNAseq-analysis-notes">跳转链接</a></font></center></p>
+
+<p><center>❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</center></p>
+
+<p>另外其实我的blog里的文章也是<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC-BY-NC 4.0协议</a>, 所以啦, 各位亲, <red>转载需要做好说明出处</red>, <green>修改需要做出说明.</green></p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1566028255510.png" alt="1566028255510" /></p>
+
 <h2 id="背景">背景</h2>
+
 <p>单细胞目前是越来越火了, 上周了花了好几天时间整理了一个PPT, 但是内容不方便展示, 因为毕竟那是我在公司的工作内容.</p>
+
 <blockquote>
 <p>不过话说我的文章都是我在自己业务时间整理了, 这部分当然就无所谓了. 但是公司内部的东西我是一概无涉及的.</p>
 </blockquote>
+
 <p>总之, 单细胞测序技术是越来越火热, 单细胞技术虽然火热, 但是传统转录组是一个样本一个转录组的, 但是单细胞测序技术确实一个细胞一个转录组的. 那么以前做100个转录组就已经算是大数据量了, 但是在单细胞测序中, 动不动数千和上万, 乃至上百万的细胞表达谱.</p>
+
 <p>这就直接催生了大量的分析软件, 这些软件不同于传统组学的分析软件, 单细胞领域的分析软件真的是<code>大数据</code>, <code>高纬度</code>的数据, 是<code>降维分析</code>和<code>机器学习</code>的领域.</p>
+
 <div class="alert warning ">
   <p>
   	<span style="font-size: 1em; color: Tomato;">
@@ -258,57 +269,83 @@
   </p>
 </div>
 
+
 <h2 id="单细胞学习笔记">单细胞学习笔记</h2>
-<h3 id="10x官网的一些资料不断更新">10x官网的一些资料(不断更新)</h3>
+
+<h3 id="10x官网的一些资料-不断更新">10x官网的一些资料(不断更新)</h3>
+
 <ul>
-<li>
-<p><a href="https://kb.10xgenomics.com/hc/en-us/articles/218135663-can-cryopreserved-cells-be-used-for-gene-expression-profiling-?src=social&amp;utm_medium=social&amp;lss=twitter&amp;utm_source=twitter&amp;cnm=soc-twi-ra_g-program&amp;utm_campaign=soc-twi-ra_g-program&amp;utm_content=&amp;utm_term=&amp;useroffertype=website-page&amp;userresearcharea=ra_g&amp;userregion=multi&amp;userrecipient=customer&amp;cid=7011a0000003KRm&amp;userCampaignID=7011a0000003KRm">关于冷冻细胞的单细胞转录组测序技术</a></p>
-</li>
+<li><p><a href="https://kb.10xgenomics.com/hc/en-us/articles/218135663-can-cryopreserved-cells-be-used-for-gene-expression-profiling-?src=social&amp;utm_medium=social&amp;lss=twitter&amp;utm_source=twitter&amp;cnm=soc-twi-ra_g-program&amp;utm_campaign=soc-twi-ra_g-program&amp;utm_content=&amp;utm_term=&amp;useroffertype=website-page&amp;userresearcharea=ra_g&amp;userregion=multi&amp;userrecipient=customer&amp;cid=7011a0000003KRm&amp;userCampaignID=7011a0000003KRm">关于冷冻细胞的单细胞转录组测序技术</a></p></li>
+
 <li></li>
 </ul>
+
 <h3 id="单细胞是什么">单细胞是什么?</h3>
+
 <p>详细的单细胞分析教程, 十分具体, 涉及分析的代码和原理,强烈推荐:</p>
+
 <ul>
 <li><a href="https://www.embopress.org/doi/10.15252/msb.20188746">Current best practices in single‐cell RNA‐seq analysis: a tutorial</a> github repo <a href="https://github.com/theislab/single-cell-tutorial">https://github.com/theislab/single-cell-tutorial</a></li>
 </ul>
+
 <p>R Bioconductor的关于单细胞的会议,我还没看,但是感觉还是挺高大上:</p>
+
 <ul>
 <li><a href="https://github.com/drisso/bioc2016singlecell">2016 Bioconductor workshop: Analysis of single-cell RNA-seq data with R and Bioconductor</a></li>
 </ul>
+
 <p>这是一本书啊, 我个天:</p>
+
 <ul>
 <li><a href="https://bioconductor.github.io/OrchestratingSingleCellAnalysis/">Orchestrating Single-Cell Analysis with Bioconductor</a></li>
 </ul>
+
 <p>这篇文章类似于概括我觉得还不错, mark一下以后慢慢看:</p>
+
 <ul>
 <li><a href="http://journal.frontiersin.org/article/10.3389/fgene.2016.00163/full">paper: Single-Cell Transcriptomics Bioinformatics and Computational Challenges</a></li>
 </ul>
+
 <p>神器啊, 这个文章是关于单细胞技术之间的比较, 大爱, 我现在就要看!</p>
+
 <ul>
 <li><a href="https://teichlab.github.io/scg_lib_structs/">Single Cell RNA-seq (scRNA-seq) Library Structure</a></li>
 </ul>
+
 <p>当t-sne聚类结果不好的时候, 应该怎么调整参数:</p>
+
 <ul>
 <li><a href="https://towardsdatascience.com/how-to-tune-hyperparameters-of-tsne-7c0596a18868">How to tune hyperparameters of tSNE</a></li>
 </ul>
+
 <p>大佬的文章, 这个大佬是真的大佬, 他的文章每个都值得看-关于降维分析</p>
+
 <ul>
 <li><a href="https://towardsdatascience.com/how-to-cluster-in-high-dimensions-4ef693bacc6">How to cluster in High Dimensions</a></li>
 </ul>
+
 <p>大佬的另一篇-关于分群中的机器学习</p>
+
 <ul>
 <li><a href="https://towardsdatascience.com/deep-learning-for-single-cell-biology-935d45064438">Deep Learning for Single Cell Biology</a></li>
 </ul>
+
 <p>在医学中单细胞的应用:</p>
+
 <ul>
 <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1097276519303569">Single-Cell RNA Sequencing in Cancer: Lessons Learned and Emerging Challenges</a></li>
 </ul>
+
 <p>在免疫学中的应用, 好巧这篇文章我最再看,准备翻译的</p>
+
 <ul>
 <li><a href="https://www.frontiersin.org/articles/10.3389/fimmu.2018.02425/full">A Single-Cell Sequencing Guide for Immunologists</a></li>
 </ul>
+
 <h3 id="单细胞的实验设计">单细胞的实验设计</h3>
+
 <p>都是文章啊, 这种就属于很重要, 但是不看好像也可以的感觉, 暂时先不看吧</p>
+
 <ul>
 <li><a href="https://www.cell.com/cell/fulltext/S0092-8674(15)01353-7">paper: Design and Analysis of Single-Cell Sequencing Experiments</a></li>
 <li><a href="https://academic.oup.com/bfg/article/17/4/233/4604806">paper: Experimental design for single-cell RNA sequencing</a></li>
@@ -316,8 +353,11 @@
 <li><a href="https://www.biorxiv.org/content/early/2018/08/07/386540">GT-TS: Experimental design for maximizing cell type discovery in single-cell data</a></li>
 <li><a href="https://www.nature.com/articles/s41596-018-0073-y">Tutorial: guidelines for the experimental design of single-cell RNA sequencing studies</a></li>
 </ul>
+
 <h3 id="单细胞的数据处理">单细胞的数据处理</h3>
+
 <p>暂时按照serut和monocle来进行, 不想学习</p>
+
 <ul>
 <li><a href="https://www.biorxiv.org/content/10.1101/235382v2">paper: Performance Assessment and Selection of Normalization Procedures for Single-Cell RNA-Seq</a></li>
 <li><a href="http://biorxiv.org/content/early/2016/07/17/064329">paper: Assessment of single cell RNA-seq normalization methods</a></li>
@@ -326,48 +366,43 @@
 <li><a href="http://www.morgridge.net/SinQC.html">SinQC: A Method and Tool to Control Single-cell RNA-seq Data Quality</a>.</li>
 <li><a href="https://github.com/YosefLab/scone">Scone</a> Single-Cell Overview of Normalized Expression data</li>
 </ul>
+
 <h3 id="对单细胞测序检测基因读数的矫正">对单细胞测序检测基因读数的矫正</h3>
+
 <p>不是很明白, 暂时用不到</p>
+
 <ul>
-<li>
-<p><a href="https://www.nature.com/articles/s41592-018-0033-z">SAVER: gene expression recovery for single-cell RNA sequencing</a>  an expression recovery method for unique molecule index (UMI)-based scRNA-seq data that borrows information across genes and cells to provide accurate expression estimates for all genes.</p>
-</li>
-<li>
-<p><a href="https://github.com/lanagarmire/DeepImpute">DeepImpute: an accurate, fast and scalable deep neural network method to impute single-cell RNA-Seq data</a> <a href="https://www.biorxiv.org/content/early/2018/06/22/353607">https://www.biorxiv.org/content/early/2018/06/22/353607</a></p>
-</li>
-<li>
-<p><a href="https://github.com/krishnaswamylab/MAGIC">MAGIC</a> (Markov Affinity-based Graph Imputation of Cells), is a method for imputing missing values restoring structure of large biological datasets.</p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/08/03/384586?">bayNorm: Bayesian gene expression recovery, imputation and normalisation for single cell RNA-sequencing data</a> github <a href="https://github.com/WT215/bayNorm">page</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/08/22/397588?rss=1">Zero-preserving imputation of scRNA-seq data using low-rank approximation</a></p>
-</li>
+<li><p><a href="https://www.nature.com/articles/s41592-018-0033-z">SAVER: gene expression recovery for single-cell RNA sequencing</a>  an expression recovery method for unique molecule index (UMI)-based scRNA-seq data that borrows information across genes and cells to provide accurate expression estimates for all genes.</p></li>
+
+<li><p><a href="https://github.com/lanagarmire/DeepImpute">DeepImpute: an accurate, fast and scalable deep neural network method to impute single-cell RNA-Seq data</a> <a href="https://www.biorxiv.org/content/early/2018/06/22/353607">https://www.biorxiv.org/content/early/2018/06/22/353607</a></p></li>
+
+<li><p><a href="https://github.com/krishnaswamylab/MAGIC">MAGIC</a> (Markov Affinity-based Graph Imputation of Cells), is a method for imputing missing values restoring structure of large biological datasets.</p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/early/2018/08/03/384586?">bayNorm: Bayesian gene expression recovery, imputation and normalisation for single cell RNA-sequencing data</a> github <a href="https://github.com/WT215/bayNorm">page</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/early/2018/08/22/397588?rss=1">Zero-preserving imputation of scRNA-seq data using low-rank approximation</a></p></li>
 </ul>
+
 <h3 id="批次效应处理">批次效应处理</h3>
+
 <p>需要的时候就赶紧过来看看:</p>
+
 <ul>
-<li>
-<p><a href="http://biorxiv.org/content/early/2016/09/08/073973">Overcoming confounding plate effects in differential expression analyses of single-cell RNA-seq data</a></p>
-</li>
-<li>
-<p><a href="https://www.nature.com/articles/nbt.4091">Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/07/17/371179">Panoramic stitching of heterogeneous single-cell transcriptomic data</a> Here we present <a href="http://cb.csail.mit.edu/cb/scanorama/">Scanorama</a>, inspired by algorithms for panorama stitching, that overcomes the limitations of existing methods to enable accurate, heterogeneous scRNA-seq data set integration.</p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/08/22/397042">Fast Batch Alignment of Single Cell Transcriptomes Unifies Multiple Mouse Cell Atlases into an Integrated Landscape</a> <a href="https://github.com/Teichlab/bbknn">github link</a></p>
-</li>
-<li>
-<p><a href="https://github.com/immunogenomics/harmony">Scalable integration of single cell RNAseq data for batch correction and meta analysis</a></p>
-</li>
-<li>
-<p><a href="https://macoskolab.github.io/liger/">liger</a>R package for integrating and analyzing multiple single-cell datasets</p>
-</li>
+<li><p><a href="http://biorxiv.org/content/early/2016/09/08/073973">Overcoming confounding plate effects in differential expression analyses of single-cell RNA-seq data</a></p></li>
+
+<li><p><a href="https://www.nature.com/articles/nbt.4091">Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/early/2018/07/17/371179">Panoramic stitching of heterogeneous single-cell transcriptomic data</a> Here we present <a href="http://cb.csail.mit.edu/cb/scanorama/">Scanorama</a>, inspired by algorithms for panorama stitching, that overcomes the limitations of existing methods to enable accurate, heterogeneous scRNA-seq data set integration.</p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/early/2018/08/22/397042">Fast Batch Alignment of Single Cell Transcriptomes Unifies Multiple Mouse Cell Atlases into an Integrated Landscape</a> <a href="https://github.com/Teichlab/bbknn">github link</a></p></li>
+
+<li><p><a href="https://github.com/immunogenomics/harmony">Scalable integration of single cell RNAseq data for batch correction and meta analysis</a></p></li>
+
+<li><p><a href="https://macoskolab.github.io/liger/">liger</a>R package for integrating and analyzing multiple single-cell datasets</p></li>
 </ul>
+
 <h3 id="基因差异表达">基因差异表达</h3>
+
 <ul>
 <li><a href="https://www.nature.com/articles/s41592-018-0303-9">A discriminative learning approach to differential expression analysis for single-cell RNA-seq</a> by Lior Patcher group.</li>
 <li><a href="http://bioconductor.org/packages/release/bioc/html/scde.html">scde</a> bioconductor package maintained by Jean Fan in Xiaowei Zhuang&rsquo;s lab at Harvard. Need to talk to her once I get a chance.</li>
@@ -375,134 +410,101 @@
 <li>How to compare clusters with multiple samples? <a href="https://twitter.com/RoryKirchner/status/1082752967806210048">https://twitter.com/RoryKirchner/status/1082752967806210048</a> . work in progess <a href="https://github.com/HelenaLC/muscat">https://github.com/HelenaLC/muscat</a> by Helena from Mark Robinson lab. bioc2019 workshop <a href="http://biocworkshops2019.bioconductor.org.s3-website-us-east-1.amazonaws.com/page/muscWorkshop__vignette/">http://biocworkshops2019.bioconductor.org.s3-website-us-east-1.amazonaws.com/page/muscWorkshop__vignette/</a>
 and a blog post by VALENTINE SVENSSON from Lior Patcher&rsquo;s group <a href="http://www.nxn.se/valent/2019/2/15/handling-confounded-samples-for-differential-expression-in-scrna-seq-experiments">http://www.nxn.se/valent/2019/2/15/handling-confounded-samples-for-differential-expression-in-scrna-seq-experiments</a></li>
 </ul>
+
 <h3 id="单细胞分析的软件">单细胞分析的软件</h3>
+
 <ul>
-<li>
-<p><a href="https://github.com/seandavi/awesome-single-cell">a collection of single RNA-seq tools by Sean Davis </a></p>
-</li>
-<li>
-<p><a href="http://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0927-y">paper: Design and computational analysis of single-cell RNA-sequencing experiments</a></p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2017/05/28/143289">paper by Mark Robinson: Bias, Robustness And Scalability In Differential Expression Analysis Of Single-Cell RNA-Seq Data</a></p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2016/09/08/073692">paper: Power Analysis of Single Cell RNA‐Sequencing Experiments</a></p>
-</li>
-<li>
-<p><a href="http://www.nature.com/nbt/journal/v34/n6/full/nbt.3498.html">paper: The contribution of cell cycle to heterogeneity in single-cell RNA-seq data</a></p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2016/07/08/062919">paper: Batch effects and the effective design of single-cell gene expression studies</a></p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2015/08/25/025528">On the widespread and critical impact of systematic bias and batch effects in single-cell RNA-Seq data</a></p>
-</li>
-<li>
-<p><a href="http://www.ncbi.nlm.nih.gov/pubmed/27373736">paper: Comparison of methods to detect differentially expressed genes between single-cell populations</a></p>
-</li>
-<li>
-<p><a href="http://www.nature.com/nrg/journal/vaop/ncurrent/full/nrg.2015.16.html">review: Single-cell genome sequencing: current state of the science</a></p>
-</li>
-<li>
-<p><a href="http://qb.cshl.edu/ginkgo/?q=/ESjKTTeZIdnoGwEB4WTu">Ginkgo</a> A web tool for analyzing single-cell sequencing data.</p>
-</li>
-<li>
-<p><a href="http://bioconductor.org/packages/devel/bioc/html/SingleCellExperiment.html">SingleCellExperiment bioc package</a> Defines a S4 class for storing data from single-cell experiments. This includes specialized methods to store and retrieve spike-in information, dimensionality reduction coordinates and size factors for each cell, along with the usual metadata for genes and libraries.</p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2016/12/22/096222">ASAP</a>: a Web-based platform for the analysis and inter-active visualization of single-cell RNA-seq data</p>
-</li>
-<li>
-<p><a href="http://www.satijalab.org/seurat.html">Seurat</a> is an R package designed for the analysis and visualization of single cell RNA-seq data. It contains easy-to-use implementations of commonly used analytical techniques, including the identification of highly variable genes, dimensionality reduction (PCA, ICA, t-SNE), standard unsupervised clustering algorithms (density clustering, hierarchical clustering, k-means), and the discovery of differentially expressed genes and markers.</p>
-</li>
-<li>
-<p><a href="http://bioconductor.org/packages/devel/bioc/html/sincell.html">R package for the statistical assessment of cell state hierarchies from single-cell RNA-seq data</a></p>
-</li>
-<li>
-<p><a href="http://cole-trapnell-lab.github.io/monocle-release/">Monocle</a> Differential expression and time-series analysis for single-cell RNA-Seq and qPCR experiments.</p>
-</li>
-<li>
-<p>Single Cell Differential Expression: bioconductor package <a href="http://bioconductor.org/packages/devel/bioc/html/scde.html">scde</a></p>
-</li>
-<li>
-<p><a href="https://research.cchmc.org/pbge/sincera.html">Sincera</a>:A Computational Pipeline for Single Cell RNA-Seq Profiling Analysis. Bioconductor package will be available soon.</p>
-</li>
-<li>
-<p><a href="https://github.com/RGLab/MAST">MAST</a>: a flexible statistical framework for assessing transcriptional changes and characterizing heterogeneity in single-cell RNA sequencing data</p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2015/11/13/031021">scDD</a>: A statistical approach for identifying differential distributions in single-cell RNA-seq experiments</p>
-</li>
-<li>
-<p><a href="http://bioconductor.org/packages/devel/bioc/html/cellTree.html">Inference and visualisation of Single-Cell RNA-seq Data data as a hierarchical tree structure: bioconductor CellTree</a></p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2016/01/15/036863">Fast and accurate single-cell RNA-Seq analysis by clustering of transcript-compatibility counts</a> by Lior Pachter et.al</p>
-</li>
-<li>
-<p><a href="https://github.com/ti243/cellity">cellity</a>: Classification of low quality cells in scRNA-seq data using R.</p>
-</li>
-<li>
-<p><a href="http://bioconductor.org/packages/devel/bioc/vignettes/scran/inst/doc/scran.html">bioconductor: using scran to perform basic analyses of single-cell RNA-seq data</a></p>
-</li>
-<li>
-<p><a href="https://github.com/davismcc/scater">scater</a>: single-cell analysis toolkit for expression with R</p>
-</li>
-<li>
-<p><a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.3835.html">Monovar</a>: single-nucleotide variant detection in single cells</p>
-</li>
-<li>
-<p><a href="http://m.bib.oxfordjournals.org/content/early/2016/07/02/bib.bbw057.full">paper: Comparison of methods to detect differentially expressed genes between single-cell populations</a></p>
-</li>
-<li>
-<p><a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4150.html">Single-cell mRNA quantification and differential analysis with Census</a></p>
-</li>
-<li>
-<p><a href="https://github.com/VCCRI/CIDR">CIDR</a>: Ultrafast and accurate clustering through imputation for single-cell RNA-seq data</p>
-</li>
-<li>
-<p><a href="http://biorxiv.org/content/early/2017/04/04/123810">CellView</a>: Interactive Exploration Of High Dimensional Single Cell RNA-Seq Data</p>
-</li>
-<li>
-<p><a href="https://github.com/theislab/scanpy">Scanpy</a> is a scalable toolkit for analyzing single-cell gene expression data. It includes preprocessing, visualization, clustering, pseudotime and trajectory inference, differential expression testing and simulation of gene regulatory networks. The Python-based implementation efficiently deals with datasets of more than one million cells.</p>
-</li>
+<li><p><a href="https://github.com/seandavi/awesome-single-cell">a collection of single RNA-seq tools by Sean Davis </a></p></li>
+
+<li><p><a href="http://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0927-y">paper: Design and computational analysis of single-cell RNA-sequencing experiments</a></p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2017/05/28/143289">paper by Mark Robinson: Bias, Robustness And Scalability In Differential Expression Analysis Of Single-Cell RNA-Seq Data</a></p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2016/09/08/073692">paper: Power Analysis of Single Cell RNA‐Sequencing Experiments</a></p></li>
+
+<li><p><a href="http://www.nature.com/nbt/journal/v34/n6/full/nbt.3498.html">paper: The contribution of cell cycle to heterogeneity in single-cell RNA-seq data</a></p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2016/07/08/062919">paper: Batch effects and the effective design of single-cell gene expression studies</a></p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2015/08/25/025528">On the widespread and critical impact of systematic bias and batch effects in single-cell RNA-Seq data</a></p></li>
+
+<li><p><a href="http://www.ncbi.nlm.nih.gov/pubmed/27373736">paper: Comparison of methods to detect differentially expressed genes between single-cell populations</a></p></li>
+
+<li><p><a href="http://www.nature.com/nrg/journal/vaop/ncurrent/full/nrg.2015.16.html">review: Single-cell genome sequencing: current state of the science</a></p></li>
+
+<li><p><a href="http://qb.cshl.edu/ginkgo/?q=/ESjKTTeZIdnoGwEB4WTu">Ginkgo</a> A web tool for analyzing single-cell sequencing data.</p></li>
+
+<li><p><a href="http://bioconductor.org/packages/devel/bioc/html/SingleCellExperiment.html">SingleCellExperiment bioc package</a> Defines a S4 class for storing data from single-cell experiments. This includes specialized methods to store and retrieve spike-in information, dimensionality reduction coordinates and size factors for each cell, along with the usual metadata for genes and libraries.</p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2016/12/22/096222">ASAP</a>: a Web-based platform for the analysis and inter-active visualization of single-cell RNA-seq data</p></li>
+
+<li><p><a href="http://www.satijalab.org/seurat.html">Seurat</a> is an R package designed for the analysis and visualization of single cell RNA-seq data. It contains easy-to-use implementations of commonly used analytical techniques, including the identification of highly variable genes, dimensionality reduction (PCA, ICA, t-SNE), standard unsupervised clustering algorithms (density clustering, hierarchical clustering, k-means), and the discovery of differentially expressed genes and markers.</p></li>
+
+<li><p><a href="http://bioconductor.org/packages/devel/bioc/html/sincell.html">R package for the statistical assessment of cell state hierarchies from single-cell RNA-seq data</a></p></li>
+
+<li><p><a href="http://cole-trapnell-lab.github.io/monocle-release/">Monocle</a> Differential expression and time-series analysis for single-cell RNA-Seq and qPCR experiments.</p></li>
+
+<li><p>Single Cell Differential Expression: bioconductor package <a href="http://bioconductor.org/packages/devel/bioc/html/scde.html">scde</a></p></li>
+
+<li><p><a href="https://research.cchmc.org/pbge/sincera.html">Sincera</a>:A Computational Pipeline for Single Cell RNA-Seq Profiling Analysis. Bioconductor package will be available soon.</p></li>
+
+<li><p><a href="https://github.com/RGLab/MAST">MAST</a>: a flexible statistical framework for assessing transcriptional changes and characterizing heterogeneity in single-cell RNA sequencing data</p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2015/11/13/031021">scDD</a>: A statistical approach for identifying differential distributions in single-cell RNA-seq experiments</p></li>
+
+<li><p><a href="http://bioconductor.org/packages/devel/bioc/html/cellTree.html">Inference and visualisation of Single-Cell RNA-seq Data data as a hierarchical tree structure: bioconductor CellTree</a></p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2016/01/15/036863">Fast and accurate single-cell RNA-Seq analysis by clustering of transcript-compatibility counts</a> by Lior Pachter et.al</p></li>
+
+<li><p><a href="https://github.com/ti243/cellity">cellity</a>: Classification of low quality cells in scRNA-seq data using R.</p></li>
+
+<li><p><a href="http://bioconductor.org/packages/devel/bioc/vignettes/scran/inst/doc/scran.html">bioconductor: using scran to perform basic analyses of single-cell RNA-seq data</a></p></li>
+
+<li><p><a href="https://github.com/davismcc/scater">scater</a>: single-cell analysis toolkit for expression with R</p></li>
+
+<li><p><a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.3835.html">Monovar</a>: single-nucleotide variant detection in single cells</p></li>
+
+<li><p><a href="http://m.bib.oxfordjournals.org/content/early/2016/07/02/bib.bbw057.full">paper: Comparison of methods to detect differentially expressed genes between single-cell populations</a></p></li>
+
+<li><p><a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.4150.html">Single-cell mRNA quantification and differential analysis with Census</a></p></li>
+
+<li><p><a href="https://github.com/VCCRI/CIDR">CIDR</a>: Ultrafast and accurate clustering through imputation for single-cell RNA-seq data</p></li>
+
+<li><p><a href="http://biorxiv.org/content/early/2017/04/04/123810">CellView</a>: Interactive Exploration Of High Dimensional Single Cell RNA-Seq Data</p></li>
+
+<li><p><a href="https://github.com/theislab/scanpy">Scanpy</a> is a scalable toolkit for analyzing single-cell gene expression data. It includes preprocessing, visualization, clustering, pseudotime and trajectory inference, differential expression testing and simulation of gene regulatory networks. The Python-based implementation efficiently deals with datasets of more than one million cells.</p></li>
 </ul>
+
 <h3 id="细胞亚型的鉴定">细胞亚型的鉴定</h3>
-<p>这个网页中附带的预印本是关于不同技术的比较 <!-- raw HTML omitted -->非常有用<!-- raw HTML omitted --></p>
+
+<p>这个网页中附带的预印本是关于不同技术的比较 <red>非常有用</red></p>
+
 <blockquote>
 <p>这个R包好像可以根据已有的细胞分群进行训练, 将未被定义的细胞进行得到注释.</p>
 </blockquote>
+
 <ul>
-<li>
-<p><a href="https://github.com/elimereu/matchSCore2">MatchScore2</a> paper: <a href="https://www.biorxiv.org/content/10.1101/630087v1">Benchmarking Single-Cell RNA Sequencing Protocols for Cell Atlas Projects</a></p>
-</li>
-<li>
-<p><a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz292/5480299">scMatch: a single-cell gene expression profile annotation tool using reference datasets</a></p>
-</li>
-<li>
-<p><a href="https://github.com/MonashBioinformaticsPlatform/celaref">Celaref</a></p>
-</li>
-<li>
-<p><a href="https://github.com/maggiecrow/MetaNeighbor">MetaNeighbour</a></p>
-</li>
-<li>
-<p><a href="https://github.com/BatadaLab/scID">scID</a></p>
-</li>
-<li>
-<p><a href="https://github.com/ggjlab/scMCA">scMCA</a></p>
-</li>
-<li>
-<p><a href="https://github.com/IMB-Computational-Genomics-Lab/scPred">scPred</a></p>
-</li>
-<li>
-<p><a href="https://github.com/dviraran/SingleR">SingleR</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/10.1101/508085v1">singleCellNet</a></p>
-</li>
+<li><p><a href="https://github.com/elimereu/matchSCore2">MatchScore2</a> paper: <a href="https://www.biorxiv.org/content/10.1101/630087v1">Benchmarking Single-Cell RNA Sequencing Protocols for Cell Atlas Projects</a></p></li>
+
+<li><p><a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz292/5480299">scMatch: a single-cell gene expression profile annotation tool using reference datasets</a></p></li>
+
+<li><p><a href="https://github.com/MonashBioinformaticsPlatform/celaref">Celaref</a></p></li>
+
+<li><p><a href="https://github.com/maggiecrow/MetaNeighbor">MetaNeighbour</a></p></li>
+
+<li><p><a href="https://github.com/BatadaLab/scID">scID</a></p></li>
+
+<li><p><a href="https://github.com/ggjlab/scMCA">scMCA</a></p></li>
+
+<li><p><a href="https://github.com/IMB-Computational-Genomics-Lab/scPred">scPred</a></p></li>
+
+<li><p><a href="https://github.com/dviraran/SingleR">SingleR</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/10.1101/508085v1">singleCellNet</a></p></li>
 </ul>
+
 <h3 id="聚类分析">聚类分析</h3>
+
 <ul>
 <li><a href="https://jef.works/blog/2018/06/28/single-cell-clustering-comparison/">Single Cell Clustering Comparison</a> A blog post.</li>
 <li><a href="https://f1000research.com/articles/7-1141/v1">A systematic performance evaluation of clustering methods for single-cell RNA-seq data</a> F1000 paper by Mark Robinson. tl;dr version: &ldquo;SC3 and Seurat show the most favorable results&rdquo;.</li>
@@ -516,14 +518,16 @@ and a blog post by VALENTINE SVENSSON from Lior Patcher&rsquo;s group <a href="h
 <li><a href="http://bioconductor.org/packages/release/bioc/html/SC3.html">SC3</a>- consensus clustering of single-cell RNA-Seq data.  SC3 achieves high accuracy and robustness by consistently integrating different clustering solutions through a consensus approach. Tests on twelve published datasets show that SC3 outperforms five existing methods while remaining scalable, as shown by the analysis of a large dataset containing 44,808 cells. Moreover, an interactive graphical implementation makes SC3 accessible to a wide audience of users, and SC3 aids biological interpretation by identifying marker genes, differentially expressed genes and outlier cells.</li>
 <li><a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1431-3">GiniClust2</a>: a cluster-aware, weighted ensemble clustering method for cell-type detection</li>
 <li><a href="https://www.nature.com/articles/nmeth.4662">FateID infers cell fate bias in multipotent progenitors from single-cell RNA-seq data</a></li>
-<li><a href="https://www.biorxiv.org/content/early/2018/05/07/314831">matchSCore: Matching Single-Cell Phenotypes Across Tools and Experiments</a> In this work we introduce matchSCore (<a href="https://github.com/elimereu/matchSCore),">https://github.com/elimereu/matchSCore),</a> an approach to match cell populations fast across tools, experiments and technologies. We compared 14 computational methods and evaluated their accuracy in clustering and gene marker identification in simulated data sets.</li>
+<li><a href="https://www.biorxiv.org/content/early/2018/05/07/314831">matchSCore: Matching Single-Cell Phenotypes Across Tools and Experiments</a> In this work we introduce matchSCore (<a href="https://github.com/elimereu/matchSCore">https://github.com/elimereu/matchSCore</a>), an approach to match cell populations fast across tools, experiments and technologies. We compared 14 computational methods and evaluated their accuracy in clustering and gene marker identification in simulated data sets.</li>
 <li><a href="https://www.biorxiv.org/content/early/2017/10/19/203752">Cluster Headache: Comparing Clustering Tools for 10X Single Cell Sequencing Data</a></li>
 <li>The <a href="https://github.com/MonashBioinformaticsPlatform/celaref">celaref</a> (cell labelling by reference) package aims to streamline the cell-type identification step, by suggesting cluster labels on the basis of similarity to an already-characterised reference dataset - wheather that&rsquo;s from a similar experiment performed previously in the same lab, or from a public dataset from a similar sample.</li>
 <li><a href="https://www.biorxiv.org/content/10.1101/699637v1">souporcell: Robust clustering of single cell RNAseq by genotype and ambient RNA inference without reference genotypes</a> souporcell, a robust method to cluster cells by their genetic variants without a genotype reference and show that it outperforms existing methods on clustering accuracy, doublet detection, and genotyping across a wide range of challenging scenarios while accurately estimating the amount of ambient RNA in the sample</li>
 </ul>
+
 <h3 id="降维和聚类分析">降维和聚类分析</h3>
+
 <ul>
-<li><a href="http://setosa.io/ev/principal-component-analysis/">Principal Component Analysis Explained Visually</a></li>
+<li><a href="http://setosa.io/ev/principal-component-analysis/">Principal Component Analysis Explained Visually</a><br /></li>
 <li><a href="https://rpubs.com/crazyhottommy/PCA_MDS">PCA, MDS, k-means, Hierarchical clustering and heatmap</a>. I wrote it.</li>
 <li><a href="http://www.huber.embl.de/users/whuber/pub/horseshoe.html">horseshoe effect from PCA</a> Spurious structures in latent space decomposition and low-dimensional embedding methods</li>
 <li>also read chapter 9 of <a href="http://web.stanford.edu/class/bios221/book/Chap-MultivaHetero.html">http://web.stanford.edu/class/bios221/book/Chap-MultivaHetero.html</a></li>
@@ -533,101 +537,85 @@ and a blog post by VALENTINE SVENSSON from Lior Patcher&rsquo;s group <a href="h
 <li><a href="https://rpubs.com/crazyhottommy">I wrote on PCA, and heatmaps on Rpub</a></li>
 <li>A most read for clustering analysis for high-dimentional biological data:<a href="http://stke.sciencemag.org/content/9/432/re6">Avoiding common pitfalls when clustering
 biological data</a></li>
-<li><a href="http://www.nature.com/nbt/journal/v23/n12/full/nbt1205-1499.html">How does gene expression clustering work?</a> A must read for 
+<li><a href="http://www.nature.com/nbt/journal/v23/n12/full/nbt1205-1499.html">How does gene expression clustering work?</a> A must read for
 clustering.</li>
 <li><a href="http://www.nxn.se/valent/2017/6/12/how-to-read-pca-plots">How to read PCA plots for scRNAseq</a> by VALENTINE SVENSSON.</li>
 </ul>
-<p><a href="http://oai.cwi.nl/oai/asset/22628/22628B.pdf">paper: Outlier Preservation by Dimensionality Reduction Techniques</a></p>
-<blockquote>
-<p>&ldquo;MDS best choice for preserving outliers, PCA for variance, &amp; T-SNE for clusters&rdquo;</p>
-</blockquote>
+
+<p><a href="http://oai.cwi.nl/oai/asset/22628/22628B.pdf">paper: Outlier Preservation by Dimensionality Reduction Techniques</a>
+&gt;&ldquo;MDS best choice for preserving outliers, PCA for variance, &amp; T-SNE for clusters&rdquo;</p>
+
 <ul>
-<li>
-<p><a href="http://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively</a></p>
-</li>
-<li>
-<p><a href="https://beta.observablehq.com/@nstrayer/t-sne-explained-in-plain-javascript">t-SNE explained in plain javascript</a></p>
-</li>
-<li>
-<p><a href="https://github.com/jkrijthe/Rtsne">Rtsne</a> R package for T-SNE</p>
-</li>
-<li>
-<p><a href="https://github.com/jdonaldson/rtsne">rtsne</a> An R package for t-SNE (t-Distributed Stochastic Neighbor Embedding)
-a bug was in <code>rtsne</code>: <a href="https://gist.github.com/mikelove/74bbf5c41010ae1dc94281cface90d32">https://gist.github.com/mikelove/74bbf5c41010ae1dc94281cface90d32</a></p>
-</li>
-<li>
-<p><a href="https://github.com/KlugerLab/t-SNE-Heatmaps">t-SNE-Heatmaps</a> Beta version of 1D t-SNE heatmaps to visualize expression patterns of hundreds of genes simultaneously in scRNA-seq.</p>
-</li>
-<li>
-<p><a href="http://blog.thegrandlocus.com/2018/08/a-tutorial-on-t-sne-1">A tutorial on t-SNE</a></p>
-</li>
-<li>
-<p><a href="https://towardsdatascience.com/how-to-tune-hyperparameters-of-tsne-7c0596a18868">How to tune hyperparameters of tSNE</a> For single-cell RNAseq: The optimal perplexity can be calculated from the number of cells according to the simple power law -Perplexity ~ N^(1/2)-. Finally, the optimal number of iterations should provide the largest distance between the data points of ~100 units.</p>
-</li>
-<li>
-<p>when to use PCA instead of t-SNE
-<a href="https://stats.stackexchange.com/questions/238538/are-there-cases-where-pca-is-more-suitable-than-t-sne/249520#249520">https://stats.stackexchange.com/questions/238538/are-there-cases-where-pca-is-more-suitable-than-t-sne/249520#249520</a></p>
-</li>
-<li>
-<p>projection to new data <a href="https://twitter.com/EduEyras/status/1032215352623747072">https://twitter.com/EduEyras/status/1032215352623747072</a></p>
-</li>
-<li>
-<p><a href="https://www.nature.com/articles/s41467-018-04368-5">Interpretable dimensionality reduction of single cell transcriptome data with deep generative models</a></p>
-</li>
-<li>
-<p>PCA loadings can be used to project new data</p>
-</li>
+<li><a href="http://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively</a></li>
+<li><a href="https://beta.observablehq.com/@nstrayer/t-sne-explained-in-plain-javascript">t-SNE explained in plain javascript</a></li>
+<li><a href="https://github.com/jkrijthe/Rtsne">Rtsne</a> R package for T-SNE</li>
+<li><a href="https://github.com/jdonaldson/rtsne">rtsne</a> An R package for t-SNE (t-Distributed Stochastic Neighbor Embedding)
+a bug was in <code>rtsne</code>: <a href="https://gist.github.com/mikelove/74bbf5c41010ae1dc94281cface90d32">https://gist.github.com/mikelove/74bbf5c41010ae1dc94281cface90d32</a></li>
+<li><a href="https://github.com/KlugerLab/t-SNE-Heatmaps">t-SNE-Heatmaps</a> Beta version of 1D t-SNE heatmaps to visualize expression patterns of hundreds of genes simultaneously in scRNA-seq.</li>
+<li><a href="http://blog.thegrandlocus.com/2018/08/a-tutorial-on-t-sne-1">A tutorial on t-SNE</a></li>
+
+<li><p><a href="https://towardsdatascience.com/how-to-tune-hyperparameters-of-tsne-7c0596a18868">How to tune hyperparameters of tSNE</a> For single-cell RNAseq: The optimal perplexity can be calculated from the number of cells according to the simple power law -Perplexity ~ N^(<sup>1</sup>&frasl;<sub>2</sub>)-. Finally, the optimal number of iterations should provide the largest distance between the data points of ~100 units.</p></li>
+
+<li><p>when to use PCA instead of t-SNE
+<a href="https://stats.stackexchange.com/questions/238538/are-there-cases-where-pca-is-more-suitable-than-t-sne/249520#249520">https://stats.stackexchange.com/questions/238538/are-there-cases-where-pca-is-more-suitable-than-t-sne/249520#249520</a></p></li>
+
+<li><p>projection to new data <a href="https://twitter.com/EduEyras/status/1032215352623747072">https://twitter.com/EduEyras/status/1032215352623747072</a></p></li>
+
+<li><p><a href="https://www.nature.com/articles/s41467-018-04368-5">Interpretable dimensionality reduction of single cell transcriptome data with deep generative models</a></p></li>
+
+<li><p>PCA loadings can be used to project new data</p></li>
 </ul>
+
 <p>e.g. from this paper <a href="https://www.cell.com/cancer-cell/abstract/S1535-6108(18)30122-3">Multi-stage Differentiation Defines Melanoma Subtypes with Differential Vulnerability to Drug-Induced Iron-Dependent Oxidative Stress</a> Fig 1D.</p>
+
 <ul>
-<li>
-<p><a href="https://anders-biostat.github.io/sleepwalk/">Sleepwalk: Walk through your embedding</a> So, can you be sure that the visualisation you get by using t-SNE, UMAP, MDS or the like really give you a faithful representation of your data? Are the points that lie almost on top of each other really all similar? Does the large distance on your 2D representation always mean lots of dissimilarities? Our sleepwalk package for the R statistical programming environment can help you answer these questions.</p>
-</li>
-<li>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S2405471218302357?via%3Dihub">Generalizable and Scalable Visualization of Single-Cell Data Using Neural Networks</a> standard methods, such as t-stochastic neighbor embedding (t-SNE), are not scalable to datasets with millions of cells and the resulting visualizations cannot be generalized to analyze new datasets. Here we introduce -net-SNE-, a generalizable visualization approach that trains a neural network to learn a mapping function from high-dimensional single-cell gene-expression profiles to a low-dimensional visualization.</p>
-</li>
-<li>
-<p><a href="https://github.com/KrishnaswamyLab/PHATE">PHATE dimensionality reduction method</a> paper: <a href="http://biorxiv.org/content/early/2017/03/24/120378">http://biorxiv.org/content/early/2017/03/24/120378</a>  PHATE also uncovers and emphasizes progression and transitions (when they exist) in the data, which are often missed in other visualization-capable methods. Such patterns are especially important in biological data that contain, for example, single-cell phenotypes at different phases of differentiation, patients at different stages of disease progression, and gut microbial compositions that vary gradually between individuals, even of the same enterotype.</p>
-</li>
-<li>
-<p><a href="https://github.com/lmcinnes/umap">Uniform Manifold Approximation and Projection (UMAP)</a> is a dimension reduction technique that can be used for visualisation similarly to t-SNE, but also for general non-linear dimension reduction. The algorithm is founded on three assumptions about the data. Run from R: <a href="https://gist.github.com/crazyhottommy/caa5a4a4b07ee7f08f7d0649780832ef">https://gist.github.com/crazyhottommy/caa5a4a4b07ee7f08f7d0649780832ef</a></p>
-</li>
-<li>
-<p><a href="https://github.com/ropenscilabs/umapr">umapr</a> UMAP dimensionality reduction in R</p>
-</li>
-<li>
-<p><a href="https://github.com/jlmelville/uwot">uwot</a> An R package implementing the UMAP dimensionality reduction method. UMAP multi-threaded.</p>
-</li>
-<li>
-<p><a href="https://github.com/KlugerLab/FIt-SNE">Fast Fourier Transform-accelerated Interpolation-based t-SNE (FIt-SNE)</a> The FIt-SNE implementation is generally faster than UMAP when you have more than 3,000 cells. In the realm of 10,000&rsquo;s of cells FIt-SNE scales at the same rate as UMAP. However, note that this is a log-log scale. Even if FI-tSNE starts scaling at the rate of UMAP, it is still consistently about 4 times faster. In other words, a dataset that takes an hour for UMAP will take 15 minutes for FIt-SNE. see the benchmark here <a href="https://nbviewer.jupyter.org/gist/vals/a138b6b13ae566403687a241712e693b">https://nbviewer.jupyter.org/gist/vals/a138b6b13ae566403687a241712e693b</a> by Valentine Svensson.</p>
-</li>
-<li>
-<p><a href="https://github.com/omiq-ai/Multicore-opt-SNE">Parallel opt-SNE implementation with Python wrapper</a> <a href="https://www.biorxiv.org/content/early/2018/11/23/451690.article-metrics">preprint:Automated optimal parameters for T-distributed stochastic neighbor embedding improve visualization and allow analysis of large datasets</a></p>
-</li>
+<li><p><a href="https://anders-biostat.github.io/sleepwalk/">Sleepwalk: Walk through your embedding</a> So, can you be sure that the visualisation you get by using t-SNE, UMAP, MDS or the like really give you a faithful representation of your data? Are the points that lie almost on top of each other really all similar? Does the large distance on your 2D representation always mean lots of dissimilarities? Our sleepwalk package for the R statistical programming environment can help you answer these questions.</p></li>
+
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S2405471218302357?via%3Dihub">Generalizable and Scalable Visualization of Single-Cell Data Using Neural Networks</a> standard methods, such as t-stochastic neighbor embedding (t-SNE), are not scalable to datasets with millions of cells and the resulting visualizations cannot be generalized to analyze new datasets. Here we introduce -net-SNE-, a generalizable visualization approach that trains a neural network to learn a mapping function from high-dimensional single-cell gene-expression profiles to a low-dimensional visualization.</p></li>
+
+<li><p><a href="https://github.com/KrishnaswamyLab/PHATE">PHATE dimensionality reduction method</a> paper: <a href="http://biorxiv.org/content/early/2017/03/24/120378">http://biorxiv.org/content/early/2017/03/24/120378</a>  PHATE also uncovers and emphasizes progression and transitions (when they exist) in the data, which are often missed in other visualization-capable methods. Such patterns are especially important in biological data that contain, for example, single-cell phenotypes at different phases of differentiation, patients at different stages of disease progression, and gut microbial compositions that vary gradually between individuals, even of the same enterotype.</p></li>
+
+<li><p><a href="https://github.com/lmcinnes/umap">Uniform Manifold Approximation and Projection (UMAP)</a> is a dimension reduction technique that can be used for visualisation similarly to t-SNE, but also for general non-linear dimension reduction. The algorithm is founded on three assumptions about the data. Run from R: <a href="https://gist.github.com/crazyhottommy/caa5a4a4b07ee7f08f7d0649780832ef">https://gist.github.com/crazyhottommy/caa5a4a4b07ee7f08f7d0649780832ef</a></p></li>
+
+<li><p><a href="https://github.com/ropenscilabs/umapr">umapr</a> UMAP dimensionality reduction in R</p></li>
+
+<li><p><a href="https://github.com/jlmelville/uwot">uwot</a> An R package implementing the UMAP dimensionality reduction method. UMAP multi-threaded.</p></li>
+
+<li><p><a href="https://github.com/KlugerLab/FIt-SNE">Fast Fourier Transform-accelerated Interpolation-based t-SNE (FIt-SNE)</a> The FIt-SNE implementation is generally faster than UMAP when you have more than 3,000 cells. In the realm of 10,000&rsquo;s of cells FIt-SNE scales at the same rate as UMAP. However, note that this is a log-log scale. Even if FI-tSNE starts scaling at the rate of UMAP, it is still consistently about 4 times faster. In other words, a dataset that takes an hour for UMAP will take 15 minutes for FIt-SNE. see the benchmark here <a href="https://nbviewer.jupyter.org/gist/vals/a138b6b13ae566403687a241712e693b">https://nbviewer.jupyter.org/gist/vals/a138b6b13ae566403687a241712e693b</a> by Valentine Svensson.</p></li>
+
+<li><p><a href="https://github.com/omiq-ai/Multicore-opt-SNE">Parallel opt-SNE implementation with Python wrapper</a> <a href="https://www.biorxiv.org/content/early/2018/11/23/451690.article-metrics">preprint:Automated optimal parameters for T-distributed stochastic neighbor embedding improve visualization and allow analysis of large datasets</a></p></li>
 </ul>
+
 <h3 id="网络调控">网络调控</h3>
+
 <ul>
 <li><a href="https://github.com/cole-trapnell-lab/Scribe">Scribe</a>: Towards inferring causal regulations with single cell dynamics-coupled measurements</li>
 <li>single cell gene regulatory network analysis <a href="https://github.com/aertslab/SCENIC">https://github.com/aertslab/SCENIC</a></li>
 <li><a href="https://www.biorxiv.org/content/early/2018/10/17/446104">Single-Cell Transcriptomics Unveils Gene Regulatory Network Plasticity</a></li>
 </ul>
+
 <h3 id="分析可变多聚腺苷">分析可变多聚腺苷</h3>
+
 <ul>
 <li>We have written a Python+R pipeline called <a href="https://github.com/swbioinf/polyApipe">&ldquo;polyApipe&rdquo;</a> for identifying alternative polyadenylation (APA) sites in 10X Genomics scRNA-seq, based on the presence of polyadenylated reads. Once sites are identified, UMIs are counted for each site and the APA state of genes in cells can be determined. Given the sparse and noisy nature of this data, we have developed an R package <a href="https://github.com/pfh/weitrix">&ldquo;weitrix&rdquo;</a> to identify principal components of variation in APA based on measurements of varying accuracy and with many missing values. We then use varimax rotation to obtain independently interpretable components. In an embryonic mouse brain dataset, we identify 8 distinct components of APA variation, and assign biological meaning to each component in terms of the genes, cell type, and cell phase.</li>
 </ul>
+
 <h3 id="单细胞常用数据库">单细胞常用数据库</h3>
+
 <ul>
 <li><a href="https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gky900/5115823">CellMarker: a manually curated resource of cell markers in human and mouse</a></li>
 <li><a href="https://bioconductor.org/packages/devel/data/experiment/html/scRNAseq.html">scRNAseq bioc package</a> Gene-level counts for a collection of public scRNA-seq datasets, provided as SingleCellExperiment objects with cell- and gene-level metadata.</li>
 <li><a href="https://staging.data.humancellatlas.org/">human cell atlas database</a></li>
 <li><a href="https://www.ebi.ac.uk/gxa/sc/home">EMBL-EBI atlas</a></li>
-<li>(PanglaoDB)[https://panglaodb.se/) is a database for the scientific community interested in exploration of single cell RNA sequencing experiments from mouse and human. We collect and integrate data from multiple studies and present them through a unified framework.</li>
+<li>(PanglaoDB)[<a href="https://panglaodb.se/)">https://panglaodb.se/)</a> is a database for the scientific community interested in exploration of single cell RNA sequencing experiments from mouse and human. We collect and integrate data from multiple studies and present them through a unified framework.</li>
 <li><a href="https://bioinfo.uth.edu/scrnaseqdb/">scRNASeqDB</a>database, which contains 36 human single cell gene expression data sets collected from Gene Expression Omnibus (GEO)</li>
 <li><a href="http://jinglebells.bgu.ac.il/">JingleBell</a>A repository of standardized single cell RNA-Seq datasets for analysis and visualization at the single cell level.</li>
 <li><a href="https://portals.broadinstitute.org/single_cell">Broad single cell portal</a></li>
 <li>The <a href="http://imlspenticton.uzh.ch:3838/conquer/">conquer</a> (consistent quantification of external rna-seq data) repository is developed by Charlotte Soneson and Mark D Robinson at the University of Zurich, Switzerland. It is implemented in shiny and provides access to consistently processed public single-cell RNA-seq data sets.</li>
 </ul>
+
 <h3 id="值得一读的文献">值得一读的文献</h3>
+
 <ul>
 <li><a href="https://www.nature.com/articles/s41586-019-0933-9">A single-cell molecular map of mouse gastrulation and early organogenesis</a></li>
 <li><a href="https://www.nature.com/articles/s41586-019-0969-x">The single-cell transcriptional landscape of mammalian organogenesis</a></li>
@@ -643,7 +631,9 @@ a bug was in <code>rtsne</code>: <a href="https://gist.github.com/mikelove/74bbf
 <li><a href="https://www.biorxiv.org/content/early/2018/08/20/395004.1">Decomposing cell identity for transfer learning across cellular measurements, platforms, tissues, and species</a></li>
 <li><a href="https://www.nature.com/articles/nbt.3498">The contribution of cell cycle to heterogeneity in single-cell RNA-seq data</a></li>
 </ul>
+
 <h3 id="可视化分析">可视化分析</h3>
+
 <ul>
 <li><a href="https://github.com/chanzuckerberg/cellxgene">cellxgene</a> An interactive explorer for single-cell transcriptomics data. Leveraging modern web development techniques to enable fast visualizations of at least -1 million cells-, we hope to enable biologists and computational researchers to explore their data.</li>
 <li><a href="https://www.biorxiv.org/content/10.1101/512582v1">scSVA</a> from Aviv Regev lab: an interactive tool for big data visualization and exploration in single-cell omics. scSVA is memory efficient for more than -hundreds of millions of cells-, can be run locally or in a cloud, and generates high-quality figures.</li>
@@ -651,84 +641,79 @@ a bug was in <code>rtsne</code>: <a href="https://gist.github.com/mikelove/74bbf
 <li><a href="https://bioconductor.org/packages/release/bioc/html/iSEE.html">iSEE</a> Provides functions for creating an interactive Shiny-based graphical user interface for exploring data stored in SummarizedExperiment objects, including row- and column-level metadata. Particular attention is given to single-cell data in a SingleCellExperiment object with visualization of dimensionality reduction results.</li>
 <li><a href="https://github.com/YosefLab/VISION">VISION</a> A high-throughput and unbiased module for interpreting scRNA-seq data.</li>
 </ul>
+
 <h3 id="数据的拆分合并">数据的拆分合并</h3>
+
 <ul>
 <li><a href="https://www.biorxiv.org/content/early/2018/08/16/393280">scMerge</a></li>
 <li><a href="https://satijalab.org/seurat/v3.0/integration.html">Seurat V3</a></li>
 <li><a href="https://github.com/hms-dbmi/conos">Cons</a> Joint analysis of heterogeneous single-cell RNA-seq dataset collections. Single-cell RNA sequencing is often applied in study designs that include multiple individuals, conditions or tissues. To identify recurrent cell subpopulations in such heterogeneous collections, we developed Conos, an approach that relies on multiple plausible inter-sample mappings to construct a global graph connecting all measured cells. The graph enables identification of recurrent cell clusters and propagation of information between datasets in multi-sample or atlas-scale collections. published in <a href="https://www.nature.com/articles/s41592-019-0466-z?error=cookies_not_supported&amp;code=5680289b-6edb-40ad-9934-415dac4fdb2f">Nature Methods</a></li>
 <li><a href="https://bioconductor.org/packages/release/bioc/html/scAlign.html">scAlign</a> Bioconductor package. a tool for alignment, integration, and rare cell identification from scRNA-seq data</li>
 </ul>
+
 <h3 id="单细胞cnv分析">单细胞CNV分析</h3>
+
 <ul>
 <li><a href="https://www.ncbi.nlm.nih.gov/pubmed/29898899">Linking transcriptional and genetic tumor heterogeneity through allele analysis of single-cell RNA-seq data.</a> tool <a href="https://github.com/JEFworks/HoneyBADGER">HoneyBADGER</a></li>
 </ul>
+
 <h3 id="不断更新的单细胞测序技术">不断更新的单细胞测序技术</h3>
+
 <ul>
-<li>
-<p><a href="http://science.sciencemag.org/content/360/6385/176">Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding</a> no isolation of single cells needed!</p>
-</li>
-<li>
-<p><a href="https://www.cell.com/cell/fulltext/S0092-8674(18)30647-0">Dynamics and Spatial Genomics of the Nascent Transcriptome by Intron seqFISH</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/05/05/315333">Highly Multiplexed Single-Cell RNA-seq for Defining Cell Population and Transcriptional Spaces</a> blog post by Lior Patcher <a href="https://liorpachter.wordpress.com/2018/05/30/the-benefits-of-multiplexing/">The benefits of multiplexing</a>. Need to re-read carefully.</p>
-</li>
-<li>
-<p><a href="http://science.sciencemag.org/content/early/2018/06/20/science.aat5691">Three-dimensional intact-tissue sequencing of single-cell transcriptional states</a></p>
-</li>
+<li><p><a href="http://science.sciencemag.org/content/360/6385/176">Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding</a> no isolation of single cells needed!</p></li>
+
+<li><p><a href="https://www.cell.com/cell/fulltext/S0092-8674(18)30647-0">Dynamics and Spatial Genomics of the Nascent Transcriptome by Intron seqFISH</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/early/2018/05/05/315333">Highly Multiplexed Single-Cell RNA-seq for Defining Cell Population and Transcriptional Spaces</a> blog post by Lior Patcher <a href="https://liorpachter.wordpress.com/2018/05/30/the-benefits-of-multiplexing/">The benefits of multiplexing</a>. Need to re-read carefully.</p></li>
+
+<li><p><a href="http://science.sciencemag.org/content/early/2018/06/20/science.aat5691">Three-dimensional intact-tissue sequencing of single-cell transcriptional states</a></p></li>
 </ul>
+
 <h3 id="单细胞多组学">单细胞多组学</h3>
+
 <ul>
-<li>
-<p><a href="https://www.biorxiv.org/content/early/2018/10/04/434845">Multi-omic profiling of transcriptome and DNA methylome in single nuclei with molecular partitioning</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/10.1101/692608v1">Linking transcriptome and chromatin accessibility in nanoliter droplets for single-cell sequencing</a></p>
-</li>
-<li>
-<p><a href="http://cole-trapnell-lab.github.io/papers/cao-sci-car/">2018 sci-CAR paper: Joint profiling of chromatin accessibility and gene expression in thousands of single cells</a></p>
-</li>
-<li>
-<p><a href="https://www.nature.com/articles/s41556-018-0123-2">single-cell chromatin overall omic-scale landscape sequencing (scCOOL-seq) to generate a genome-wide map of DNA methylation and chromatin accessibility at single-cell resolution</a></p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/10.1101/529388v1">Simultaneous quantification of protein-DNA contacts and transcriptomes in single cells</a> scDamID&amp;T.</p>
-</li>
-<li>
-<p><a href="https://www.biorxiv.org/content/10.1101/538553v2">Self-reporting transposons enable simultaneous readout of gene expression and transcription factor binding in single cells</a> piggyBac transposase.</p>
-</li>
+<li><p><a href="https://www.biorxiv.org/content/early/2018/10/04/434845">Multi-omic profiling of transcriptome and DNA methylome in single nuclei with molecular partitioning</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/10.1101/692608v1">Linking transcriptome and chromatin accessibility in nanoliter droplets for single-cell sequencing</a></p></li>
+
+<li><p><a href="http://cole-trapnell-lab.github.io/papers/cao-sci-car/">2018 sci-CAR paper: Joint profiling of chromatin accessibility and gene expression in thousands of single cells</a></p></li>
+
+<li><p><a href="https://www.nature.com/articles/s41556-018-0123-2">single-cell chromatin overall omic-scale landscape sequencing (scCOOL-seq) to generate a genome-wide map of DNA methylation and chromatin accessibility at single-cell resolution</a></p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/10.1101/529388v1">Simultaneous quantification of protein-DNA contacts and transcriptomes in single cells</a> scDamID&amp;T.</p></li>
+
+<li><p><a href="https://www.biorxiv.org/content/10.1101/538553v2">Self-reporting transposons enable simultaneous readout of gene expression and transcription factor binding in single cells</a> piggyBac transposase.</p></li>
 </ul>
+
 <h3 id="单细胞等位基因特异性表达">单细胞等位基因特异性表达</h3>
+
 <ul>
 <li><a href="https://github.com/churchill-lab/scBASE">scBASE</a> A set of tools for quantitation of allele-specific expression from scRNA-Seq data</li>
 <li><a href="https://www.nature.com/articles/s41586-018-0836-1">paper: Genomic encoding of transcriptional burst kinetics</a></li>
 </ul>
+
 <h3 id="拟时分析的原理">拟时分析的原理</h3>
+
 <ul>
-<li>
-<p><a href="https://www.nature.com/articles/s41467-018-04696-6">Uncovering pseudotemporal trajectories with covariates from single cell and bulk expression data</a></p>
-</li>
-<li>
-<p>all different algorithms <a href="https://github.com/agitter/single-cell-pseudotime">https://github.com/agitter/single-cell-pseudotime</a></p>
-</li>
-<li>
-<p><a href="https://bioconductor.org/packages/release/bioc/html/phenopath.html">Genomic trajectories with heterogeneous genetic and environmental backgrounds</a></p>
-</li>
-<li>
-<p><a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty498/5043298">A descriptive marker gene approach to single-cell pseudotime inference</a></p>
-</li>
-<li>
-<p><a href="https://github.com/dynverse/dynmethods">A collection of 50 trajectory inference methods within a common interface</a> take a look of this!</p>
-</li>
-<li>
-<p><a href="http://velocyto.org/">velocyto</a> RNA abundance is a powerful indicator of the state of individual cells, but does not directly reveal dynamic processes such as cellular differentiation. Here we show that RNA velocity - the time derivative of RNA abundance - can be estimated by distinguishing unspliced and spliced mRNAs in standard single-cell RNA sequencing protocols. <a href="https://www.biorxiv.org/content/early/2017/10/19/206052">paper</a> <a href="https://www.nature.com/articles/d41586-018-05882-8">comment</a></p>
-</li>
-<li>
-<p><a href="http://stream.pinellolab.org/">STREAM</a> is an interactive computational pipeline for reconstructing complex celluar developmental trajectories from sc-qPCR, scRNA-seq or scATAC-seq data from Luca Pinello Lab.</p>
-</li>
+<li><p><a href="https://www.nature.com/articles/s41467-018-04696-6">Uncovering pseudotemporal trajectories with covariates from single cell and bulk expression data</a></p></li>
+
+<li><p>all different algorithms <a href="https://github.com/agitter/single-cell-pseudotime">https://github.com/agitter/single-cell-pseudotime</a></p></li>
+
+<li><p><a href="https://bioconductor.org/packages/release/bioc/html/phenopath.html">Genomic trajectories with heterogeneous genetic and environmental backgrounds</a></p></li>
+
+<li><p><a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty498/5043298">A descriptive marker gene approach to single-cell pseudotime inference</a></p></li>
+
+<li><p><a href="https://github.com/dynverse/dynmethods">A collection of 50 trajectory inference methods within a common interface</a> take a look of this!</p></li>
+
+<li><p><a href="http://velocyto.org/">velocyto</a> RNA abundance is a powerful indicator of the state of individual cells, but does not directly reveal dynamic processes such as cellular differentiation. Here we show that RNA velocity - the time derivative of RNA abundance - can be estimated by distinguishing unspliced and spliced mRNAs in standard single-cell RNA sequencing protocols. <a href="https://www.biorxiv.org/content/early/2017/10/19/206052">paper</a> <a href="https://www.nature.com/articles/d41586-018-05882-8">comment</a></p></li>
+
+<li><p><a href="http://stream.pinellolab.org/">STREAM</a> is an interactive computational pipeline for reconstructing complex celluar developmental trajectories from sc-qPCR, scRNA-seq or scATAC-seq data from Luca Pinello Lab.</p></li>
 </ul>
+
 <h3 id="单细胞大型数据分析">单细胞大型数据分析</h3>
+
 <p>估计我也用不到</p>
+
 <ul>
 <li><a href="https://genome.cshlp.org/content/early/2018/05/03/gr.230771.117.abstract">bigSCale</a>: an analytical framework for big-scale single-cell data. <a href="https://github.com/iaconogi/bigSCale">github link</a> for millions of cells (starts with a count matrix)
 <a href="https://github.com/iaconogi/bigSCale2">bigScale2</a></li>
@@ -738,8 +723,11 @@ a bug was in <code>rtsne</code>: <a href="https://gist.github.com/mikelove/74bbf
 <li><a href="https://github.com/aertslab/SCope">SCope: Visualization of large-scale and high dimensional single cell data</a></li>
 <li><a href="https://bitbucket.org/jerry00/scumi-dev/src/master/">Scumi</a> Summarizing single-cell RNA-sequencing data with unified molecular identifiers. scumi is a flexible Python package to process fastq files generated from different single-cell RNA-sequencing (scRNA-seq) protocols to produce a gene-cell sparse expression matrix for downstream analyses: CEL-Seq2, 10x Chromium, Drop-seq, Seq-Well, CEL-Seq2, inDrops, and SPLiT-seq</li>
 </ul>
+
 <h2 id="单细胞领域保持更新">单细胞领域保持更新</h2>
+
 <p><a href="https://www.scrna-tools.org/">scRNA Tools网站</a>以及用scRNA-tools发表的文献:<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006245">Exploring the single-cell RNA-seq analysis landscape with the scRNA-tools database</a></p>
+
 <h3 id="10x-单细胞污染怎么办">10x 单细胞污染怎么办</h3></article>
     <footer class="post-footer">
       

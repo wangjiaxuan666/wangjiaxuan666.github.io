@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/">
@@ -237,33 +237,45 @@
       <p class="post-meta">@Wang Jiaxuan · Oct 10, 2020 · 4 min read</p>
     </header>
     <article class="post-content"><p>第二个R包！</p>
+
 <h2 id="密度热点图">密度热点图</h2>
+
 <p>这个事情起因是客户想要一个能够展现单细胞数据和普通转录组数据之间相似性的图。我推荐客户，可以考虑画一个散点图， 横坐标是单细胞数据，纵坐标是普通转录组数据。再用相关性来做检验相似性强弱。</p>
+
 <p>最开始是没想画密度热点图的，但是因为后面又看到一个文章。觉得自己想尝试一下，就用<code>ggplot2</code>包的<code>geom_hex</code>和<code>stat</code>包 的<code>cor.text</code>以及<code>lm</code>进行了尝试了。结果还可以！下图就是我自己造的数据生成的例图。大概就是这个样子的。只是细节可能还会调整一些。</p>
-<p><!-- raw HTML omitted --></p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200503152649499.png" alt="image-20200503152649499" style="zoom:20%;" /></p>
+
 <p>但是 <code>geom_hex</code>并不是我想象中最优解，只是当时客户催的紧要结果，而且实话说我也没有太多时间去摸索。就交付了。觉得不是最优解的原因是</p>
+
 <ol>
 <li>geom_hex统计每一个六边形区域内的点数，并不是每一个数值都有一个点在图中。简单理解，就是你有1000个数据画图，geom_hex可能就给你10个六边形（这是完全可能的），数据多的时候不明显，数据一旦少了就会非常明显。</li>
 <li>颜色变化不显著，因为是算一个hex中的频数，所以差异不会很明显。</li>
 </ol>
+
 <p>但是我们还是可以知道，密度热点图还是非常好看的，不是吗，遇到展示两组数据相似性的时候，帮助是非常大的。</p>
+
 <h2 id="自己造r包">自己造R包</h2>
+
 <p>五一时间，第一天去了新房子里钻孔，拧水龙头（自我感觉越来越熟练）。第二天去了上下九溜达了。第三天想着还是把这个脚本再完善一下。所以就鼓捣了一个R包。这个R包本质上不是为了画密度热点图。而是为了收录自己平时写的一些实用小脚本的。</p>
-<p>R包，我取名为<code>xbox</code>,目前收录了做数据框的列之间的T检验的``col_ttest<code>，以及转置数据框，让行列互相颠倒的</code>df_t<code>, 还有根据KO id,给出KEGG数据库三个层级注释的</code>koid_to_pathway<code>，其次还有</code>tibble<code>和</code>data.frame<code>之间转换的</code>get_tb<code>和</code>get_df`。具体的用处和例子可以看帮助文档或者Github上的说明。点击<strong>阅读原文</strong>可以跳转Github。</p>
+
+<p>R包，我取名为<code>xbox</code>,目前收录了做数据框的列之间的T检验的`<code>col_ttest</code>，以及转置数据框，让行列互相颠倒的<code>df_t</code>, 还有根据KO id,给出KEGG数据库三个层级注释的<code>koid_to_pathway</code>，其次还有<code>tibble</code>和<code>data.frame</code>之间转换的<code>get_tb</code> 和 <code>get_df</code>。具体的用处和例子可以看帮助文档或者Github上的说明。点击<strong>阅读原文</strong>可以跳转Github。</p>
+
 <p>今天新增的功能就是画密度热点图的<code>heatpoint</code>和<code>plot</code></p>
+
 <p>例子如下：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">points = <span style="color:#00d;font-weight:bold">5000</span>
-x = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rnorm</span>(points/<span style="color:#00d;font-weight:bold">2</span>))
-y = x + <span style="color:#06b;font-weight:bold">rnorm</span>(points/<span style="color:#00d;font-weight:bold">2</span>,sd=<span style="color:#00d;font-weight:bold">0.8</span>)
-x = <span style="color:#06b;font-weight:bold">sign</span>(x)*<span style="color:#06b;font-weight:bold">abs</span>(x)^1.3
-<span style="color:#06b;font-weight:bold">heatpoint</span>(x,y) -&gt; dat_result
-<span style="color:#06b;font-weight:bold">str</span>(dat_result)
+x = <span style="color:#888;font-weight:bold">c</span>(rnorm(points/<span style="color:#00d;font-weight:bold">2</span>))
+y = x + rnorm(points/<span style="color:#00d;font-weight:bold">2</span>,sd=<span style="color:#00d;font-weight:bold">0.8</span>)
+x = <span style="color:#080">sign</span>(x)*<span style="color:#080">abs</span>(x)^<span style="color:#00d;font-weight:bold">1.3</span>
+heatpoint(x,y) -&gt; dat_result
+str(dat_result)
 <span style="color:#888">#&gt; List of 3</span>
 <span style="color:#888">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
 <span style="color:#888">#&gt;  $ cor.result:List of 3</span>
 <span style="color:#888">#&gt;  $ lm.result :List of 3</span>
 <span style="color:#888">#including the three list the plot data</span>
-<span style="color:#06b;font-weight:bold">head</span>(dat_result$plot.data)
+<span style="color:#080">head</span>(dat_result$plot.data)
 <span style="color:#888">#&gt;              x           y    Density</span>
 <span style="color:#888">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
 <span style="color:#888">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
@@ -272,28 +284,37 @@ x = <span style="color:#06b;font-weight:bold">sign</span>(x)*<span style="color:
 <span style="color:#888">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
 <span style="color:#888">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
 <span style="color:#888"># and the result of cor</span>
-<span style="color:#06b;font-weight:bold">data.frame</span>(dat_result$cor.result)
+<span style="color:#888;font-weight:bold">data.frame</span>(dat_result$cor.result)
 <span style="color:#888">#&gt;         cor pvalue                               method</span>
 <span style="color:#888">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
 <span style="color:#888"># and the result of lm</span>
-<span style="color:#06b;font-weight:bold">str</span>(dat_result$lm.result)
+str(dat_result$lm.result)
 <span style="color:#888">#&gt; List of 3</span>
 <span style="color:#888">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
 <span style="color:#888">#&gt;  $ method : symbol lm</span>
-<span style="color:#888">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span>
-</code></pre></div><p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">plot</span>(dat_result)
-</code></pre></div><p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/README-plot-1.png" alt=""></p>
+<span style="color:#888">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span></code></pre></div>
+<p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">plot(dat_result)</code></pre></div>
+<p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/README-plot-1.png" alt="" /></p>
+
 <h2 id="heatpoint参数">Heatpoint参数</h2>
+
 <p><code>plot</code>没设置什么参数，但是<code>heatpoint</code>设置了很多参数了。只是大部分参数都设置了默认值。其实<code>heatpoint(x,y) -&gt; dat_result</code>等价于：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result &lt;- <span style="color:#06b;font-weight:bold">heatpoint</span>(x,y,xlim = <span style="color:#080;font-weight:bold">NULL</span>,ylim = <span style="color:#080;font-weight:bold">NULL</span>,log = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>,grid = <span style="color:#00d;font-weight:bold">100</span>,only = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>,formula = y ~ x,<span style="color:#080;font-weight:bold">...</span>)
-</code></pre></div><p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result &lt;- heatpoint(x,y,xlim = <span style="color:#080;font-weight:bold">NULL</span>,ylim = <span style="color:#080;font-weight:bold">NULL</span>,log = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>,grid = <span style="color:#00d;font-weight:bold">100</span>,only = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>,formula = y ~ x,<span style="color:#080;font-weight:bold">...</span>)</code></pre></div>
+<p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
+
 <h2 id="附">附</h2>
+
 <p>最开始没想造R包的，本质上是当个调包侠的。但是搜来搜去都没有什么好答案。最贴近的答案是网上一个叫Kamil Slowikowski的教程。链接是<a href="https://slowkow.com/notes/ggplot2-color-by-density/">https://slowkow.com/notes/ggplot2-color-by-density/</a>.</p>
+
 <p>BUT 我好像没测试成功在我的数据上，也就是说你跑他提供的例子是没问题的，但是我自己的数据就不行了。所以继续寻找。最后找到了一个非常牛的R包-LSD。讲实话，我看这个LSD的源代码看了挺久的，我觉得这个作者真的是很牛。以后继续学习吧。</p>
+
 <p>回到正题上，LSD提供了一个可行的方法，叫做<code>heatscatter</code>，但是这个函数是只出图，并且是<code>base::point</code>画图。这样不仅我会嫌弃它画图丑，还嫌弃我自己不会<code>base</code>画图，所以我也改不了，没办法让结果按照我的想法改进。</p>
+
 <p>所以，仔细学习了作者的代码，然后做改进，加入线性回归和相关性检验. 将计算和画图功能分开，用<code>ggplot2</code>进行可视化。完美！</p>
+
 <p>目前<code>heatpoint</code>功能已经整合在<code>xbox</code>包里了，放在<a href="https://github.com/wangjiaxuan666/xbox">gitub</a>上，欢迎使用并提出宝贵意见。</p></article>
     <footer class="post-footer">
       

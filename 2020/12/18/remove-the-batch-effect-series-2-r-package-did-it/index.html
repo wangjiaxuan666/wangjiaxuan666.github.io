@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/">
@@ -237,23 +237,41 @@
       <p class="post-meta">@Wang Jiaxuan · Dec 18, 2020 · 5 min read</p>
     </header>
     <article class="post-content"><p>自己写的fixbatch有效果了，小小激动一下，开心</p>
+
 <h2 id="之前的事情">之前的事情</h2>
+
 <p>我周二时候写了个文章，当时是遇到了一个项目问题。是因为批次效应，导致了样本的聚类效果不好，所以我一来是想解决项目问题，二来就想趁此机会，学习下如何矫正批次效应。</p>
+
 <p>当然实际项目并不会给我时间矫正。用<code>sva</code>R包的<code>combat.r</code>矫正后，就已经把问题解决了。</p>
+
 <p>但是最开始的时候，发现了一个问题。就是我明明看到离群的八个样本的表达量箱线图，展现的极值，中位数都和其他正常样本不一样。但是想法也简单，先用中位数矫正的方法矫正下批次效应。看看效果。</p>
+
 <h3 id="preprocesscore矫正效果">preprocessCore矫正效果</h3>
+
 <p>但结果就是用经典的R包<code>preprocessCore</code>R包中位数矫正的结果就是矫正不好。甚至可以说矫正与否没有任何明显变化。只是左右颠倒了下位置,有啥用啊, PCA是相对距离,坐标轴的数字没有太多意义!</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218184741952.png" alt="image-20201218184741952"></p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218184741952.png" alt="image-20201218184741952" /></p>
+
 <p>后面我自己不是重新造了一个批次效应的数据，然后用<code>preprocessCore</code>做了矫正，但是效果没有任何变化，如下图，也就是说<code>preprocessCore</code>的中位数矫正的方法可能只是一种类似于标准化一样的功能，只是适用于将缩放到同一个范围尺度内。类似于<code>scale</code>和<code>log</code>一样的功能。</p>
+
 <p>本质上到这里，我就应该放弃用<code>preprocessCore</code>的中位数矫正的思路了。但是我去看<code>edgeR</code>的<code>calcNormFactors</code>函数时候，重新会想起矫正因子的作用，意识到其实<code>edgeR</code>和<code>Deseq2</code>这些差异的R包都会去计算校正因子，从矫正数据分布，然后再做统计检验。</p>
+
 <p>而且他们用的都是，表达量中间，以及差异变化比较小的“稳定基因”来计算，而不是用全部的基因来计算。突然之间，我想到了一个方法，就是用“管家基因”来计算矫正因子。</p>
+
 <p>然后我就分别根据自己之前的一篇文章，利用变异系数以及表达量之和来确定管家基因。并将脚本整理成函数，打包成了R包<code>fixbacth</code>。</p>
+
 <p>实现这个想法花不了多少时间，打包成R包也没画多久时间。但是没想到的时候，自己造的例子可以，如下图。</p>
+
 <p>但是真实的数据。这个利用管家基因的矫正思路是没有任何效果的。PCA矫正前面什么样子，矫正后还是什么样子，最多PC1的百分比变化了几个百分点。</p>
+
 <p>心凉凉的，一直没想到为什么，我决定放弃了。但后面准备写篇公众号，给大家说下，中位数矫正没用的时候。但写着公众号的时候，突然想到：</p>
-<p>我算来的的管家基因根本不是管家基因，<strong>因为我是把所有样本放在一起计算管家基因，最后得到的肯定是在各个样本中没有任何变化的基因</strong>。（因为这个基因只有在离群组和正常组中<em>表达量一致</em>，才会被我选择！！！）</p>
+
+<p>我算来的的管家基因根本不是管家基因，<strong>因为我是把所有样本放在一起计算管家基因，最后得到的肯定是在各个样本中没有任何变化的基因</strong>。（因为这个基因只有在离群组和正常组中*表达量一致*，才会被我选择！！！）</p>
+
 <p>这不是垃圾嘛，我这样算出来肯定是矫正因子在<strong>1</strong>徘徊啊。肯定矫正没有任何效果，被自己的脑回路打败了~~</p>
+
 <p>所以我需要：</p>
+
 <ol>
 <li>区分批次效应分组</li>
 <li>分别计算每个批次组的“稳定基因”</li>
@@ -261,32 +279,39 @@
 <li>利用“共有的内参基因”来计算矫正因子</li>
 <li>再反哺到原始数据上</li>
 </ol>
-<p>具体思路如下：</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201217201517369.png" alt="image-20201217201517369"></p>
-<p>说实话，目的是这样的，用R代码实现起来，困难的一度让我怀疑自己没能力实现自己的想法。虽然我也去Google搜索，但是答案都不让我满意。是，<code>tidyverse</code>我很熟，<code>tidyverse</code>全家桶我肯定实现我的目标。但我不是写脚本呀，我是想做成一个R包。如果我用<code>tidyverse</code>写R包，那我这个R包算是low到不行了，不仅加载一堆附属包，运算速度估计慢的一B。</p>
-<p>所以我想用<code>base</code>函数族来实现目标，但是搜到的都是<code>split</code>+<code>apply</code>的解决思路。我觉得太繁琐了，缺乏美感。我就去看<code>sva</code>的源码，发现别人写的代码就是好看。赞叹不已，然后推敲了一段时间，偷学了三行命令。</p>
-<p>自己在此基础上完成了构思，目前更新的R包<code>fixbatch</code>已经重新放在<code>GIthub</code>了。</p>
-<p>效果非常赞！心满意足，开心到爆炸！</p>
-<pre><code class="language-{r}" data-lang="{r}"># BiocManager::install(&quot;edgeR&quot;)
-# BiocManager::install(&quot;preprocessCore&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/autopca&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/xbox&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/fixbatch&quot;)
-# install.packages(&quot;patchwork&quot;)
-# set workdir
 
-# 记得更新我的R包奥，要不然以前的BUG，得让你怀疑人生
-devtools::update_packages(&quot;autopca&quot;)
-devtools::update_packages(&quot;xbox&quot;)
-devtools::update_packages(&quot;fixbatch&quot;)
-# 加载R包
-require(autopca)
-require(xbox)
-require(fixbatch)
-require(tidyverse)
-require(preprocessCore)
-require(patchwork)
-</code></pre><p>因为我自己构建的数据，离群的是&quot;A-CK-1,A-2,AT-1,AT-3,A-3&quot;样本，所以批次分组如下设计。一定要记得和数据的列名排序对应！</p>
+<p>具体思路如下：</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201217201517369.png" alt="image-20201217201517369" /></p>
+
+<p>说实话，目的是这样的，用R代码实现起来，困难的一度让我怀疑自己没能力实现自己的想法。虽然我也去Google搜索，但是答案都不让我满意。是，<code>tidyverse</code>我很熟，<code>tidyverse</code>全家桶我肯定实现我的目标。但我不是写脚本呀，我是想做成一个R包。如果我用<code>tidyverse</code>写R包，那我这个R包算是low到不行了，不仅加载一堆附属包，运算速度估计慢的一B。</p>
+
+<p>所以我想用<code>base</code>函数族来实现目标，但是搜到的都是<code>split</code>+<code>apply</code>的解决思路。我觉得太繁琐了，缺乏美感。我就去看<code>sva</code>的源码，发现别人写的代码就是好看。赞叹不已，然后推敲了一段时间，偷学了三行命令。</p>
+
+<p>自己在此基础上完成了构思，目前更新的R包<code>fixbatch</code>已经重新放在<code>GIthub</code>了。</p>
+
+<p>效果非常赞！心满意足，开心到爆炸！</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#888"># BiocManager::install(&#34;edgeR&#34;)</span>
+<span style="color:#888"># BiocManager::install(&#34;preprocessCore&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/autopca&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/xbox&#34;)</span>
+<span style="color:#888"># devtools::install_github(&#34;wangjiaxuan666/fixbatch&#34;)</span>
+<span style="color:#888"># install.packages(&#34;patchwork&#34;)</span>
+<span style="color:#888"># set workdir</span>
+
+<span style="color:#888"># 记得更新我的R包奥，要不然以前的BUG，得让你怀疑人生</span>
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;autopca&#34;</span>)
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;xbox&#34;</span>)
+devtools::update_packages(<span style="color:#d20;background-color:#fff0f0">&#34;fixbatch&#34;</span>)
+<span style="color:#888"># 加载R包</span>
+<span style="color:#080;font-weight:bold">require</span>(autopca)
+<span style="color:#080;font-weight:bold">require</span>(xbox)
+<span style="color:#080;font-weight:bold">require</span>(fixbatch)
+<span style="color:#080;font-weight:bold">require</span>(tidyverse)
+<span style="color:#080;font-weight:bold">require</span>(preprocessCore)
+<span style="color:#080;font-weight:bold">require</span>(patchwork)</code></pre></div>
+<p>因为我自己构建的数据，离群的是&rdquo;A-CK-1,A-2,AT-1,AT-3,A-3&rdquo;样本，所以批次分组如下设计。一定要记得和数据的列名排序对应！</p>
+
 <table>
 <thead>
 <tr>
@@ -296,6 +321,7 @@ require(patchwork)
 <th>批次</th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td>A-1_fpkm</td>
@@ -303,48 +329,56 @@ require(patchwork)
 <td>B-1_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>A-2_fpkm</td>
 <td>2</td>
 <td>B-2_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>A-3_fpkm</td>
 <td>2</td>
 <td>B-3_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>AT-1_fpkm</td>
 <td>2</td>
 <td>BT-1_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>AT-2_fpkm</td>
 <td>1</td>
 <td>BT-2_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>AT-3_fpkm</td>
 <td>2</td>
 <td>BT-3_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>A-CK-1_fpkm</td>
 <td>2</td>
 <td>BCK-1_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>A-CK-2_fpkm</td>
 <td>1</td>
 <td>BCK-2_fpkm</td>
 <td>1</td>
 </tr>
+
 <tr>
 <td>A-CK-3_fpkm</td>
 <td>1</td>
@@ -353,35 +387,39 @@ require(patchwork)
 </tr>
 </tbody>
 </table>
+
 <p>下面就是设计批次分组，并开始中位数矫正了</p>
-<pre><code class="language-{r}" data-lang="{r}">#不矫正的结果
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#888">#不矫正的结果</span>
 dat_pca_nofix = pca_data_tidy(dat)
-p1 &lt;- pca(dat_pca_nofix,rename = &quot;replace&quot;,
-          str_sample = &quot;_fpkm&quot;,
-          str_group = &quot;-\\d$&quot;,
+p1 &lt;- pca(dat_pca_nofix,rename = <span style="color:#d20;background-color:#fff0f0">&#34;replace&#34;</span>,
+          str_sample = <span style="color:#d20;background-color:#fff0f0">&#34;_fpkm&#34;</span>,
+          str_group = <span style="color:#d20;background-color:#fff0f0">&#34;-\\d$&#34;</span>,
           display_sample = T,
           add_ploy = T) + 
-      ggtitle(&quot;Unnormalised dat&quot;)
+      ggtitle(<span style="color:#d20;background-color:#fff0f0">&#34;Unnormalised dat&#34;</span>)
 
-#矫正的结果
-bath = c(1L, 2L, 2L, 2L, 1L, 2L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L)#设置批次分组
-dat_df = get_df(dat)#change into data.frame
+<span style="color:#888">#矫正的结果</span>
+bath = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">2L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>, <span style="color:#00d;font-weight:bold">1L</span>)<span style="color:#888">#设置批次分组</span>
+dat_df = get_df(dat)<span style="color:#888">#change into data.frame</span>
 
-dat_fix2 = norm_fix(dat_df,bath,expcv = 0.5, exphigh = 0.8, explow = 0.4)
+dat_fix2 = norm_fix(dat_df,bath,expcv = <span style="color:#00d;font-weight:bold">0.5</span>, exphigh = <span style="color:#00d;font-weight:bold">0.8</span>, explow = <span style="color:#00d;font-weight:bold">0.4</span>)
 
 dat_pca_fix = pca_data_tidy(dat_fix2)
 
-p2 &lt;- pca(dat_pca_fix,rename = &quot;replace&quot;,
-          str_sample = &quot;_fpkm&quot;,
-          str_group = &quot;-\\d$&quot;,
+p2 &lt;- pca(dat_pca_fix,rename = <span style="color:#d20;background-color:#fff0f0">&#34;replace&#34;</span>,
+          str_sample = <span style="color:#d20;background-color:#fff0f0">&#34;_fpkm&#34;</span>,
+          str_group = <span style="color:#d20;background-color:#fff0f0">&#34;-\\d$&#34;</span>,
           display_sample = T,
           add_ploy = T) + 
-      ggtitle(&quot;Normalised dat&quot;)
+      ggtitle(<span style="color:#d20;background-color:#fff0f0">&#34;Normalised dat&#34;</span>)
 
-p1+p2+plot_annotation(tag_levels = 'A')
-</code></pre><p>可以看到效果是不错的，开心了，后续我会从GEO数据库里下载一些数据，做下进一步测试，以及利用PC的坐标来做下矫正效果的展示，毕竟现在完全是看图，主观性强。</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218183724770.png" alt="image-20201218183724770"></p>
+p1+p2+plot_annotation(tag_levels = <span style="color:#d20;background-color:#fff0f0">&#39;A&#39;</span>)</code></pre></div>
+<p>可以看到效果是不错的，开心了，后续我会从GEO数据库里下载一些数据，做下进一步测试，以及利用PC的坐标来做下矫正效果的展示，毕竟现在完全是看图，主观性强。</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218183724770.png" alt="image-20201218183724770" /></p>
+
 <p>不过现在我也是心满意足了, 毕竟<code>fixbatch</code>这个矫正的脚本算是目前,我最高最水平的脚本之一, 脚本复杂倒是不高, 但好在这个期间, 不断开发自己的想法, 并用一种比较满意的代码(越简单越满意)去实现. 感觉还是非常傲娇的.</p>
+
 <p>具体的代码,大家可以点击原文链接, 到我的<a href="https://github.com/wangjiaxuan666/fixbatch/blob/main/R/batch_housekeep.R">Github</a>上查看, 错误之处多谢指点.</p></article>
     <footer class="post-footer">
       

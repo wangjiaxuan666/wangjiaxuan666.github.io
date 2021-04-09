@@ -26,7 +26,7 @@
 
   
   <meta name="author" content="Jiaxuan Wang">
-  <meta name="description" content="在研究生的时候，就用R绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了9例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
+  <meta name="description" content="在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
 ">
 
   
@@ -34,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="来一点高级的venn图">
-    <meta name="twitter:description" content="在研究生的时候，就用R绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了9例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
+    <meta name="twitter:description" content="在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
 ">
     <meta name="twitter:image" content="/media/dataviz.jpg">
   
@@ -42,7 +42,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="来一点高级的venn图">
-  <meta property="og:description" content="在研究生的时候，就用R绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了9例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
+  <meta property="og:description" content="在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
 ">
   <meta property="og:url" content="./2019/05/31/a-new-r-packages-to-plot-venn-diagram/">
   <meta property="og:image" content="/media/dataviz.jpg">
@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0">
+<meta name="generator" content="Hugo 0.55.6">
 
 
 <link rel="canonical" href="./2019/05/31/a-new-r-packages-to-plot-venn-diagram/">
@@ -236,29 +236,38 @@
       <h1 class="post-title">来一点高级的venn图</h1>
       <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 3 min read</p>
     </header>
-    <article class="post-content"><p>在研究生的时候，就用<em>R</em>绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了<em>9</em>例转录组的数据，只好硬着头皮去学习了。所以当时还是根据<code>excel</code>的<code>vlookup</code>函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用<code>VennDiagram</code>包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。</p>
+    <article class="post-content"><p>在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据<code>excel</code>的<code>vlookup</code>函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用<code>VennDiagram</code>包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。</p>
+
 <h1 id="前言">前言</h1>
-<p>在研究生的时候，就用<em>R</em>绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了<em>9</em>例转录组的数据，只好硬着头皮去学习了。所以当时还是根据<code>excel</code>的<code>vlookup</code>函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用<code>VennDiagram</code>包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。哈哈</p>
+
+<p>在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据<code>excel</code>的<code>vlookup</code>函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用<code>VennDiagram</code>包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。哈哈</p>
+
 <p>其实韦恩图很多在线绘制的网站：</p>
+
 <blockquote>
 <ul>
-<li>
-<p><a href="http://bioinfogp.cnb.csic.es/tools/venny/index.html">可做四组分韦恩图</a></p>
-</li>
-<li>
-<p><a href="http://jvenn.toulouse.inra.fr/app/example.html">高级好看强烈推荐</a></p>
-</li>
+<li><p><a href="http://bioinfogp.cnb.csic.es/tools/venny/index.html">可做四组分韦恩图</a></p></li>
+
+<li><p><a href="http://jvenn.toulouse.inra.fr/app/example.html">高级好看强烈推荐</a></p></li>
 </ul>
 </blockquote>
-<p>说实话，在线绘制的网站很强大，只要点开上述网站，估计你也没兴趣看我写的R语言绘制韦恩图。比如你可以在上述网站做出来下面的韦恩图。我擦勒，这么好看的图，在线就可以直接出来结果，如果你继续往下看用<em>R</em>语言如何绘制韦恩图。那你基本上是<strong>找虐的主</strong>了。</p>
-<p><img src="https://i.imgur.com/8ZGkYUr.png" alt="img"></p>
+
+<p>说实话，在线绘制的网站很强大，只要点开上述网站，估计你也没兴趣看我写的R语言绘制韦恩图。比如你可以在上述网站做出来下面的韦恩图。我擦勒，这么好看的图，在线就可以直接出来结果，如果你继续往下看用*R*语言如何绘制韦恩图。那你基本上是<strong>找虐的主</strong>了。</p>
+
+<p><img src="https://i.imgur.com/8ZGkYUr.png" alt="img" /></p>
+
 <p>所以我肯定不能再用丑比的，非人类友好的，参数巨复杂的<code>VennDiagram</code>包来画普通的韦恩图了。要来点高级的。</p>
+
 <p>不过开始之前，我还是要劝各位一句。上述的在线网站真的够用了。谁用谁知道，就跟明明现在网上很多在线绘制进化树的网站，但是大家还是喜欢用<code>DNAman</code>来比对，<code>MEGA</code>来优化。这不是找虐嘛。</p>
+
 <h1 id="来点高级的">来点高级的</h1>
+
 <p>发现了一个R包，说牛逼是真牛逼，画的韦恩图不局限6组分，而是可以实现任意组分，并且是基于<strong>拓扑学</strong>运算的，图形高大上。说傻也傻，画的图不能展现在R自带的绘图窗中，必须展现在<strong>AI</strong>等<code>svg</code>编辑器中。巨麻烦，我都懒的整理自己的数据来写公众号，因此这个我也不会标原创，虽然我是翻译的，哈哈哈。</p>
-<p>浪费我两个小时摸索这个<em>R</em>包。我也是<strong>傻包</strong></p>
+
+<p>浪费我两个小时摸索这个*R*包。我也是<strong>傻包</strong></p>
+
 <h2 id="画少数组分的韦恩图">画少数组分的韦恩图</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">library</span>(nVennR)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#080;font-weight:bold">library</span>(nVennR)
 exampledf
 <span style="color:#888">#&gt;    Employee SAS Python R</span>
 <span style="color:#888">#&gt; 1      A001   Y      Y Y</span>
@@ -279,24 +288,31 @@ exampledf
 <span style="color:#888">#&gt; 16     A016   N      N Y</span>
 <span style="color:#888">#&gt; 17     A017   N      Y N</span>
 <span style="color:#888">#&gt; 18     A018   N      Y N</span>
-sas &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, SAS == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-python &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, Python == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-rr &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, R == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-myV &lt;- <span style="color:#06b;font-weight:bold">plotVenn</span>(<span style="color:#06b;font-weight:bold">list</span>(SAS=sas, PYTHON=python, R=rr), nCycles = <span style="color:#00d;font-weight:bold">2000</span>, outFile = <span style="color:#d20;background-color:#fff0f0">&#34;niubi.svg&#34;</span>)
-</code></pre></div><p>绘制的图形如下：</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757458631.png" alt="1552757458631"></p>
+sas &lt;- <span style="color:#080">subset</span>(exampledf, SAS == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+python &lt;- <span style="color:#080">subset</span>(exampledf, Python == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+rr &lt;- <span style="color:#080">subset</span>(exampledf, R == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
+myV &lt;- plotVenn(<span style="color:#888;font-weight:bold">list</span>(SAS=sas, PYTHON=python, R=rr), nCycles = <span style="color:#00d;font-weight:bold">2000</span>, outFile = <span style="color:#d20;background-color:#fff0f0">&#34;niubi.svg&#34;</span>)</code></pre></div>
+<p>绘制的图形如下：</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757458631.png" alt="1552757458631" /></p>
+
 <p>这个图不得不说是很高大上的。但是人类不友好啊，各位要是为了这么一张图，发表在文章中，花点时间是值得的，我就不研究了。没那个刚需。</p>
+
 <h2 id="美化图形">美化图形</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- <span style="color:#06b;font-weight:bold">createVennObj</span>(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
-<span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, opacity = <span style="color:#00d;font-weight:bold">0.1</span>, borderWidth = <span style="color:#00d;font-weight:bold">3</span>)
-</code></pre></div><p>设置透明度和边界宽度</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757806458.png" alt="1552757806458"></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, setColors = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))
-</code></pre></div><p>设置颜色</p>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757905357.png" alt="1552757905357"></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- createVennObj(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#080">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
+showSVG(nVennObj = myV3, opacity = <span style="color:#00d;font-weight:bold">0.1</span>, borderWidth = <span style="color:#00d;font-weight:bold">3</span>)</code></pre></div>
+<p>设置透明度和边界宽度</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757806458.png" alt="1552757806458" /></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">showSVG(nVennObj = myV3, setColors = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))</code></pre></div>
+<p>设置颜色</p>
+
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757905357.png" alt="1552757905357" /></p>
+
 <p>这个包还是先养肥再杀吧，希望作者能记得更新迭代下，目前真的很不优化。但是如果要在文章中展现，花点时间是研究是值得的</p>
+
 <blockquote>
-<p>官方文档：https://cran.r-project.org/web/packages/nVennR/vignettes/nVennR.html</p>
+<p>官方文档：<a href="https://cran.r-project.org/web/packages/nVennR/vignettes/nVennR.html">https://cran.r-project.org/web/packages/nVennR/vignettes/nVennR.html</a></p>
 </blockquote></article>
     <footer class="post-footer">
       
