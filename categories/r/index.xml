@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Woney&#39;s Blog</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="./categories/r/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="./categories/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>处理批次效应连续剧第四集（R包有logo了）</title>
       <link>./2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link>
@@ -174,7 +170,7 @@
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid>
-      <description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内*R*开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内&lt;em&gt;R&lt;/em&gt;开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -218,7 +214,7 @@
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid>
-      <description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的*R*包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description>
+      <description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -236,8 +232,7 @@
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
-      <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。&lt;/p&gt;
-
+      <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
 &lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
     </item>
     
@@ -247,7 +242,7 @@
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid>
-      <description>&lt;p&gt;在研究生的时候，就用*R*绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了*9*例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -283,7 +278,7 @@
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/25/1/</guid>
-      <description>了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA中的</description>
+      <description>了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA*中</description>
     </item>
     
     <item>

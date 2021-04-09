@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6">
+<meta name="generator" content="Hugo 0.82.0">
 
 
 <link rel="canonical" href="./2019/08/12/the-cv-of-gene-expression/">
@@ -237,19 +237,12 @@
       <p class="post-meta">@Jiaxuan Wang · Aug 12, 2019 · 5 min read</p>
     </header>
     <article class="post-content"><p>一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。</p>
-
 <h1 id="背景">背景</h1>
-
-<p>在一些实验设计，老师比较关注的是在不同品系间的内参基因。类比于<code>18s</code>和<code>actin</code>，内参基因首先的定义就是不受内外因素的影响，表达量趋向恒定的一类基因。虽然这些基因一般都是一些非常<strong>重要</strong>以及<strong>“基础”</strong>的管家基因。虽然一般做<code>qPCR</code>等实验，用<code>18s</code>、<code>GAPDH</code>、<code>actin</code>这些内参基因就足够了。但是一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。</p>
-
+<p>在一些实验设计，老师比较关注的是在不同品系间的内参基因。类比于<code>18s</code>和<code>actin</code>，内参基因首先的定义就是不受内外因素的影响，表达量趋向恒定的一类基因。虽然这些基因一般都是一些非常<strong>重要</strong>以及**“基础”**的管家基因。虽然一般做<code>qPCR</code>等实验，用<code>18s</code>、<code>GAPDH</code>、<code>actin</code>这些内参基因就足够了。但是一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。</p>
 <p>言归正传，如何根据基因的表达量来进行**内参基因的筛选呢。</p>
-
-<p>目前，我的常用方法是计算*Unigene*的离散系数*CV*。简单讲就是CV=标准差/平均数，数值越小，这个基因在不同样本间的表达量的变化越小。</p>
-
-<p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D46/sign=bdbcfa5a8182b90139adc235728da7c1/e850352ac65c103821031fbfb9119313b07e894a.jpg" alt="img" /></p>
-
+<p>目前，我的常用方法是计算<em>Unigene</em>的离散系数<em>CV</em>。简单讲就是CV=标准差/平均数，数值越小，这个基因在不同样本间的表达量的变化越小。</p>
+<p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D46/sign=bdbcfa5a8182b90139adc235728da7c1/e850352ac65c103821031fbfb9119313b07e894a.jpg" alt="img"></p>
 <p>这个定义可以看</p>
-
 <blockquote>
   <p>
 变异系数是衡量资料中各观测值变异程度的另一个统计量。当进行两个或多个资料变异程度的比较时，如果度量单位与平均数相同，可以直接利用标准差来比较。如果单位和（或）平均数不同时，比较其变异程度就不能采用标准差，而需采用标准差与平均数的比值（相对值）来比较。标准差与平均数的比值称为变异系数，记为CV
@@ -261,90 +254,61 @@
     
   </footer>
 </blockquote>
-
-<p>当然，这个*CV*来计算，并得到内参基因，是否有文献支持，说实话，因为我没有这方面的研究背景，所以并不清楚，只是从统计学上讲，*CV*是非常不错的筛选标准。</p>
-
+<p>当然，这个<em>CV</em>来计算，并得到内参基因，是否有文献支持，说实话，因为我没有这方面的研究背景，所以并不清楚，只是从统计学上讲，<em>CV</em>是非常不错的筛选标准。</p>
 <p>如果各位老师，有更好的统计参数来衡量和筛选，非常欢迎与我说明，<strong>不胜感激</strong>！但是目前看, CV值是个很不错的标准, 甚至有人为此写了一个R包. 有兴趣的老师可以去看一下这边文章.</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1565164989970.png" alt="1565164989970" /></p>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1565164989970.png" alt="1565164989970"></p>
 <h1 id="用r来计算cv">用R来计算CV</h1>
-
-<p>今天的主要内容是如何利用*R*来计算*CV*，以前，我会选择用<code>excel</code>来进行计算<em>CV</em></p>
-
-<p>其实<code>excel</code>计算起来并不复杂，用函数<strong>STDEV()</strong>和<strong>AVERAGE()</strong>，就可以了，只需要计算两个值的比值就可以。</p>
-
-<p>但是为什么用*R*来计算，因为*R*首先是专业的统计软件，（并不是<strong>绘图软件</strong>！！！），并且用*R*会显得有逼格嘛，哈哈</p>
-
+<p>今天的主要内容是如何利用<em>R</em>来计算<em>CV</em>，以前，我会选择用<code>excel</code>来进行计算<em>CV</em></p>
+<p>其实<code>excel</code>计算起来并不复杂，用函数<strong>STDEV()<strong>和</strong>AVERAGE()</strong>，就可以了，只需要计算两个值的比值就可以。</p>
+<p>但是为什么用<em>R</em>来计算，因为<em>R</em>首先是专业的统计软件，（并不是<strong>绘图软件</strong>！！！），并且用<em>R</em>会显得有逼格嘛，哈哈</p>
 <p>其实主要是写一个脚本，以后遇到这样的分析，就可以自动跑出来了啦，这是最重要的</p>
-
-<p>为什么大家会认为<strong>R</strong>是绘图软件，我觉得这锅要*Haddly*来背（<code>ggplot2</code>的作者）</p>
-
+<p>为什么大家会认为<strong>R</strong>是绘图软件，我觉得这锅要<em>Haddly</em>来背（<code>ggplot2</code>的作者）</p>
 <h2 id="开始用r之前">开始用R之前</h2>
-
-<p>因为，我的*R*主要是靠自学和看书，我看的第一本是*Haddly*的《ggplot2：图形绘画与艺术》，第二本是*Haddly*的《R for data science》，目前第三本估计还是*Haddly*的《advance R》。</p>
-
-<p>兄弟，发现问题了没。所以我的*R*命令很多都依赖*Haddly*的R包。但其实*Haddly*只是众多*R*开发者之一，虽然无疑*Haddly*是改变*R*的人，但是*R*是一个社区，很多其他人R包也是很优秀的。所以我的命令有的时候就很不协调和冗余，这是因为为了兼顾*Haddly*的包特有的格式。比如<code>tibble</code>和*R*自带的<code>data.frame</code>之间的行名之间的冲突。今天我才稍微知道了<code>colunm_to_rownames</code>命令如何协调两者。</p>
-
-<p>所以各位看官，看我的命令一定要知道为什么这样，以及换成简单命令。或者你也学学*Haddly*的R包吧</p>
-
+<p>因为，我的<em>R</em>主要是靠自学和看书，我看的第一本是<em>Haddly</em>的《ggplot2：图形绘画与艺术》，第二本是<em>Haddly</em>的《R for data science》，目前第三本估计还是<em>Haddly</em>的《advance R》。</p>
+<p>兄弟，发现问题了没。所以我的<em>R</em>命令很多都依赖<em>Haddly</em>的R包。但其实<em>Haddly</em>只是众多<em>R</em>开发者之一，虽然无疑<em>Haddly</em>是改变<em>R</em>的人，但是<em>R</em>是一个社区，很多其他人R包也是很优秀的。所以我的命令有的时候就很不协调和冗余，这是因为为了兼顾<em>Haddly</em>的包特有的格式。比如<code>tibble</code>和<em>R</em>自带的<code>data.frame</code>之间的行名之间的冲突。今天我才稍微知道了<code>colunm_to_rownames</code>命令如何协调两者。</p>
+<p>所以各位看官，看我的命令一定要知道为什么这样，以及换成简单命令。或者你也学学<em>Haddly</em>的R包吧</p>
 <h2 id="命令行">命令行</h2>
-
 <p>在开始之前，推荐一个IDE和文本编辑器。</p>
-
 <h3 id="sublime文本编辑器">sublime文本编辑器</h3>
-
-<p>在此之前，之前有个老师向我推荐了<code>sublime</code>这个文本编辑器，这个编辑器真心<strong>牛逼</strong>，针对*R*的脚本，实现了非常美观的代码高亮。非常nice</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551546996182.png" alt="1551546996182" /></p>
-
-<p>另外，在安装一些插件后，就可以变成*R*的IDE，这个非常完美了。我即嫌弃<strong>Rgui</strong>的简陋界面，又嫌弃<strong>Rstudio</strong>的繁琐界面。</p>
-
+<p>在此之前，之前有个老师向我推荐了<code>sublime</code>这个文本编辑器，这个编辑器真心<strong>牛逼</strong>，针对<em>R</em>的脚本，实现了非常美观的代码高亮。非常nice</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551546996182.png" alt="1551546996182"></p>
+<p>另外，在安装一些插件后，就可以变成<em>R</em>的IDE，这个非常完美了。我即嫌弃<strong>Rgui</strong>的简陋界面，又嫌弃<strong>Rstudio</strong>的繁琐界面。</p>
 <p>终于在安装<code>sublime</code>后，既有<strong>Rgui</strong>的简洁界面，又有<strong>Rstudio</strong>的代码补全。</p>
-
 <p>我好喜欢这个<code>sublime</code>，哈哈哈</p>
-
 <h3 id="用r计算离散系数">用R计算离散系数</h3>
-
 <p>注释看代码行</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.2 win 10</span>
-<span style="color:#080;font-weight:bold">require</span>(tidyverse)
-<span style="color:#080;font-weight:bold">require</span>(matrixStats)<span style="color:#888">#这个包有rowSds函数，计算一行的sd标准差</span>
+<span style="color:#06b;font-weight:bold">require</span>(tidyverse)
+<span style="color:#06b;font-weight:bold">require</span>(matrixStats)<span style="color:#888">#这个包有rowSds函数，计算一行的sd标准差</span>
 path = <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#888"># 这是我的工作目录桌面</span>
 inname = <span style="color:#d20;background-color:#fff0f0">&#34;all.sample.annot.xls&#34;</span>
-<span style="color:#080">setwd</span>(path)
-dat=read_tsv(inname, col_names = T)
-nms &lt;- str_subset(<span style="color:#080">colnames</span>(dat),pattern = <span style="color:#d20;background-color:#fff0f0">&#34;pm|km&#34;</span>)
-<span style="color:#080">dim</span>(dat)
-dat_m &lt;- dat %&gt;% filter(<span style="color:#080">rowSums</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]) != <span style="color:#00d;font-weight:bold">0</span>) %&gt;%
-         mutate(mean = <span style="color:#080">rowMeans</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]),sd = rowSds(<span style="color:#080">as.matrix</span>(<span style="color:#00d;font-weight:bold">.</span>[nms]))) %&gt;%
-         mutate(CV = sd/<span style="color:#080">mean</span>)
+<span style="color:#06b;font-weight:bold">setwd</span>(path)
+dat=<span style="color:#06b;font-weight:bold">read_tsv</span>(inname, col_names = T)
+nms &lt;- <span style="color:#06b;font-weight:bold">str_subset</span>(<span style="color:#06b;font-weight:bold">colnames</span>(dat),pattern = <span style="color:#d20;background-color:#fff0f0">&#34;pm|km&#34;</span>)
+<span style="color:#06b;font-weight:bold">dim</span>(dat)
+dat_m &lt;- dat %&gt;% <span style="color:#06b;font-weight:bold">filter</span>(<span style="color:#06b;font-weight:bold">rowSums</span>(.[nms]) != <span style="color:#00d;font-weight:bold">0</span>) %&gt;%
+         <span style="color:#06b;font-weight:bold">mutate</span>(mean = <span style="color:#06b;font-weight:bold">rowMeans</span>(.[nms]),sd = <span style="color:#06b;font-weight:bold">rowSds</span>(<span style="color:#06b;font-weight:bold">as.matrix</span>(.[nms]))) %&gt;%
+         <span style="color:#06b;font-weight:bold">mutate</span>(CV = sd/mean)
 dat_cv &lt;- dat_m
-write_tsv(dat_cv,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv.xls&#34;</span>,col_names = T)
-dat_quan &lt;- quantile(dat_cv[[<span style="color:#d20;background-color:#fff0f0">&#34;CV&#34;</span>]],prob = <span style="color:#00d;font-weight:bold">0.01</span>)<span style="color:#888">#寻找排名前1%的最小CV值基因</span>
-dat_cv_fit &lt;- dat_cv %&gt;% arrange(CV) %&gt;% filter(mean &gt;= <span style="color:#00d;font-weight:bold">100</span>, CV &lt;= dat_quan)
-write_tsv(dat_cv_fit,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv_filter.xls&#34;</span>,col_names = T)</code></pre></div>
-<p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
-
+<span style="color:#06b;font-weight:bold">write_tsv</span>(dat_cv,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv.xls&#34;</span>,col_names = T)
+dat_quan &lt;- <span style="color:#06b;font-weight:bold">quantile</span>(dat_cv[[<span style="color:#d20;background-color:#fff0f0">&#34;CV&#34;</span>]],prob = <span style="color:#00d;font-weight:bold">0.01</span>)<span style="color:#888">#寻找排名前1%的最小CV值基因</span>
+dat_cv_fit &lt;- dat_cv %&gt;% <span style="color:#06b;font-weight:bold">arrange</span>(CV) %&gt;% <span style="color:#06b;font-weight:bold">filter</span>(mean &gt;= <span style="color:#00d;font-weight:bold">100</span>, CV &lt;= dat_quan)
+<span style="color:#06b;font-weight:bold">write_tsv</span>(dat_cv_fit,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv_filter.xls&#34;</span>,col_names = T)
+</code></pre></div><p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
 <h3 id="绘制图形">绘制图形</h3>
-
 <p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#绘制图形</span>
-p1 &lt;- ggplot(dat =dat_cv_fit, mapping = aes(x = <span style="color:#080">mean</span>, y = sd))+
-  geom_point(dat = dat_cv,aes(x = <span style="color:#080">mean</span>, y = sd),fill = <span style="color:#d20;background-color:#fff0f0">&#34;skyblue&#34;</span>,size = <span style="color:#00d;font-weight:bold">0.5</span>)+
-  geom_point(dat = dat_cv_fit,aes(fill = id),shape = <span style="color:#00d;font-weight:bold">21</span>,color =<span style="color:#d20;background-color:#fff0f0">&#34;red&#34;</span>,size = <span style="color:#00d;font-weight:bold">3</span>)+
-  labs(x = <span style="color:#d20;background-color:#fff0f0">&#34;The mean of Unigene RPKM&#34;</span>,y = <span style="color:#d20;background-color:#fff0f0">&#34;The stdev of Unigene RPKM&#34;</span> ,title = <span style="color:#d20;background-color:#fff0f0">&#34;The CV value&#34;</span>)+
-  geom_vline(xintercept = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">100</span>,<span style="color:#00d;font-weight:bold">2000</span>),linetype = <span style="color:#00d;font-weight:bold">4</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;grey&#34;</span>)
+p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(dat =dat_cv_fit, mapping = <span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd))+
+  <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv,<span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd),fill = <span style="color:#d20;background-color:#fff0f0">&#34;skyblue&#34;</span>,size = <span style="color:#00d;font-weight:bold">0.5</span>)+
+  <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv_fit,<span style="color:#06b;font-weight:bold">aes</span>(fill = id),shape = <span style="color:#00d;font-weight:bold">21</span>,color =<span style="color:#d20;background-color:#fff0f0">&#34;red&#34;</span>,size = <span style="color:#00d;font-weight:bold">3</span>)+
+  <span style="color:#06b;font-weight:bold">labs</span>(x = <span style="color:#d20;background-color:#fff0f0">&#34;The mean of Unigene RPKM&#34;</span>,y = <span style="color:#d20;background-color:#fff0f0">&#34;The stdev of Unigene RPKM&#34;</span> ,title = <span style="color:#d20;background-color:#fff0f0">&#34;The CV value&#34;</span>)+
+  <span style="color:#06b;font-weight:bold">geom_vline</span>(xintercept = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">100</span>,<span style="color:#00d;font-weight:bold">2000</span>),linetype = <span style="color:#00d;font-weight:bold">4</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;grey&#34;</span>)
 <span style="color:#888">#进行一点调整</span>
-p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>)</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138" /></p>
-
+p2 &lt;- p1 + <span style="color:#06b;font-weight:bold">theme_bw</span>()+ <span style="color:#06b;font-weight:bold">theme</span>(legend.position = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>)
+</code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138"></p>
 <h2 id="检验结果">检验结果</h2>
-
-<p>毕竟是自己的脚本，*R*实现的优势是速度快，但是只要其中一个命令出错，就可能导致结果的差异。对于自己不熟悉的东西，尤其是计算类的，还是小心一点比较好。</p>
-
+<p>毕竟是自己的脚本，<em>R</em>实现的优势是速度快，但是只要其中一个命令出错，就可能导致结果的差异。对于自己不熟悉的东西，尤其是计算类的，还是小心一点比较好。</p>
 <p>所以我在excel上，还是检查了一下，我的结果。还是一致的。可靠！</p>
-
 <table>
 <thead>
 <tr>
@@ -355,7 +319,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <th>CV</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Unigene0047702</td>
@@ -364,7 +327,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>8.716806</td>
 <td>0.082374</td>
 </tr>
-
 <tr>
 <td>Unigene0071345</td>
 <td>110.7748</td>
@@ -372,7 +334,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>11.24985</td>
 <td>0.101556</td>
 </tr>
-
 <tr>
 <td>Unigene0024038</td>
 <td>235.0149</td>
@@ -380,7 +341,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>26.4493</td>
 <td>0.112543</td>
 </tr>
-
 <tr>
 <td>Unigene0054875</td>
 <td>224.0919</td>
@@ -388,7 +348,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>26.61498</td>
 <td>0.118768</td>
 </tr>
-
 <tr>
 <td>Unigene0003494</td>
 <td>143.8802</td>
@@ -396,7 +355,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>18.38708</td>
 <td>0.127794</td>
 </tr>
-
 <tr>
 <td>Unigene0001501</td>
 <td>136.5825</td>
@@ -404,7 +362,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>17.94474</td>
 <td>0.131384</td>
 </tr>
-
 <tr>
 <td>Unigene0061046</td>
 <td>132.6634</td>
@@ -412,7 +369,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>17.51517</td>
 <td>0.132027</td>
 </tr>
-
 <tr>
 <td>Unigene0051467</td>
 <td>224.9567</td>
@@ -420,7 +376,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>29.70607</td>
 <td>0.132052</td>
 </tr>
-
 <tr>
 <td>Unigene0002648</td>
 <td>635.3467</td>
@@ -428,7 +383,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>84.06525</td>
 <td>0.132314</td>
 </tr>
-
 <tr>
 <td>Unigene0018474</td>
 <td>315.5729</td>
@@ -436,7 +390,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>43.3001</td>
 <td>0.137211</td>
 </tr>
-
 <tr>
 <td>Unigene0064436</td>
 <td>179.2159</td>
@@ -444,7 +397,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>24.72725</td>
 <td>0.137975</td>
 </tr>
-
 <tr>
 <td>Unigene0058797</td>
 <td>126.3847</td>
@@ -452,7 +404,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>17.8765</td>
 <td>0.141445</td>
 </tr>
-
 <tr>
 <td>Unigene0053692</td>
 <td>139.5825</td>
@@ -460,7 +411,6 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 <td>20.52212</td>
 <td>0.147025</td>
 </tr>
-
 <tr>
 <td>……………..</td>
 <td></td>
@@ -470,12 +420,9 @@ p2 &lt;- p1 + theme_bw()+ theme(legend.position = <span style="color:#d20;backgr
 </tr>
 </tbody>
 </table>
-
 <h1 id="后言">后言</h1>
-
-<p>其实，用*R*做离散系数的分析，就到此完结撒花了。</p>
-
-<p>其实，这个过程是挺曲折的，但是至少在这个过程中，增加了对*R*的理解。</p></article>
+<p>其实，用<em>R</em>做离散系数的分析，就到此完结撒花了。</p>
+<p>其实，这个过程是挺曲折的，但是至少在这个过程中，增加了对<em>R</em>的理解。</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">

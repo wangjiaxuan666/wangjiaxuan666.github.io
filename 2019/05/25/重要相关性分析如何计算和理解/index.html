@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6">
+<meta name="generator" content="Hugo 0.82.0">
 
 
 <link rel="canonical" href="./2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/">
@@ -233,59 +233,40 @@
       <h1 class="post-title">重要!相关性分析如何计算和理解</h1>
       <p class="post-meta">@Jiaxuan · May 25, 2019 · 10 min read</p>
     </header>
-    <article class="post-content">
-
-<h1 id="1-前言">1. 前言</h1>
-
+    <article class="post-content"><h1 id="1-前言">1. 前言</h1>
 <p>接触组学多了，感觉分析主要有两类，一个是基于被研究对象的<code>位置</code>和<code>序列</code>。一类是基于<code>算法</code>。前者比如说<code>lncRNA</code>与<code>mRNA</code>的<code>antisense</code>和<code>cis</code>的作用关系，<code>miRNA</code>和<code>piRNA</code>的<strong>靶向</strong>基因预测等。后者就比如说<code>机器学习</code>、<code>降维</code>、<code>聚类</code>等算法。</p>
-
 <p>其中<code>机器学习</code>是通过程序不断的迭代来寻找合适的<code>模型</code></p>
-
 <p><code>降维</code>就是将高维数据通过计算，在尽量保证数据原始分布特征的情况下，将数据映射在低维的刻度。
 markdown preview
-<code>聚类方法</code>很多，常用的是计算欧式距离后，用<code>K-mean</code>聚类算法进行聚类，<code>K-mean</code>聚类算法就是先随机挑选*k*个中心，按照距离远近分别聚在一起。然后在聚类的簇里重新选择平均值作为<code>中心点</code>，重新<code>聚类</code>，然后不断迭代设置的次数，最后的结果就是聚类结果。当然如果画<code>树</code>，还涉及<code>分类树</code>的算法。简而言之，麻烦，不详细说了。</p>
-
+<code>聚类方法</code>很多，常用的是计算欧式距离后，用<code>K-mean</code>聚类算法进行聚类，<code>K-mean</code>聚类算法就是先随机挑选<em>k</em>个中心，按照距离远近分别聚在一起。然后在聚类的簇里重新选择平均值作为<code>中心点</code>，重新<code>聚类</code>，然后不断迭代设置的次数，最后的结果就是聚类结果。当然如果画<code>树</code>，还涉及<code>分类树</code>的算法。简而言之，麻烦，不详细说了。</p>
 <p><code>相关性分析</code>，这就是本文要详细说的了。</p>
-
 <h1 id="2-相关性分析">2. 相关性分析</h1>
-
 <p>相关性分析是一种统计技术，</p>
-
 <blockquote>
 <p>相关性分析，就是衡量两个变量之间的依赖性强弱</p>
 </blockquote>
-
 <p><strong>相关性</strong>：可以显示两个变量是否相关以及如何相关。例如，<code>身高</code>和<code>体重</code>是相关的; 较高的人往往有更大的体重。那么这种关系就是正相关。那么再例如<code>汽车排量</code>与每升汽油的<code>里程</code>，是负相关的，汽车排量越大，每升汽油跑的里程就越短。</p>
-
 <p>尽管这种相关性非常明显，但您的数据可能包含未预料到的相关性。您可能还会产生怀疑。怀疑两个变量之间是否存在相关性，或者不知道两者之间的<code>依赖</code>和<code>联系</code>程度。这个时候，就会需要一种可以量化的指数分析。相关分析可以帮助我们更好地理解数据。</p>
-
 <p>但是</p>
-
-<p>使用相关性分析的时候，我们需要记住的一个关键事项是：<strong>永远不要假设相关性就一定意味着*A*变量的变化会导致*B*变量的变化</strong>。多年来个人电脑和运动鞋的<code>销售</code>都强劲增长，并且它们之间存在高度相关性，但你不能认为购买电脑会导致人们购买运动鞋（反之亦然）。但可能还是可能存在相同的<code>调节</code>因素，比如<code>社会生产力</code>的提高和经济状况的改善。</p>
-
-<h2 id="2-1-正负相关性">2.1 正负相关性</h2>
-
+<p>使用相关性分析的时候，我们需要记住的一个关键事项是：<strong>永远不要假设相关性就一定意味着<em>A</em>变量的变化会导致<em>B</em>变量的变化</strong>。多年来个人电脑和运动鞋的<code>销售</code>都强劲增长，并且它们之间存在高度相关性，但你不能认为购买电脑会导致人们购买运动鞋（反之亦然）。但可能还是可能存在相同的<code>调节</code>因素，比如<code>社会生产力</code>的提高和经济状况的改善。</p>
+<h2 id="21-正负相关性">2.1 正负相关性</h2>
 <p>当两个<code>变量</code>之间存在非常强烈的相互<code>依赖</code>关系的时候，我们就可以说两个变量之间的存在<code>高度相关性</code>。</p>
-
 <ul>
 <li>若两组的值一起<strong>增大</strong>，我们称之为<strong>正</strong>相关，</li>
 <li>若一组的值增大时，另一组的值<strong>减小</strong>，我们称之为<strong>负</strong>相关</li>
 </ul>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553865854356.png" alt="1553865854356" /></p>
-
-<p>本次我们用*R*来进行计算和绘图，所用的数据是*R*自带的<code>mtcars</code>数据</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553865854356.png" alt="1553865854356"></p>
+<p>本次我们用<em>R</em>来进行计算和绘图，所用的数据是<em>R</em>自带的<code>mtcars</code>数据</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">&gt; mtcars
-&gt; <span style="color:#080">head</span>(mtcars)
+&gt; <span style="color:#06b;font-weight:bold">head</span>(mtcars)
                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         <span style="color:#00d;font-weight:bold">21.0</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">160</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.90</span> <span style="color:#00d;font-weight:bold">2.620</span> <span style="color:#00d;font-weight:bold">16.46</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">4</span>
 Mazda RX4 Wag     <span style="color:#00d;font-weight:bold">21.0</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">160</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.90</span> <span style="color:#00d;font-weight:bold">2.875</span> <span style="color:#00d;font-weight:bold">17.02</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">4</span>
 Datsun <span style="color:#00d;font-weight:bold">710</span>        <span style="color:#00d;font-weight:bold">22.8</span>   <span style="color:#00d;font-weight:bold">4</span>  <span style="color:#00d;font-weight:bold">108</span>  <span style="color:#00d;font-weight:bold">93</span> <span style="color:#00d;font-weight:bold">3.85</span> <span style="color:#00d;font-weight:bold">2.320</span> <span style="color:#00d;font-weight:bold">18.61</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">1</span>
 Hornet <span style="color:#00d;font-weight:bold">4</span> Drive    <span style="color:#00d;font-weight:bold">21.4</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">258</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.08</span> <span style="color:#00d;font-weight:bold">3.215</span> <span style="color:#00d;font-weight:bold">19.44</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">1</span>
 Hornet Sportabout <span style="color:#00d;font-weight:bold">18.7</span>   <span style="color:#00d;font-weight:bold">8</span>  <span style="color:#00d;font-weight:bold">360</span> <span style="color:#00d;font-weight:bold">175</span> <span style="color:#00d;font-weight:bold">3.15</span> <span style="color:#00d;font-weight:bold">3.440</span> <span style="color:#00d;font-weight:bold">17.02</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">2</span>
-Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">225</span> <span style="color:#00d;font-weight:bold">105</span> <span style="color:#00d;font-weight:bold">2.76</span> <span style="color:#00d;font-weight:bold">3.460</span> <span style="color:#00d;font-weight:bold">20.22</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">1</span></code></pre></div>
-<p>那么行名我们知道是汽车的型号。那么列名呢，</p>
-
+Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">225</span> <span style="color:#00d;font-weight:bold">105</span> <span style="color:#00d;font-weight:bold">2.76</span> <span style="color:#00d;font-weight:bold">3.460</span> <span style="color:#00d;font-weight:bold">20.22</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">1</span>
+</code></pre></div><p>那么行名我们知道是汽车的型号。那么列名呢，</p>
 <table>
 <thead>
 <tr>
@@ -296,7 +277,6 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 <th>wt</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>英里/加仑</td>
@@ -307,234 +287,168 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 </tr>
 </tbody>
 </table>
-
 <p>从上述列名中，我们可以简单得到<code>排量</code>（disp）与<code>马力</code>（hp）呈现正相关性，而与每加仑汽油行驶的<code>里程</code>是负相关性。</p>
-
-<p>那么我们就可以用*R*的<code>cor函数</code>来计算两个变量之间的相关性。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#080;font-weight:bold">library</span>(ggplot2)
- r &lt;- cor(mtcars$disp,mtcars$mpg,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
- p1 &lt;- ggplot(data = mtcars, aes(x = disp, y = mpg)) + 
-         geom_point(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
-         geom_smooth(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
-         geom_text(aes(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#080">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#080">signif</span>(r,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) +
-         theme_bw()
- r1 &lt;- cor(mtcars$disp,mtcars$hp,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
- p2 &lt;- ggplot(data = mtcars, aes(x = disp, y = hp)) + 
-         geom_point(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
-         geom_smooth(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
-         geom_text(aes(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#080">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#080">signif</span>(r1,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         theme_bw()
- cowplot::plot_grid(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553877671595.png" alt="1553877671595" /></p>
-
-<h2 id="2-2-相关分析的局限">2.2 相关分析的局限</h2>
-
+<p>那么我们就可以用<em>R</em>的<code>cor函数</code>来计算两个变量之间的相关性。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#06b;font-weight:bold">library</span>(ggplot2)
+ r &lt;- <span style="color:#06b;font-weight:bold">cor</span>(mtcars$disp,mtcars$mpg,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
+ p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = mtcars, <span style="color:#06b;font-weight:bold">aes</span>(x = disp, y = mpg)) + 
+         <span style="color:#06b;font-weight:bold">geom_point</span>(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) +
+         <span style="color:#06b;font-weight:bold">theme_bw</span>()
+ r1 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(mtcars$disp,mtcars$hp,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
+ p2 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = mtcars, <span style="color:#06b;font-weight:bold">aes</span>(x = disp, y = hp)) + 
+         <span style="color:#06b;font-weight:bold">geom_point</span>(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r1,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">theme_bw</span>()
+ cowplot::<span style="color:#06b;font-weight:bold">plot_grid</span>(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)
+</code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553877671595.png" alt="1553877671595"></p>
+<h2 id="22-相关分析的局限">2.2 相关分析的局限</h2>
 <p>刚刚我们知道了，相关性分为<code>正相关</code>和<code>负相关</code>。但这里，我们之说的是<code>线性相关</code>。因为<code>非线性相关</code>的话，更适合建模拟合<code>多元回归</code>。这个还是很牛的领域，只是我还没涉及，上次去<code>青岛</code>做<code>生信培训</code>，就有老师想构建四因素的<code>多元回归分析</code>。这个领域我完全没有了解。就不说了。</p>
-
-<p>但是用*R*中<code>cor</code>函数来计算相关性也是有局限的。首先第一点，不能计算非线性模型，</p>
-
+<p>但是用<em>R</em>中<code>cor</code>函数来计算相关性也是有局限的。首先第一点，不能计算非线性模型，</p>
 <p>例如我们先看一组简化的数据，<code>icecream</code>是冰激凌的销售额。<code>sunglass</code>是太阳镜的销售额。<code>tem</code>是温度。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
- icecream &lt;- <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
- tem &lt;- <span style="color:#080">seq</span>(<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">40</span>,<span style="color:#00d;font-weight:bold">0.5</span>)
- dat &lt;- <span style="color:#888;font-weight:bold">data.frame</span>(sunglass, icecream, tem)</code></pre></div>
-<p>我们先看在温度低于*35*时候的<code>冰激凌销售</code>与<code>温度</code>之间的关系。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#080;font-weight:bold">require</span>(magrittr)
- dat_low &lt;- dat %&gt;% dplyr::filter(tem &lt; <span style="color:#00d;font-weight:bold">35</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
+ icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
+ tem &lt;- <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">40</span>,<span style="color:#00d;font-weight:bold">0.5</span>)
+ dat &lt;- <span style="color:#06b;font-weight:bold">data.frame</span>(sunglass, icecream, tem)
+</code></pre></div><p>我们先看在温度低于<em>35</em>时候的<code>冰激凌销售</code>与<code>温度</code>之间的关系。</p>
+<pre><code class="language-{r}" data-lang="{r}"> require(magrittr)
+ dat_low &lt;- dat %&gt;% dplyr::filter(tem &lt; 35)
  r2 &lt;- cor(dat_low$icecream, dat_low$tem)
  p3 &lt;- ggplot(data = dat_low, aes(x = tem, y = icecream)) + 
          geom_point() + 
-         geom_smooth(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>, color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
-         geom_text(aes(x = <span style="color:#00d;font-weight:bold">34</span>, y = <span style="color:#00d;font-weight:bold">500</span>,label = <span style="color:#080">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#080">signif</span>(r2,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         theme_bw()</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553879883381.png" alt="1553879883381" /></p>
-
-<p>这个时候，我们可以看到当<code>温度</code>低于*35*度的时候，<code>冰激凌销量</code>是和<code>温度</code>正相关的。但是随着天气炎热，大家都不愿出远门，这时候<code>冰激凌</code>的销售就下来了。温度在30度到40度之间的时候，<code>温度</code>和<code>冰淇淋销量</code>之间的相关性是怎么样呢。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 &lt;- cor(dat$icecream,dat$tem)
- p4 &lt;- ggplot(data = dat, aes(x = tem, y = icecream)) + 
-         geom_point() + 
-         geom_smooth(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
-         geom_text(aes(x = <span style="color:#00d;font-weight:bold">39</span>, y = <span style="color:#00d;font-weight:bold">500</span>,label = <span style="color:#080">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#080">signif</span>(r3,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         theme_bw()</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880123952.png" alt="1553880123952" /></p>
-
-<p>其实我们就可以发现问题，这里的<code>温度</code>和<code>冰激凌销量</code>是有很强的相关性的，我们甚至可以用脑子拟合出一个抛物曲线。虽然这个相关性不是线性的。但是如果我们继续用*R<em>中<code>cor</code>函数来计算，用线性相关性分析显然是不正确的。数值才</em>-0.39*</p>
-
+         geom_smooth(method = &quot;lm&quot;, color = &quot;#1a9641&quot;) +
+         geom_text(aes(x = 34, y = 500,label = paste(&quot;R&quot; ,&quot;=&quot;,signif(r2,3),seq = &quot;&quot;)),color =&quot;#fdae61&quot;) + 
+         theme_bw()
+</code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553879883381.png" alt="1553879883381"></p>
+<p>这个时候，我们可以看到当<code>温度</code>低于<em>35</em>度的时候，<code>冰激凌销量</code>是和<code>温度</code>正相关的。但是随着天气炎热，大家都不愿出远门，这时候<code>冰激凌</code>的销售就下来了。温度在30度到40度之间的时候，<code>温度</code>和<code>冰淇淋销量</code>之间的相关性是怎么样呢。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(dat$icecream,dat$tem)
+ p4 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = dat, <span style="color:#06b;font-weight:bold">aes</span>(x = tem, y = icecream)) + 
+         <span style="color:#06b;font-weight:bold">geom_point</span>() + 
+         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
+         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">39</span>, y = <span style="color:#00d;font-weight:bold">500</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r3,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
+         <span style="color:#06b;font-weight:bold">theme_bw</span>()
+</code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880123952.png" alt="1553880123952"></p>
+<p>其实我们就可以发现问题，这里的<code>温度</code>和<code>冰激凌销量</code>是有很强的相关性的，我们甚至可以用脑子拟合出一个抛物曲线。虽然这个相关性不是线性的。但是如果我们继续用<em>R</em>中<code>cor</code>函数来计算，用线性相关性分析显然是不正确的。数值才*-0.39*</p>
 <p>另外，相关性强，也不等于<code>因果关系</code>。例如我们可以看到<code>太阳眼镜</code>的销量和<code>冰激凌</code>的销量之间的关系。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> r4 &lt;- cor(dat$icecream,dat$sunglass)
+<pre><code class="language-{r}" data-lang="{r}"> r4 &lt;- cor(dat$icecream,dat$sunglass)
  p5 &lt;- ggplot(data = dat, aes(x = icecream, y = sunglass)) + 
          geom_point() + 
-         geom_smooth(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
-         geom_text(aes(x = <span style="color:#00d;font-weight:bold">700</span>, y = <span style="color:#00d;font-weight:bold">500</span>,label = <span style="color:#080">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#080">signif</span>(r4,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         theme_bw()</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880482397.png" alt="1553880482397" /></p>
-
+         geom_smooth(method = &quot;lm&quot;,color = &quot;#1a9641&quot;) +
+         geom_text(aes(x = 700, y = 500,label = paste(&quot;R&quot; ,&quot;=&quot;,signif(r4,3),seq = &quot;&quot;)),color =&quot;#fdae61&quot;) + 
+         theme_bw()
+</code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880482397.png" alt="1553880482397"></p>
 <p>可以看到，就算<code>太阳镜</code>和<code>冰淇淋</code>的销量相关性是<em>0.99</em>,也不能体现两者是因果关系。就是说，相关<strong>不</strong>代表一个现象导致另一个（相关可能有其他的原因，比如太阳的直射时间）</p>
-
-<h2 id="2-3-相关性计算">2.3 相关性计算</h2>
-
+<h2 id="23-相关性计算">2.3 相关性计算</h2>
 <p><code>cor</code>函数的完整语法如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y = <span style="color:#080;font-weight:bold">NULL</span>，use =“everything”，method = <span style="color:#888;font-weight:bold">c</span>（“pearson”，“kendall”，“spearman”））</code></pre></div>
-<p>也就是说像关系计算，有三种方法，<code>pearson</code>,<code>kendall</code>,<code>spearman</code>三种</p>
-
-<h3 id="2-3-1-pearson相关系数">2.3.1 pearson相关系数</h3>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y = <span style="color:#080;font-weight:bold">NULL</span>，use =“everything”，method = c（“pearson”，“kendall”，“spearman”））
+</code></pre></div><p>也就是说像关系计算，有三种方法，<code>pearson</code>,<code>kendall</code>,<code>spearman</code>三种</p>
+<h3 id="231-pearson相关系数">2.3.1 pearson相关系数</h3>
 <p>算法如下：</p>
-
-<p><img src="http://www.shuxuele.com/data/images/correlation-formula.gif" alt="?????3??????" /></p>
-
-<p>代数算法比较难理解，但分子我们可以看到是个<code>协方差</code>，只是少了除以*n-1*，而分母是我们很熟悉的标准差，同样少了除以n-1。可以看出分子分母都少了除以*n-1*，正好抵消。也就意味<code>相关性系数</code>就是<code>协方差</code>除以<code>标准差</code>。</p>
-
+<p><img src="http://www.shuxuele.com/data/images/correlation-formula.gif" alt="?????3??????"></p>
+<p>代数算法比较难理解，但分子我们可以看到是个<code>协方差</code>，只是少了除以<em>n-1</em>，而分母是我们很熟悉的标准差，同样少了除以n-1。可以看出分子分母都少了除以<em>n-1</em>，正好抵消。也就意味<code>相关性系数</code>就是<code>协方差</code>除以<code>标准差</code>。</p>
 <p>甚至我们可以写成：</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553921229271.png" alt="1553921229271" /></p>
-
-<p>其中<code>cov</code>既是协方差的缩写，也是*R*中的函数名称。如果想了解这个计公式。我们还要分为三个部分</p>
-
-<h4 id="2-3-1-1-协方差">2.3.1.1 协方差</h4>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553921229271.png" alt="1553921229271"></p>
+<p>其中<code>cov</code>既是协方差的缩写，也是<em>R</em>中的函数名称。如果想了解这个计公式。我们还要分为三个部分</p>
+<h4 id="2311-协方差">2.3.1.1 协方差</h4>
 <blockquote>
 <p>可以通俗的理解为：两个变量在变化过程中的变化方向是否一致，以及一致的程度。</p>
 </blockquote>
-
-<p>如果两个变量，*A*变大，同时*B*也变大，说明两个<code>变量</code>是同向变化的，这时<code>协方差</code>就是正的。*A*变大，同时*B*变小，说明两个<code>变量</code>是反向变化的，这时<code>协方差</code>就是负的。从数值来看，协方差的数值越大，两个<code>变量</code>同向程度也就越大。反之亦然。</p>
-
+<p>如果两个变量，<em>A</em>变大，同时<em>B</em>也变大，说明两个<code>变量</code>是同向变化的，这时<code>协方差</code>就是正的。<em>A</em>变大，同时<em>B</em>变小，说明两个<code>变量</code>是反向变化的，这时<code>协方差</code>就是负的。从数值来看，协方差的数值越大，两个<code>变量</code>同向程度也就越大。反之亦然。</p>
 <p>公式：
 $$
 cov(X,Y)=\frac{\sum (x-\overline{x})(y-\overline{y})}{n-1}
 $$
 如果有X,Y两个变量，每个时刻的“X值与其均值之差”<strong>乘以“Y值与其均值之差</strong>”得到一个乘积，再对这每时刻的<code>乘积</code>进行求和并求出均值。</p>
-
-<p>首先x减去平均值，就意味着我们将平均值作为一个<code>坐标原点</code>，减去平均值，就意味着。所有的x的取值都会根据这个<code>原点</code>，重新调整数值（位置）。这样我们就可以得到*Xn*（n = 1，2，3，，，）的变化程度。也就是距离原点的距离远近。这是在x变量中的变化程度。</p>
-
-<p>那么同样y变量中也做这样的取值，得到*Yn*在<strong>Y变量</strong>中的变化程度。如果*Xn*与*Yn*变化一致。那么要是*Xn*大于均值，那么*X -Xn*就是正数，*Yn*也是同样的，因此这个数是正数。将n依次取每个值。就可以算出X变量与Y变量之间的每个取值时的变化协同性。</p>
-
+<p>首先x减去平均值，就意味着我们将平均值作为一个<code>坐标原点</code>，减去平均值，就意味着。所有的x的取值都会根据这个<code>原点</code>，重新调整数值（位置）。这样我们就可以得到<em>Xn</em>（n = 1，2，3，，，）的变化程度。也就是距离原点的距离远近。这是在x变量中的变化程度。</p>
+<p>那么同样y变量中也做这样的取值，得到<em>Yn</em>在<strong>Y变量</strong>中的变化程度。如果<em>Xn</em>与<em>Yn</em>变化一致。那么要是<em>Xn</em>大于均值，那么<em>X -Xn</em>就是正数，<em>Yn</em>也是同样的，因此这个数是正数。将n依次取每个值。就可以算出X变量与Y变量之间的每个取值时的变化协同性。</p>
 <p>以上是理想状态下，实际中，就算X变量与Y变量之间存在协同性，也可能出现，在某个取值的时候，例如当n=2时候，·<code>X2-mean（x） &lt; 0</code>,而·<code>Y2-mean（Y） &gt; 0</code>。但是因为我们是计算每一个取值时的计算结果，最终算一个求和。所以如果X和Y变量存在协同性，那么最终的结果还是为正数。</p>
-
 <blockquote>
 <p>当然如果x变量与y变量反向相关，计算的结果为负数，代表负相关。</p>
 </blockquote>
-
-<p>当然，你可能还会想，*n = 1，n = 2，n = 3…*，每个时刻*X*，*Y*都在增大，而且*X*都比均值大，*Y*都比均值小，这种情况协方差不就是负的了？*7*个负值求平均肯定是负值啊？。也就是负相关</p>
-
-<p>但是*X*，*Y*都是增大的，明明同向变化的，这不就矛盾了？，当然不矛盾，因为这种情况是不可能的。*Xn*和*Yn*减去的是均值。均值既然就意味这肯定有低于均值的*Xn*和*Yn*啊。所以结果一定是有正有负，看最后加和后，那方更胜一筹。</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553923115487.png" alt="1553923115487" /></p>
-
+<p>当然，你可能还会想，<em>n = 1，n = 2，n = 3…</em>，每个时刻<em>X</em>，<em>Y</em>都在增大，而且<em>X</em>都比均值大，<em>Y</em>都比均值小，这种情况协方差不就是负的了？<em>7</em>个负值求平均肯定是负值啊？。也就是负相关</p>
+<p>但是<em>X</em>，<em>Y</em>都是增大的，明明同向变化的，这不就矛盾了？，当然不矛盾，因为这种情况是不可能的。<em>Xn</em>和<em>Yn</em>减去的是均值。均值既然就意味这肯定有低于均值的<em>Xn</em>和<em>Yn</em>啊。所以结果一定是有正有负，看最后加和后，那方更胜一筹。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553923115487.png" alt="1553923115487"></p>
 <p><strong>这里，我们知道了协方差是可以衡量两个变量之间的协同变化程度的。</strong></p>
-
-<h4 id="2-3-1-2-标准差">2.3.1.2 标准差</h4>
-
+<h4 id="2312-标准差">2.3.1.2 标准差</h4>
 <p><code>标准差</code>，是我们遇见的，不论是高中的数学课本，还是后面大学和工作遇到的，<code>变异系数</code>，<code>T检验</code>等统计检验值都是需要<code>标准差</code>的。为什么<code>标准差</code>在统计中用到的这么多。</p>
-
 <blockquote>
 <p>标准差可以衡量数据的分布状况</p>
 </blockquote>
-
 <p>公式：
 $$
 \sigma = \sqrt{\frac{1}{N} \sum_{i=1}^N (x_i - \mu)^2}
 $$
 从公式可以看出，标准差计算方法为，每一时刻<code>变量值</code>与<code>变量均值</code>之差再平方，求得一个<code>数值</code>，再将每一时刻这个数值<code>相加</code>后求平均，再<code>开方</code>。其中<code>Xi - u</code>同样式，以平均值为原点，某一时刻下数值偏离的程度。 取平方值，是因为这个偏离程度有正有负，如果像累加每一个时刻的偏离程度，是需要取一个<code>绝对值</code>,平方是最好的绝对值的方法。</p>
-
-<p>这样累加后，我们就可以得到*x*变量中数据的整体偏离<code>中心原点</code>的程度。然后我们还需要除以观察时刻的总数，以抵消因为观察次数不同，而产生的影响。因为观察次数越多，<code>求和值</code>肯定越大。所以要除以*N*。</p>
-
+<p>这样累加后，我们就可以得到<em>x</em>变量中数据的整体偏离<code>中心原点</code>的程度。然后我们还需要除以观察时刻的总数，以抵消因为观察次数不同，而产生的影响。因为观察次数越多，<code>求和值</code>肯定越大。所以要除以<em>N</em>。</p>
 <p>这里还没完，因为我们之平方取值，所以还需要开平方。</p>
-
 <p>这里我们可以看到：</p>
-
 <blockquote>
 <p>标准差得到的，变量中数据的分散程度</p>
 </blockquote>
-
-<h4 id="2-3-1-4-相关性系数">2.3.1.4 相关性系数</h4>
-
+<h4 id="2314-相关性系数">2.3.1.4 相关性系数</h4>
 <p>根据上述，我们知道了<code>协方差</code>可以获得，两个变量之间的<code>协同变化程度</code>。标准差可以知道变量的变化范围。</p>
-
 <p>协方差虽然可以衡量变化程度，但是还缺少一个统一的量纲，否则不能进行比较。</p>
-
 <p>例如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
- icecream &lt;- <span style="color:#888;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
- cov(sunglass,icecream)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
+ icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
+ <span style="color:#06b;font-weight:bold">cov</span>(sunglass,icecream)
 <span style="color:#888">#[1] 54091</span>
- cov(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
+ <span style="color:#06b;font-weight:bold">cov</span>(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
 <span style="color:#888">#[1] 5.4091</span>
- p1 &lt;- qplot(sunglass,icecream)
- p2 &lt;- qplot(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
- cowplot::plot_grid(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#888;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)</code></pre></div>
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553924809306.png" alt="1553924809306" /></p>
-
-<p>发现问题了吧，明明<code>icecream</code>和<code>sunglass</code>之间是一样的变化协同程度，但是因为波动范围的取值大小，就导致了<code>cov(sunglass,icecream)</code>是*54091*，而<code>cov(((sunglass)*0.01), ((icecream)*0.01))</code>就变成了<em>5.4091</em></p>
-
+ p1 &lt;- <span style="color:#06b;font-weight:bold">qplot</span>(sunglass,icecream)
+ p2 &lt;- <span style="color:#06b;font-weight:bold">qplot</span>(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
+ cowplot::<span style="color:#06b;font-weight:bold">plot_grid</span>(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)
+</code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553924809306.png" alt="1553924809306"></p>
+<p>发现问题了吧，明明<code>icecream</code>和<code>sunglass</code>之间是一样的变化协同程度，但是因为波动范围的取值大小，就导致了<code>cov(sunglass,icecream)</code>是<em>54091</em>，而<code>cov(((sunglass)*0.01), ((icecream)*0.01))</code>就变成了<em>5.4091</em></p>
 <p>但是明明是<code>趋势</code>和<code>相关性程度</code>是一致的。这就意味着协方差没有考虑<code>原始数据</code>的分布范围。因此我们还需要将这个值数放在一个<code>量纲</code>下，最好的<code>量纲</code>就是自己的原始数据分布情况。</p>
-
 <p>这不正好需要标准差吗。因此相关性系数的计算就是<code>协方差/标准差</code>
 $$
 \rho = \frac{\text{cov}(X,Y)}{\sigma_x \sigma_y}
 $$</p>
-
-<h3 id="2-3-2-spearman相关性系数">2.3.2 spearman相关性系数</h3>
-
+<h3 id="232-spearman相关性系数">2.3.2 spearman相关性系数</h3>
 <p>与<a href="http://github.com/rasbt/pattern_classification/blob/master/resources/latex_equations.md#correlation-pearson">Pearson相关系数相关</a>，<code>Spearman</code>相关系数测量两个变量之间的关系。<code>Spearman</code>可以理解为<a href="http://github.com/rasbt/pattern_classification/blob/master/resources/latex_equations.md#correlation-pearson">Pearson相关系数</a>的基于等级的版本，可以用于<code>非正态分布</code>且具有<code>非线性关系</code>的变量。此外，它的使用不仅限于连续数据，还可用于序数属性的分析。
 $$
 \rho = 1- {\frac {6 \sum d_i^2}{n(n^2 - 1)}}
 $$
 是不是感觉有点蒙圈，但其实不难。<code>spearman</code>最大的差别在于，它不是根据<code>原始数值</code>来计算相关性，而是根据排序。</p>
-
-<p>假设两个随机变量分别为*X*、*Y*，它们的元素个数均为*N*，两个随即变量取的第<code>i（1&lt;=i&lt;=N）</code>个值分别用*Xi*、*Yi*表示。对*X*、*Y*进行排序（同时为升序或降序），得到两个元素排行集合*x*、*y*，其中元素*xi*、*yi*分别为*Xi*在*X*中的排行以及*Yi*在*Y*中的排行。将集合*x*、*y*中的元素对应相减得到一个排行差分集合*d*，其中*di=xi-yi*。</p>
-
+<p>假设两个随机变量分别为<em>X</em>、<em>Y</em>，它们的元素个数均为<em>N</em>，两个随即变量取的第<code>i（1&lt;=i&lt;=N）</code>个值分别用<em>Xi</em>、<em>Yi</em>表示。对<em>X</em>、<em>Y</em>进行排序（同时为升序或降序），得到两个元素排行集合<em>x</em>、<em>y</em>，其中元素<em>xi</em>、<em>yi</em>分别为<em>Xi</em>在<em>X</em>中的排行以及<em>Yi</em>在<em>Y</em>中的排行。将集合<em>x</em>、<em>y</em>中的元素对应相减得到一个排行差分集合<em>d</em>，其中<em>di=xi-yi</em>。</p>
 <blockquote>
 <p>注意区分X和Y的大小些。</p>
 </blockquote>
-
 <p>我们知道了排名后，其实计算公式还是<code>person</code>那套算法</p>
-
-<p><img src="http://statistics.laerd.com/statistical-guides/img/spearman-3.jpg" alt="img" /></p>
-
+<p><img src="http://statistics.laerd.com/statistical-guides/img/spearman-3.jpg" alt="img"></p>
 <p>但是我们也可以发现。这样将直接计算排名，会那些<code>非线性</code>的相关性就会非常友好了。此外，还可以适用于<code>非正态分布</code>的数据。但作用也是有限的。不然你试试。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;spearman&#34;</span>)
-cor(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)</code></pre></div>
-<p>所以至于选择<code>spearman</code>还是选择<code>pearson</code>来计算相关性。这个还要结合数据来说话。因此推荐先用<code>pearson</code>来计算，如果结果不好，就可以试试<code>spearman</code>.</p>
-
-<h3 id="2-3-3-cos余弦相似性">2.3.3 cos余弦相似性</h3>
-
-<p>余弦相似性测量两个*n*维样本向量的方向，而与其大小无关。它由两个<code>数值向量</code>的点积计算，并且通过<code>向量长度</code>的乘积进行归一化，因此接近*1*的输出值表示高相似性。
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;spearman&#34;</span>)
+<span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
+</code></pre></div><p>所以至于选择<code>spearman</code>还是选择<code>pearson</code>来计算相关性。这个还要结合数据来说话。因此推荐先用<code>pearson</code>来计算，如果结果不好，就可以试试<code>spearman</code>.</p>
+<h3 id="233-cos余弦相似性">2.3.3 cos余弦相似性</h3>
+<p>余弦相似性测量两个<em>n</em>维样本向量的方向，而与其大小无关。它由两个<code>数值向量</code>的点积计算，并且通过<code>向量长度</code>的乘积进行归一化，因此接近<em>1</em>的输出值表示高相似性。
 $$
 cos(\pmb x, \pmb y) = \frac {\pmb x \cdot \pmb y}{||\pmb x|| \cdot ||\pmb y||}
 $$</p>
-
-<h3 id="2-3-4-kendall相似性">2.3.4 Kendall相似性</h3>
-
+<h3 id="234-kendall相似性">2.3.4 Kendall相似性</h3>
 <p>和<code>Spearman</code>相关系数类似，<code>Kendall</code>计算排序变量之间的依赖关系，同样适用非正态分布数据。<code>Kendall</code> 可以计算连续数据和有序数据。<code>Kendall</code>在已有排名变量的背景下，通过对错位的强烈惩罚来区别于<code>Spearman</code>的。</p>
-
 <p>公式：
 $$
 \tau = \frac{c-d}{c+d} = \frac{S}{
-    \left(
-    \begin{matrix}
-    n <br />
-    2
+\left(
+\begin{matrix} 
+n \<br>
+2
 \end{matrix}
 \right)}
 = \frac{2S}{n(n-1)}
 $$</p>
-
-<p>就是如果*Xi*与*Yi*的排序是一致的，就会得分，不一致就会减分。其中原理懒的深入，反正用的少。</p>
-
+<p>就是如果<em>Xi</em>与<em>Yi</em>的排序是一致的，就会得分，不一致就会减分。其中原理懒的深入，反正用的少。</p>
 <h1 id="3-参考文献">3. 参考文献</h1>
-
 <blockquote>
 <p>参考资料：</p>
-
 <p>[1]  <a href="http://blog.sina.com.cn/s/blog_6aa3b1010102xkp5.html">http://blog.sina.com.cn/s/blog_6aa3b1010102xkp5.html</a></p>
-
 <p>[2]  <a href="http://statistics.laerd.com/statistical-guides/spearmans-rank-order-correlation-statistical-guide.php">http://statistics.laerd.com/statistical-guides/spearmans-rank-order-correlation-statistical-guide.php</a></p>
-
 <p>[3]  <a href="http://www.hep.ph.ic.ac.uk/~hallg/UG_2015/Pearsons.pdf">http://www.hep.ph.ic.ac.uk/~hallg/UG_2015/Pearsons.pdf</a></p>
-
 <p>[4]  <a href="http://brandonharris.io/latex-and-statistics-formulas/">http://brandonharris.io/latex-and-statistics-formulas/</a></p>
-
 <p>[5]  <a href="http://www.shuxuele.com/data/correlation.html">http://www.shuxuele.com/data/correlation.html</a></p>
 </blockquote>
 </article>

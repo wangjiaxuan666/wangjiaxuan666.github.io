@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Omics on Woney&#39;s Blog</title>
@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="./categories/omics/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="./categories/omics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>处理批次效应连续剧第三集（R包基本OK）</title>
       <link>./2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
@@ -149,8 +145,7 @@
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
       <guid>./2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
-      <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会*R*，能不能用*perl*写脚本，或者用最潮最新的*python*去开发一个新的生信软件。&lt;/p&gt;
-
+      <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
 &lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
     </item>
     

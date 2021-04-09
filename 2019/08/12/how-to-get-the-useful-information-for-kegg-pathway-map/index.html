@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6">
+<meta name="generator" content="Hugo 0.82.0">
 
 
 <link rel="canonical" href="./2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/">
@@ -237,180 +237,129 @@
       <p class="post-meta">@Jiaxuan Wang · Aug 12, 2019 · 5 min read</p>
     </header>
     <article class="post-content"><p>根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入</p>
-
 <h1 id="前言">前言</h1>
-
 <p><code>KEGG</code>代谢通路虽然强大，但是复杂的线路图而使不少科研工作者眼花缭乱，深感头疼。就算这次是明白，下次遇到新的问题还是一脸懵逼。之前在论坛上有一些教程，这次更新是根据自己的实际项目中遇到的问题，特意整理一下。</p>
-
 <p>帖子的主要内容：</p>
-
 <ol>
 <li>对网上和论坛的资源进行一下整合，如何去看懂<code>KEGG</code>代谢通路图</li>
 <li>结合一下项目经验，讲解相对特殊的代谢通路。</li>
 <li>对代谢通路一些细节进行讨论</li>
 </ol>
-
-<hr />
-
+<hr>
 <h1 id="目录">目录</h1>
-
 <p>一，KEGG通路图背景介绍</p>
-
 <p>二，如何去看懂代谢通路</p>
-
 <p>三，特殊的通路通路</p>
-
 <p>四，特别提示</p>
-
-<hr />
-
+<hr>
 <h2 id="一-kegg通路图背景介绍">一 ，KEGG通路图背景介绍</h2>
-
 <p><code>KEGG</code>，Kyoto encyclopedia of Genes and Genomes，翻译为京都基因和基因组百科全书，<code>KEGG</code>代谢通路的构建，首先需要将我们得到的数据，也就是我们组学得到基因，转录本，蛋白和代谢物投影在<code>KEGG</code>的代谢通路图上。对于无参流程中或者有参流程中的新基因，使用blast+将基因和转录本比对到<code>KEGG</code>数据库，得到功能注释。基因在有<code>KEGG</code>功能注释的情况下，用公司自己写的脚本<code>KEGG</code>map.pl将基因投影在代谢通路图中。那么说到代谢通路图，其实<code>KEGG</code>数据库中存在三大类代谢图。</p>
-
-<h3 id="第一类-reference-pathway">第一类、reference pathway</h3>
-
+<h3 id="第一类reference-pathway">第一类、reference pathway</h3>
 <p>根据已有的知识绘制的、概括的、详尽的具有一般参考意义的代谢图。通路图中的小框都是白色，方便个性化填充颜色，在<code>KEGG</code>中名字以map开头，节点代表某一基因、该基因编码的酶及这个酶参与的反应。如图</p>
-
 <blockquote>
 <p><a href="http://www.genome.jp/KEGG-bin/show_pathway?map00010">http://www.genome.jp/KEGG-bin/show_pathway?map00010</a></p>
-
-<p><cite>&ndash; 京都基因组百科全书</cite></p>
+<p><!-- raw HTML omitted -->&ndash; 京都基因组百科全书<!-- raw HTML omitted --></p>
 </blockquote>
-
 <ul>
-<li>[ ]
-<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/141943ka8anet8rkkr1tr8.jpeg" alt="img" /></li>
+<li><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/141943ka8anet8rkkr1tr8.jpeg" alt="img"></li>
 </ul>
-
-<h3 id="第二类-species-specific-pathway">第二类、species-specific pathway</h3>
-
-<p>物种特有代谢通路图。绿色小框为该物种特有的基因或酶，只有这些绿色的框有更详细的信息。<code>KEGG</code>中名字为特定物种种属英文缩写，比如人的糖酵解通路图，hsa00010。如图：
-&gt; <a href="http://www.genome.jp/KEGG-bin/show_pathway?hsa00010">http://www.genome.jp/KEGG-bin/show_pathway?hsa00010</a>
-&gt;
-&gt; <cite>&ndash; 京都基因组百科全书</cite></p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142150a6749d69gdb7gxvo.jpeg" alt="img" /></label></li>
+<h3 id="第二类species-specific-pathway">第二类、species-specific pathway</h3>
+<p>物种特有代谢通路图。绿色小框为该物种特有的基因或酶，只有这些绿色的框有更详细的信息。<code>KEGG</code>中名字为特定物种种属英文缩写，比如人的糖酵解通路图，hsa00010。如图：</p>
+<blockquote>
+<p><a href="http://www.genome.jp/KEGG-bin/show_pathway?hsa00010">http://www.genome.jp/KEGG-bin/show_pathway?hsa00010</a></p>
+<p><!-- raw HTML omitted -->&ndash; 京都基因组百科全书<!-- raw HTML omitted --></p>
+</blockquote>
+<ul>
+<li><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142150a6749d69gdb7gxvo.jpeg" alt="img"></li>
 </ul>
-
-<h3 id="第三类-以ko-ec-rn开头的reference-pathway">第三类、以ko/ec/rn开头的Reference pathway</h3>
-
+<h3 id="第三类以koecrn开头的reference-pathway">第三类、以ko/ec/rn开头的Reference pathway</h3>
 <p>例如同样是糖酵解代谢通路有三种类型：</p>
-
 <blockquote>
 <p>1，<a href="http://www.genome.jp/KEGG-bin/show_pathway?ko00010">http://www.genome.jp/KEGG-bin/show_pathway?ko00010</a></p>
-
 <p>2，<a href="http://www.genome.jp/KEGG-bin/show_pathway?ec00010">http://www.genome.jp/KEGG-bin/show_pathway?ec00010</a></p>
-
 <p>3，<a href="http://www.genome.jp/KEGG-bin/show_pathway?rn00010">http://www.genome.jp/KEGG-bin/show_pathway?rn00010</a></p>
-
-<p><cite>&ndash; 京都基因组百科全书</cite></p>
+<p><!-- raw HTML omitted -->&ndash; 京都基因组百科全书<!-- raw HTML omitted --></p>
 </blockquote>
-
-<p>其中，<kbd>ko</kbd>通路中的节点只代表基因；<kbd>ec</kbd>通路中的节点只代表相关的酶；<kbd>rn</kbd>通路中的节点只表示该点参与的某个反应、反应物及反应类型。底色以蓝色表示。</p>
-
+<p>其中，<!-- raw HTML omitted -->ko<!-- raw HTML omitted -->通路中的节点只代表基因；<!-- raw HTML omitted -->ec<!-- raw HTML omitted -->通路中的节点只代表相关的酶；<!-- raw HTML omitted -->rn<!-- raw HTML omitted -->通路中的节点只表示该点参与的某个反应、反应物及反应类型。底色以蓝色表示。</p>
 <p>可以看到公司用的应该是第一种reference pathway，也就是通用的，包含ko，ec，rn的所有信息，并在此基础上添加个性化绘图（加绿色方框表下调，红色上调这样的个性化），但是可能是为了老师方便查找，编号都是<code>ko+number</code>，而不是<code>m+number</code>，但通路图的内容和形式其实应该是第一类的，因为公司给的结果中，节点包含各种信息。</p>
-
 <p>那么到此我们了解了<code>KEGG</code>代谢通路的背景知识。接下来我们又该如何根据公司的项目结果，如何去解读<code>KEGG</code>代谢通路呢。</p>
-
-<hr />
-
-<h2 id="二-如何去看懂代谢通路">二，如何去看懂代谢通路</h2>
-
+<hr>
+<h2 id="二如何去看懂代谢通路">二，如何去看懂代谢通路</h2>
 <p>首先，一般的<code>KEGG</code>代谢图是长的这个样子的。</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142503znsz2xr4ussqz44s.png" alt="img" /></label></li>
-</ul>
-
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142503znsz2xr4ussqz44s.png" alt="img"></p>
 <p>相信这个，大家已经很了解，只需要知道如下内容，再加上老师的背景知识和文献阅读，基本已经可以处理大部分售后问题。</p>
-
+</li>
+</ul>
 <p><strong>KEGG代谢通路图中的名称意义：</strong></p>
-
 <ol>
 <li><code>K + num</code>：基因在<code>KEGG</code>数据库中的编号，注意这里的基因是一个范畴，不是特指某个物种某个ID的基因，而是一类具有同源相似序列和功能的基因。</li>
 <li><code>ko + num</code>:代谢通路的名称，表示一个特定的生物学途径。</li>
-<li><code>M +num</code>:模块名称</li>
+<li><code>M +num </code>:模块名称</li>
 <li><code>C + num</code>:化合物名称</li>
 <li><code>E-.-.-.-</code>:酶名，这个可能是国际酶学委员会统一规定的编号</li>
 <li><code>R + num</code>：反应名称</li>
 <li><code>RC + num</code>：反应类型</li>
 <li><code>RP + num</code>:反应物质对</li>
 </ol>
-
 <p><code>KEGG</code>代谢通路图形元素意义：</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142749rnjkgmkvl3k13vos.png" alt="img" /></label></li>
+<ul>
+<li><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/142749rnjkgmkvl3k13vos.png" alt="img"></li>
 </ul>
-
 <p><strong>资料来源：</strong>{#section-01}</p>
-
 <blockquote>
 <ol>
-<li><p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=107&amp;fromuid=8287">KEGG通路图应该怎么看</a></p></li>
-
-<li><p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=1908&amp;fromuid=8287">不一样的寻宝游戏——KEGG map</a></p></li>
-
-<li><p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=269&amp;fromuid=8287">研究植物必须了解抗病机理小知识</a></p></li>
-
-<li><p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=1890&amp;fromuid=8287">原创：解读植物病原互作pathway</a></p></li>
-
-<li><p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=277&amp;fromuid=8287">亮瞎！<code>KEGG</code>电路图这么画！</a></p></li>
+<li>
+<p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=107&amp;fromuid=8287">KEGG通路图应该怎么看</a></p>
+</li>
+<li>
+<p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=1908&amp;fromuid=8287">不一样的寻宝游戏——KEGG map</a></p>
+</li>
+<li>
+<p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=269&amp;fromuid=8287">研究植物必须了解抗病机理小知识</a></p>
+</li>
+<li>
+<p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=1890&amp;fromuid=8287">原创：解读植物病原互作pathway</a></p>
+</li>
+<li>
+<p><a href="http://www.omicshare.com/forum/forum.php?mod=viewthread&amp;tid=277&amp;fromuid=8287">亮瞎！<code>KEGG</code>电路图这么画！</a></p>
+</li>
 </ol>
 </blockquote>
-
-<hr />
-
-<h2 id="三-特殊的通路图">三，特殊的通路图</h2>
-
+<hr>
+<h2 id="三特殊的通路图">三，特殊的通路图</h2>
 <p>当我们了解以上内容，就可以应对大部分情况了，嗯，我学到这些后，信心满满地去工作了，突然有个老师给我发了一份邮件，虽然大部分问题都是常规问题，但里面其中的一个问题让我一脸懵逼。</p>
-
 <p>问题：基因不见了</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143017m9uw792ls6wllufg.png" alt="img" /></label></li>
-</ul>
-
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143017m9uw792ls6wllufg.png" alt="img"></p>
 <p>可以看到：</p>
-
 <p>图中：里面并没有出现方框，也就是说方框所代表的基因哪里去了？标绿的箭头是什么意思？</p>
-
 <p><code>KEGG</code>代谢通路有三大类，分别<strong>通用</strong>，<strong>物种特有</strong>，以及<strong>单类型通路</strong>（先姑且怎么称呼吧）。但是在这三大类的分类的基础上，<code>KEGG</code>代谢通路还可以分为常规图，概览图，全球图，其中概览图和全球图是*<code>KEGG</code> PATHWAY*数据库中一组特殊的代谢途径图，呈现全球和整体新陈代谢的图片。它们用线（或箭头）代表KOs，酶，反应和个体基因的主要对象，而不是常规代谢途径图中的框。至少目前我看到的概览图和全球图都是基础代谢合成通路上的途径，例如氨基酸合成，脂类合成和碳代谢等。</p>
-
 <p>举例子：</p>
-
 <p><strong>概览图</strong>：<em>ko01230</em> Biosynthesis of amino acids（部分）</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143405asm56sa6nl9zn693.png" alt="img" /></label></li>
-</ul>
-
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143405asm56sa6nl9zn693.png" alt="img"></p>
 <p><strong>全球图</strong>：<em>ko01100</em> Metabolic pathways</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143411jpoz8kagn1a1a16g.png" alt="img" /></label></li>
-</ul>
-
+</li>
+<li>
+<p><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143411jpoz8kagn1a1a16g.png" alt="img"></p>
 <p>此外一些代谢通路是有图例的，这其实也算常规的代谢通路图，这是用图例去展现途径。经常是一些研究很多的重要通路，如光合作用通路。</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143417bppf9y9fewu0uj6y.png" alt="img" /></p>
-
-<p>其实以上代谢通路虽然相对特殊，但是解读的方式还是和常规的一致，具体可以看第二部分内容，他们其中一些细节上的差异，官方如下解释</p>
-
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item">    <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143422zs4v15s1fukb14bm.png" alt="img" /></label></li>
+</li>
 </ul>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143417bppf9y9fewu0uj6y.png" alt="img"></p>
+<p>其实以上代谢通路虽然相对特殊，但是解读的方式还是和常规的一致，具体可以看第二部分内容，他们其中一些细节上的差异，官方如下解释</p>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/143422zs4v15s1fukb14bm.png" alt="img"></p>
 <p>其实简单来讲就是用线条和箭头代替方框来展示KO,酶和反应，基因。</p>
-
+</li>
+</ul>
 <h1 id="特别提示">特别提示</h1>
-
 <p>一，某些代谢通路图中会出现红色的字体如图：</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/155042vozc2qps91r2syhr.png" alt="img" /></p>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/155042vozc2qps91r2syhr.png" alt="img"></p>
 <p>这类的功能注释都是和疾病相关。也就是说和疾病相关的ko会被标注成红色字体。  <code>KEGG</code>代谢通路是我们组学研究的主要目标，在日常工作中，还会遇到各式各样的问题。欢迎大家进行补充和修正。</p></article>
     <footer class="post-footer">
       

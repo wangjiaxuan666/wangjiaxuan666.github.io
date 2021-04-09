@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.6">
+<meta name="generator" content="Hugo 0.82.0">
 
 
 <link rel="canonical" href="./2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/">
@@ -237,150 +237,87 @@
       <p class="post-meta">@Jiaxuan Wang · Jun 18, 2019 · 6 min read</p>
     </header>
     <article class="post-content"><p>monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.</p>
-
 <h1 id="monocle不简单">Monocle不简单</h1>
-
 <p>monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 之前的文章中已经整理过关于单细胞测序的一些基础知识. 需要的同学可以跳转<a href="./2019/06/17/the-scrna-sequence-learnning-note/">《单细胞测序学习比较-原理》</a>.</p>
-
-<p><center> 😜 😜 😜 </center></p>
-
-<p>虽然单细胞目前分析的内容还是相对单一, 但是就是&rdquo;相对单一&rdquo;的分析内容里, 就有灰常复杂的细节值得我们去深究😫. 首先就是:</p>
-
+<!-- raw HTML omitted -->
+<p>虽然单细胞目前分析的内容还是相对单一, 但是就是&quot;相对单一&quot;的分析内容里, 就有灰常复杂的细节值得我们去深究😫. 首先就是:</p>
 <ul>
 <li>1️⃣ <code>Tsne</code>和<code>UMAP</code>分群原理</li>
 <li>2️⃣ monocle构建伪时间发育轨迹的原理</li>
 </ul>
-
 <p>这两者算是目前我了解里面, 最难的部分了 😰. 所以需要额外的找一找资料补充一下头脑. 这次主要针对的是<code>monocle</code>中拟时分析做一番学习✏️ 📚.</p>
-
-<p>资料主要来自参考文献中第一篇, 发表在<strong>《Natrue method》</strong>上的文献<sup><a href="#ref01">[1]</a></sup>, 也是<code>Trapnell实验室</code>的monocle拟时分析的主要原理介绍.</p>
-
+<p>资料主要来自参考文献中第一篇, 发表在**《Natrue method》**上的文献<!-- raw HTML omitted --><a href="#ref01">[1]</a><!-- raw HTML omitted -->, 也是<code>Trapnell实验室</code>的monocle拟时分析的主要原理介绍.</p>
 <blockquote>
 <p>文章成果: 开发Monocle算法，利用无监督算法，预测转录组动态的在时间上的发育轨迹.</p>
-
 <p>研究内容: 作用利用在多个时间点收集的人类成肌细胞💪的单细胞RNA-Seq数据。用Monocle揭示了关键调节因子表达的时间维度上的变化，展示了基因调控的连续波动📈 📉, 以及预测了将来的调节因子的表达.</p>
-
 <p>最后作者进行分子实验验证了一些预测的结果。</p>
 </blockquote>
-
 <h1 id="拟时分析">拟时分析</h1>
-
 <h2 id="实验设计和取样">实验设计和取样</h2>
-
-<p>成肌细胞在高血清培养基中培养。在转换为低血清培养基后，将细胞解离后, 并以24h间隔取样。然后，总共四个时间点, 每个时间点捕获49到77个细胞. 使用<code>Fluidigm C1</code>微流体系统测序<font size = 1>(真有钱, 小声BB)</font>💰💰💰。分离来自每个细胞的RNA, 并针对每个细胞构建mRNA-Seq文库，然后每个文库约4M的read，意味着每个细胞都能得到完整基因表达谱.</p>
-
+<p>成肌细胞在高血清培养基中培养。在转换为低血清培养基后，将细胞解离后, 并以24h间隔取样。然后，总共四个时间点, 每个时间点捕获49到77个细胞. 使用<code>Fluidigm C1</code>微流体系统测序<!-- raw HTML omitted -->(真有钱, 小声BB)<!-- raw HTML omitted -->💰💰💰。分离来自每个细胞的RNA, 并针对每个细胞构建mRNA-Seq文库，然后每个文库约4M的read，意味着每个细胞都能得到完整基因表达谱.</p>
 <blockquote>
 <p>算了一下, 每个细胞4M的reads, 也就意味着0.6G的数据量/每个细胞.</p>
-
-<p><cite>任性啊, 大佬</cite></p>
+<p><!-- raw HTML omitted -->任性啊, 大佬<!-- raw HTML omitted --></p>
 </blockquote>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560774164660.png" alt="1560774164660" /></p>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560774164660.png" alt="1560774164660"></p>
 <h2 id="开发monocle">开发monocle</h2>
-
-<p>然后大佬就开发<code>monocle</code>了💯<font size = 1>(真任性 小声BB)</font>,  Monocle按照细胞的转录本丰度信息进行信息排序, 模拟细胞的分化轨迹. Monocle对比之前的算法, 其优点在于不依赖先验知识(前人证明的分化轨迹的biomaker). 而是采用无监督的方法，最大化连续模拟细胞之间的转录相似性。</p>
-
-<p><center>🌽🌽🌽</center></p>
-
-<h3 id="原理-详细的看附录-section-01"><a href="#section-01">原理(详细的看附录) </a></h3>
-
+<p>然后大佬就开发<code>monocle</code>了💯<!-- raw HTML omitted -->(真任性 小声BB)<!-- raw HTML omitted -->,  Monocle按照细胞的转录本丰度信息进行信息排序, 模拟细胞的分化轨迹. Monocle对比之前的算法, 其优点在于不依赖先验知识(前人证明的分化轨迹的biomaker). 而是采用无监督的方法，最大化连续模拟细胞之间的转录相似性。</p>
+<!-- raw HTML omitted -->
+<h3 id="原理详细的看附录-section-01"><a href="#section-01">原理(详细的看附录) </a></h3>
 <p>首先，该算法根据细胞的表达谱信息, 将细胞表示为高纬度欧氏距离空间中的一个点 (每个基因具有一个维度)。</p>
-
 <blockquote>
 <p>这部分还是比较好理解, 就是我们常说的普通转录组也有这样的高纬欧式空点坐标, PCA的算法就是在高纬空间中, 重新建立坐标系, 而所有点的投影距离最短的坐标轴就是PC1, 其次是PC2,,,,巴拉巴拉的.</p>
-
-<p><cite>PCA是要懂得,要不然怎么学习组学</cite></p>
+<p><!-- raw HTML omitted -->PCA是要懂得,要不然怎么学习组学<!-- raw HTML omitted --></p>
 </blockquote>
-
 <p>其次，它使用独立成分分析来降低该空间的维数。维度降低将细胞数据从高维空间转换为低维空间，保留细胞群之间的基本关系，但更容易可视化和解释.</p>
-
 <blockquote>
 <p>想想你的PCA, tsen, UAMP,  这个概念还是很好理解的.</p>
-
-<p><cite>问题是这个ICA是什么😱? 看<a href="#section-01">附录</a></cite></p>
+<p><!-- raw HTML omitted -->问题是这个ICA是什么😱? 看<a href="#section-01">附录</a><!-- raw HTML omitted --></p>
 </blockquote>
-
-<p>这样将细胞展现在ICA分析后的低维空间😨(就是平面二维空间)<font size = 1>发散下思维, 能不能换一种图形展现拟时分析,答案就在这一句话中</font> . 得到细胞的二维空间的坐标后, 利用最小生成树（MST）进行分析.</p>
-
+<p>这样将细胞展现在ICA分析后的低维空间😨(就是平面二维空间)<!-- raw HTML omitted -->发散下思维, 能不能换一种图形展现拟时分析,答案就在这一句话中<!-- raw HTML omitted --> . 得到细胞的二维空间的坐标后, 利用最小生成树（MST）进行分析.</p>
 <p>算法找到MST分析结果中, 最长路径. 然后<code>monocle</code>再稍微美化一下. 总之. 这个最长的路径就是单细胞的主要分化轨迹. 随着细胞沿着分化轨迹前进，细胞偶尔也可以沿着两个或更多个分开的路径发展😖。</p>
-
 <p>所以在Monocle找到最长的<a href="#section-01">MST</a>路径(主分化途径)后.  它会检查不沿此路径的细胞. 然后再对这些细胞进行MST的单独分析.  再找到一个轨迹。</p>
-
 <p>最后<code>monocle</code>命令这些<strong>子轨迹</strong>连接到主轨迹，在这一系列的分析后, 因此，Monocle通过细胞的基因表达谱，重建细胞分化过程. 这个过程中最重要的是，Monocle是无需监测的，并且不需要任何前人研究的先验知识(例如, 决定细胞命运的特定biomaker等认知)，因此适用于研究各种动态生物过程💯。</p>
-
-<p><center>🏊🏊🏊</center></p>
-
+<!-- raw HTML omitted -->
 <h2 id="分析步骤">分析步骤</h2>
-
-<p>如图<sup><a href="# ref01">[1]</a></sup></p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560835666297.png" alt="1560835666297" /></p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560836397959.png" alt="1560836397959" /></p>
-
-<p><center>🏀🏀🏀</center></p>
-
+<p>如图<!-- raw HTML omitted -->[[1]](# ref01)<!-- raw HTML omitted --></p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560835666297.png" alt="1560835666297"></p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560836397959.png" alt="1560836397959"></p>
+<!-- raw HTML omitted -->
 <h1 id="section-01">附</h1>
-
 <h2 id="算法">算法</h2>
-
 <h3 id="ica独立成分分析">ICA独立成分分析</h3>
-
 <p>我的天啊, 你竟然对这个感兴趣, 好变态啊😎. 我劝你你还是跳过这一部分💊💊💊, 因为这部分了解与不了解, 在工作和生活中用处都不是很大👽.</p>
-
 <p>如果有兴趣, 那我们就一起看看这个ICA分析👴👴👴.</p>
-
-<p>独立成分分析的最重要的假设就是信号源统计独立。独立成分分析的经典问题是“鸡尾酒会问题”。该问题描述的是给定混合信号，<font color = red>如何分离出鸡尾酒会中同时说话的每个人的独立信号</font><sup><a href="#ref03">[3]</a></sup>。</p>
-
-<p>独立成分分析的目标就是从混合个体信号中, 区分来自个体的信号. 这个概念可是和PCA完全不同的, PCA专注的是找到具有代表意义的主成分. 而ICA关注是混合信号中的个体信号<sup><a href="#ref02">[2]</a></sup>. 如图:</p>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560776162977.png" alt="1560776162977" /></p>
-
+<p>独立成分分析的最重要的假设就是信号源统计独立。独立成分分析的经典问题是“鸡尾酒会问题”。该问题描述的是给定混合信号，<!-- raw HTML omitted -->如何分离出鸡尾酒会中同时说话的每个人的独立信号<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="#ref03">[3]</a><!-- raw HTML omitted -->。</p>
+<p>独立成分分析的目标就是从混合个体信号中, 区分来自个体的信号. 这个概念可是和PCA完全不同的, PCA专注的是找到具有代表意义的主成分. 而ICA关注是混合信号中的个体信号<!-- raw HTML omitted --><a href="#ref02">[2]</a><!-- raw HTML omitted -->. 如图:</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560776162977.png" alt="1560776162977"></p>
 <blockquote>
-<p>如果还想继续学习, 花钱买书吧<sup><a href="#ref04">[4]</a></sup>, 这本书还是有中文译版的</p>
+<p>如果还想继续学习, 花钱买书吧<!-- raw HTML omitted --><a href="#ref04">[4]</a><!-- raw HTML omitted -->, 这本书还是有中文译版的:trollface:</p>
 </blockquote>
-
-<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/7fd8dd57gc0fac6dc1ea5.jpg" alt="123" /></p>
-
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/7fd8dd57gc0fac6dc1ea5.jpg" alt="123"></p>
 <h3 id="mst最小生成树">MST最小生成树</h3>
-
 <p>既然你都已经看完了<code>ICA</code>, 那就接着看下一个概念最小生成树<code>Minimum spanning tree</code>😈, MST算法应用非常广泛. 其主要概念就是:</p>
-
 <blockquote>
 <p>在有权无向网络图中, 寻找链接所有或部分点的最小权重加和的路径</p>
-
-<p><cite> 有没有感觉被我说的更复杂了</cite></p>
+<p><!-- raw HTML omitted --> 有没有感觉被我说的更复杂了<!-- raw HTML omitted --></p>
 </blockquote>
-
-<p>有权无向网络图, 最直接的了解就是<code>WGCNA</code>的网络. 这点可以看<a href="./2019/05/31/what-is-wgcna-when-to-use/">《图论好难, Network理论和WGCNA分析》</a>, 简单来讲就是网络图中点与点之间没有方向, 但是两点之间的<strong>关系</strong>(连线)是有权重值的.  而最小生成树就是需要在一个网络中尽可能地将更多的点链接起来, 同时找到所有边权重加和最小的链接方式<sup><a href="#ref05">[5]</a></sup>.</p>
-
+<p>有权无向网络图:octocat:, 最直接的了解就是<code>WGCNA</code>的网络. 这点可以看<a href="./2019/05/31/what-is-wgcna-when-to-use/">《图论好难, Network理论和WGCNA分析》</a>, 简单来讲就是网络图中点与点之间没有方向, 但是两点之间的<strong>关系</strong>(连线)是有权重值的.  而最小生成树就是需要在一个网络中尽可能地将更多的点链接起来, 同时找到所有边权重加和最小的链接方式<!-- raw HTML omitted --><a href="#ref05">[5]</a><!-- raw HTML omitted -->.</p>
 <blockquote>
 <p>举个例子, 村里通网, 其中有40户人家准备安装网线, 电信公司怎么铺网线, 才能保证所有40个
 用户都能通上网, 同时网线铺的最短.</p>
-
-<p><cite>例子中, 网线的长短意味着成本的不同, 这就是这个例子中的权重💰💰💰.</cite></p>
+<p><!-- raw HTML omitted -->例子中, 网线的长短意味着成本的不同, 这就是这个例子中的权重💰💰💰.<!-- raw HTML omitted --></p>
 </blockquote>
-
 <h1 id="题外话">题外话</h1>
-
-<p>最终monocle这篇文章<sup><a href="#ref01">[1]</a></sup>是发在了NB上, 确实是🐮🍺. 但是我们还是要注意到, 作者这边文章是2014年发的,那时候连<code>drop-seq</code>都没有, 更何况商业化推广的<code>10x genomics</code>呢, 所以当时作者做的是<code>smart-seq</code>, 一共收集了大约300个细胞. 每个细胞0.6G的测序量</p>
-
-<p>❗️重点: 拟时分析不是*高通量单细胞测序*专有的, 更不是<code>10x genomics</code>所专有的. 所以这个概念一定要了解. 另外细胞太少, 用monocle做拟时分析是不是也太寒碜了🙉. 不过值得一试😏. 我之前就遇到老师想做32个的单细胞, 但是也想做拟时分析. 我当时回答是: 能做, 但是效果不好😵. 现在想想还是蛮明智的☺️.</p>
-
-<p><center>🔴🔴🔴</center></p>
-
+<p>最终monocle这篇文章<!-- raw HTML omitted --><a href="#ref01">[1]</a><!-- raw HTML omitted -->是发在了NB上, 确实是🐮🍺. 但是我们还是要注意到, 作者这边文章是2014年发的,那时候连<code>drop-seq</code>都没有, 更何况商业化推广的<code>10x genomics</code>呢, 所以当时作者做的是<code>smart-seq</code>, 一共收集了大约300个细胞. 每个细胞0.6G的测序量</p>
+<p>❗重点: 拟时分析不是<em>高通量单细胞测序</em>专有的, 更不是<code>10x genomics</code>所专有的. 所以这个概念一定要了解. 另外细胞太少, 用monocle做拟时分析是不是也太寒碜了🙉. 不过值得一试😏. 我之前就遇到老师想做32个的单细胞, 但是也想做拟时分析. 我当时回答是: 能做, 但是效果不好😵. 现在想想还是蛮明智的☺️.</p>
+<!-- raw HTML omitted -->
 <h1 id="参考文献">参考文献:</h1>
-
-<p><p id = "ref01">[1] Trapnell, Cole, Davide Cacchiarelli, Jonna Grimsby, Prapti Pokharel, Shuqiang Li, Michael Morse, Niall J Lennon, Kenneth J Livak, Tarjei S Mikkelsen和John L Rinn. 《The Dynamics and Regulators of Cell Fate Decisions Are Revealed by Pseudotemporal Ordering of Single Cells》. <em>Nature Biotechnology</em> 32, 期 4 (2014年4月): 381–86. <a href="https://doi.org/10.1038/nbt.2859">https://doi.org/10.1038/nbt.2859</a>.</p>
-
-<p><p id = "ref02">[2] <a href="http://cis.legacy.ics.tkk.fi/aapo/papers/IJCNN99_tutorialweb/node1.html"> 《独立成分检验》</a>.</p>
-
-<p><p id = "ref03">[3] <a href="https://zh.wikipedia.org/w/index.php?title=%E7%8B%AC%E7%AB%8B%E6%88%90%E5%88%86%E5%88%86%E6%9E%90&amp;oldid=47787653](https://zh.wikipedia.org/w/index.php?title=独立成分分析&amp;oldid=47787653)">《独立成分分析》</a>维基百科，自由的百科全书, 2018年1月11日.</p>
-
-<p><p id = "ref04">[4] <a href="http://product.china-pub.com/190764#xy">《独立成分分析 - china-pub网上书店》</a>  2019年6月17日.</p>
-
-<p><p id = "ref05">[5] <a href="https://zh.wikipedia.org/w/index.php?title=最小生成树&amp;oldid=53729411">《最小生成树》. 维基百科，自由的百科全书, 2019年3月25日</a>.</p></article>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
