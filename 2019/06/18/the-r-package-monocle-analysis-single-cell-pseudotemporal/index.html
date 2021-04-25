@@ -44,7 +44,7 @@
   <meta property="og:title" content="单细胞测序的拟时分析原理学习笔记">
   <meta property="og:description" content="monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.
 ">
-  <meta property="og:url" content="/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/">
+  <meta property="og:url" content="https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/">
   <meta property="og:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1560836397959.png">
 
 
@@ -53,7 +53,7 @@
 <meta name="generator" content="Hugo 0.82.1">
 
 
-<link rel="canonical" href="/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/">
+<link rel="canonical" href="https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -78,20 +78,20 @@
 <meta name='msapplication-navbutton-color' content="#02b875">
 <meta name="msapplication-TileColor" content="#02b875">
 <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
-<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
-<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="https://abego.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://abego.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://abego.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://abego.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://abego.cn/icons/icon-152x152.png">
+<link rel="manifest" href="https://abego.cn/manifest.json">
 
 
-<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+<link rel="preload" href="https://abego.cn/styles/main-rendered.min.css" as="style">
 
 
 <link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
-<link rel="preload" href="/images/avatar.png" as="image">
-<link rel="preload" href="/images/grey-prism.svg" as="image">
+<link rel="preload" href="https://abego.cn/images/avatar.png" as="image">
+<link rel="preload" href="https://abego.cn/images/grey-prism.svg" as="image">
 
 
 <style>
@@ -99,7 +99,7 @@
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
 </style>
-<link rel="stylesheet" href="/styles/main-rendered.min.css">
+<link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
 
@@ -112,8 +112,8 @@
 
 
 
-<link rel="stylesheet" href="/styles/highlight.css">
-<script src="/scripts/highlight.min.js"></script>
+<link rel="stylesheet" href="https://abego.cn/styles/highlight.css">
+<script src="https://abego.cn/scripts/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -149,9 +149,9 @@
     
     
   <header class="site-header">
-  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  <a href="https://abego.cn/"><img class="avatar" src="https://abego.cn/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="/">Woney&#39;s Blog</a></h2>
+  <h2 class="title"><a href="https://abego.cn/">Woney&#39;s Blog</a></h2>
   
   <p class="subtitle">生活 学习 工作</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -169,28 +169,28 @@
           
           
           ">
-          <a href="/tags/">分类</a>
+          <a href="https://abego.cn/tags/">分类</a>
         </li>
       
         <li class="menu-item
           
           
            is-active">
-          <a href="/">主页</a>
+          <a href="https://abego.cn/">主页</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="/resume/">简历</a>
+          <a href="https://abego.cn/resume/">简历</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="/links/">Links</a>
+          <a href="https://abego.cn/links/">Links</a>
         </li>
       
         <li class="menu-item
@@ -204,7 +204,7 @@
           
           
           ">
-          <a href="/about/">About</a>
+          <a href="https://abego.cn/about/">About</a>
         </li>
       
     </ul>
@@ -224,7 +224,7 @@
             <span class="fab fa-twitter" aria-hidden="true"></span>
           </a>
         </li><li class="social-item">
-          <a href="/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+          <a href="https://abego.cn/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
             <span class="fab fa-weixin" aria-hidden="true"></span>
           </a>
         </li></ul>
@@ -238,7 +238,7 @@
     </header>
     <article class="post-content"><p>monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.</p>
 <h1 id="monocle不简单">Monocle不简单</h1>
-<p>monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 之前的文章中已经整理过关于单细胞测序的一些基础知识. 需要的同学可以跳转<a href="/2019/06/17/the-scrna-sequence-learnning-note/">《单细胞测序学习比较-原理》</a>.</p>
+<p>monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 之前的文章中已经整理过关于单细胞测序的一些基础知识. 需要的同学可以跳转<a href="https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/">《单细胞测序学习比较-原理》</a>.</p>
 <!-- raw HTML omitted -->
 <p>虽然单细胞目前分析的内容还是相对单一, 但是就是&quot;相对单一&quot;的分析内容里, 就有灰常复杂的细节值得我们去深究😫. 首先就是:</p>
 <ul>
@@ -302,7 +302,7 @@
 <p>在有权无向网络图中, 寻找链接所有或部分点的最小权重加和的路径</p>
 <p><!-- raw HTML omitted --> 有没有感觉被我说的更复杂了<!-- raw HTML omitted --></p>
 </blockquote>
-<p>有权无向网络图:octocat:, 最直接的了解就是<code>WGCNA</code>的网络. 这点可以看<a href="/2019/05/31/what-is-wgcna-when-to-use/">《图论好难, Network理论和WGCNA分析》</a>, 简单来讲就是网络图中点与点之间没有方向, 但是两点之间的<strong>关系</strong>(连线)是有权重值的.  而最小生成树就是需要在一个网络中尽可能地将更多的点链接起来, 同时找到所有边权重加和最小的链接方式<!-- raw HTML omitted --><a href="#ref05">[5]</a><!-- raw HTML omitted -->.</p>
+<p>有权无向网络图:octocat:, 最直接的了解就是<code>WGCNA</code>的网络. 这点可以看<a href="https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/">《图论好难, Network理论和WGCNA分析》</a>, 简单来讲就是网络图中点与点之间没有方向, 但是两点之间的<strong>关系</strong>(连线)是有权重值的.  而最小生成树就是需要在一个网络中尽可能地将更多的点链接起来, 同时找到所有边权重加和最小的链接方式<!-- raw HTML omitted --><a href="#ref05">[5]</a><!-- raw HTML omitted -->.</p>
 <blockquote>
 <p>举个例子, 村里通网, 其中有40户人家准备安装网线, 电信公司怎么铺网线, 才能保证所有40个
 用户都能通上网, 同时网线铺的最短.</p>
@@ -322,11 +322,11 @@
       
       <ul class="post-tags">
         
-          <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+          <li><a href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
         
-          <li><a href="/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3"><span class="tag">专业相关</span></a></li>
+          <li><a href="https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3"><span class="tag">专业相关</span></a></li>
         
-          <li><a href="/tags/%E5%8D%95%E7%BB%86%E8%83%9E"><span class="tag">单细胞</span></a></li>
+          <li><a href="https://abego.cn/tags/%E5%8D%95%E7%BB%86%E8%83%9E"><span class="tag">单细胞</span></a></li>
         
       </ul>
       
@@ -407,7 +407,7 @@
 
 
 
-<script src="/scripts/index.min.js"></script>
+<script src="https://abego.cn/scripts/index.min.js"></script>
 
 <script>
   if ('serviceWorker' in navigator) {
