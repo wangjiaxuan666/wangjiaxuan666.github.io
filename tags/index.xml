@@ -2,90 +2,90 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Woney&#39;s Blog</title>
-    <link>./tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Woney&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="./tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数据分析</title>
-      <link>./tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+      <link>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
+      <guid>/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
       <description></description>
     </item>
     
     <item>
       <title>统计</title>
-      <link>./tags/%E7%BB%9F%E8%AE%A1/</link>
+      <link>/tags/%E7%BB%9F%E8%AE%A1/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E7%BB%9F%E8%AE%A1/</guid>
+      <guid>/tags/%E7%BB%9F%E8%AE%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>专业相关</title>
-      <link>./tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</link>
+      <link>/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</guid>
+      <guid>/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>可视化</title>
-      <link>./tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <link>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
       <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <guid>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
       <description></description>
     </item>
     
     <item>
       <title>微生物</title>
-      <link>./tags/%E5%BE%AE%E7%94%9F%E7%89%A9/</link>
+      <link>/tags/%E5%BE%AE%E7%94%9F%E7%89%A9/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E5%BE%AE%E7%94%9F%E7%89%A9/</guid>
+      <guid>/tags/%E5%BE%AE%E7%94%9F%E7%89%A9/</guid>
       <description></description>
     </item>
     
     <item>
       <title>随笔</title>
-      <link>./tags/%E9%9A%8F%E7%AC%94/</link>
+      <link>/tags/%E9%9A%8F%E7%AC%94/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E9%9A%8F%E7%AC%94/</guid>
+      <guid>/tags/%E9%9A%8F%E7%AC%94/</guid>
       <description></description>
     </item>
     
     <item>
       <title>单细胞</title>
-      <link>./tags/%E5%8D%95%E7%BB%86%E8%83%9E/</link>
+      <link>/tags/%E5%8D%95%E7%BB%86%E8%83%9E/</link>
       <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./tags/%E5%8D%95%E7%BB%86%E8%83%9E/</guid>
+      <guid>/tags/%E5%8D%95%E7%BB%86%E8%83%9E/</guid>
       <description></description>
     </item>
     
     <item>
       <title>chip</title>
-      <link>./tags/chip/</link>
+      <link>/tags/chip/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./tags/chip/</guid>
+      <guid>/tags/chip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Theme</title>
-      <link>./tags/theme/</link>
+      <link>/tags/theme/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>./tags/theme/</guid>
+      <guid>/tags/theme/</guid>
       <description></description>
     </item>
     

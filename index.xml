@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Woney&#39;s Blog</title>
-    <link>./</link>
+    <link>/</link>
     <description>Recent content on Woney&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="./index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
-      <link>./links/</link>
+      <link>/links/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./links/</guid>
+      <guid>/links/</guid>
       <description>Wang Jiaxuan and the dalao</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>./about/</link>
+      <link>/about/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>./about/</guid>
+      <guid>/about/</guid>
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
@@ -30,14 +30,14 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>处理批次效应连续剧第四集（R包有logo了）</title>
-      <link>./2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link>
+      <link>/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link>
       <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid>
+      <guid>/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;R包有logo, 快乐起飞！&lt;/p&gt;
@@ -46,14 +46,14 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>处理批次效应连续剧第三集（R包基本OK）</title>
-      <link>./2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
+      <link>/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
       <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
+      <guid>/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;
@@ -62,23 +62,23 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>处理批次效应连续剧第二集（R包小有成效）</title>
-      <link>./2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link>
+      <link>/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link>
       <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid>
+      <guid>/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid>
       <description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>处理批次效应连续剧第一集(失败的R包)</title>
-      <link>./2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link>
+      <link>/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link>
       <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid>
+      <guid>/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。
@@ -87,14 +87,14 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>R绘图展示数据分布情况之ta弯了—圆波图</title>
-      <link>./2020/12/05/the-circ-ridge-plot-to-display-data/</link>
+      <link>/2020/12/05/the-circ-ridge-plot-to-display-data/</link>
       <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/12/05/the-circ-ridge-plot-to-display-data/</guid>
+      <guid>/2020/12/05/the-circ-ridge-plot-to-display-data/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;发现变弯真是个好的点子！！！&lt;/p&gt;
@@ -103,10 +103,10 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>地图可视化-新冠肺炎全球感染人数</title>
-      <link>./2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link>
+      <link>/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link>
       <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid>
+      <guid>/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid>
       <description>
 
 
@@ -116,21 +116,21 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>想画密度热点图没R包？没事，自己造</title>
-      <link>./2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link>
+      <link>/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link>
       <pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid>
+      <guid>/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid>
       <description>&lt;p&gt;第二个R包！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>造包初体验-autopca自动分析PCA并绘图</title>
-      <link>./2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link>
+      <link>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link>
       <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>./2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid>
+      <guid>/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;
@@ -139,37 +139,37 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>蛋白质谱研究细胞膜蛋白-实验提取方法</title>
-      <link>./2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link>
+      <link>/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid>
+      <guid>/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid>
       <description>&lt;p&gt;膜蛋白的分析由于它们的疏水性，复杂的翻译后修饰（PTM）以及它们以低丰度，一直以来都是蛋白研究的难点。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>基因转录组调控途径（译文）</title>
-      <link>./2019/09/05/organization-and-regulation-of-gene-transcription/</link>
+      <link>/2019/09/05/organization-and-regulation-of-gene-transcription/</link>
       <pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/09/05/organization-and-regulation-of-gene-transcription/</guid>
+      <guid>/2019/09/05/organization-and-regulation-of-gene-transcription/</guid>
       <description>&lt;p&gt;其中, 启动子凝聚物是在细胞核中的自发产生的瞬时动态结构，其形成主要依靠转录因子的浓度。相分离的浓缩假说解释了不同的转录因子如何能够招募相同的Pol II聚合酶。启动子凝聚物是高度动态的，并且可以在细胞核内, 发生位点改变，收缩和重整。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Resume</title>
-      <link>./resume/</link>
+      <link>/resume/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./resume/</guid>
+      <guid>/resume/</guid>
       <description>This is my resume.</description>
     </item>
     
     <item>
       <title>用R画动图展现路线</title>
-      <link>./2019/08/25/the-spring-travl-gif-made-by-r/</link>
+      <link>/2019/08/25/the-spring-travl-gif-made-by-r/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/25/the-spring-travl-gif-made-by-r/</guid>
+      <guid>/2019/08/25/the-spring-travl-gif-made-by-r/</guid>
       <description>
 
 
@@ -179,24 +179,24 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>关于不同单细胞测序技术之间的比较</title>
-      <link>./2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link>
+      <link>/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link>
       <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid>
+      <guid>/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;./rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;./rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;link href=&#34;/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
 
 
 </description>
@@ -204,105 +204,105 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>单细胞分析软件和原理笔记大全</title>
-      <link>./2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link>
+      <link>/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link>
       <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid>
+      <guid>/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid>
       <description>&lt;p&gt;本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>qPCR验证小RNA的表达量</title>
-      <link>./2019/08/12/the-quantitative-pcr-of-srna/</link>
+      <link>/2019/08/12/the-quantitative-pcr-of-srna/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/12/the-quantitative-pcr-of-srna/</guid>
+      <guid>/2019/08/12/the-quantitative-pcr-of-srna/</guid>
       <description>&lt;p&gt;但miRNA与mRNA不同，成熟的miRNA的长度只有24nt左右，非常短，通常正向引物就足以覆盖其全长甚至有余，反向引物就无处安放了。那么如何实现miRNA的qPCR扩增呢？解决方案就是在逆转录的时候设法增加逆转录产物长度。普遍的方法有两种，加尾法和茎环法。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>如何解读KEGG网络图</title>
-      <link>./2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link>
+      <link>/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid>
+      <guid>/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid>
       <description>&lt;p&gt;根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用R计算离散系数寻找转录组中的内参基因</title>
-      <link>./2019/08/12/the-cv-of-gene-expression/</link>
+      <link>/2019/08/12/the-cv-of-gene-expression/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/12/the-cv-of-gene-expression/</guid>
+      <guid>/2019/08/12/the-cv-of-gene-expression/</guid>
       <description>&lt;p&gt;一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ChIP-seq的实验设计-第一个系列</title>
-      <link>./2019/08/10/first-series-the-protocol-of-chip-seq/</link>
+      <link>/2019/08/10/first-series-the-protocol-of-chip-seq/</link>
       <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
+      <guid>/2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
       <description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用ggtree来绘制进化树</title>
-      <link>./2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</link>
+      <link>/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid>
+      <guid>/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid>
       <description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内&lt;em&gt;R&lt;/em&gt;开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>免疫细胞基因重组与免疫组测序</title>
-      <link>./2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link>
+      <link>/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link>
       <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid>
+      <guid>/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid>
       <description>&lt;p&gt;作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>单细胞测序的拟时分析原理学习笔记</title>
-      <link>./2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
+      <link>/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
       <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
+      <guid>/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
       <description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>单细胞测序技术的学习笔记-原理</title>
-      <link>./2019/06/17/the-scrna-sequence-learnning-note/</link>
+      <link>/2019/06/17/the-scrna-sequence-learnning-note/</link>
       <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/06/17/the-scrna-sequence-learnning-note/</guid>
+      <guid>/2019/06/17/the-scrna-sequence-learnning-note/</guid>
       <description>&lt;p&gt;单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>2019年春季宣讲出差记录-附R包地图可视化</title>
-      <link>./2019/06/16/spring-business-travel-in-2019/</link>
+      <link>/2019/06/16/spring-business-travel-in-2019/</link>
       <pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/06/16/spring-business-travel-in-2019/</guid>
+      <guid>/2019/06/16/spring-business-travel-in-2019/</guid>
       <description>
-&lt;script src=&#34;./rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;./rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;./rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;./rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;./rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;./rmarkdown-libs/leaflet-measure/leaflet-measure.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;./rmarkdown-libs/leaflet-measure/leaflet-measure.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/rmarkdown-libs/leaflet-measure/leaflet-measure.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/rmarkdown-libs/leaflet-measure/leaflet-measure.min.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;记录一下2019年春季宣讲的三个月,由于工作的原因，在春秋两季会集中出差一段时间。此外，还会有偶尔的生信培训班的出差任务。总之，一年总会出差个&lt;em&gt;2-3&lt;/em&gt;个月。 并且由于自己负责的区域比较远. 导致一次出差就要出差三周, 比如今天的春季宣讲,从&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;10&lt;/em&gt;号到&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;30&lt;/em&gt;日, 我在东北三省出差. 后面在广州呆了不到一个月, &lt;em&gt;5&lt;/em&gt;月&lt;em&gt;26&lt;/em&gt;日又跑到了京津翼地区外加内蒙古出差了三周, 也是刚刚在上周, 也是6月6日回到了广州. 再加上年前去的西安杨凌和山东青岛的生信培训班. 估摸着今年已经出差了三个月是足足的.&lt;/p&gt;
@@ -311,119 +311,119 @@ It makes use of a variety of open source projects including:
     
     <item>
       <title>用R语言来个有意思的图-华夫瓷砖图</title>
-      <link>./2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</link>
+      <link>/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</link>
       <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</guid>
+      <guid>/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</guid>
       <description>最近的事情 最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时</description>
     </item>
     
     <item>
       <title>&#39;R&#39;包MetaCycle研究节律相关的调控基因</title>
-      <link>./2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link>
+      <link>/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid>
+      <guid>/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid>
       <description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>图论好难, Network理论和WGCNA分析</title>
-      <link>./2019/05/31/what-is-wgcna-when-to-use/</link>
+      <link>/2019/05/31/what-is-wgcna-when-to-use/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/31/what-is-wgcna-when-to-use/</guid>
+      <guid>/2019/05/31/what-is-wgcna-when-to-use/</guid>
       <description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>数据分析预处理:归一化,标准化和中心化</title>
-      <link>./2019/05/31/what-should-we-do-before-the-data-analysis/</link>
+      <link>/2019/05/31/what-should-we-do-before-the-data-analysis/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
+      <guid>/2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
       <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
 &lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>来一点高级的venn图</title>
-      <link>./2019/05/31/a-new-r-packages-to-plot-venn-diagram/</link>
+      <link>/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid>
+      <guid>/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid>
       <description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用R包DEseq分析差异表达基因</title>
-      <link>./2019/05/31/deseq-analysis-the-different-expression-gene/</link>
+      <link>/2019/05/31/deseq-analysis-the-different-expression-gene/</link>
       <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/31/deseq-analysis-the-different-expression-gene/</guid>
+      <guid>/2019/05/31/deseq-analysis-the-different-expression-gene/</guid>
       <description>&lt;p&gt;最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷&lt;code&gt;10x单细胞&lt;/code&gt;，自己跑了&lt;code&gt;单细胞&lt;/code&gt;分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析&lt;code&gt;DESeq2&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>BBC 团队开发的bbc_style让你的图高大上起来</title>
-      <link>./2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link>
+      <link>/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link>
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid>
+      <guid>/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid>
       <description>用于R图形的BBC视觉和数据新闻手册 如何创建BBC风格的图形 在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我</description>
     </item>
     
     <item>
       <title>R语言绘图之ggplot2入门ppt</title>
-      <link>./2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link>
+      <link>/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link>
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid>
+      <guid>/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid>
       <description>为什么我做这个PPT 主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R</description>
     </item>
     
     <item>
       <title>了解一下甲基化测序</title>
-      <link>./2019/05/25/1/</link>
+      <link>/2019/05/25/1/</link>
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/25/1/</guid>
+      <guid>/2019/05/25/1/</guid>
       <description>了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA*中</description>
     </item>
     
     <item>
       <title>重要!相关性分析如何计算和理解</title>
-      <link>./2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</link>
+      <link>/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</link>
       <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>./2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</guid>
+      <guid>/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</guid>
       <description>1. 前言 接触组学多了，感觉分析主要有两类，一个是基于被研究对象的位置和序列。一类是基于算法。前者比如说lncRNA与mRNA的antisens</description>
     </item>
     
     <item>
       <title>Hugo 主题 Nuo 文章样式预览</title>
-      <link>./2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/</link>
+      <link>/2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/</link>
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>./2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/</guid>
+      <guid>/2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/</guid>
       <description>&lt;p&gt;这篇文章集中说明本人博客主题所支持的 Markdown 语法和 &lt;a href=&#34;#section-05&#34;&gt;Hugo Shortcodes&lt;/a&gt;插件，你也可以在这里预览到他们的样子。如果你不喜欢某些部分的样式，可以去修改 &lt;code&gt;content.scss&lt;/code&gt; 和 &lt;code&gt;shortcodes.scss&lt;/code&gt; 这两个文件。预告一下，我所用的这个名为 &lt;code&gt;Nuo&lt;/code&gt; 的 &lt;code&gt;Hugo&lt;/code&gt; 也将于近期发布，敬请期待。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Hello R Markdown</title>
-      <link>./2015/07/23/hello-r-markdown/</link>
+      <link>/2015/07/23/hello-r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>./2015/07/23/hello-r-markdown/</guid>
+      <guid>/2015/07/23/hello-r-markdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com. You can embed an R code chunk like this: summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ##</description>
     </item>
     
     <item>
       <title></title>
-      <link>./1/01/01/</link>
+      <link>/1/01/01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>./1/01/01/</guid>
+      <guid>/1/01/01/</guid>
       <description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;
 &lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
 &lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
