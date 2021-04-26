@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
       <link>https://abego.cn/links/</link>
@@ -26,6 +26,15 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>单细胞分析上游-Cellranger分析单细胞数据</title>
+      <link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid>
+      <description>生信软件学习-CellRanger的安装和使用 最近因为换了工作，真正的做了一名分析💻，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑</description>
     </item>
     
     <item>
