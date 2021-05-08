@@ -170,7 +170,7 @@
           
           
           ">
-          <a href="https://abego.cn/tags/">分类</a>
+          <a href="https://abego.cn/tags/">查找</a>
         </li>
       
         <li class="menu-item
@@ -205,7 +205,7 @@
           
           
           ">
-          <a href="https://abego.cn/about/">About</a>
+          <a href="https://abego.cn/about/">吐槽</a>
         </li>
       
     </ul>
@@ -237,6 +237,7 @@
       <h1 class="post-title">处理批次效应连续剧第四集（R包有logo了）</h1>
       <p class="post-meta">@Wang Jiaxuan · Dec 31, 2020 · 3 min read</p>
     </header>
+    
     <article class="post-content"><p>最近也没闲着，上一篇文章中，说到了sva虽然可以计算替代变量，但是有了替代变量后只能用limma进行差异分析，并没有输出矫正后的表达量矩阵，这点还是很苦恼的。所以上次更新中只加入了能够矫正已知批次的combat_fix。</p>
 <p>但是最近又看到新的R包<code>snm</code>,这个R包更牛了，可以矫正多个批次效应，同时还可以矫正数字型批次，并且最重要的是可以返回表达量矩阵。</p>
 <p>一下子就打通了最后一公里。svn+snm组合拳简直不要太完美！</p>

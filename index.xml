@@ -18,14 +18,12 @@
     </item>
     
     <item>
-      <title>About</title>
+      <title>吐槽</title>
       <link>https://abego.cn/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://abego.cn/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+      <description>网站最早是19年的时候就开始搭建了，当时还花了100多买了个域名，就是现在这个网站在用的 域名。 用的主题是hugo的nuo主题，但是这个作者已</description>
     </item>
     
     <item>

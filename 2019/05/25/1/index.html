@@ -167,7 +167,7 @@
           
           
           ">
-          <a href="https://abego.cn/tags/">分类</a>
+          <a href="https://abego.cn/tags/">查找</a>
         </li>
       
         <li class="menu-item
@@ -202,7 +202,7 @@
           
           
           ">
-          <a href="https://abego.cn/about/">About</a>
+          <a href="https://abego.cn/about/">吐槽</a>
         </li>
       
     </ul>
@@ -234,6 +234,7 @@
       <h1 class="post-title">了解一下甲基化测序</h1>
       <p class="post-meta">@Jiaxuan Wang · May 25, 2019 · 18 min read</p>
     </header>
+    
     <article class="post-content"><!-- raw HTML omitted -->
 <h1 id="了解一下甲基化">了解一下甲基化</h1>
 <p>重亚硫酸氢盐测序（<code>BS-Seq</code>）或全基因组亚硫酸氢盐测序（<code>WGBS</code>）就是我们常说的甲基化测序，目前是用于检测基因组*<code>DNA</code>*中的胞嘧啶甲基化的最成熟方案。在该方法中，用<code>重亚硫酸氢钠</code>处理基因组*<code>DNA</code>*，经过测序，在基因组水平上提供<code>胞嘧啶</code>甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的*C*脱氨基成*U*，*U*在测序后转化为*T*。同时，甲基化的*C*拒绝脱氨作用，并被测序为*C*。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。*<code>DNA</code>*的亚硫酸氢盐处理将未甲基化的*C*转化为*T*，导致序列复杂性降低，这对*SBS*合成系为原理的<code>illumina</code>二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。</p>
