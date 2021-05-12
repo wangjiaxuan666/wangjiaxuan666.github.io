@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Woney&#39;s Blog</title>
+    <link>https://abego.cn/categories/python/</link>
+    <description>Recent content in Python on Woney&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
+    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>写个python脚本根据ID号调取PubMed的信息</title>
+      <link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</guid>
+      <description>最近在学python 至于为什么最近在学python，主要是自己最近刚换了职业，现在主要是搞生信。还专门问了几个老同事，都建议说python，</description>
+    </item>
+    
+  </channel>
+</rss>
