@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从Nucleotide下载小基因组的Gtf注释文件</title>
+      <link>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</link>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</guid>
+      <description>脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直</description>
+    </item>
+    
     <item>
       <title>写个python脚本根据ID号调取PubMed的信息</title>
       <link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
