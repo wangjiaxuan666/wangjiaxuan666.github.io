@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>用python读取下载到本地的网页-反[反爬虫]机制</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="从MalaCardsa爬虫收集疾病相关的研究信息📄 MalaCardsa数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫">
+
+  
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="用python读取下载到本地的网页-反[反爬虫]机制">
+    <meta name="twitter:description" content="从MalaCardsa爬虫收集疾病相关的研究信息📄 MalaCardsa数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫">
+    <meta name="twitter:image" content="/images/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用python读取下载到本地的网页-反[反爬虫]机制">
+  <meta property="og:description" content="从MalaCardsa爬虫收集疾病相关的研究信息📄 MalaCardsa数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫">
+  <meta property="og:url" content="https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/">
+  <meta property="og:image" content="/images/avatar.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.82.1">
+
+
+<link rel="canonical" href="https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://abego.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://abego.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://abego.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://abego.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://abego.cn/icons/icon-152x152.png">
+<link rel="manifest" href="https://abego.cn/manifest.json">
+
+
+<link rel="preload" href="https://abego.cn/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://abego.cn/images/avatar.png" as="image">
+<link rel="preload" href="https://abego.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://abego.cn/"><img class="avatar" src="https://abego.cn/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://abego.cn/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/tags/">查找</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://abego.cn/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/about/">吐槽</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://abego.cn/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">用python读取下载到本地的网页-反[反爬虫]机制</h1>
+      <p class="post-meta">@Wang Jiaxuan · Jun 16, 2021 · 4 min read</p>
+    </header>
+    
+    <article class="post-content"><h1 id="从malacardsa爬虫收集疾病相关的研究信息">从MalaCardsa爬虫收集疾病相关的研究信息📄</h1>
+<p><a href="https://www.malacards.org/">MalaCardsa</a>数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。</p>
+<p>近期本身就是在搞空间转录组的项目📊，在做细胞🌕类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。</p>
+<p>尤其我这种本身背景就是搞植物🌴，研究生时候养养<strong>小油菜</strong>🌱，毕业的工作也就是经常打打嘴炮。基本上对医学的研究背景了解就很少。甚至前段日子看到肿瘤切片和小鼠解剖图片，一度庆幸自己学的是植物&hellip;QAQ👴👴。</p>
+<p>总之呢，<a href="https://www.malacards.org/">MalaCardsa</a>是个非常牛的网站，强烈安利给医学研究领域的小伙伴。</p>
+<blockquote>
+<p>虽然可能目前很多人没有听说<a href="https://www.malacards.org/">MalaCardsa</a>，但是<a href="https://www.genecards.org/">GeneCards</a>应该或多或少都有用过，或者耳闻过吧。
+<a href="https://www.malacards.org/">MalaCardsa</a>就是<a href="https://www.genecards.org/">GeneCards</a> Suite的其中一部分。</p>
+</blockquote>
+<p>GeneCards Suite of Databases包括了：</p>
+<ul>
+<li><a href="https://www.genecards.org/">GeneCards</a>: A database of human coding RNA (mRNA) genes</li>
+<li><a href="http://www.genecards.org/genecarna">GeneCaRNA</a>: A database of human non-coding RNA (ncRNA) genes</li>
+<li><a href="https://www.malacards.org/">MalaCards</a>: A database of human maladies and their annotations</li>
+<li><a href="https://pathcards.genecards.org/">PathCards</a>: The integrated database of human pathways and their annotations</li>
+<li><a href="https://genealacart.genecards.org/?validateUser=true">GeneALaCart</a>: Generates a file of GeneCards annotations for your list of genes</li>
+<li><a href="https://genecards.weizmann.ac.il/geneloc">GeneLoc</a>: Presents an integrated map for each human chromosome, based on data integrated by the GeneLoc algorithm</li>
+</ul>
+<p>啧啧啧，这套装有点厉害啊。其中<a href="https://www.genecards.org/">GeneCards</a>和<a href="http://www.genecards.org/genecarna">GeneCaRNA</a>提供基因功能的查询，<a href="https://www.malacards.org/">MalaCards</a>提供疾病的背景知识。<a href="https://pathcards.genecards.org/">PathCards</a>研究和绘制基因调控网络，<a href="https://genealacart.genecards.org/?validateUser=true">GeneALaCart</a>和<a href="https://genecards.weizmann.ac.il/geneloc">GeneLoc</a>提供研究便利，respect！respect！</p>
+<h1 id="malacards的相关信息">MalaCards的相关信息💻</h1>
+<p>MalaCards: The human disease database。MalaCards 是一个人类疾病综合数据库，以<a href="https://www.genecards.org/">GeneCards</a>的基因功能研究，文献调研，以及GeneAnalytics 基因座分析构建的大型疾病数据库。其中包括：症状、药物、物品、基因、临床试验、相关疾病/疾病等等注释信息。</p>
+<p>MalaCards疾病数据库集成了21787个疾病条目，包括罕见疾病、遗传疾病、复杂疾病等。</p>
+<p>我们以肝病为例，进入MalaCards(<a href="https://www.malacards.org/#">https://www.malacards.org/#</a>)后，在搜索框输入“Liver Disease”，然后进入如下<a href="https://www.malacards.org/card/liver_disease?search=liver%20cancer">页面</a>.</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210616224958867.png" alt="关于肝病的介绍"></p>
+<p>接着往下展示的是肝病相关的基因，并附带了一个网络图可视化，但实话说，图很丑。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210616225105389.png" alt="与肝病相关的疾病"></p>
+<p>以及还有肝病相关的临床症状，这个对背景知识应该是非常及时的补充。但是如果想看全部结果，需要点击<strong>show all</strong>。这个选项对后续的爬虫分析也很重要，所以如果你想爬虫获得最全的信息，最好点击下<strong>show all</strong>。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210616225215940.png" alt="肝病相关的症状"></p>
+<p>另外最想不到的是，MalaCards还收录了疾病的治疗药物，这个信息如果利用的好，估计能为文章填色不少。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210616225513225.png" alt="肝病相关药物"></p>
+<h1 id="用python收集malacards的信息">用python收集MalaCards的信息🐛</h1>
+<p>当然，MalaCards数据库还整理了和肝病相关的研究文章目录，这个就不推荐<strong>show all</strong>，因为文章太多了。所以就不再推荐了。除了收集文章以外，数据还从文章中收集了肝病相关的基因列表。</p>
+<blockquote>
+<p>这个简直太重要了，我们就是想找到一些marker基因来做细胞类型的注释，另外找到一些marker基因去讨论功能和疾病发展。</p>
+</blockquote>
+<p>如图所示，但是一定要记得点击<strong>show all</strong>，这个对后续爬虫也很重要，否则就会遗漏信息。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210616225300607.png" alt="肝病相关的基因"></p>
+<p>那么除了疾病相关的基因以外，还收录了和疾病相关的结构变异（SNV）以及拷贝数变异（CNV），简直了，只能说一句：“”强强强“。</p>
+<p>当然GO，KEGG的注释分析当然也不会少。可见MalaCards是非常值得爬虫（贱兮兮笑下）。</p>
+<p>但其实我之前写过爬虫🐛准备爬GeneCards的功能注释信息，但是很不幸。GeneCards应该有反爬虫机制，所以爬虫时而成功时而失败。关键是当时爬取的是基因的功能注释，也就是说每查找一次基因就需要刷新窗口一次，几百个基因，这种动不动就报错的脚本，这谁顶得住，遂放弃。</p>
+<p>但是这次只是需要一个网页就可以收集所有信息，为了应对发爬虫机制。选择直接在浏览器上点击，<!-- raw HTML omitted -->ctrl+S<!-- raw HTML omitted -->下载，就是这么流畅。</p>
+<p>Python脚本放在<a href="https://raw.githubusercontent.com/wangjiaxuan666/WeChat-pubword/master/get_info_from_malacard.py">GIthub</a>上,微信公众号需要点击<strong>阅读原文</strong>可直达Github。下载好Python脚本后，将脚本移到工作目录，建议malacards的本地网页也放在同一目录下。</p>
+<p>强烈安利Vscode 宇宙第一代码编辑器🐍。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 需要把get_info_from_malacard.py放到工作目录下</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">get_info_from_malacard</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#b06;font-weight:bold">gf</span>
+
+<span style="color:#888"># 读取本地下载的html文件</span>
+html = <span style="color:#d20;background-color:#fff0f0">&#34;~/xxxx/xxxx/malacards.html&#34;</span>
+soup = gf.read_file(html)
+<span style="color:#888"># id是想要调取的信息，我已经整理好了</span>
+<span style="color:#038">id</span> = [<span style="color:#d20;background-color:#fff0f0">&#34;RelatedDiseases-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;MaladiesUnifiedCompounds-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;ClinicalTrial-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;Publications-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;RelatedGenes-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;ClinVarVariations-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;CnvdVariations-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;de_genes-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;Pathway-table&#34;</span>,
+          <span style="color:#d20;background-color:#fff0f0">&#34;go_proc-table&#34;</span>
+          ]
+<span style="color:#080;font-weight:bold">for</span> <span style="color:#038">id</span> <span style="color:#080">in</span> <span style="color:#038">id</span>:
+        gf.get_info(soup,<span style="color:#038">id</span>)
+<span style="color:#888"># 自动生成结果文件，保存在工作目录下的excel文件中</span>
+</code></pre></div><p>今天就到这里了，完结~，欢迎交流！</p>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC"><span class="tag">脚本</span></a></li>
+        
+          <li><a href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
+        
+          <li><a href="https://abego.cn/tags/python"><span class="tag">Python</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2021-06-16</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2021 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://abego.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>

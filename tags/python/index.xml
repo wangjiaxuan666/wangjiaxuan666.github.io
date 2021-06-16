@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>用python读取下载到本地的网页-反[反爬虫]机制</title>
+      <link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
+      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid>
+      <description>从MalaCardsa爬虫收集疾病相关的研究信息📄 MalaCardsa数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫</description>
+    </item>
+    
     <item>
       <title>写个python脚本根据ID号调取PubMed的信息</title>
       <link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
