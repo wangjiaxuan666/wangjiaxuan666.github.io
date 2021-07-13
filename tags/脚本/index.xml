@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分享一个统计Q20和Q30的小脚本</title>
+      <link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid>
+      <description>分享一个统计Q20和Q30的小脚本📦 生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实</description>
+    </item>
+    
     <item>
       <title>用python读取下载到本地的网页-反[反爬虫]机制</title>
       <link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
