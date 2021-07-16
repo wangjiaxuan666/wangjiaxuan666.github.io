@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows上安装和学习linux系统——安装WSL2</title>
+      <link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link>
+      <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid>
+      <description>因为我自己的电脑花了一千多大洋更新了内存条和硬盘💾。现在已经溜的起飞✈️，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，</description>
+    </item>
+    
     <item>
       <title>处理批次效应连续剧第三集（R包基本OK）</title>
       <link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>

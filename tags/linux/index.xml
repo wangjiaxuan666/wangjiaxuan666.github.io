@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Woney&#39;s Blog</title>
+    <link>https://abego.cn/tags/linux/</link>
+    <description>Recent content in linux on Woney&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
+    <lastBuildDate>Fri, 16 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows上安装和学习linux系统——安装WSL2</title>
+      <link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link>
+      <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid>
+      <description>因为我自己的电脑花了一千多大洋更新了内存条和硬盘💾。现在已经溜的起飞✈️，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，</description>
+    </item>
+    
+  </channel>
+</rss>
