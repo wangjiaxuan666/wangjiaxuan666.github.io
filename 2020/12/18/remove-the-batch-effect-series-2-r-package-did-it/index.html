@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/">
@@ -269,7 +269,7 @@
 <p>所以我想用<code>base</code>函数族来实现目标，但是搜到的都是<code>split</code>+<code>apply</code>的解决思路。我觉得太繁琐了，缺乏美感。我就去看<code>sva</code>的源码，发现别人写的代码就是好看。赞叹不已，然后推敲了一段时间，偷学了三行命令。</p>
 <p>自己在此基础上完成了构思，目前更新的R包<code>fixbatch</code>已经重新放在<code>GIthub</code>了。</p>
 <p>效果非常赞！心满意足，开心到爆炸！</p>
-<pre><code class="language-{r}" data-lang="{r}"># BiocManager::install(&quot;edgeR&quot;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># BiocManager::install(&quot;edgeR&quot;)
 # BiocManager::install(&quot;preprocessCore&quot;)
 # devtools::install_github(&quot;wangjiaxuan666/autopca&quot;)
 # devtools::install_github(&quot;wangjiaxuan666/xbox&quot;)
@@ -356,7 +356,7 @@ require(patchwork)
 </tbody>
 </table>
 <p>下面就是设计批次分组，并开始中位数矫正了</p>
-<pre><code class="language-{r}" data-lang="{r}">#不矫正的结果
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#不矫正的结果
 dat_pca_nofix = pca_data_tidy(dat)
 p1 &lt;- pca(dat_pca_nofix,rename = &quot;replace&quot;,
           str_sample = &quot;_fpkm&quot;,
@@ -431,7 +431,7 @@ p1+p2+plot_annotation(tag_levels = 'A')
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

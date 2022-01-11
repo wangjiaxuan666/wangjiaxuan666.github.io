@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/">
@@ -328,7 +328,7 @@
 <h2 id="r包分析教程">R包分析教程</h2>
 <p>首先，我们需要了解<code>MetaCycle</code>的输入文件，长什么样子。做什么分析都是，最重要的就是输入和输出嘛。<code>MetaCycle</code>有两种，一种就是很常见的时间序列数据集，这种数据集是二维矩阵。行是基因，列是样本。表示沿时间分布的基因表达量情况。这种时候，通常没有必要跟踪样品来自哪个生物体。我们直接将所有生物学重复混成一个平均值来计算。为了便于解释，我们将这种数据集命名为2D时间序列数据集。以R包自带的小鼠肝脏的时间序列转录组数据为例。</p>
 <h3 id="设置分析环境">设置分析环境</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#R 3.5.3 win 10</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#R 3.5.3 win 10</span>
 <span style="color:#06b;font-weight:bold">install.packages</span>(<span style="color:#d20;background-color:#fff0f0">&#34;`MetaCycle`&#34;</span>)
 <span style="color:#888">#install.packages(&#34;tidyverse&#34;)</span>
 <span style="color:#06b;font-weight:bold">require</span>(`MetaCycle`)
@@ -336,7 +336,7 @@
 workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span>
 <span style="color:#06b;font-weight:bold">setwd</span>(workdir)
 </code></pre></div><h3 id="2d时间序列数据集">2D时间序列数据集</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">head</span>(cycMouseLiverRNA[,<span style="color:#00d;font-weight:bold">1</span>:<span style="color:#00d;font-weight:bold">5</span>])
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">head</span>(cycMouseLiverRNA[,<span style="color:#00d;font-weight:bold">1</span>:<span style="color:#00d;font-weight:bold">5</span>])
 <span style="color:#888">##                geneName       CT18       CT19       CT20       CT21</span>
 <span style="color:#888">## 1 Hist1h1c_1416101_a_at 2700.33576 2394.28784 2298.08895 2097.18536</span>
 <span style="color:#888">## 2      Fkbp5_1448231_at   60.46103   56.37786  109.55954   53.22913</span>
@@ -348,7 +348,7 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 <h3 id="3d时间序列数据集">3D时间序列数据集</h3>
 <p>3D数据主要是用在医学和临床上的，因为实验室研究，都是控制变量，遗传背景简单，处理因素统一。但是人就完全不一样了，人的变异是非常大的。因此需要考虑个体之间的差异，这时候就需要额外的实验设计信息。</p>
 <p>对于来自人类的时间序列数据集，通常必须跟踪每个样本的个体信息。除了一个矩阵存储来自所有样品的检测到的分子的实验值之外，需要另一个矩阵来存储每个样品的个体信息。这种数据集被命名为3D时间序列数据集。例如，来自R包自带的人血液的时间序列数据集如下所示。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">head</span>(cycHumanBloodDesign)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">head</span>(cycHumanBloodDesign)
 <span style="color:#888">##   sample_library subject          group time_hoursawake</span>
 <span style="color:#888">## 1      GSM968833  AF0004 SleepExtension             7.5</span>
 <span style="color:#888">## 2      GSM968834  AF0004 SleepExtension            10.5</span>
@@ -360,12 +360,12 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 <p>那么这种数据我们叫做3D时间数据集合</p>
 <h3 id="2d数据分析">2D数据分析</h3>
 <p>这个R包不用设置read.table等函数去读取数据，直接就可以进行读取。而且我们用的数据是这个R包自带的数据，所以我们先把这些数据写出来到我们的电脑里，再进行分析。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">write.csv</span>(cycSimu4h2d, file=<span style="color:#d20;background-color:#fff0f0">&#34;cycSimu4h2d.csv&#34;</span>, row.names=<span style="color:#080;font-weight:bold">FALSE</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">write.csv</span>(cycSimu4h2d, file=<span style="color:#d20;background-color:#fff0f0">&#34;cycSimu4h2d.csv&#34;</span>, row.names=<span style="color:#080;font-weight:bold">FALSE</span>)
 <span style="color:#06b;font-weight:bold">write.csv</span>(cycMouseLiverRNA, file=<span style="color:#d20;background-color:#fff0f0">&#34;cycMouseLiverRNA.csv&#34;</span>, row.names=<span style="color:#080;font-weight:bold">FALSE</span>)
 <span style="color:#06b;font-weight:bold">write.csv</span>(cycYeastCycle, file=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>, row.names=<span style="color:#080;font-weight:bold">FALSE</span>)
 </code></pre></div><p>CSV就是以逗号作为分隔符的文本文件，但是EXCEL可以直接识别，所以还是很方便的。</p>
 <p>对于2D数据来说，就是meta2d这个函数来分析。其中参数比较多，最常用的是</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>,outdir=<span style="color:#d20;background-color:#fff0f0">&#34;example&#34;</span>, cycMethod=<span style="color:#d20;background-color:#fff0f0">&#34;JTK&#34;</span>, timepoints=<span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">2</span>, <span style="color:#00d;font-weight:bold">162</span>, by=<span style="color:#00d;font-weight:bold">16</span>),outRawData=<span style="color:#080;font-weight:bold">TRUE</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>,outdir=<span style="color:#d20;background-color:#fff0f0">&#34;example&#34;</span>, cycMethod=<span style="color:#d20;background-color:#fff0f0">&#34;JTK&#34;</span>, timepoints=<span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">2</span>, <span style="color:#00d;font-weight:bold">162</span>, by=<span style="color:#00d;font-weight:bold">16</span>),outRawData=<span style="color:#080;font-weight:bold">TRUE</span>)
 </code></pre></div><table>
 <thead>
 <tr>
@@ -398,7 +398,7 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 </table>
 <p>另外如果确定用什么方法来进行分析。就需要设置一个参数。如果不设置，就会自动选择，如果都合适会ARSER, JTK_CYCLE and Lomb-Scargle三种方法都计算。</p>
 <p>例如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>, outdir=<span style="color:#d20;background-color:#fff0f0">&#34;example&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>, outdir=<span style="color:#d20;background-color:#fff0f0">&#34;example&#34;</span>,
   minper=<span style="color:#00d;font-weight:bold">80</span>, maxper=<span style="color:#00d;font-weight:bold">96</span>, timepoints=<span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">2</span>, <span style="color:#00d;font-weight:bold">162</span>, by=<span style="color:#00d;font-weight:bold">16</span>),
   outIntegration=<span style="color:#d20;background-color:#fff0f0">&#34;onlyIntegration&#34;</span>, ARSdefaultPer=<span style="color:#00d;font-weight:bold">85</span>,
   outRawData=<span style="color:#080;font-weight:bold">TRUE</span>)
@@ -428,7 +428,7 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 </tbody>
 </table>
 <p>当然因为实验涉及很多，所以这个参数有点多，但是针对我们的实验设计，就需要?<code>MetaCycle</code>去寻求帮助文档的帮助了。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta3d</span>(datafile=<span style="color:#d20;background-color:#fff0f0">&#34;cycHumanBloodData.csv&#34;</span>, cycMethodOne=<span style="color:#d20;background-color:#fff0f0">&#34;JTK&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">meta3d</span>(datafile=<span style="color:#d20;background-color:#fff0f0">&#34;cycHumanBloodData.csv&#34;</span>, cycMethodOne=<span style="color:#d20;background-color:#fff0f0">&#34;JTK&#34;</span>,
   designfile=<span style="color:#d20;background-color:#fff0f0">&#34;cycHumanBloodDesign.csv&#34;</span>, outdir=<span style="color:#d20;background-color:#fff0f0">&#34;example&#34;</span>,
   filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>, design_libColm=<span style="color:#00d;font-weight:bold">1</span>, design_subjectColm=<span style="color:#00d;font-weight:bold">2</span>,
   design_hrColm=<span style="color:#00d;font-weight:bold">4</span>, design_groupColm=<span style="color:#00d;font-weight:bold">3</span>)
@@ -436,7 +436,7 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1555093110382.png" alt="1555093110382"></p>
 <h3 id="数据的存储">数据的存储</h3>
 <p>因为这个R包自动读取数据和写出数据。但是我们一般后续的分析和可视化还是需要我们再R中进行操作。那么这个时候，我们又该怎么办呢。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cyc &lt;- <span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cyc &lt;- <span style="color:#06b;font-weight:bold">meta2d</span>(infile=<span style="color:#d20;background-color:#fff0f0">&#34;cycYeastCycle.csv&#34;</span>,filestyle=<span style="color:#d20;background-color:#fff0f0">&#34;csv&#34;</span>,
   minper=<span style="color:#00d;font-weight:bold">80</span>, maxper=<span style="color:#00d;font-weight:bold">96</span>, timepoints=<span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">2</span>, <span style="color:#00d;font-weight:bold">162</span>, by=<span style="color:#00d;font-weight:bold">16</span>),
   outputFile=<span style="color:#080;font-weight:bold">FALSE</span>, ARSdefaultPer=<span style="color:#00d;font-weight:bold">85</span>, outRawData=<span style="color:#080;font-weight:bold">TRUE</span>)
 <span style="color:#06b;font-weight:bold">head</span>(cyc$ARS)
@@ -447,7 +447,7 @@ workdir &lt;- <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/wo
 <h1 id="后续分析和可视化">后续分析和可视化</h1>
 <p>这个R包不涉及可视化，但是我们用ggplot2和pheatmap也是可以的。首先要挑选出那些显著<code>周期</code>性波动，符合节律规律的基因。我们以<code>P值</code>小于0.05来算。（因为数据量不大，用不到FDR）</p>
 <p>我们就以刚刚的分析得到的cyc中的JTK分析方法举例子。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#数据处理</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#数据处理</span>
 <span style="color:#06b;font-weight:bold">head</span>(cyc$JTK)
 dat_raw &lt;- cyc$JTK
 dat &lt;- dat_raw %&gt;% <span style="color:#06b;font-weight:bold">filter</span>(ADJ.P &lt; <span style="color:#00d;font-weight:bold">0.05</span> )
@@ -461,7 +461,7 @@ dat_exp &lt;- dat[,name_exp]
 dat_wave &lt;- dat[,name_f]
 dat_wave &lt;- dat_wave[,<span style="color:#00d;font-weight:bold">-1</span>]
 </code></pre></div><p>首先画热图</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">require</span>(pheatmap)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">require</span>(pheatmap)
 <span style="color:#06b;font-weight:bold">require</span>(RColorBrewer)
 color = <span style="color:#06b;font-weight:bold">colorRampPalette</span>(<span style="color:#06b;font-weight:bold">rev</span>(<span style="color:#06b;font-weight:bold">brewer.pal</span>(n = <span style="color:#00d;font-weight:bold">3</span>, name = <span style="color:#d20;background-color:#fff0f0">&#34;BuPu&#34;</span>)))(<span style="color:#00d;font-weight:bold">2</span>)
 p3 &lt;- <span style="color:#06b;font-weight:bold">pheatmap</span>(dat_exp, color = color, scale = <span style="color:#d20;background-color:#fff0f0">&#34;row&#34;</span>, cluster_cols = F,
@@ -469,7 +469,7 @@ p3 &lt;- <span style="color:#06b;font-weight:bold">pheatmap</span>(dat_exp, colo
   show_rownames = F,treeheight_row = <span style="color:#00d;font-weight:bold">0</span>)
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1555098919059.png" alt="1555098919059"></p>
 <p>然后画这些基因的表达量看看是否真的符合节律变化。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">require</span>(reshape2)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">require</span>(reshape2)
 dat_exp &lt;- tibble::<span style="color:#06b;font-weight:bold">rownames_to_column</span>(dat_exp)
 dat_plot &lt;- <span style="color:#06b;font-weight:bold">melt</span>(dat_exp,id  = <span style="color:#d20;background-color:#fff0f0">&#34;rowname&#34;</span>)
 p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(dat_plot, <span style="color:#06b;font-weight:bold">aes</span>(x = variable, y = value, color = variable)) + 
@@ -543,7 +543,7 @@ p2 &lt;- p1 +<span style="color:#06b;font-weight:bold">theme_bw</span>()+<span s
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/">
@@ -270,12 +270,12 @@
 <p>打包好的文件放在Github<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/fastq_stat.tar.gz">wangjiaxuan666/WeChat-pubword/fastq_stat.tar.gz</a>上，也可以点击<strong>阅读原文</strong>直达。如果Github被屏蔽了，可以在微信公众号对话框中输入<strong>序列质控</strong>或者<strong>质控</strong>，获得腾讯云下载链接。但是腾讯云存储按照访问流量，会收我钱😨，哈哈，最好还是别让我本就贫穷的日子雪上加霜了💔。</p>
 <h3 id="优化后的安装步骤">优化后的安装步骤</h3>
 <p>因为我做了一些优化，所以安装过程和输出结果要比上面的文章更方便一些。在我的Github上下载文件后，创建新的文件夹，然后解压</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir <span style="color:#038">test</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir <span style="color:#038">test</span>
 mv fastq_stat.tar.gz <span style="color:#038">test</span>
 <span style="color:#038">cd</span> <span style="color:#038">test</span>
 tar -zxvf fastq_stat.tar.gz
 </code></pre></div><p>运行安装程序，并用<code>test.fq.gz</code>文件做测试结果。<code>fastq_stat.sh</code>同时支持-i 参数和直接参数（反正就一个参数）帮助文档可以用-h。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash install.sh
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash install.sh
 bash fastq_stat.sh test.fq.gz
 <span style="color:#888"># test.fq.gz	10	1000	964(96.4%)	886(88.6%)	411(41.1%)</span>
 <span style="color:#888"># bash fastq_stat.sh -i test.fq.gz</span>
@@ -299,7 +299,7 @@ bash fastq_stat.sh -h
 <h3 id="step01-">step01 🍐</h3>
 <p>先创建一个文件夹，还是将Github下载的文件放入其中，然后在终端进行操作，在centos 7.0和Mac os亲测成功。
 `</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#888"># 下载在新建的文件中</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#888"># 下载在新建的文件中</span>
 mkdir fq_stat
 <span style="color:#038">cd</span> fa_stat
 unzip fq.zip
@@ -308,17 +308,17 @@ ls
 <span style="color:#888"># 解压后会发现其中有四个文件，sh是我自己写的，不是原来的</span>
 </code></pre></div><h3 id="step02-">step02 🍑</h3>
 <p>解压后，还是在刚刚创建，解压的文件中，用gcc编译，输入</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc -o fastq_stat parse.c -lz
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc -o fastq_stat parse.c -lz
 <span style="color:#888"># 没有报错就是安装成功</span>
 ls 
 <span style="color:#888"># Makefile    fastq_stat  kseq.h      kseq_test.c parse.c     test.fq.gz</span>
 </code></pre></div><h3 id="step03-">step03 🍓</h3>
 <p>这个时候就会发现gcc编译后出现了一个新的文件<code>fastq_stst</code>,这是一个可执行文件，简单测试下效果：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./fastq_stat test.fq.gz
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./fastq_stat test.fq.gz
 <span style="color:#888"># 10	1000	964	886	411</span>
 </code></pre></div><p>输出结果的意思分别是，reads数目，碱基数目，Q20的碱基数目，Q30的碱基数目，以及是G或者C的碱基数目（GC含量）。</p>
 <p>但其实这个这个结果并不人性化，可以简单利用awk命令来更改下输出</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#c00;font-weight:bold">#!bin/sh
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#c00;font-weight:bold">#!bin/sh
 </span><span style="color:#c00;font-weight:bold"></span>./fastq_stat test.fq.gz | awk <span style="color:#d20;background-color:#fff0f0">&#39;{print $1,$2,$3&#34;(&#34;$3/$2*100&#34;%)&#34;,$4&#34;(&#34;$4/$2*100&#34;%)&#34;,$5&#34;(&#34;$5/$2*100&#34;%)&#34;}&#39;</span>
 <span style="color:#888"># 10 1000 964(96.4%) 886(88.6%) 411(41.1%)</span>
 </code></pre></div><p>这样一来输出结果就好认识多了。以上就是我做的所有优化的分分解过程。其实就是：</p>
@@ -375,7 +375,7 @@ ls
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

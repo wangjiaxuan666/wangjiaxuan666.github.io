@@ -53,7 +53,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/">
@@ -272,7 +272,7 @@ $$
 z = \frac{x - \mu}{\sigma}
 $$
 其中u是平均值，sigma是标准差。因为我脑子不够用了，所以没办法用复杂的数学公式来实现计算，是不是真是标准差为<em>1</em>，平均值为<em>0</em>。偷懒的我在R上，自己写了一个函数。来验证一下，果真如此。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.3 win 10</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.3 win 10</span>
 scales&lt;-<span style="color:#06b;font-weight:bold">function</span>(x){
   <span style="color:#06b;font-weight:bold">return</span>((x-<span style="color:#06b;font-weight:bold">mean</span>(x))/<span style="color:#06b;font-weight:bold">sd</span>(x))
 }
@@ -291,9 +291,9 @@ d&lt;-<span style="color:#06b;font-weight:bold">density</span>(dat1)
 $$
 X_{norm} = \frac{X - X_{min}}{X_{max}-X_{min}}
 $$
-上述的公式还是比较好理解的，就是看特征值在极差范围内的**排序**。在这种方法中，数据被缩放到固定范围[0,1]，作为被限定边界的补偿，得到的是，与标准化相反，归一化最终会得到较小的标准偏差，这可以抑制异常值的影响。</p>
+上述的公式还是比较好理解的，就是看特征值在极差范围内的<strong>排序</strong>。在这种方法中，数据被缩放到固定范围[0,1]，作为被限定边界的补偿，得到的是，与标准化相反，归一化最终会得到较小的标准偏差，这可以抑制异常值的影响。</p>
 <p>这点我们通过<em>R</em>很容易就可以发现</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; Norm &lt;-<span style="color:#06b;font-weight:bold">function</span>(x){
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; Norm &lt;-<span style="color:#06b;font-weight:bold">function</span>(x){
      <span style="color:#06b;font-weight:bold">return</span>((x-<span style="color:#06b;font-weight:bold">min</span>(x))/(<span style="color:#06b;font-weight:bold">max</span>(x)-<span style="color:#06b;font-weight:bold">min</span>(x)))
 }
 &gt; dat2 &lt;- <span style="color:#06b;font-weight:bold">Norm</span>(dat)
@@ -317,13 +317,13 @@ $$
 就是很简单的特征值减去平均值。这个处理就是压缩数据。但其实更多的是一种特征值变换，就是变成有正负了。实话实话，我不知道这个干嘛，网上资料很少，谷歌也没这么说。并且我自己理解用处也有限。只是降低了<strong>平均值</strong>，但是数据分布的重要衡量标准—标准差没有任何变化啊。所以我个人猜测中心化只适合一些特定场景下的数据处理。原理这么简单，到时候自己遇到了，就自己用用呗。</p>
 <p>也用函数探究一下：</p>
 <p>首先是原始矩阵的平均值和标准差，因为我担心中心化处理的效果太弱，只好拿原始数据来做比对。</p>
-<pre><code>&gt; mean(dat)
+<pre tabindex="0"><code>&gt; mean(dat)
 [1] 5168.167
 &gt; sd(dat)
 [1] 2804.562
 </code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601528491.png" alt="1553601528491"></p>
 <p>在看看中心化处理后的数据分布</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; dat3 &lt;- <span style="color:#06b;font-weight:bold">center</span>(dat)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; dat3 &lt;- <span style="color:#06b;font-weight:bold">center</span>(dat)
 &gt; <span style="color:#06b;font-weight:bold">mean</span>(dat3)
 [1] <span style="color:#00d;font-weight:bold">-3.033596e-13</span>
 &gt; <span style="color:#06b;font-weight:bold">sd</span>(dat3)
@@ -379,7 +379,7 @@ $$
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

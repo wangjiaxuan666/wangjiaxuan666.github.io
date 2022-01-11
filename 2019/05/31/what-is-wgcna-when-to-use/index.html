@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/">
@@ -398,7 +398,7 @@
 <p><a href="http://blog.sina.com.cn/s/blog_61f013b80101lcpr.html">http://blog.sina.com.cn/s/blog_61f013b80101lcpr.html</a></p>
 </blockquote>
 <p>另外附一个小的 R 代码，因为 WGCNA 包是放在 bioconductor 上的，设置 setRepsitories 参数就可以用install.packages 直接搜索安装。美滋滋。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">setRepsitories</span>(ind = <span style="color:#00d;font-weight:bold">1</span>:<span style="color:#00d;font-weight:bold">2</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">setRepsitories</span>(ind = <span style="color:#00d;font-weight:bold">1</span>:<span style="color:#00d;font-weight:bold">2</span>)
 <span style="color:#06b;font-weight:bold">install.packages</span>(<span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)
 </code></pre></div><h4 id="3213-wgcna-分析的目的和流程">3.2.1.3 WGCNA 分析的目的和流程</h4>
 <p>其实目的嘛，最直白就是为文章提高格调啊。0.o</p>
@@ -438,7 +438,7 @@
 <blockquote>
 <p>无尺度网络：满足上文提到的无尺度网络的定义假设m为某节点的连接数。统计所有基因的m值，然后以m高低为指标对所有基因分类。n为节点连接数为m的基因的数量。m与n应该成反比</p>
 </blockquote>
-<pre><code>原始矩阵：Smn=|cor (m, n)|#注意这里是绝对值，也就是说WGCNA分析只考虑强弱，不会考虑正相关还是负相关
+<pre tabindex="0"><code>原始矩阵：Smn=|cor (m, n)|#注意这里是绝对值，也就是说WGCNA分析只考虑强弱，不会考虑正相关还是负相关
 无尺度化（拉大贫富差距），确定最佳β值。 aij=power (Smn, β)=|Smn|^β
 </code></pre><p>所以 WGCNA 首先第一个参数就是 n次幂（β）到底取什么值</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1549940193387.png" alt="1549940193387"></p>
@@ -557,7 +557,7 @@
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

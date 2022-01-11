@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/">
@@ -271,12 +271,12 @@
 <p>了解生信分析软件，最关键的是输入文件和输出文件。</p>
 <p><code>DESeq2</code>的输入文件有两个，一个是<strong>count值计数文件</strong>，count值就是比对上这个基因的reads数目。一般公司给的结果都有的，这次我也是用公司给的表格数据来做的。因为我不会linux，自然也不会hisat2等比对软件咯。所以上游是断，只有从已有的公司结果出发。不过我相信大部分公司都会给count值的。比如我所在的公司就是在表达量总表里。</p>
 <p><code>DESeq2</code>需要的输入文件是这样的，行为基因名称，列为样本，值为count值</p>
-<pre><code class="language-{r}" data-lang="{r}">##             untreated1 untreated2 untreated3   treated1 treated2
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">##             untreated1 untreated2 untreated3   treated1 treated2
 ## FBgn0000003          0          0          0          0        0
 ## FBgn0000008         92        161         76         70      140
 ## .....
 </code></pre><p>另一个就是<strong>样本设计的表格</strong>，也就是分组信息，当然也可以多个分组，从而计算批次效应。</p>
-<pre><code class="language-{r}" data-lang="{r}">##              condition        type
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">##              condition        type
 ## treated1fb     treated single-read
 ## treated2fb     treated  paired-end
 ## treated3fb     treated  paired-end
@@ -288,7 +288,7 @@
 <p>知道了输入文件的格式，就努力整理数据表格吧。</p>
 <p>相信了解的R的人，处理起来是不难的，要是实在不行，就用excel</p>
 <p>我的命令如下，其实也是半自动化的，理论上，只要count值那一列的名词里有“count”，行是基因名词的数据，应该都可以的。有兴趣的话，可以用自己的数据试试，如果出错，很可能是正则表达式的错误用法。</p>
-<pre><code class="language-{r}" data-lang="{r}"># R 3.5.2 win 10
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># R 3.5.2 win 10
 library(&quot;`DESeq2`&quot;,quietly = TRUE)
 library(magrittr)
 library(stringr)
@@ -306,7 +306,7 @@ count &lt;- expstat[,sample]#只读取表达量总表中的有count值的列
 count = round(count,0)#`DESeq2`只能处理整数的count值
 </code></pre><p>当然我不能保证上面的命令，粘贴复制就管用，所以学习R，弄懂每一行命令的含义最重要。</p>
 <p>上面我们已经读取了count值得数据，下面就要设置样品分组的colData数据了</p>
-<pre><code class="language-{r}" data-lang="{r}">#设置分组colData的信息
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#设置分组colData的信息
 sample &lt;- stringr::str_replace_all(sample, &quot;_count&quot;,&quot;&quot;)
 colnames(count) &lt;- sample
 group &lt;- stringr::str_replace_all(sample,&quot;-.*&quot;,&quot;&quot;)
@@ -314,14 +314,14 @@ condition &lt;- as.factor(group)#一定要是因子类型的向量，切记
 colData = data.frame(row.names=sample,condition)
 </code></pre><p>那么设置好输入文件后，就要进入差异分析了。但是差异分析前，要设置好参数</p>
 <h2 id="参数设置">参数设置</h2>
-<pre><code class="language-{r}" data-lang="{r}">diff_set &lt;- &quot;PBS_VS_GFP&quot; #设置比较，后面比前面，PBS是对照
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">diff_set &lt;- &quot;PBS_VS_GFP&quot; #设置比较，后面比前面，PBS是对照
 diff &lt;- unlist(str_split(diff_set,&quot;_VS_&quot;))
 cutfc &lt;- 1 #差异倍数的阈值，默认是是差异两倍，也就是log2的1
 test &lt;- &quot;FDR&quot; # &quot;PValue&quot;根据p值筛选，就换成test &lt;- &quot;PValue&quot; 
 cutp &lt;- 0.05 #统计检验值，小于0.05认为统计上显著
 </code></pre><h2 id="差异分析">差异分析</h2>
 <p>我这里只是列举了简单的差异分析，不列举参数，因为我还没了解明白</p>
-<pre><code class="language-{r}" data-lang="{r}">## 差异分析
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">## 差异分析
 dds &lt;- DESeqDataSetFromMatrix(count, colData, design= ~ condition)
 dds$condition &lt;- relevel(dds$condition, ref = diff[1])
 dds &lt;- DESeq(dds)
@@ -334,7 +334,7 @@ dds &lt;- DESeq(dds)
 #fitting model and testing
 res &lt;- results(dds, contrast=c(&quot;condition&quot;,diff[2],diff[1]))
 </code></pre><p>res就是差异分析的结果，但是大家输入res就会发现，<code>DESeq2</code>的输出结果中没有表达量的信息，但是有log2FC和P值、Q值的信息。一般来讲，做差异分析，肯定是想知道表达量的。然后再进行差异分析。但是其实这里面不是承上启下的流程。而是输入count值，出来差异倍数和检验值。虽然根据</p>
-<pre><code class="language-{r}" data-lang="{r}">diff_gene_`DESeq2` &lt;-subset(res, padj &lt; 0.05 &amp; abs(log2FoldChange) &gt; 1)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">diff_gene_`DESeq2` &lt;-subset(res, padj &lt; 0.05 &amp; abs(log2FoldChange) &gt; 1)
 </code></pre><p>也能得到差异基因的列表，但是没有类似于FPKM等表达量信息，没有表达量就没有其他那些基于表达量的信息了啊。但是<code>DESeq2</code>就是没输出，我觉得可能是表达量的计算方法有很多，而<code>edgeR</code>和<code>DESeq2</code>都是根据CPM来计算的，因为CPM不矫正基因的长度，所以基因的表达量的绝对大小会有比较大的波动。这意味着有大量的信息可用于离散估计和差异测试。</p>
 <p>同时说实话，大家都是比较同一个基因，都是一个基因，矫正长度有什么用，都是一样的长度。</p>
 <p>所以说实话，这也是FPKM等对长度进行矫正的表达量公式地位下降的原因。</p>
@@ -343,7 +343,7 @@ res &lt;- results(dds, contrast=c(&quot;condition&quot;,diff[2],diff[1]))
 <p>CPM与FPKM的比较：https://support.bioconductor.org/p/69433/</p>
 </blockquote>
 <h2 id="表达量计算">表达量计算</h2>
-<pre><code class="language-{r}" data-lang="{r}">#计算表达量
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#计算表达量
 diff_sample &lt;- str_subset(nms,pattern = paste0(diff[1],&quot;|&quot;,diff[2]))
 data = count[,diff_sample]
 ## cal cpm 
@@ -441,7 +441,7 @@ data4$FDR[is.na(data4$FDR)] = 1
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

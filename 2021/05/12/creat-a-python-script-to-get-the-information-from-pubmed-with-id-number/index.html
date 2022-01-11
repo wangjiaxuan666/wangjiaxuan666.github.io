@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/">
@@ -266,7 +266,7 @@
 <p>嗯，没错，上次疫情为啥突然学python，就是每天新冠疫情的数据更新，每天都会关注日增感染人数等。所以就在Github上fork了一个大佬的爬虫。人家是用python写的，牛逼，当时我看了几天，也搞了个不伦不类的爬虫，用R画了个感染人数的地图就over了。详情可以看另一篇文章——<a href="https://mp.weixin.qq.com/s/vG251rKMTcAnw9ViGB5alQ">《地图可视化-新冠肺炎全球感染人数》</a>。</p>
 <p>这次我又准备写个爬虫，原因是最近我在下载一个数据库，数据库骚的是用PubMed ID来作为数据来源文章的标识。额，我需要的是文章的标题，年份，链接，和期刊啊。所以我决定爬下PubMed的网站，把自己想要的数据down下来。</p>
 <p>脚本已经写好了，其实用起来很简单。只需要点击<a href="https://github.com/wangjiaxuan666/WeChat-pubword">这里</a>，去Github上下载pubmedid2info.py文件。然后放在自己的目标文件下中，在python中设置好路径即可。如下</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">sys</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">sys</span>
 sys.path.append(<span style="color:#d20;background-color:#fff0f0">r</span><span style="color:#d20;background-color:#fff0f0">&#39;E:\webdata\pubmedid2info.py&#39;</span>)
 <span style="color:#d20;background-color:#fff0f0">&#34;&#34;&#34;需要安装requests和bs4、openpyxl&#34;&#34;&#34;</span>
 <span style="color:#080;font-weight:bold">from</span> <span style="color:#b06;font-weight:bold">pubmedid2info</span> <span style="color:#080;font-weight:bold">import</span> pubmedid2info
@@ -324,7 +324,7 @@ pubmedid2info(pubmedid)
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

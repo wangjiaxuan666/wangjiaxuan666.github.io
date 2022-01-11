@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/">
@@ -260,7 +260,7 @@
 <p>发现了一个R包，说牛逼是真牛逼，画的韦恩图不局限6组分，而是可以实现任意组分，并且是基于<strong>拓扑学</strong>运算的，图形高大上。说傻也傻，画的图不能展现在R自带的绘图窗中，必须展现在<strong>AI</strong>等<code>svg</code>编辑器中。巨麻烦，我都懒的整理自己的数据来写公众号，因此这个我也不会标原创，虽然我是翻译的，哈哈哈。</p>
 <p>浪费我两个小时摸索这个<em>R</em>包。我也是<strong>傻包</strong></p>
 <h2 id="画少数组分的韦恩图">画少数组分的韦恩图</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">library</span>(nVennR)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">library</span>(nVennR)
 exampledf
 <span style="color:#888">#&gt;    Employee SAS Python R</span>
 <span style="color:#888">#&gt; 1      A001   Y      Y Y</span>
@@ -289,11 +289,11 @@ myV &lt;- <span style="color:#06b;font-weight:bold">plotVenn</span>(<span style=
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757458631.png" alt="1552757458631"></p>
 <p>这个图不得不说是很高大上的。但是人类不友好啊，各位要是为了这么一张图，发表在文章中，花点时间是值得的，我就不研究了。没那个刚需。</p>
 <h2 id="美化图形">美化图形</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- <span style="color:#06b;font-weight:bold">createVennObj</span>(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- <span style="color:#06b;font-weight:bold">createVennObj</span>(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
 <span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, opacity = <span style="color:#00d;font-weight:bold">0.1</span>, borderWidth = <span style="color:#00d;font-weight:bold">3</span>)
 </code></pre></div><p>设置透明度和边界宽度</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757806458.png" alt="1552757806458"></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, setColors = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, setColors = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))
 </code></pre></div><p>设置颜色</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757905357.png" alt="1552757905357"></p>
 <p>这个包还是先养肥再杀吧，希望作者能记得更新迭代下，目前真的很不优化。但是如果要在文章中展现，花点时间是研究是值得的</p>
@@ -344,7 +344,7 @@ myV &lt;- <span style="color:#06b;font-weight:bold">plotVenn</span>(<span style=
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

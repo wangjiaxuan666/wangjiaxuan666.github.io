@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/">
@@ -259,7 +259,7 @@ markdown preview
 </ul>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553865854356.png" alt="1553865854356"></p>
 <p>本次我们用<em>R</em>来进行计算和绘图，所用的数据是<em>R</em>自带的<code>mtcars</code>数据</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">&gt; mtcars
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">&gt; mtcars
 &gt; <span style="color:#06b;font-weight:bold">head</span>(mtcars)
                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         <span style="color:#00d;font-weight:bold">21.0</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">160</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.90</span> <span style="color:#00d;font-weight:bold">2.620</span> <span style="color:#00d;font-weight:bold">16.46</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">4</span>
@@ -291,7 +291,7 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 </table>
 <p>从上述列名中，我们可以简单得到<code>排量</code>（disp）与<code>马力</code>（hp）呈现正相关性，而与每加仑汽油行驶的<code>里程</code>是负相关性。</p>
 <p>那么我们就可以用<em>R</em>的<code>cor函数</code>来计算两个变量之间的相关性。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#06b;font-weight:bold">library</span>(ggplot2)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#06b;font-weight:bold">library</span>(ggplot2)
  r &lt;- <span style="color:#06b;font-weight:bold">cor</span>(mtcars$disp,mtcars$mpg,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
  p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = mtcars, <span style="color:#06b;font-weight:bold">aes</span>(x = disp, y = mpg)) + 
          <span style="color:#06b;font-weight:bold">geom_point</span>(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
@@ -310,12 +310,12 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 <p>刚刚我们知道了，相关性分为<code>正相关</code>和<code>负相关</code>。但这里，我们之说的是<code>线性相关</code>。因为<code>非线性相关</code>的话，更适合建模拟合<code>多元回归</code>。这个还是很牛的领域，只是我还没涉及，上次去<code>青岛</code>做<code>生信培训</code>，就有老师想构建四因素的<code>多元回归分析</code>。这个领域我完全没有了解。就不说了。</p>
 <p>但是用<em>R</em>中<code>cor</code>函数来计算相关性也是有局限的。首先第一点，不能计算非线性模型，</p>
 <p>例如我们先看一组简化的数据，<code>icecream</code>是冰激凌的销售额。<code>sunglass</code>是太阳镜的销售额。<code>tem</code>是温度。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
  icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
  tem &lt;- <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">40</span>,<span style="color:#00d;font-weight:bold">0.5</span>)
  dat &lt;- <span style="color:#06b;font-weight:bold">data.frame</span>(sunglass, icecream, tem)
 </code></pre></div><p>我们先看在温度低于<em>35</em>时候的<code>冰激凌销售</code>与<code>温度</code>之间的关系。</p>
-<pre><code class="language-{r}" data-lang="{r}"> require(magrittr)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"> require(magrittr)
  dat_low &lt;- dat %&gt;% dplyr::filter(tem &lt; 35)
  r2 &lt;- cor(dat_low$icecream, dat_low$tem)
  p3 &lt;- ggplot(data = dat_low, aes(x = tem, y = icecream)) + 
@@ -325,7 +325,7 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
          theme_bw()
 </code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553879883381.png" alt="1553879883381"></p>
 <p>这个时候，我们可以看到当<code>温度</code>低于<em>35</em>度的时候，<code>冰激凌销量</code>是和<code>温度</code>正相关的。但是随着天气炎热，大家都不愿出远门，这时候<code>冰激凌</code>的销售就下来了。温度在30度到40度之间的时候，<code>温度</code>和<code>冰淇淋销量</code>之间的相关性是怎么样呢。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(dat$icecream,dat$tem)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(dat$icecream,dat$tem)
  p4 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = dat, <span style="color:#06b;font-weight:bold">aes</span>(x = tem, y = icecream)) + 
          <span style="color:#06b;font-weight:bold">geom_point</span>() + 
          <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
@@ -334,7 +334,7 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880123952.png" alt="1553880123952"></p>
 <p>其实我们就可以发现问题，这里的<code>温度</code>和<code>冰激凌销量</code>是有很强的相关性的，我们甚至可以用脑子拟合出一个抛物曲线。虽然这个相关性不是线性的。但是如果我们继续用<em>R</em>中<code>cor</code>函数来计算，用线性相关性分析显然是不正确的。数值才*-0.39*</p>
 <p>另外，相关性强，也不等于<code>因果关系</code>。例如我们可以看到<code>太阳眼镜</code>的销量和<code>冰激凌</code>的销量之间的关系。</p>
-<pre><code class="language-{r}" data-lang="{r}"> r4 &lt;- cor(dat$icecream,dat$sunglass)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"> r4 &lt;- cor(dat$icecream,dat$sunglass)
  p5 &lt;- ggplot(data = dat, aes(x = icecream, y = sunglass)) + 
          geom_point() + 
          geom_smooth(method = &quot;lm&quot;,color = &quot;#1a9641&quot;) +
@@ -344,7 +344,7 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 <p>可以看到，就算<code>太阳镜</code>和<code>冰淇淋</code>的销量相关性是<em>0.99</em>,也不能体现两者是因果关系。就是说，相关<strong>不</strong>代表一个现象导致另一个（相关可能有其他的原因，比如太阳的直射时间）</p>
 <h2 id="23-相关性计算">2.3 相关性计算</h2>
 <p><code>cor</code>函数的完整语法如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y = <span style="color:#080;font-weight:bold">NULL</span>，use =“everything”，method = c（“pearson”，“kendall”，“spearman”））
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y = <span style="color:#080;font-weight:bold">NULL</span>，use =“everything”，method = c（“pearson”，“kendall”，“spearman”））
 </code></pre></div><p>也就是说像关系计算，有三种方法，<code>pearson</code>,<code>kendall</code>,<code>spearman</code>三种</p>
 <h3 id="231-pearson相关系数">2.3.1 pearson相关系数</h3>
 <p>算法如下：</p>
@@ -393,7 +393,7 @@ $$
 <p>根据上述，我们知道了<code>协方差</code>可以获得，两个变量之间的<code>协同变化程度</code>。标准差可以知道变量的变化范围。</p>
 <p>协方差虽然可以衡量变化程度，但是还缺少一个统一的量纲，否则不能进行比较。</p>
 <p>例如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
  icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
  <span style="color:#06b;font-weight:bold">cov</span>(sunglass,icecream)
 <span style="color:#888">#[1] 54091</span>
@@ -422,7 +422,7 @@ $$
 <p>我们知道了排名后，其实计算公式还是<code>person</code>那套算法</p>
 <p><img src="http://statistics.laerd.com/statistical-guides/img/spearman-3.jpg" alt="img"></p>
 <p>但是我们也可以发现。这样将直接计算排名，会那些<code>非线性</code>的相关性就会非常友好了。此外，还可以适用于<code>非正态分布</code>的数据。但作用也是有限的。不然你试试。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;spearman&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;spearman&#34;</span>)
 <span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
 </code></pre></div><p>所以至于选择<code>spearman</code>还是选择<code>pearson</code>来计算相关性。这个还要结合数据来说话。因此推荐先用<code>pearson</code>来计算，如果结果不好，就可以试试<code>spearman</code>.</p>
 <h3 id="233-cos余弦相似性">2.3.3 cos余弦相似性</h3>
@@ -437,7 +437,7 @@ $$
 \tau = \frac{c-d}{c+d} = \frac{S}{
 \left(
 \begin{matrix} 
-n \<br>
+n \
 2
 \end{matrix}
 \right)}
@@ -500,7 +500,7 @@ $$</p>
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

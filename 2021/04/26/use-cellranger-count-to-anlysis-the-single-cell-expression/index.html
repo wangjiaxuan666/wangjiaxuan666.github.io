@@ -47,7 +47,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/">
@@ -248,12 +248,12 @@
 一定不要选择从网页上下载，那个是有问题的，说多的都是泪，一定要要从crul或者wget方式下载。</p>
 </blockquote>
 <p>当下载好了以后，cd到下载目录下，用<code>tar</code>解压缩后，就已经安装好了（免安装版本？！！），然后记得要导入环境变量中，要不然以后使用只能用绝对路径了。像我就是用的centos7的集群，我就是在home下<code>vi ~/.bashrc</code>,然后手动修改的，然后<code>source ~/.bashrc</code>就搞定了。</p>
-<pre><code>cd /download file
+<pre tabindex="0"><code>cd /download file
 tar -xzvf cellranger-6.0.1.tar.gz
 # 添加环境变量，目录要换成解压后的文件目录！
 export PATH=/opt/cellranger-6.0.1:$PATH
 </code></pre><p>当解压并导入环境变量后，我们可以检查下是否安装成功。在终端输入</p>
-<pre><code>cellranger testrun --id=tiny
+<pre tabindex="0"><code>cellranger testrun --id=tiny
 </code></pre><p>这样<code>Cellranger</code>会自己进行自检查，但是这个用时还蛮久的。总之最后会生成一个tiny.mri.tgz检查报告文件，自己也可以解压出来看看。不过我感觉直接在终端输入<code>cellranger count</code>,只要出来的结果不是<code>command not found</code>应该就是安装成功了。</p>
 <div class = "panel-warning">
     <div class = "panel-heading">
@@ -285,22 +285,22 @@ export PATH=/opt/cellranger-6.0.1:$PATH
 </ul>
 <h3 id="下载基因组文件">下载基因组文件</h3>
 <p>human GRCH38 （大小11G🍵，这个文件不仅有fa和gtf文件，而且star的指引文件都构建好了。而且10x公司针对自己的产品做了部分优化）<!-- raw HTML omitted --><a href="#ref03">[3]</a><!-- raw HTML omitted --></p>
-<pre><code>wget https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz
+<pre tabindex="0"><code>wget https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-GRCh38-2020-A.tar.gz
 </code></pre><p>mouse mm10 大于10G大小🍵</p>
-<pre><code>curl -O https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mm10-2020-A.tar.gz
+<pre tabindex="0"><code>curl -O https://cf.10xgenomics.com/supp/cell-exp/refdata-gex-mm10-2020-A.tar.gz
 </code></pre><h3 id="下载测序文件">下载测序文件</h3>
 <p>接下来，从 10X 官网上的一个公开数据集下载 FASTQ 文件。本示例使用来自人类外周血单核细胞 （PBMC） 的1000 个 细胞 数据集，这些数据集由淋巴细胞（T 细胞、B 细胞和 NK 杀伤）和单核细胞组成🎯🎯🎯。</p>
-<pre><code>wget https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar
+<pre tabindex="0"><code>wget https://cf.10xgenomics.com/samples/cell-exp/3.0.0/pbmc_1k_v3/pbmc_1k_v3_fastqs.tar
 tar -xvf pbmc_1k_v3_fastqs.tar
 </code></pre><h3 id="定量分析">定量分析</h3>
 <p>我们需要用到<code>cellranger count</code>命令来进行定量分析，可以先看命令的帮助文档，帮助我们理解其参数的含义。</p>
-<pre><code>cellranger count --help
+<pre tabindex="0"><code>cellranger count --help
 
 ### output start
 #嗯，自己看吧，我懒得写了
 ### output end
 </code></pre><p>总之，我用的参数是</p>
-<pre><code>cellranger count --no-bam\ #不需要bam文件
+<pre tabindex="0"><code>cellranger count --no-bam\ #不需要bam文件
 --nosecondary\ # 不需要它分析聚类和细胞分群
 --disable-ui\ # 不需要web展示
 --id=run_count_1kpbmcs \ #分析名称
@@ -310,7 +310,7 @@ tar -xvf pbmc_1k_v3_fastqs.tar
 </code></pre><p><!-- raw HTML omitted -->大家学废了吗，这是我们自己的参数，按照官方默认的参数，其实就需要后四个参数就行，其他都是我自己添加的<!-- raw HTML omitted --></p>
 <h3 id="结果展示">结果展示</h3>
 <p>一般这1000个细胞，可能4核16G能够在8个小时内结束，还是很快的，结果乱起八糟的，其中有用的是outs文件下面的文件：</p>
-<pre><code>drwxr-sr-x 2  4.0K Apr 12 21:50 filtered_feature_bc_matrix
+<pre tabindex="0"><code>drwxr-sr-x 2  4.0K Apr 12 21:50 filtered_feature_bc_matrix
 -rw-r--r-- 1  8.6M Apr 12 21:50 filtered_feature_bc_matrix.h5
 -rw-r--r-- 1   651 Apr 12 21:57 metrics_summary.csv
 -rw-r--r-- 1   87M Apr 12 21:51 molecule_info.h5
@@ -370,7 +370,7 @@ drwxr-sr-x 2  4.0K Apr 12 21:47 raw_feature_bc_matrix
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

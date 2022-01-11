@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/08/12/the-cv-of-gene-expression/">
@@ -279,7 +279,7 @@
 <p>我好喜欢这个<code>sublime</code>，哈哈哈</p>
 <h3 id="用r计算离散系数">用R计算离散系数</h3>
 <p>注释看代码行</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.2 win 10</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.2 win 10</span>
 <span style="color:#06b;font-weight:bold">require</span>(tidyverse)
 <span style="color:#06b;font-weight:bold">require</span>(matrixStats)<span style="color:#888">#这个包有rowSds函数，计算一行的sd标准差</span>
 path = <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#888"># 这是我的工作目录桌面</span>
@@ -299,7 +299,7 @@ dat_cv_fit &lt;- dat_cv %&gt;% <span style="color:#06b;font-weight:bold">arrange
 </code></pre></div><p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
 <h3 id="绘制图形">绘制图形</h3>
 <p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#绘制图形</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#绘制图形</span>
 p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(dat =dat_cv_fit, mapping = <span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd))+
   <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv,<span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd),fill = <span style="color:#d20;background-color:#fff0f0">&#34;skyblue&#34;</span>,size = <span style="color:#00d;font-weight:bold">0.5</span>)+
   <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv_fit,<span style="color:#06b;font-weight:bold">aes</span>(fill = id),shape = <span style="color:#00d;font-weight:bold">21</span>,color =<span style="color:#d20;background-color:#fff0f0">&#34;red&#34;</span>,size = <span style="color:#00d;font-weight:bold">3</span>)+
@@ -469,7 +469,7 @@ p2 &lt;- p1 + <span style="color:#06b;font-weight:bold">theme_bw</span>()+ <span
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

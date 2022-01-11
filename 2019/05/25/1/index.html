@@ -26,28 +26,28 @@
 
   
   <meta name="author" content="Jiaxuan Wang">
-  <meta name="description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA*中">
+  <meta name="description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA中的">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="了解一下甲基化测序">
-    <meta name="twitter:description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA*中">
+    <meta name="twitter:description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA中的">
     <meta name="twitter:image" content="https://abego.cn/media/wenxian.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="了解一下甲基化测序">
-  <meta property="og:description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA*中">
+  <meta property="og:description" content="了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA中的">
   <meta property="og:url" content="https://abego.cn/2019/05/25/1/">
   <meta property="og:image" content="https://abego.cn/media/wenxian.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.85.0">
+<meta name="generator" content="Hugo 0.91.2">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/25/1/">
@@ -237,7 +237,7 @@
     
     <article class="post-content"><!-- raw HTML omitted -->
 <h1 id="了解一下甲基化">了解一下甲基化</h1>
-<p>重亚硫酸氢盐测序（<code>BS-Seq</code>）或全基因组亚硫酸氢盐测序（<code>WGBS</code>）就是我们常说的甲基化测序，目前是用于检测基因组*<code>DNA</code>*中的胞嘧啶甲基化的最成熟方案。在该方法中，用<code>重亚硫酸氢钠</code>处理基因组*<code>DNA</code>*，经过测序，在基因组水平上提供<code>胞嘧啶</code>甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的*C*脱氨基成*U*，*U*在测序后转化为*T*。同时，甲基化的*C*拒绝脱氨作用，并被测序为*C*。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。*<code>DNA</code>*的亚硫酸氢盐处理将未甲基化的*C*转化为*T*，导致序列复杂性降低，这对*SBS*合成系为原理的<code>illumina</code>二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。</p>
+<p>重亚硫酸氢盐测序（<code>BS-Seq</code>）或全基因组亚硫酸氢盐测序（<code>WGBS</code>）就是我们常说的甲基化测序，目前是用于检测基因组*<code>DNA</code><em>中的胞嘧啶甲基化的最成熟方案。在该方法中，用<code>重亚硫酸氢钠</code>处理基因组</em><code>DNA</code><em>，经过测序，在基因组水平上提供<code>胞嘧啶</code>甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的</em>C<em>脱氨基成</em>U*，<em>U</em>在测序后转化为<em>T</em>。同时，甲基化的<em>C</em>拒绝脱氨作用，并被测序为<em>C</em>。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。<em><code>DNA</code><em>的亚硫酸氢盐处理将未甲基化的</em>C</em>转化为<em>T</em>，导致序列复杂性降低，这对<em>SBS</em>合成系为原理的<code>illumina</code>二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。</p>
 <p>优点：</p>
 <ul>
 <li>整个基因组中的<code>CpG</code>和<code>非CpG</code>甲基化以单碱基分辨率覆盖</li>
@@ -469,7 +469,7 @@ FC 1和FC 2分别代表重复1和重复2中的差异甲基化倍数变化。具�
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2021 Woney&#39;s Blog</p>
+  <p>© 2019-2022 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
