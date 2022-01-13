@@ -17,5 +17,14 @@
       <description>&lt;p&gt;解决下苹果M1自带的java报错问题&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>TCGA数据库分析内容整理</title>
+      <link>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</link>
+      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</guid>
+      <description>&lt;p&gt;嗯，我是有脚本的&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
