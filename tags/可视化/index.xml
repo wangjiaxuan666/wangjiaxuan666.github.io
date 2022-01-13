@@ -124,14 +124,5 @@
       <description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
     </item>
     
-    <item>
-      <title>Hello R Markdown</title>
-      <link>https://abego.cn/2015/07/23/hello-r-markdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>https://abego.cn/2015/07/23/hello-r-markdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com. You can embed an R code chunk like this: summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ##</description>
-    </item>
-    
   </channel>
 </rss>
