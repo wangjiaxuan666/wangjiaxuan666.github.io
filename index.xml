@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
       <link>https://abego.cn/links/</link>
@@ -24,6 +24,15 @@
       
       <guid>https://abego.cn/about/</guid>
       <description>网站最早是19年的时候就开始搭建了，当时还花了100多买了个域名，就是现在这个网站在用的 域名。 用的主题是hugo的nuo主题，但是这个作者已</description>
+    </item>
+    
+    <item>
+      <title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
+      <link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
+      <description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
     </item>
     
     <item>

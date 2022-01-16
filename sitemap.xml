@@ -9,10 +9,34 @@
     <lastmod>2021-05-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/categories/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/tags/linux/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/categories/omics/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/post/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/python/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/categories/shell/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/software-install/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</loc>
+    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</loc>
     <lastmod>2022-01-11T00:00:00+00:00</lastmod>
@@ -20,32 +44,14 @@
     <loc>https://abego.cn/categories/mac-os/</loc>
     <lastmod>2022-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abego.cn/post/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/tags/software-install/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/tags/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</loc>
     <lastmod>2022-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/</loc>
-    <lastmod>2022-01-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/categories/omics/</loc>
-    <lastmod>2021-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2021-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</loc>
     <lastmod>2021-07-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/categories/shell/</loc>
-    <lastmod>2021-07-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</loc>
     <lastmod>2021-07-13T00:00:00+00:00</lastmod>
@@ -57,9 +63,6 @@
     <lastmod>2021-07-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/categories/python/</loc>
-    <lastmod>2021-06-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/tags/python/</loc>
     <lastmod>2021-06-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</loc>
