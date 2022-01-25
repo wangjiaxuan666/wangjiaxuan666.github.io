@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>文献阅读-《NBT》空间组与单细胞关联分析综述</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="文献阅读-《NBT》空间组与单细胞关联分析综述">
+    <meta name="twitter:description" content="一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析
+">
+    <meta name="twitter:image" content="https://abego.cn/media/wenxian.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="文献阅读-《NBT》空间组与单细胞关联分析综述">
+  <meta property="og:description" content="一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析
+">
+  <meta property="og:url" content="https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/">
+  <meta property="og:image" content="https://abego.cn/media/wenxian.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.91.2">
+
+
+<link rel="canonical" href="https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://abego.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://abego.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://abego.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://abego.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://abego.cn/icons/icon-152x152.png">
+<link rel="manifest" href="https://abego.cn/manifest.json">
+
+
+<link rel="preload" href="https://abego.cn/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://abego.cn/images/avatar.png" as="image">
+<link rel="preload" href="https://abego.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://abego.cn/"><img class="avatar" src="https://abego.cn/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://abego.cn/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/tags/">查找</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://abego.cn/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/about/">吐槽</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+      <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://abego.cn/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">文献阅读-《NBT》空间组与单细胞关联分析综述</h1>
+      <p class="post-meta">@Wang Jiaxuan · Jan 24, 2022 · 6 min read</p>
+    </header>
+    
+    <article class="post-content"><p>一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析</p>
+<p>最近经同事介绍里一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，是关于空间组和单细胞如何互相关联分析的。虽说我感觉其中思路并没有非常大的创新，但是也是一篇比较好的归纳总结。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201241607551643011675xieu8Ximage-20220124160755317.png" alt="image-20220124160755317"></p>
+<h2 id="空间组可以解决的生物学问题">空间组可以解决的生物学问题</h2>
+<p>作者提出一个比较新颖的名词<strong>Tissue homeostasis</strong>，姑且先称之为<strong>组织稳态</strong>吧，作者将组织稳态分别分为：</p>
+<ul>
+<li>1️⃣ Tissue development</li>
+<li>2️⃣ Disease microenvironment</li>
+<li>3️⃣ Tumour microenvironment</li>
+</ul>
+<p><strong>Tissue development</strong>是指研究在组织发育的关键阶段，空间转录组如何在组织中发生变化。<strong>Disease microenvironment</strong>是指阐明患病和受伤组织生态位中的空间转录组，着眼于接近相关的生物学特征，例如，接近阿尔茨海默病患者脑组织中的淀粉样蛋白斑块。<strong>Tumour microenvironment</strong>是指研究肿瘤的空间结构及其与环境中其他细胞亚型的界面和交流。</p>
+<blockquote>
+<p>感觉每个方面都是非常重要的生物问题，而也都非常适合空间组数据来进行解释和分析，所以空间组的分析目前应该还算是蓝海吧。</p>
+</blockquote>
+<p>文中还列举了一些文章的例子</p>
+<h3 id="正常组织发育">正常组织发育</h3>
+<p>空间转录组学的一个主要目标是增加对不同细胞类型在稳态组织稳态中的作用的理解。例如，沿着血管周围桡骨轴的每个肝小叶单元都含有不同的氧气，营养物质和激素梯度，再结合scRNA-seq揭示了一类新型中间小叶细胞的作用，FISH验证定位，结束（Natrue 2017）。</p>
+<h3 id="肿瘤微环境">肿瘤微环境</h3>
+<p>TSK定位到人鳞状细胞癌肿瘤边界处，验证其功能(Cell 2020)。在胰腺导管腺癌中，揭示炎症成纤维细胞在癌症应激反应中起重要作用(NBT 2020)。数据还可以提供对临床预后的见解。例如，一项研究观察到，黑色素瘤转移横截面内过渡区域的异质性越大，患者生存期越差(Cancer res 2018)</p>
+<h3 id="其他患病和受伤组织的微环境">其他患病和受伤组织的微环境</h3>
+<p>除了肿瘤相邻的微环境，空间组此外还可以检测其他疾病的外部环境。将空间组数据与免疫染色的成年小鼠大脑横截面对齐，确定了淀粉样蛋白斑块密度较高的区域中细胞共有的基因网络。用单细胞分辨率图谱，并捕获它们在不同疾病阶段的空间动态。阐明与淀粉样蛋白斑块相邻上调的基因网络提供了更感兴趣的候选治疗靶点（Cell 2020 ）</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201241614141643012054AmZMM4image-20220124161414212.png" alt="image-20220124161414212"></p>
+<h2 id="为什么要做单细胞和空间组的关联分析">为什么要做单细胞和空间组的关联分析</h2>
+<p>既然空间组这么好，为什么还需要单细胞的关联分析呢？其实如果做过这两个组学分析的人，应该非常理解，单细胞和空间组的关联分析非常重要，原因就在于，单细胞虽好，但是没有位置信息。空间组虽新，但是精细度令人诟病。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201241601001643011260d3qlykimage-20220124160059993.png" alt="image"></p>
+<h2 id="关联分析的路线">关联分析的路线</h2>
+<p>作者也提出了，关联分析的步骤应该是，先进行单细胞的细胞类型鉴定，其次是对单细胞的细胞类型映射到空间组中，得到细胞类型在空间芯片上的分布，再去研究组织稳态（例如细胞通讯）。</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/2022012416204816430124480hsYezimage-20220124162048376.png" alt="image-20220124162048376"></p>
+<p>那么问题的关键就比较清晰，<strong>如何把单细胞的细胞类型映射在空间芯片上，得到细胞类型的位置关系？</strong></p>
+<h2 id="单细胞和空间足的整合分析策略">单细胞和空间足的整合分析策略</h2>
+<h3 id="1-反卷积">1. 反卷积🐘</h3>
+<p>可以通过对来自每个捕获点的mRNA转录本混合物进行解卷积来定位细胞亚群，以预测每个点处细胞混合物中每种细胞类型的比例，评估功效的更方便的策略是通过组合来自多个表征良好的scRNA-seq细胞的转录本测量值来在计算机中创建混合物。</p>
+<p>这类方法中比较著名的是SPOTlight，作者也是比较赞赏该软件：</p>
+<div class = "panel-warning">
+    <div class = "panel-heading">
+    <span class = "panel-title" data-toc-skip="">
+    <font style="font-size: 1em; color: white;">
+  	<i class="fas fa-dna"></i>
+	</font>
+	原文中写到
+	</span>
+    </div>
+    <div class = "panel-body">
+   	SPOTlight’s benchmarking strategy is among the most thorough: assessing the accuracy, sensitivity and specificity of cell-type detection and overall correlation with the ground truth。The doublet mode can be extended to triplets and beyond. As higher resolution spatial barcoding assay techniques emerge (thereby decreasing the typical number of cell types per capture spot), the doublet mode will serve as a model deconvolution strategy
+    </div>
+</div>
+<p>所以我觉得下一篇文章更新SPOTlight的分析教程</p>
+<h3 id="2富集分数">2.富集分数🐥</h3>
+<p>基于scRNA-seq的Spot score 不必局限于对细胞类型进行评分——人们可以对细胞周期期、组织类型、癌性与非癌性以及特异性基因表达方案等特征进行评分。这种评分方法的局限性在于找到由感兴趣的细胞类型表达的真正独特的基因，因为重叠的基因可能会混淆评分。</p>
+<p>这类方法中比较著名的有GSVA的<em>Gene Set Variation Analysis</em>函数，Seurat的<em>AddModuleScore</em>函数 、或者采用MIA（<em>multimodal intersection analysis</em>）来进行分析。</p>
+<blockquote>
+  <p>
+MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性文章《Integrating microarray-based spatial transcriptomics and single-cell RNA-seq reveals tissue architecture in pancreatic ductal adenocarcinomas 》一文首次提出，用MIA的方法来做单细胞和空间转录组的关联分析的思路。这个方法我已经在自创的R包Spat(https://github.com/wangjiaxuan666/Spat)上实现，有兴趣的也可以去看看。</p>
+  <footer>
+    <strong>《Nature Biotechnology》</strong>
+    
+      <cite><a href="https://www.nature.com/articles/s41587-019-0392-8" target="_blank" rel="external">点击跳转原文</a></cite>
+    
+  </footer>
+</blockquote>
+<h3 id="3-映射">3. 映射🐒</h3>
+<p>这里说的映射特指的思路是：根据找到一些anchor gene，来做样本或者实验质检的批次矫正。这类软件最常用在多个样本的整合中，和批次效应矫正中。最早运用这个技术来做组学技术之间的关联分析应该是Seurat 中10x scRNA和10x ATAC的关联分析中。除了Seurat的整合函数外，还有Harmony ，LIGER等批次校正scRNA-seq批次的软件，也证明了能够在单细胞分辨率空间数据中的成功应用数据整合。</p>
+<blockquote>
+<p>但我总觉这类软件容易存在矫正过枉，但是还是从结果出发，白猫黑猫，逮到耗子就是好猫。</p>
+</blockquote>
+<p>大致原理看起来，LIGER的算法好像高级一点，Harmony最次，但可能有出其不意的效果，Seurat最常用。</p>
+<ul>
+<li>
+<p>1️⃣Harmony -&gt; 低纬-&gt; kmeans 聚类</p>
+</li>
+<li>
+<p>2️⃣Seurat -&gt; 低纬-&gt; MNN</p>
+</li>
+<li>
+<p>3️⃣LIGER-&gt;NMF</p>
+</li>
+</ul>
+<blockquote>
+<p>小tips：除了应用在矫正和整合，LIGER和Seurat还能补充未测量基因的表达。Seurat Integration通过使用空间细胞最高评分锚点的scRNA-seq基因表达谱很容易进行插补。得分越高的对在低维空间中具有更多共享的最近邻。相比之下，LIGER和SpaGE<a href="https://www.nature.com/articles/s41576-021-00370-8">117</a>，一种新发表的针对scRNA-seq和单细胞空间数据整合的映射算法，通过获得低维空间中一定数量的相应scRNA-seq最近邻的平均表达进行插补。</p>
+<p>注意：这个插补我没用过，不知道具体效果，只能说插补挺新奇的，但是应用很少。</p>
+</blockquote>
+<h2 id="矫正效果的预期">矫正效果的预期</h2>
+<p>任何软件都是有自己的局限性，有句老话怎么说，再牛逼的生信也解决不了失败的实验🏃‍♂️🏃‍♂️🏃‍♂️。</p>
+<p>关联分析也会出现，数据整合效果的问题，这个问题从广义上讲，不匹配可能是由于预测序步骤和/或测序后分析中的错误引起的。此外，当使用独立的scRNA-seq图谱作为参考时，如果其组织条件与新生成的空间数据不能很好的一致，则不匹配可能会加剧。</p>
+<p>具体原因可能包括：</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201241656181643014578wfFV92image-20220124165618390.png" alt="image-20220124165618390"></p>
+<p>好叻，本期完结撒花！😏😏😏</p>
+<p>下一篇《SPOTlight分析教程与自己对其中一些源码的改进》预告！</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://abego.cn/tags/%E6%96%87%E7%8C%AE"><span class="tag">文献</span></a></li>
+        
+          <li><a href="https://abego.cn/tags/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90"><span class="tag">关联分析</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2022-01-24</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2022 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://abego.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>

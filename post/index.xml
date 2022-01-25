@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>文献阅读-《NBT》空间组与单细胞关联分析综述</title>
+      <link>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</guid>
+      <description>&lt;p&gt;一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
       <link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
