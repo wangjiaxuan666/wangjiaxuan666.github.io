@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Mon, 24 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python中的文件路径操作，学习os.path和pathlib</title>
+      <link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link>
+      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</guid>
+      <description>&lt;p&gt;学习python中的系统路径操作&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>文献阅读-《NBT》空间组与单细胞关联分析综述</title>
       <link>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</link>

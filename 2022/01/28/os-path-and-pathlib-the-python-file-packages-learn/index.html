@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>python中的文件路径操作，学习os.path和pathlib</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="学习python中的系统路径操作
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="python中的文件路径操作，学习os.path和pathlib">
+    <meta name="twitter:description" content="学习python中的系统路径操作
+">
+    <meta name="twitter:image" content="https://abego.cn/media/cover.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="python中的文件路径操作，学习os.path和pathlib">
+  <meta property="og:description" content="学习python中的系统路径操作
+">
+  <meta property="og:url" content="https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/">
+  <meta property="og:image" content="https://abego.cn/media/cover.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.91.2">
+
+
+<link rel="canonical" href="https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://abego.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://abego.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://abego.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://abego.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://abego.cn/icons/icon-152x152.png">
+<link rel="manifest" href="https://abego.cn/manifest.json">
+
+
+<link rel="preload" href="https://abego.cn/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://abego.cn/images/avatar.png" as="image">
+<link rel="preload" href="https://abego.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://abego.cn/"><img class="avatar" src="https://abego.cn/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://abego.cn/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/tags/">查找</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://abego.cn/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/about/">吐槽</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+      <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://abego.cn/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">python中的文件路径操作，学习os.path和pathlib</h1>
+      <p class="post-meta">@Wang Jiaxuan · Jan 28, 2022 · 5 min read</p>
+    </header>
+    
+    <article class="post-content"><p>学习python中的系统路径操作</p>
+<p>也是在分析病毒整合的过程，发现了Broad Institute里面的大佬写的软件，因为自己也在学习python的初始阶段，所以就本着学习的兴趣，浏览了源码。 大佬的写的脚本就是高级！ 其中我发现了两个比较有意思的东西，第一个是cromwell这个流程空间软件，我测试了下感觉比snakemake快，但是很难学，学习进度缓慢。另一个就是大佬熟练使用各种python的路径操作。最终把十几个python脚本合并在一起形成一个软件。</p>
+<blockquote>
+<p>好羡慕啊，只能说，想拥有</p>
+</blockquote>
+<h3 id="ospath-学习">os.path 学习</h3>
+<p>我搜索了下，python中有两个包都可以做到路径操作，一个是万能的os包中的path模块，一个是适用于高端操作的pathlib。两个都可以了解下。</p>
+<h3 id="加载环境">加载环境</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">os</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">pathlib</span>
+<span style="color:#888"># pyshell 是我自己写的的，运行shell命令，但用的是subprocess模块的功能</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">pyshell</span>
+</code></pre></div><p>首先获得目前所在的工作目录是什么，可以<code>os.getcwd</code>获得。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.getcwd()
+===============OUTPUT================
+<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test&#39;</span>
+</code></pre></div><p>其次是知道现有的目录结构，好进行一些文件操作的演练</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#038">print</span>(pyshell.run_shell(<span style="color:#d20;background-color:#fff0f0">&#34;ls&#34;</span>)[<span style="color:#00d;font-weight:bold">1</span>])
+===============OUTPUT================
+__pycache__
+file_sum.md5  input1  input2  pivot.xlsx  pyshell.py  step1.res 
+tes test.file test.ipynb test.sh test1.sh
+</code></pre></div><p>可以看到目前的目录下有这些个文件，下面就开始具体的操作</p>
+<h4 id="获得绝对路径">获得绝对路径</h4>
+<p>这个重要性不言而喻，写脚本最怕的就是依赖文件的路径随着工作目录的更改而找不到，导致报错。所以这个应该是最重要的功能</p>
+<pre tabindex="0"><code>os.path.abspath(&quot;test.sh&quot;)
+===============OUTPUT================
+'/Users/dalena/Data/test/test.sh'
+</code></pre><p>可以看到我们得到了一个sh脚本的绝对路径，再也不用担心工作路径的变化导致脚本报错了，用了都说好。</p>
+<h4 id="路径判断">路径判断</h4>
+<p>其次针对路径的操作，常常需要判断目标路径的读入和写出是否正常，是否存在，如果不存在肯定直接报错。以下函数都是非常重要且常用的os.path的命令</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 判断文件</span>
+os.path.exists(<span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>)
+<span style="color:#888"># 判断文件夹</span>
+os.path.exists(<span style="color:#d20;background-color:#fff0f0">&#34;tes&#34;</span>)
+</code></pre></div><h4 id="分割和合并路径">分割和合并路径</h4>
+<p>还有就是我们经常会遇到一些需要合并路径的操作，比如我们知道<code>test</code>文件夹下面有个<code>test.sh</code>的文件，如何得到路径呢。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.path.join(os.path.abspath(<span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span>),<span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>)
+===============OUTPUT================
+<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test/test.sh&#39;</span>
+</code></pre></div><p>看起来好像多次一举，因为既然我都知道<code>test.sh</code>的存在，我直接写<code>test/test1.sh</code>不就行了，但如果我们想存的是个多个变量名词呢</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files = [<span style="color:#d20;background-color:#fff0f0">&#34;test1.sh&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;test2.sh&#34;</span>]
+<span style="color:#080;font-weight:bold">for</span> file <span style="color:#080">in</span> files:
+    <span style="color:#038">print</span>(os.path.join(os.path.abspath(<span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span>),file))
+===============OUTPUT================
+/Users/dalena/Data/test/test/test1.sh
+/Users/dalena/Data/test/test/test2.sh
+</code></pre></div><p>这样我们很快就了解优势之处了。</p>
+<h4 id="其他一些路径操作">其他一些路径操作</h4>
+<p>除此之外，os.path还有其他有用的命令，比如可以用<code>os.path.commonpath</code>来获得多个路径共有路径，以及<code>os.path.normpath</code>来规范路径，消除一些类似于&quot;./test/../test2&quot;这样的路径，从而达到变成“test2”这样标准路径的作用。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.path.normpath(<span style="color:#d20;background-color:#fff0f0">&#34;./test/../test2&#34;</span>)
+===============OUTPUT================
+<span style="color:#d20;background-color:#fff0f0">&#39;test2&#39;</span>
+</code></pre></div><h4 id="路径信息">路径信息</h4>
+<p>关于目标文件的信息，我也需要获得，比如文件的创建，修改，访问时间，或者文件的大小。以及根据文件的后缀名判断文件类型是否正常等等。这个时候就需要利用下述函数来进行操作了。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>os.path.getatime(path)</td>
+<td>返回最近访问时间</td>
+</tr>
+<tr>
+<td>os.path.getmtime(path)</td>
+<td>返回最近文件修改时间</td>
+</tr>
+<tr>
+<td>os.path.getctime(path)</td>
+<td>返回文件 path 创建时间</td>
+</tr>
+<tr>
+<td>os.path.getsize(path)</td>
+<td>返回文件大小</td>
+</tr>
+<tr>
+<td>os.path.isabs(path)</td>
+<td>判断是否为绝对路径</td>
+</tr>
+<tr>
+<td>os.path.isfile(path)</td>
+<td>判断路径是否为文件</td>
+</tr>
+<tr>
+<td>os.path.isdir(path)</td>
+<td>判断路径是否为目录</td>
+</tr>
+<tr>
+<td>os.path.islink(path)</td>
+<td>判断路径是否为链接</td>
+</tr>
+<tr>
+<td>os.path.splitext(path)</td>
+<td>返回文件的后缀名（最后一个）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pathlib的学习">pathlib的学习</h2>
+<p>上述一些常用的，或者说基本的os.path模块中的功能，既然好不容易开始了解python的文件路径操作，就顺带也把进阶版本的pathlib也给了解下。 pathlib需要创建一个<code>Path</code>的对象，然后给予对象进行命令操作。</p>
+<blockquote>
+<p>其实上文的os.path的代码和R看起来非常相似，是不是</p>
+</blockquote>
+<p>但对象这个概念在R里面也有，比如同名不同类的s3 method，或者搭建木的s4 object。只是一般使用R语言的人不太关注，当然也不需要深入了解，R是一个数据科学语言，不需要和编程思维扯太多，既是优势，也是劣势。</p>
+<p>不过下文的pathlib操作，就和R不太一样了</p>
+<h3 id="创建一个path对象">创建一个Path对象</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;Data&#34;</span>)
+p
+===============OUTPUT================
+PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data&#39;</span>)
+</code></pre></div><p>现在p已经是个Path对象了，我们看其输出的结果显示<code>PosixPath</code>,这是因为我在Mac 上进行运行和分析，如果是windows上，就会变成WindosPath，毕竟要知道linux和windows的文件路径差异很大的，斜杠方向都不一样，而且windows还分盘，还忽略大小写。Path对象的的属性和函数可以通过<code>p.__dict__</code>去查看，也可以跟着这篇文章一点点去探索。</p>
+<p>Path对象具有诸多属性，但熟悉属性之前，先了解创建Path的方式</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 可以直接输入路径全民</span>
+p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena/Data&#34;</span>)
+<span style="color:#888"># 可以输入多个字符，会自动合并</span>
+p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena“，”Data&#34;</span>)
+<span style="color:#888"># 也可以用运算符 &#39;/&#39;</span>
+p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena&#34;</span>) / <span style="color:#d20;background-color:#fff0f0">&#34;Data&#34;</span> / <span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span> / <span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>
+p
+===============OUTPUT================
+PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test.sh&#39;</span>)
+</code></pre></div><h3 id="path对象的重要属性">Path对象的重要属性</h3>
+<p>说实话，精力有限，也不可能把一个包全部学会，只要了解其中最常用的部分，剩下的就是遇到问题再来搜索。这样才会最节省时间。 我只能列举一些我个人认为比较常用的一些功能</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p.parts
+<span style="color:#888"># 可以获得目录各层级的名称</span>
+p.root
+<span style="color:#888"># 可以获得根目录</span>
+p.parents[<span style="color:#00d;font-weight:bold">0</span>]
+<span style="color:#888"># 可以获得上级目录,数字以此增加，层级越来越高</span>
+p.name
+<span style="color:#888"># 可以获得最后的文件名称</span>
+p.suffixes[<span style="color:#00d;font-weight:bold">0</span>]
+<span style="color:#888"># 可以得到多个后缀名，数字越大，越靠前面</span>
+p.stem
+<span style="color:#888"># 可以获得文件的名称（不包括后缀名）,但是只能去掉最后一个后缀名</span>
+===============OUTPUT================
+<span style="color:#d20;background-color:#fff0f0">&#39;test&#39;</span>
+</code></pre></div><h3 id="path的高阶功能">Path的高阶功能</h3>
+<p>除了以上属性以外，Path还有一些用于判断，统计，修改的功能函数，下面列举了一些比较重要的功能。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p.is_absolute()
+<span style="color:#888"># 可以判断是否是绝对路径</span>
+p.match(<span style="color:#d20;background-color:#fff0f0">&#34;te*/*.sh&#34;</span>)
+<span style="color:#888"># 判断是否满足匹配条件</span>
+p.relative_to(<span style="color:#d20;background-color:#fff0f0">&#34;/Users&#34;</span>)
+<span style="color:#888"># p对象路径相对于输入的字符的，相对路径，很合适工作目录和脚本目录之间的操作</span>
+p.with_name(<span style="color:#d20;background-color:#fff0f0">&#34;change.sh&#34;</span>)
+<span style="color:#888"># 直接更改最后的文件名</span>
+p.with_stem(<span style="color:#d20;background-color:#fff0f0">&#34;change1&#34;</span>)
+<span style="color:#888"># 不更换后缀名，但是更改文件名</span>
+p.with_suffix(<span style="color:#d20;background-color:#fff0f0">&#34;.py&#34;</span>)
+<span style="color:#888"># 不更改文件名，但是更改后缀名</span>
+===============OUTPUT================
+PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test.py&#39;</span>)
+</code></pre></div><h3 id="path的高级功能">Path的高级功能</h3>
+<p>上述功能都是针对文件，和路径的单纯操作，但是一个路径，会有内容，其内的文件会有属性，而这些操作都需要pathlib更高级的功能。会有可以用<code>iterdir</code>列举文件夹下的所有内容，例如：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = Path(<span style="color:#d20;background-color:#fff0f0">&#34;../&#34;</span>)
+[x <span style="color:#080;font-weight:bold">for</span> x <span style="color:#080">in</span> p.iterdir() <span style="color:#080;font-weight:bold">if</span> x.is_dir()]
+===============OUTPUT================
+PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;../test&#39;</span>), PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;../Rdata&#39;</span>)]
+</code></pre></div><p>针对其中的文件可以匹配检验下</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena/Data/test&#34;</span>)
+<span style="color:#038">list</span>(p.glob(<span style="color:#d20;background-color:#fff0f0">&#34;*.sh&#34;</span>))
+===============OUTPUT================
+dalena<span style="color:#d20;background-color:#fff0f0">&#39;</span>
+</code></pre></div><p>当然，pathlib还有很多其他的用法，但是这个一般也不常用，或者有其他的方式可以做到。所以学习python路径操作就到这里结束了</p>
+<p>完结撒花</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC"><span class="tag">脚本</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2022-01-28</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2022 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://abego.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
