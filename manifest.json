@@ -1,6 +1,6 @@
 {
-  "name": "王二狗的博客",
-  "short_name": "Wobo",
+  "name": "王家轩的博客",
+  "short_name": "WoBo",
   "display": "standalone",
   "orientation": "any",
   "start_url": "./?utm_source=homescreen",
