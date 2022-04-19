@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Fri, 28 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>写个Python脚本从FastQ文件中抽取成对的Reads</title>
+      <link>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</link>
+      <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</guid>
+      <description>&lt;p&gt;最开始，师妹来问我的，如何处理BWA的报错。看报错信息提示是因为输入的Read1和Read2的Fastq文件中有不成对的Read。原因在于这两个fq文件来自之前的分析过程中的bam文件抽取得来。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>python中的文件路径操作，学习os.path和pathlib</title>
       <link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link>

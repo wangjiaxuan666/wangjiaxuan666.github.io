@@ -8,37 +8,43 @@
     <loc>https://abego.cn/about/</loc>
     <lastmod>2021-05-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</loc>
-    <lastmod>2022-02-16T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abego.cn/categories/</loc>
-    <lastmod>2022-02-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/post/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/categories/python/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/python/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/tags/%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2022-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</loc>
     <lastmod>2022-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/tags/software-install/</loc>
     <lastmod>2022-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abego.cn/tags/</loc>
-    <lastmod>2022-02-16T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abego.cn/categories/wdl/</loc>
-    <lastmod>2022-02-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/</loc>
     <lastmod>2022-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/tags/%E6%B5%81%E7%A8%8B/</loc>
     <lastmod>2022-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://abego.cn/categories/python/</loc>
-    <lastmod>2022-01-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</loc>
-    <lastmod>2022-01-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/tags/%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2022-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/tags/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/</loc>
@@ -54,9 +60,6 @@
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/categories/omics/</loc>
-    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://abego.cn/tags/python/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://abego.cn/categories/shell/</loc>
