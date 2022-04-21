@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Tue, 19 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Links</title>
       <link>https://abego.cn/links/</link>
@@ -24,6 +24,15 @@
       
       <guid>https://abego.cn/about/</guid>
       <description>网站最早是19年的时候就开始搭建了，当时还花了100多买了个域名，就是现在这个网站在用的 域名。 用的主题是hugo的nuo主题，但是这个作者已</description>
+    </item>
+    
+    <item>
+      <title>写一个支持超大文件的快速列分割的的python脚本</title>
+      <link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link>
+      <pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</guid>
+      <description>&lt;p&gt;之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。&lt;/p&gt;</description>
     </item>
     
     <item>

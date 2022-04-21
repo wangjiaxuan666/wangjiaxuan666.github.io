@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>写一个支持超大文件的快速列分割的的python脚本</title>
+
+  
+  
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//use.fontawesome.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  <link href="///disqus.com" rel="dns-prefetch">
+  <link href="//c.disquscdn.com" rel="dns-prefetch">
+  
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  
+
+  
+
+  
+  <meta name="author" content="Wang Jiaxuan">
+  <meta name="description" content="之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@abego13">
+    <meta name="twitter:title" content="写一个支持超大文件的快速列分割的的python脚本">
+    <meta name="twitter:description" content="之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。
+">
+    <meta name="twitter:image" content="https://abego.cn/media/dataviz.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="写一个支持超大文件的快速列分割的的python脚本">
+  <meta property="og:description" content="之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。
+">
+  <meta property="og:url" content="https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/">
+  <meta property="og:image" content="https://abego.cn/media/dataviz.jpg">
+
+
+
+
+<meta name="generator" content="Hugo 0.91.2">
+
+
+<link rel="canonical" href="https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Woney&#39;s Blog">
+<meta name="msapplication-tooltip" content="Woney&#39;s Blog">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="https://abego.cn/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://abego.cn/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://abego.cn/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="https://abego.cn/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="https://abego.cn/icons/icon-152x152.png">
+<link rel="manifest" href="https://abego.cn/manifest.json">
+
+
+<link rel="preload" href="https://abego.cn/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="https://abego.cn/images/avatar.png" as="image">
+<link rel="preload" href="https://abego.cn/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" ZgotmplZ crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
+      
+        
+	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="https://abego.cn/"><img class="avatar" src="https://abego.cn/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="https://abego.cn/">Woney&#39;s Blog</a></h2>
+  
+  <p class="subtitle">生活 学习 工作</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span><i class="fas fa-bars"></i></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/tags/">查找</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="https://abego.cn/">主页</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/resume/">简历</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/wangjiaxuan666">代码</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/about/">吐槽</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:992914078@qq.com" title="Email" aria-label="Email">
+            <span class="fas fa-envelope" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/wangjiaxuan666" rel="me" title="GitHub" aria-label="GitHub">
+      <span class="fab fa-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/abego13" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="fab fa-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="https://abego.cn/images/qrcode.jpg" rel="me" title="Wechat" aria-label="Wechat">
+            <span class="fab fa-weixin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">写一个支持超大文件的快速列分割的的python脚本</h1>
+      <p class="post-meta">@Wang Jiaxuan · Apr 21, 2022 · 2 min read</p>
+    </header>
+    
+    <article class="post-content"><p>之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。</p>
+<h2 id="写一个支持超大文件的快速列分割的的python脚本">写一个支持超大文件的快速列分割的的python脚本</h2>
+<p>之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。
+想想还有什么其他路子，后面就准备用AWK命令并行处理。因为脚本不具有通用型所以只能将脚本分解步骤进行描述。</p>
+<p>文件是很大的，所以具体的过程是：
+先构建一个包含列名的分组信息的索引，然后根据索引批量的用AWk命令去对表格进行分割。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">awk <span style="color:#d20;background-color:#fff0f0">&#39;NR==1{print$0}&#39;</span> test.csv | sed <span style="color:#d20;background-color:#fff0f0">&#39;s:&#34;::g&#39;</span> | sed <span style="color:#d20;background-color:#fff0f0">&#39;s:,:\n:g&#39;</span> &gt; id.list
+head id.list
+</code></pre></div><pre tabindex="0"><code>eid
+3-0.0
+3-1.0
+3-2.0
+3-3.0
+4-0.0
+4-1.0
+4-2.0
+4-3.0
+5-0.0
+</code></pre><p>可以看到列名的，是如上所示的，所以根据我们要求，假设我想按照3-xx，4-xx这样分类进行切割，那就需要一个对应分割组的索引。
+可以通过python来建立</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">os</span>
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">pandas</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#b06;font-weight:bold">pd</span>
+</code></pre></div><p>结合之前生成的列名文件（已经将其形成一竖排的表格形式），通过pandas读取列名文件和数据库文件。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># -------</span>
+infile = <span style="color:#d20;background-color:#fff0f0">&#34;test.csv&#34;</span>
+idlist = <span style="color:#d20;background-color:#fff0f0">&#34;id.list&#34;</span>
+</code></pre></div><ol>
+<li>将其按照'-&lsquo;进行分割，形成多列，例如3-xx变成3和xx两列</li>
+<li>既然就是根据&rsquo;-&lsquo;之前的字符分组，就可以删掉其余列</li>
+<li>增加一列列数的索引，因为awk就是按照列数来进行分割的</li>
+<li>分组</li>
+<li>计算每个分组的列数范围</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">id_list = pd.read_csv(idlist, sep=<span style="color:#d20;background-color:#fff0f0">&#34;,&#34;</span>)
+id_list = id_list.iloc[:, <span style="color:#00d;font-weight:bold">0</span>].str.split(<span style="color:#d20;background-color:#fff0f0">&#34;-&#34;</span>, expand=<span style="color:#080;font-weight:bold">True</span>)
+id_list[<span style="color:#d20;background-color:#fff0f0">&#39;colnum&#39;</span>] = id_list.index + <span style="color:#00d;font-weight:bold">2</span>
+<span style="color:#080;font-weight:bold">del</span> id_list[<span style="color:#00d;font-weight:bold">1</span>]
+colmin = id_list.groupby(<span style="color:#00d;font-weight:bold">0</span>).min()
+colmax = id_list.groupby(<span style="color:#00d;font-weight:bold">0</span>).max()
+id_loc = pd.merge(colmin, colmax, suffixes=(<span style="color:#d20;background-color:#fff0f0">&#34;_min&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;_max&#34;</span>), how=<span style="color:#d20;background-color:#fff0f0">&#39;inner&#39;</span>, left_index=<span style="color:#080;font-weight:bold">True</span>, right_index=<span style="color:#080;font-weight:bold">True</span>)
+id_loc.head()
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">with</span> <span style="color:#038">open</span>(os.path.basename(idlist) + <span style="color:#d20;background-color:#fff0f0">&#39;_output.sh&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;w&#39;</span>) <span style="color:#080;font-weight:bold">as</span> file:
+    file.write(
+        <span style="color:#d20;background-color:#fff0f0">&#34;#!/bin/bash</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span>)
+    command = <span style="color:#d20;background-color:#fff0f0">&#39;&#39;&#39;nohup awk -v FPAT=&#39;([^,]*)|(&#34;[^&#34;]+&#34;)&#39; -v OFS=&#39;,&#39; &#39;{print$1,</span><span style="color:#33b;background-color:#fff0f0">%s</span><span style="color:#d20;background-color:#fff0f0">}&#39; </span><span style="color:#33b;background-color:#fff0f0">%s</span><span style="color:#d20;background-color:#fff0f0"> &gt; split_0405/</span><span style="color:#33b;background-color:#fff0f0">%s</span><span style="color:#d20;background-color:#fff0f0">.csv &amp; </span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#39;&#39;&#39;</span>
+    <span style="color:#888"># command = &#39;&#39;&#39;awk -v FPAT=&#34;([^,]+)|(\&#34;[^\&#34;]+\&#34;)&#34; -v OFS=&#39;,&#39; &#39;{print$1,%s}&#39; %s &gt; split_0405/%s.csv&#39;&#39;&#39;</span>
+    <span style="color:#080;font-weight:bold">for</span> i <span style="color:#080">in</span> <span style="color:#038">range</span>(<span style="color:#00d;font-weight:bold">0</span>, <span style="color:#038">len</span>(id_loc)):
+        col = <span style="color:#038">range</span>(id_loc.iloc[i, <span style="color:#00d;font-weight:bold">0</span>], id_loc.iloc[i, <span style="color:#00d;font-weight:bold">1</span>] + <span style="color:#00d;font-weight:bold">1</span>)
+        cols = [<span style="color:#d20;background-color:#fff0f0">&#39;$&#39;</span> + <span style="color:#038">str</span>(x) <span style="color:#080;font-weight:bold">for</span> x <span style="color:#080">in</span> col]
+        file.write(command % (<span style="color:#d20;background-color:#fff0f0">&#34;,&#34;</span>.join(cols), infile, <span style="color:#038">str</span>(id_loc.index[i])))
+    file.write(<span style="color:#d20;background-color:#fff0f0">&#34;wait</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span>)
+</code></pre></div><p>可以简单看下结果：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">head -n <span style="color:#00d;font-weight:bold">3</span> id.list_output.sh
+</code></pre></div><pre tabindex="0"><code>#!/bin/bash
+nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16873,$16874,$16875,$16876,$16877}' test.csv &gt; split_0405/100001.csv &amp; 
+nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16878,$16879,$16880,$16881,$16882}' test.csv &gt; split_0405/100002.csv &amp; 
+</code></pre><p>好了，现在就可以愉快的用qsub或者sbatch批量的投递任务了，速度贼快，我看了下，100G的文件，分割成3000多个小文件，用了一个小时就搞定了。
+非常流畅</p>
+<p>希望我写的这个小脚本，对各位的分析有所帮助</p></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC"><span class="tag">脚本</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+      <p>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">LICENSE: CC-BY-NC 4.0协议 
+        <i class="fab fa-creative-commons fa-2x"></i>
+        <i class="fab fa-creative-commons-by fa-2x">
+        </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
+      </p>
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2022-04-21</strong> , 内容的正确性和时效性请自行评估.
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2019-2022 Woney&#39;s Blog</p>
+  Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="https://abego.cn/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-147459974-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+  </body>
+</html>
