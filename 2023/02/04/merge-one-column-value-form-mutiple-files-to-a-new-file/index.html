@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>处理批次效应连续剧第四集（R包有logo了）</title>
+  <title>合并多个文件中一列内容到新文件的py脚本</title>
 
   
   
@@ -33,26 +33,26 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="R包有logo, 快乐起飞！
+  <meta name="description" content="新的Python脚本出炉了
 ">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
-    <meta name="twitter:title" content="处理批次效应连续剧第四集（R包有logo了）">
-    <meta name="twitter:description" content="R包有logo, 快乐起飞！
+    <meta name="twitter:title" content="合并多个文件中一列内容到新文件的py脚本">
+    <meta name="twitter:description" content="新的Python脚本出炉了
 ">
-    <meta name="twitter:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png">
+    <meta name="twitter:image" content="https://abego.cn/media/wenxian.jpg">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="处理批次效应连续剧第四集（R包有logo了）">
-  <meta property="og:description" content="R包有logo, 快乐起飞！
+  <meta property="og:title" content="合并多个文件中一列内容到新文件的py脚本">
+  <meta property="og:description" content="新的Python脚本出炉了
 ">
-  <meta property="og:url" content="https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/">
-  <meta property="og:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png">
+  <meta property="og:url" content="https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/">
+  <meta property="og:image" content="https://abego.cn/media/wenxian.jpg">
 
 
 
@@ -60,7 +60,7 @@
 <meta name="generator" content="Hugo 0.91.2">
 
 
-<link rel="canonical" href="https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/">
+<link rel="canonical" href="https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -234,72 +234,56 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">处理批次效应连续剧第四集（R包有logo了）</h1>
-      <p class="post-meta">@Wang Jiaxuan · Dec 31, 2020 · 3 min read</p>
+      <h1 class="post-title">合并多个文件中一列内容到新文件的py脚本</h1>
+      <p class="post-meta">@Wang Jiaxuan · Feb 4, 2023 · 3 min read</p>
     </header>
     
-    <article class="post-content"><p>最近也没闲着，上一篇文章中，说到了sva虽然可以计算替代变量，但是有了替代变量后只能用limma进行差异分析，并没有输出矫正后的表达量矩阵，这点还是很苦恼的。所以上次更新中只加入了能够矫正已知批次的combat_fix。</p>
-<p>但是最近又看到新的R包<code>snm</code>,这个R包更牛了，可以矫正多个批次效应，同时还可以矫正数字型批次，并且最重要的是可以返回表达量矩阵。</p>
-<p>一下子就打通了最后一公里。svn+snm组合拳简直不要太完美！</p>
-<p>至此，基本上我已经写完整个R包的功能和框架，至少我自己是觉得暂时没啥可以大修大改了。所以补充了说明文章，整理了整个R包的矫正思路。</p>
-<div class="figure">
-<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/back/workflow-en.png" alt="" />
-<p class="caption">fixbatch矫正思路</p>
-</div>
-<p>整个R包的开发历程还算顺利，其间也锻炼自己的代码水平，顺带更新了自己另外的两个R包。整个开发过程收获颇丰。</p>
-<p>今天主要说的是，<strong>fixbatch</strong>有自己的logo了。感谢Y叔的<code>hexSticker</code>包，方便100分！</p>
-<p>最开始我其实想用PPT画logo的，毕竟PPT简单又实用，但是后面想到Y叔之前好像发过一个专门做<code>hex sticker</code>的R包，就去谷歌了下。果然搜索结果排名第一。果然是Y叔做的R包，牛逼，让人羡慕。</p>
-<p>最开始我的构思是这样的，严格上讲，批次效应存在任意一个实验中，这是无法彻底避免，更何况生物供试个体的差异效应也算一种批次效应。所以无关变量与关注变量是共存的，彼此无法彻底分离。有点像太极黑白双鱼图。</p>
-<p>所以最开始我想搞个太极图，额，这个脑洞一开，我就有点顶不住了，这也那个啥了吧，怪怪的。</p>
-<p>所以我又想，批次效应是实验的第一步要处理的拦路虎，只有解决了这个问题，才能真正去关注感兴趣的生物问题。有点像推开门进入大观园的感觉。</p>
-<p>所以思路就是太极+门 = 太极门，想法就是两扇黑门，中间是门缝，两遍是白色的门环。</p>
-<p>额，构思完后发现，这个黑门也太丧气了，像曹操的脸谱。丑！</p>
-<p>那我就改个颜色吧，改什么颜色了，就用中国风！说干就干，用上我的<code>xbox</code>的中国风配色，估计效果不错！</p>
-<pre><code>#记得更新下xbox
-#devtools::update_packages(&quot;xbox&quot;)
-library(xbox)
-library(ggplot2)
-library(hexSticker)
-#构建绘图数据
-dat &lt;- tibble::tribble(
-             ~id, ~value,  ~x, ~y,
-         &quot;right&quot;, &quot;grey&quot;,   1, 1L,
-         &quot;right&quot;, &quot;grey&quot;,   1, 8L,
-         &quot;right&quot;, &quot;grey&quot;,   3, 7L,
-         &quot;right&quot;, &quot;grey&quot;,   3, 2L,
-          &quot;left&quot;, &quot;grey&quot;, 3.5, 7L,
-          &quot;left&quot;, &quot;grey&quot;, 3.5, 2L,
-          &quot;left&quot;, &quot;grey&quot;, 5.5, 1L,
-          &quot;left&quot;, &quot;grey&quot;, 5.5, 8L
-         )</code></pre>
-<p>好了，门的绘图数据做好了，给门上什么颜色呢，中国风肯定少不了红色，但是为了体现太极风，还要选择个对比色。</p>
-<p>用看看<code>xbox</code>中都有什么颜色，我选中了“two5”的橙红色和青绿色，以及“three2”的淡粉色适合做空白背景，边框就用“two4”的亮橙色。</p>
-<pre><code>#中国风配色
-back_color = xbox::need_colors(&quot;three2&quot;)[1]
-bord_color = xbox::need_colors(&quot;two4&quot;)[1]
-#绘图
-ggplot(dat, aes(x = x, y = y)) +
-  geom_polygon(aes(fill = id, group = id)) +
-  geom_point(aes(x = 3.25-0.5,y = 4.5),color =back_color,size = 6) +
-  geom_point(aes(x = 3.25+0.5,y = 4.5),color =back_color,size = 6) +
-  scale_fill_manual(values = xbox::need_colors(&quot;two5&quot;)) -&gt;p
-p &lt;- p + theme_void() + theme_transparent() + theme(legend.position=&quot;none&quot;)
-#生成hex sticker
-sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 0.4,s_x=1, s_y=1, s_width=1.5, s_height=1.5/1.3,
-        h_fill=back_color, h_color = bord_color, filename=&quot;ggplot21.png&quot;)</code></pre>
-<div class="figure">
-<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png" alt="" />
-<p class="caption">logo</p>
-</div>
-<p>效果我个人非常满意，开心！</p>
-</article>
+    <article class="post-content"><p>新的Python脚本出炉了</p>
+<p>这个功能就是为了实现从大量的输出文件中提取某一列的内容到新的汇总表格中，应用场景一般是分批跑组学样本，导致每个样本都有一个输出文件。这个时候需要提取某一列信息，生产总表。</p>
+<p>常见的比如宏基因组的Metaphlan输出，转录组的Stringtie输出等等吧，总之我是遇见了几次，所以才把这需求写成一个脚本。方便下次遇到的时候使用。</p>
+<h2 id="输入文件">输入文件</h2>
+<p>举个例子：假设我现在手上有一个耐药基因输出的表格如下：<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/2023020414513316754934939lzGLuimage-20230204145132694.png" alt="image-20230204145132694"></p>
+<p>可以看到这个文件的格式是：</p>
+<ul>
+<li>第一行是空白，第二行是无用信息，第三行才是这个样本SC00000378的样本名称，也就是我们常认为可以做表头的信息。</li>
+<li>只有两列，第一列是耐药基因，第二列是耐药基因表达量</li>
+</ul>
+<p>那么上图是一个样本的信息，假设我们有三百个样本的信息，又该如何去写代码？</p>
+<blockquote>
+<p>在我们不知道每个样本的耐药基因顺序是否会发生变化的时候，我想没人敢直接合并在一起。所以最安全的方法还是要在合并的同时，还要根据耐药基因的名称进行匹配合并。才是最准确的做法。</p>
+</blockquote>
+<h2 id="解决思路">解决思路</h2>
+<h3 id="如果用r来做">如果用R来做</h3>
+<p>我能想到的是，用<code>list.files()</code>枚举出所有文件，所有构建循环：readr::read_csv -&gt; dplyr::full_jion，这样如此不断的A-&gt;D-&gt;C-&gt;&hellip;.这样去递推到最后一个文件。</p>
+<blockquote>
+<p>有没有更好的R的方法来做这个事情呢，希望评论区有大神能有更好的思路建议</p>
+</blockquote>
+<h3 id="如果用python">如果用Python</h3>
+<p>因为一般组学的流程分析都是大型集群上，在远端终端上输入命令行。这种情况下，如果不是遇到很复杂的需求，我更宁愿去学shell，而不是进行python或者R的界面进行操作。因为感觉不够流程吧。</p>
+<p>所以我将python脚本写成命令行运行的方式，参数的含义在帮助文章里写了出来，如下图：</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/2023020415485816754969382tvsWYimage-20230204154858396.png" alt="image-20230204154858396"></p>
+<p>简而言之：就是<code>-c</code>指定那一列进行提取合并，<code>--overwrite</code>决定是否覆盖同名文件，<code>-o</code> 是输出的新文件（同时也支持标准std.out），<code>--skip_rownumber</code>是决定前多少行不读取。<code>--colnames_replace</code>比较特殊，是因为这个脚本会将文件名当成该文件提取列的新列名，所以一般需要去掉一些文件后缀。所以才有这个。举个例子<em>SC00000378.final_out.rpkm.subtype.txt</em>合并后，<em>SC00000378.final_out.rpkm.subtype.txt</em>也会作为列名存在新表格中，但是有了<code>--colnames_replace .final_out.rpkm.subtype.txt</code>，那就删掉匹配字符，只留下<em>SC00000378</em>。</p>
+<h2 id="运行">运行</h2>
+<p>假设我们现在三个样本的耐药基因输出表格（如第一张图一样的格式）</p>
+<pre tabindex="0"><code>ls *.final_out.rpkm.subtype.txt
+#SC00000378.final_out.rpkm.subtype.txt SC00000553.final_out.rpkm.subtype.txt SC00000858.final_out.rpkm.subtype.txt
+</code></pre><p>合并这三个文件，参数需要有：</p>
+<ul>
+<li>前两行没用：&ndash;skip_rownumber 2</li>
+<li>第一列是行名，第二列需要提取(pandas data.frame 中0就是除行名外的第一列) -c 0</li>
+<li>去除名称后缀，&ndash;colnames_replace .final_out.rpkm.subtype.txt</li>
+<li>当然还有输入和输出了</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">python merge_table_v2.py *.final_out.rpkm.subtype.txt -o test.tsv -c <span style="color:#00d;font-weight:bold">0</span> --skip_rownumber <span style="color:#00d;font-weight:bold">2</span> --colnames_replace .final_out.rpkm.subtype.txt --overwrite
+</code></pre></div><p>当运行成功后，新文件就如下图所示了：</p>
+<p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/2023020416032516754978057B26okimage-20230204160325223.png" alt="image-20230204160325223"></p>
+<p>完美！</p>
+<p>写好的脚本我放在<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/merge_table_v2.py">Github:wangjiaxuan666/WeChat-pubword/merge_table_v2.py</a>上，微信可点击原文链接，需要的可以下载，请随意。</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
-          <li><a href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="tag">数据分析</span></a></li>
-        
-          <li><a href="https://abego.cn/tags/%E7%BB%9F%E8%AE%A1"><span class="tag">统计</span></a></li>
+          <li><a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC"><span class="tag">脚本</span></a></li>
         
       </ul>
       
@@ -310,7 +294,7 @@ sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 
         <i class="fab fa-creative-commons-by fa-2x">
         </i><i class="fab fa-creative-commons-sa fa-2x"></i></a>
       </p>
-        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2020-12-31</strong> , 内容的正确性和时效性请自行评估.
+        © 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。这篇文章创建在 <strong>2023-02-04</strong> , 内容的正确性和时效性请自行评估.
       </p>
     </footer>
     

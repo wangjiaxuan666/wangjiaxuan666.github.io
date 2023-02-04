@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Thu, 21 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>合并多个文件中一列内容到新文件的py脚本</title>
+      <link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link>
+      <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</guid>
+      <description>&lt;p&gt;新的Python脚本出炉了&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>写一个支持超大文件的快速列分割的的python脚本</title>
       <link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link>
