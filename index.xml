@@ -9,21 +9,30 @@
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
     <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Links</title>
+      <title>开源战绩</title>
+      <link>https://abego.cn/works/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/works/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>吐槽 &amp; 关于</title>
+      <link>https://abego.cn/about/</link>
+      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/about/</guid>
+      <description>/* 极客终端风格卡片 */ .about-terminal { background: #282a36; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); color: #f8f8f2; font-family: &#39;Fira Code&#39;, Consolas, Monaco, monospace; padding: 20px; margin: 30px 0; position: relative; line-height: 1.6; } /* Mac 视窗红黄绿小圆点 */ .about-terminal::before { content: &#34; &#34;; position: absolute; top: 15px; left: 15px; width: 12px; height: 12px; background: #fc625d; border-radius: 50%; box-shadow:</description>
+    </item>
+    
+    <item>
+      <title>外链</title>
       <link>https://abego.cn/links/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://abego.cn/links/</guid>
       <description>Wang Jiaxuan</description>
-    </item>
-    
-    <item>
-      <title>吐槽</title>
-      <link>https://abego.cn/about/</link>
-      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/about/</guid>
-      <description>网站最早是19年的时候就开始搭建了，当时还花了100多买了个域名，就是现在这个网站在用的 域名。 用的主题是hugo的nuo主题，但是这个作者已</description>
     </item>
     
     <item>

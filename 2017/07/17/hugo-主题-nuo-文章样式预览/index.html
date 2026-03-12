@@ -8,12 +8,148 @@
   <title>Hugo 主题 Nuo 文章样式预览</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -251,17 +408,17 @@
 <p>使用两个引号 <code>**</code> 或者两个下划线 <code>__</code> 标记 <strong>加粗强调</strong> 或者 <strong>加粗强调</strong></p>
 <p>引号和下划线可叠加使用 → <strong>只是加粗 <em>斜体并加粗</em></strong></p>
 <p>使用两个波浪线 <code>~~</code> 标记 <del>已删除文字</del></p>
-<p>插入文字暂无 <code>Markdown</code> 标记，<!-- raw HTML omitted -->直接使用<!-- raw HTML omitted --> <code>HTML</code> 标签 <code>&lt;ins&gt;</code> 标记 <!-- raw HTML omitted -->插入文字<!-- raw HTML omitted --></p>
+<p>插入文字暂无 <code>Markdown</code> 标记，<ins>直接使用</ins> <code>HTML</code> 标签 <code>&lt;ins&gt;</code> 标记 <ins>插入文字</ins></p>
 <p>行内代码使用反引号标记 → <code>print(&quot;hello world&quot;)</code></p>
-<p>上标 X<!-- raw HTML omitted -->2<!-- raw HTML omitted --> / 下标 X<!-- raw HTML omitted -->2<!-- raw HTML omitted --></p>
-<p>H<!-- raw HTML omitted -->2<!-- raw HTML omitted -->O</p>
-<p>按键 <!-- raw HTML omitted -->Ctrl<!-- raw HTML omitted --><!-- raw HTML omitted -->Alt<!-- raw HTML omitted --></p>
+<p>上标 X<sup>2</sup> / 下标 X<sub>2</sub></p>
+<p>H<sub>2</sub>O</p>
+<p>按键 <kbd>Ctrl</kbd><kbd>Alt</kbd></p>
 <p>外链[chekun&rsquo;s blog</p>
 <p><a href="www.wangjiaxuan666.github.io">王家轩</a></p>
 <p>页面内段落 <a href="#section-07">图片</a></p>
 <p><em>注意：你可以通过 <code>{#section-id}</code> 方式自定义段落锚点</em></p>
-<p>参考资料 <!-- raw HTML omitted --><a href="#ref01">[1]</a><!-- raw HTML omitted --><!-- raw HTML omitted --><a href="#ref02">[2]</a><!-- raw HTML omitted --></p>
-<p>我<!-- raw HTML omitted --><a href="#ref01">[1]</a><!-- raw HTML omitted -->是额</p>
+<p>参考资料 <sup><a href="#ref01">[1]</a></sup><sup><a href="#ref02">[2]</a></sup></p>
+<p>我<sup><a href="#ref01">[1]</a></sup>是额</p>
 <p>引用文献:</p>
 <p>数字引用 <a href="1">编号为 1 的链接</a></p>
 <h2 id="3-列表">3. 列表</h2>
@@ -324,16 +481,16 @@
 <h2 id="4-引用">4. 引用</h2>
 <blockquote>
 <p>野火烧不尽，春风吹又生。</p>
-<p><!-- raw HTML omitted -->&ndash; 白居易《赋得古原草送别》<!-- raw HTML omitted --></p>
+<p><cite>&ndash; 白居易《赋得古原草送别》</cite></p>
 </blockquote>
 <h2 id="scetion-05">5. 代码</h2>
 <p>以本站的一段 <code>JavaScript</code> 代码做演示。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#888">// Initialize video.js player
-</span><span style="color:#888"></span><span style="color:#080;font-weight:bold">if</span> (<span style="color:#038">document</span>.getElementById(<span style="color:#d20;background-color:#fff0f0">&#39;my-player&#39;</span>) !== <span style="color:#080;font-weight:bold">null</span>) {
-  <span style="color:#888">/* eslint-disable no-undef */</span>
-  videojs(<span style="color:#d20;background-color:#fff0f0">&#39;#my-player&#39;</span>, {
-    aspectRatio: <span style="color:#d20;background-color:#fff0f0">&#39;16:9&#39;</span>,
-    fluid: <span style="color:#080;font-weight:bold">true</span>,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Initialize video.js player
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;my-player&#39;</span>) <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
+  <span style="color:#75715e">/* eslint-disable no-undef */</span>
+  <span style="color:#a6e22e">videojs</span>(<span style="color:#e6db74">&#39;#my-player&#39;</span>, {
+    <span style="color:#a6e22e">aspectRatio</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;16:9&#39;</span>,
+    <span style="color:#a6e22e">fluid</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
   });
 }
 </code></pre></div><h2 id="section-05"></h2>
@@ -343,7 +500,11 @@
 <p>不带标题的图片，如下图👇</p>
 <p><img src="https://abego.cn/media/posts/hugo-nuo-post-preview/01.jpg" alt="这是一只梅花鹿"></p>
 <p>带标题的图片（zoomable），如下图👇</p>
-<!-- raw HTML omitted -->
+<figure class="zoomable"><img src="https://abego.cn/media/posts/hugo-nuo-post-preview/01.jpg"
+         alt="这是一只梅花鹿"/><figcaption>
+            <h4>显然，这是一只梅花鹿</h4>
+        </figcaption>
+</figure>
 <h2 id="8-表格">8. 表格</h2>
 <p>使用 <code>Markdown</code> 画的表格，如下表👇</p>
 <table>
@@ -374,7 +535,19 @@
 </table>
 <p>使用 <code>HTML</code> 画的表格，如下表👇</p>
 <p><em>注意：下表叠加应用了 <code>is-centered</code> <code>is-striped</code> <code>is-bordered</code> <code>is-narrow</code> 四种表格样式。</em></p>
-<!-- raw HTML omitted -->
+<table class="is-centered is-striped is-bordered is-narrow">
+  <tr>
+    <th rowspan="2">值班人员</th>
+    <th>星期一</th>
+    <th>星期二</th>
+    <th>星期三</th>
+  </tr>
+  <tr>
+    <td>李强</td>
+    <td>张明</td>
+    <td>王平</td>
+  </tr>
+</table>
 <h2 id="9-数学公式">9. 数学公式</h2>
 <p>主题使用了 <a href="https://www.mathjax.org/">MathJax</a> 开源库来实现对数学公式的支持，使用 <code>$$</code> 标记。</p>
 <p>$$
@@ -389,45 +562,72 @@ N - \varphi(n) + 1 = p + q
 $$</p>
 <h2 id="10-jsfiddle">10. JSFiddle</h2>
 <p>引入 <a href="https://jsfiddle.net/">JSFiddle</a> 网站的代码范例，在主题目录 <code>layouts/shortcodes</code> 文件夹下的 <code>jsfiddle.html</code> 对该标签进行定义。</p>
-<!-- raw HTML omitted -->
+   <script async src="//jsfiddle.net/laozhu/L479wueo/embed/html,css,result/light/"></script>
 <h2 id="11-codepen">11. Codepen</h2>
 <p>引入 <a href="https://codepen.io/">Code Pen</a> 网站的代码演示，在主题目录 <code>layouts/shortcodes</code> 文件夹下的 <code>codepen.html</code> 对该标签进行定义。</p>
-<!-- raw HTML omitted -->
+  <p data-height="600" data-theme-id="light" data-slug-hash="RoaWdE" data-default-tab="result" data-user="" data-embed-version="2" data-pen-title="🐍 Snake Rush" data-preview="true"
+  class="codepen">
+    See the Pen <a href="https://codepen.io/laozhu/pen/RoaWdE/">🐍 Snake Rush</a> by Ritchie Zhu (<a href="https://codepen.io/laozhu">@laozhu</a>) on <a href="https://codepen.io">CodePen</a>.
+  </p>
+  <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 <h2 id="12-声享-ppt">12. 声享 PPT</h2>
 <p>引入 <a href="https://ppt.baomitu.com/">声享</a> PPT 演示文稿，在主题目录 <code>layouts/shortcodes</code> 文件夹下的 <code>shengxiang.html</code> 对该标签进行定义。</p>
-<!-- raw HTML omitted -->
+  <iframe
+    class="shengxiang"
+    width="576"
+    height="420"
+    scrolling="no"
+    frameborder="0"
+    allowfullscreen
+    src="https://ppt.baomitu.com/embed/d4a9b727?style=light">
+  </iframe>
 <h2 id="13-本地视频">13. 本地视频</h2>
 <p>主题使用了 <a href="http://videojs.com/">video.js</a> 播放视频文件，你还可以自己定义视频的封面，在主题目录 <code>layouts/shortcodes</code> 文件夹下的 <code>video.html</code> 对该标签进行定义。</p>
-<!-- raw HTML omitted -->
+  <video id="my-player" class="video-js vjs-big-play-centered" controls preload="auto" poster="/images/poster.jpg" data-setup="{}">
+    <source src="https://abego.cn/media/posts/hugo-nuo-post-preview/videojs.mp4" type="video/mp4"></source>
+    <source src="https://abego.cn/media/posts/hugo-nuo-post-preview/videojs.webm" type="video/webm"></source>
+    <source src="https://abego.cn/media/posts/hugo-nuo-post-preview/videojs.ogv" type="video/ogg"></source>
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" rel="noopener">supports HTML5 video</a></p>
+  </video>
 <h2 id="14-网易云音乐">14. 网易云音乐</h2>
 <p>主题文章中可以轻松插入 <a href="https://music.163.com/">网易云音乐</a> 的指定音乐，你可以根据需要将音乐设置为自动播放，在主题目录 <code>layouts/shortcodes</code> 文件夹下的 <code>music.html</code> 对该标签进行定义。</p>
 <p><strong>注意：由于版权问题，网易已经禁止外站分享版权音乐，该 shortcode 已经无法正常使用。</strong></p>
 <h2 id="15-gist-代码片段">15. Gist 代码片段</h2>
 <p>除了本地的代码片段，主题中可使用 <a href="https://github.com/">GitHub</a> 的 <a href="https://gist.github.com/">Gist</a> 服务轻松插入代码片段。</p>
-<!-- raw HTML omitted -->
+<script type="application/javascript" src="https://gist.github.com/laozhu/8285349.js"></script>
 <h2 id="16-tweet">16. Tweet</h2>
 <p>由于不明原因可能无法访问。</p>
 <h2 id="17-youtube">17. YouTube</h2>
 <p>由于不明原因可能无法播放。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/w7Ft2ymGmfc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+  <iframe
+    class="shengxiang"
+    width="576"
+    height="420"
+    scrolling="no"
+    frameborder="0"
+    allowfullscreen
+    src="https://ppt.baomitu.com/embed/djfp%20okj?style=light">
+  </iframe>
 <h2 id="18-instagram">18. Instagram</h2>
 <p>由于不明原因可能无法访问。</p>
 <h2 id="文章更新">文章更新</h2>
 <h3 id="2017年9月8日inline-mathjax"><a href="#inline-mathjax">2017年9月8日</a></h3>
 <p>支持行内的数学公式，使用标记 <code>$</code> 包裹公式，如下：</p>
 <p>When <code>\(a \ne 0\)</code>, there are two solutions to <code>$ax^2 + bx + c = 0$</code> and they are</p>
-<!-- raw HTML omitted -->
+<div>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</div>
 <h2 id="参考资料">参考资料</h2>
 <ol>
 <li>
-<!-- raw HTML omitted -->
+<p id="ref01">[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)</p>
 </li>
 <li>
-<!-- raw HTML omitted -->
+<p id="ref03">[wo ](www.wangjaixuan.io)</p>
 </li>
 <li>
-<!-- raw HTML omitted -->
+<p id="ref02">[Markdown 语法手册](https://www.zybuluo.com/EncyKe/note/120103)</p>
 </li>
 </ol></article>
     <footer class="post-footer">
@@ -474,7 +674,7 @@ $$</p>
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

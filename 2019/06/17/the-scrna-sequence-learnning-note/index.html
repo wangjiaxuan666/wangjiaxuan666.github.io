@@ -8,12 +8,148 @@
   <title>单细胞测序技术的学习笔记-原理</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -235,7 +392,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">单细胞测序技术的学习笔记-原理</h1>
-      <p class="post-meta">@Jiaxuan Wang · Jun 17, 2019 · 6 min read</p>
+      <p class="post-meta">@Jiaxuan Wang · Jun 17, 2019 · 7 min read</p>
     </header>
     
     <article class="post-content"><p>单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了</p>
@@ -243,9 +400,9 @@
 <h2 id="为什么关注单细胞">为什么关注单细胞</h2>
 <p>单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了。刚刚问了师弟，还是在准备引入。</p>
 <p>不过怎么说，单细胞测序可以让我们获得细胞层面上的信息。甚至结合抗体技术和酶切技术，达到特异结合和筛选某种特定类型的基因片段。从而在单细胞平台上，可以进一步扩展。比如VDJ、ATAC等等。</p>
-<p>总之，个人觉得这是引领最近五年的<code>技术之光</code>。新的、好的技术当然要跟的上发展，否则是要被淘汰的。<!-- raw HTML omitted -->可怕<!-- raw HTML omitted -->。</p>
+<p>总之，个人觉得这是引领最近五年的<code>技术之光</code>。新的、好的技术当然要跟的上发展，否则是要被淘汰的。<font color = red>可怕</font>。</p>
 <h2 id="单细胞测序的平台">单细胞测序的平台</h2>
-<p>单细胞测序从北大的汤富酬课题组开始<!-- raw HTML omitted --><a href="#ref01">[1]</a><!-- raw HTML omitted -->, 到今日, 单细胞测序技术已经发展了十年, 这十年内（09-19），诞生了很多不同的测序技术。其中最著名的：一个是<code>Fluidigm</code>公司的<code>C1</code>测序平台。另一个是<code>10xgenomics</code>公司的<code>Chromium</code>单细胞测序平台。</p>
+<p>单细胞测序从北大的汤富酬课题组开始<sup><a href="#ref01">[1]</a></sup>, 到今日, 单细胞测序技术已经发展了十年, 这十年内（09-19），诞生了很多不同的测序技术。其中最著名的：一个是<code>Fluidigm</code>公司的<code>C1</code>测序平台。另一个是<code>10xgenomics</code>公司的<code>Chromium</code>单细胞测序平台。</p>
 <p><img src="https://img1.dxycdn.com/2018/0809/396/3293780975200636019-8w.png!w640" alt="img"></p>
 <p>从最开始的检测几个细胞一直到<code>10xgenomics</code>、<code>CEL-seq</code>、<code>MARS-seq</code>,<code>Smart-seq2</code>等技术的兴起，到目前普遍的CNS级别文章的百万级别的单细胞测序。可以说，单细胞是目前测序领域中最火热，技术迭代最快的技术。</p>
 <blockquote>
@@ -258,13 +415,13 @@
 <p>但是因为Smart-seq通量低, 单个细胞的测序价格昂贵, 所以一般测序的时候都是采用2-4个细胞混合测序的策略.</p>
 <blockquote>
 <p>万一某个细胞不正常呢,是吧.</p>
-<p><!-- raw HTML omitted -->惨兮兮<!-- raw HTML omitted --></p>
+<p><cite>惨兮兮</cite></p>
 </blockquote>
 <p><img src="http://cn.fluidigm.com/binaries/content/gallery/fluidigm/full-images/instruments/c1-images/c1_front_1.jpg" alt="C1"></p>
 <h1 id="10x-genomics测序平台">10X Genomics测序平台</h1>
 <p>通量低，单个细胞的成本高也是14年之前，影响单细胞测序技术普及的主要因素，令人亢奋的是，在<em>2014-2015</em>年间几个性技术诞生了，仿佛寒武纪大爆发一般，<code>MARS-Seq</code>、<code>CytoSeq</code>、<code>Drop-Seq</code>、<code>inDrop</code>技术在这两年中扎堆出现，真正引爆了<code>Single-Cell</code>这个领域。而在<em>2017-2018</em>年，商业化的测序平台（<code>10X Genomics®</code>, <code>BD Rhapsody®</code>），逐渐浮出水面，才最终让<code>Single-Cell</code>测序技术走进了大众。</p>
 <p><img src="https://2kx82c2gbmp9ti6ch2ilw19c-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/10x-product-family-all-v2.png" alt="Solution Family"></p>
-<p>经过上面这么一说，我觉得两者就不用放在一起比较了。明显的事情&hellip;..但是我们可以说一说，14年之后的单细胞测序技术之间的主要差异<!-- raw HTML omitted --><a href="#ref02">[2]</a><!-- raw HTML omitted -->。</p>
+<p>经过上面这么一说，我觉得两者就不用放在一起比较了。明显的事情&hellip;..但是我们可以说一说，14年之后的单细胞测序技术之间的主要差异<sup><a href="#ref02">[2]</a></sup>。</p>
 <p><img src="https://img1.dxycdn.com/2018/0809/468/3293783535001463838-8w.png!w640" alt="img"></p>
 <p>主要讲讲两个现在的主流技术，<code>BD Rhapsody</code>以及<code>10X Genomics</code>。从诞生年代来看，两者不分伯仲，<code>10X Genomics</code>起源自<code>Drop-Seq</code>技术，得益于哈佛大学研究所的工作。</p>
 <p><code>10X Genomics</code>和<code>Drop-Seq</code>具有类似的技术原理。从横向孔道中逐一输入凝胶微珠，第一纵向孔道输入细胞，凝胶微珠与细胞碰撞后会吸附在凝胶微珠上，并通过微流控技术，将之输入到第二纵向孔道，即油相孔道中。这时候，就形成了一个个油滴，最终输出并收集在<code>EP</code>管中。每一个油滴中会落入一个细胞以及一个凝胶微珠，那么在每一个凝胶微珠中上长满了不同的<code>Cell Barcode</code>和``UMI Barcode<code>连接形成的序列，再加上一端</code>PolyT<code>的抓手，构成我们的捕获凝胶微珠。而这个凝胶微珠抓手就会使用</code>oligo dT<code>抓住</code>mRNA`构建文库。</p>
@@ -357,8 +514,8 @@
 <p>做一次10x的建库和测序需要花费的时间周期：</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551921542972.png" alt="1551921542972"></p>
 <h1 id="参考文献">参考文献:</h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></article>
+<p id = "ref01">[1] Tang, Fuchou, Catalin Barbacioru, Yangzhou Wang, Ellen Nordman, Clarence Lee, Nanlan Xu, Xiaohui Wang, 等. 《MRNA-Seq Whole-Transcriptome Analysis of a Single Cell》. Nature Methods 6, 期 5 (2009年5月): 377–82. https://doi.org/10.1038/nmeth.1315.
+<p id = "ref02">[2] Trapnell, Cole, Davide Cacchiarelli, Jonna Grimsby, Prapti Pokharel, Shuqiang Li, Michael Morse, Niall J Lennon, Kenneth J Livak, Tarjei S Mikkelsen和John L Rinn. 《The Dynamics and Regulators of Cell Fate Decisions Are Revealed by Pseudotemporal Ordering of Single Cells》. Nature Biotechnology 32, 期 4 (2014年4月): 381–86. https://doi.org/10.1038/nbt.2859.</article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -405,7 +562,7 @@
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

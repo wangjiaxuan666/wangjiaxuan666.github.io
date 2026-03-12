@@ -12,12 +12,148 @@
 </title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -56,7 +192,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/tags/%E6%96%87%E7%8C%AE/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -183,21 +333,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -401,7 +558,7 @@
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

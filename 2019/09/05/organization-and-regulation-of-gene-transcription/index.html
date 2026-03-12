@@ -8,12 +8,148 @@
   <title>基因转录组调控途径（译文）</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -249,7 +406,7 @@
 <li>欧洲科学院院士，德国国家科学院院士</li>
 </ul>
 <h2 id="背景">背景</h2>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->受调节的基因转录决定细胞的种类和功能。<strong>最近</strong>的分子结构研究已经证明了在起始和延伸阶段，
+<p><i class="fas fa-fish"></i>受调节的基因转录决定细胞的种类和功能。<strong>最近</strong>的分子结构研究已经证明了在起始和延伸阶段，
 <div class="alert info ">
   <p>
   	<span style="font-size: 1em; color: Tomato;">
@@ -289,7 +446,7 @@
 </blockquote>
 <p>首先看一下, 三种聚合酶的形态.核糖体上还会结合不同的因子来调控和发挥作用.</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1567246408229.png" alt="1567246408229"></p>
-<p>为了启动转录, 聚合酶首要第一点就是被招募到在基因的转录起始区域, 但是核小体会抑制转录的发生, 其原因也是在这里. 只有当核小体转移或者移除的时候, 转录才会发生<!-- raw HTML omitted -->[[1-3]](# section02)<!-- raw HTML omitted -->.  目前研究也表型在核小体缺失的区域更容易发现活性的转录因子.</p>
+<p>为了启动转录, 聚合酶首要第一点就是被招募到在基因的转录起始区域, 但是核小体会抑制转录的发生, 其原因也是在这里. 只有当核小体转移或者移除的时候, 转录才会发生<sup>[[1-3]](# section02)</sup>.  目前研究也表型在核小体缺失的区域更容易发现活性的转录因子.</p>
 <p>人类的启动子区域一般有CpG岛, 这些CpG岛回抑制核小体组装和结合, 从而促进聚合酶的结合. 但是这样的启动子特征主要是针对管家基因.  一般情况下, 特定细胞类型里只有一小部分的POL ii 启动子有活性, 这些启动子区域是被转录因子以序列特异性的识别而激活 .  从而指导聚合酶到特定的DNA元件上进行转录. 转录因子是一类具有低复杂程度的氨基酸序列. 能够招募聚合酶, 调控启动子可及性的蛋白质. 人类已知的转录因子大约有1600种, 大部分转录因子可以和裸漏的DNA结合, 但是一小部分是可以与封闭的核小体DNA结合. 后者往往是一类特殊的, 起到前锋作用的转录因子.  率先在局部开放染色体以实现转录.</p>
 <blockquote>
 <p>这一步通常涉及到组蛋白乙酰转移酶和染色质重塑复合物的募集</p>
@@ -319,8 +476,8 @@
 <ul>
 <li>特定的__DNA序列__可以阻滞转录复合物的前进</li>
 <li>__核小体__会阻遏POL II转录复合物的前进, 但是转录延伸因子TFIIS可以再次启动转录. POL I和POL III 也有这样的延伸因子可以挽救这种阻遏.</li>
-<li>后生动物(除了原生动物以外的动物)甚至可以发生转录的__延伸相位__变化(<!-- raw HTML omitted -->啥意思?转录跳跃?<!-- raw HTML omitted -->)</li>
-<li>而且研究表明聚合酶POL II 特别容易在<!-- raw HTML omitted -->转录起始位点下游50bp处<!-- raw HTML omitted -->暂停, 而且这个机制是被广泛调控的.</li>
+<li>后生动物(除了原生动物以外的动物)甚至可以发生转录的__延伸相位__变化(<red>啥意思?转录跳跃?</red>)</li>
+<li>而且研究表明聚合酶POL II 特别容易在<red>转录起始位点下游50bp处</red>暂停, 而且这个机制是被广泛调控的.</li>
 <li>值得注意的是, 转录延伸的这个过程中是设计到空间构象的改变(这不废话嘛), 所以还收到构象的调控</li>
 </ul>
 <h3 id="所有因子的聚集">所有因子的聚集</h3>
@@ -342,7 +499,57 @@
 <p>我们在回过来看上图的转录模型, 首先是转录因子结合在启动子或者增强子区域, 招募启动子凝聚物, 启动子凝聚物中有转录起始所需的转录起始因子和未发生磷酸化的聚合酶. 随后在激酶的催化下, 聚合酶被磷酸化, 招募转录基因体凝聚物. 其中包含了延伸因子和拓扑酶等转录延伸所需要的因子. 其中磷酸化的聚合酶依靠DNA模板, 在凝集物中穿梭编码RNA.</p>
 <p>完结撒花. 这篇文章原文还涉及一部分关于转录过程所需因子的列表, 因为我不需要了解那么细致, 就没收集, 如果做这方面的, 比较感兴趣的可以看<a href="https://doi.org/10.1038/s41586-019-1517-4">原文</a></p>
 <h2 id="附常用的转录抑制药物以及原理">附:(常用的转录抑制药物以及原理)</h2>
-<!-- raw HTML omitted -->
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;font-weight: bold;color: white !important;background-color: #74a825 !important;"> 抑制剂 </th>
+   <th style="text-align:left;font-weight: bold;color: white !important;background-color: #74a825 !important;"> 目标 </th>
+   <th style="text-align:left;font-weight: bold;color: white !important;background-color: #74a825 !important;"> 行动方式 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 四环素 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 16s rRNA </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 阻止tRNA与tRNA结合 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 氯霉素 </td>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 氨基酰tRNA </td>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 阻止tRNA与tRNA结合 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 雷公藤内酯 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> TFIIH亚基XPB </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 抑制启动子DNA开放 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> THZ1 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> TFIIH亚基CDK7 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 抑制CTD磷酸化和启动子逃逸 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 夫拉平度 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> P-TEFb亚基CDK9和其他激酶 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 抑制Pol II释放暂停和激活 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 5,6-二氯苯并咪唑1-?β?-?d?- 呋喃核糖苷 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> P-TEFb亚基CDK9和其他激酶 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 抑制Pol II释放暂停和激活 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> α-鹅膏蕈碱 </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> Pol II </td>
+   <td style="text-align:left;font-weight: bold;color: #374e2c !important;"> 通过在添加核苷酸后损害易位来抑制Pol II延伸 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 放线菌素D. </td>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 脱氧核糖核酸 </td>
+   <td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"> 通过DNA相互作用抑制转录延伸和其他过程 </td>
+  </tr>
+</tbody>
+</table>
 <h2 id="参考文献--section02">参考文献 {# section02}</h2>
 <ol>
 <li>Lorch, Y. &amp; Kornberg, R. D. Chromatin-remodeling for transcription. Q. Rev.Biophys. 50, e5 (2017).</li>
@@ -393,7 +600,7 @@
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

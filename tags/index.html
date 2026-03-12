@@ -10,12 +10,148 @@
 </title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -54,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/tags/">
@@ -103,6 +239,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -181,21 +331,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -222,100 +379,265 @@
   </nav>
 </header>
 
+  
+  <style>
+     
+    .search-widget {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #f1f5f9;
+    }
+    
+     
+    .search-widget::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00ab6b, #1abc9c);
+    }
+
+    .search-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .search-header img { height: 32px; }
+    .search-header h2 { margin: 0; font-size: 1.4rem; color: #2c3e50; border: none; padding: 0; }
+
+     
+    .search-form-flex {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 12px 20px;
+      font-size: 1.05rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s;
+      color: #2c3e50;
+    }
+
+    .search-input:focus {
+      border-color: #00ab6b;
+      box-shadow: 0 0 0 3px rgba(0, 171, 107, 0.15);
+    }
+
+    .search-btn {
+      background: #00ab6b;
+      color: white;
+      border: none;
+      padding: 0 25px;
+      font-size: 1.05rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-btn:hover {
+      background: #008f59;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 171, 107, 0.3);
+    }
+
+     
+    .search-options { display: flex; gap: 20px; }
+    .search-options label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.95rem; color: #4a5568; cursor: pointer;
+    }
+    
+    .security-badge { margin-top: 15px; font-size: 0.85rem; color: #718096; }
+    .security-badge i { color: #48bb78; }  
+
+     
+    .tags-section-title {
+      font-size: 1.25rem; color: #2c3e50; margin-top: 10px; margin-bottom: 20px;
+      border-left: 4px solid #00ab6b; padding-left: 10px;
+    }
+
+    .tags-cloud { display: flex; flex-wrap: wrap; gap: 12px; }
+    
+     
+    .tags-cloud a {
+      background: #f1f5f9; color: #4a5568;
+      padding: 8px 16px; border-radius: 30px;  
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent; display: inline-block;
+    }
+    
+    .tags-cloud a:hover {
+      background: #00ab6b; color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 171, 107, 0.25);
+    }
+
+     
+    .tag-s { font-size: 0.85rem; }
+    .tag-m { font-size: 0.95rem; }
+    .tag-l { font-size: 1.1rem; }
+    .tag-xl { font-size: 1.25rem; font-weight: bold; }
+    .tag-xxl { font-size: 1.4rem; font-weight: 900; }
+    
+     
+    @media (max-width: 600px) {
+      .search-form-flex { flex-direction: column; }
+      .search-btn { padding: 12px; justify-content: center; }
+    }
+  </style>
+
   <section class="main post-detail terms-list">
     <header class="post-header">
-      <h1 class="post-title">Tags</h1>
+      <h1 class="post-title">标签与检索</h1>
     </header>
+    
+    <div class="search-widget">
+      <div class="search-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+        <h2>站内极速检索</h2>
+      </div>
+      
+      <form method="GET" action="https://www.google.com/search" target="_blank">
+        <input type="hidden" name="ie" value="utf-8">
+        <input type="hidden" name="oe" value="utf-8">
+        <input type="hidden" name="hl" value="zh-CN">
+        
+        <div class="search-form-flex">
+          <input type="text" name="q" class="search-input" placeholder="输入关键词，例如：宏基因组、R语言、WDL..." required>
+          <button type="submit" class="search-btn"><i class="fas fa-search"></i> 搜索</button>
+        </div>
+        
+        <div class="search-options">
+          <label>
+            <input type="radio" name="sitesearch" value="https://abego.cn/" checked> 
+            <span><i class="fas fa-home"></i> 搜索炫酷的本站</span>
+          </label>
+          <label>
+            <input type="radio" name="sitesearch" value=""> 
+            <span><i class="fas fa-globe"></i> 搜索全网</span>
+          </label>
+        </div>
+      </form>
+      
+     
+    </div>
+
+    <h3 class="tags-section-title"><i class="fas fa-tags"></i> 标签云 (Tags Cloud)</h3>
     <div class="tags-cloud">
       
       
         
-        <a href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="tag-xxl">数据分析</a>
+        <a href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="tag-xxl">
+          数据分析 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(18)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/" class="tag-xxl">专业相关</a>
+        <a href="https://abego.cn/tags/%E4%B8%93%E4%B8%9A%E7%9B%B8%E5%85%B3/" class="tag-xxl">
+          专业相关 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(12)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-xl">可视化</a>
+        <a href="https://abego.cn/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="tag-xl">
+          可视化 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(8)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E7%BB%9F%E8%AE%A1/" class="tag-xl">统计</a>
+        <a href="https://abego.cn/tags/%E7%BB%9F%E8%AE%A1/" class="tag-xl">
+          统计 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(8)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/" class="tag-xl">脚本</a>
+        <a href="https://abego.cn/tags/%E8%84%9A%E6%9C%AC/" class="tag-xl">
+          脚本 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(8)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/linux/" class="tag-l">linux</a>
+        <a href="https://abego.cn/tags/linux/" class="tag-l">
+          linux <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(4)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/python/" class="tag-l">python</a>
+        <a href="https://abego.cn/tags/python/" class="tag-l">
+          python <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(4)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/software-install/" class="tag-l">software-install</a>
+        <a href="https://abego.cn/tags/software-install/" class="tag-l">
+          software-install <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(4)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E5%8D%95%E7%BB%86%E8%83%9E/" class="tag-l">单细胞</a>
+        <a href="https://abego.cn/tags/%E5%8D%95%E7%BB%86%E8%83%9E/" class="tag-l">
+          单细胞 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(4)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E9%9A%8F%E7%AC%94/" class="tag-m">随笔</a>
+        <a href="https://abego.cn/tags/%E9%9A%8F%E7%AC%94/" class="tag-m">
+          随笔 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(2)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/chip/" class="tag-s">chip</a>
+        <a href="https://abego.cn/tags/chip/" class="tag-s">
+          chip <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/theme/" class="tag-s">theme</a>
+        <a href="https://abego.cn/tags/theme/" class="tag-s">
+          theme <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/" class="tag-s">关联分析</a>
+        <a href="https://abego.cn/tags/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/" class="tag-s">
+          关联分析 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E5%BE%AE%E7%94%9F%E7%89%A9/" class="tag-s">微生物</a>
+        <a href="https://abego.cn/tags/%E5%BE%AE%E7%94%9F%E7%89%A9/" class="tag-s">
+          微生物 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E6%96%87%E7%8C%AE/" class="tag-s">文献</a>
+        <a href="https://abego.cn/tags/%E6%96%87%E7%8C%AE/" class="tag-s">
+          文献 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E6%B5%81%E7%A8%8B/" class="tag-s">流程</a>
+        <a href="https://abego.cn/tags/%E6%B5%81%E7%A8%8B/" class="tag-s">
+          流程 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E7%88%AC%E8%99%AB/" class="tag-s">爬虫</a>
+        <a href="https://abego.cn/tags/%E7%88%AC%E8%99%AB/" class="tag-s">
+          爬虫 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
         
-        <a href="https://abego.cn/tags/%E7%9E%8E%E5%86%99/" class="tag-s">瞎写</a>
+        <a href="https://abego.cn/tags/%E7%9E%8E%E5%86%99/" class="tag-s">
+          瞎写 <span style="opacity:0.6; font-size:0.8em; margin-left:3px;">(1)</span>
+        </a>
       
     </div>
-<font size = 6><b>谷歌搜索</b></font>
-
-      
-      <FORM method=GET action="http://www.google.com/search">
-      <INPUT TYPE=hidden name=ie value=utf-8>
-      <INPUT TYPE=hidden name=oe value=utf-8>
-      <INPUT TYPE=hidden name="hl" value="zh-CN">
-      <TABLE bgcolor="#FFFFFF"><tr><td>
-      <A HREF="http://www.google.com/">
-      <div width:50px height:50px>
-      <IMG style="max-width:100%;overflow:hidden;" SRC="https://openthread.google.cn/images/ot-contrib-google.png" 
-      border="0" ALT="Google" width = 200 height = 100>
-      </div>
-      </A>
-      </td>
-      <td>
-      <INPUT TYPE=text name=q size=30 maxlength=255 value="">
-      <INPUT TYPE=submit name=btnG VALUE="Google Search">
-      <font size=-1>
-      <INPUT TYPE=hidden name=domains value="https://abego.cn/"><br>
-      <INPUT TYPE=radio name=sitesearch value=""> 搜索全网
-      <INPUT TYPE=radio name=sitesearch value="https://abego.cn/" checked> 搜索炫酷吊炸天的本网 <br>
-      </font>
-      </td></tr></TABLE>
-      </FORM>
-      
-<font size = 4><i class="fas fa-exclamation-triangle" style="color:orange"></i><i class="fas fa-pen" style="color:white"></i></font><font size = 2 color = "grey"><b>搜索来自谷歌外链：部分浏览器可能会提示提交表单不安全</b></font>
 
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

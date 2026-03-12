@@ -8,12 +8,148 @@
   <title>数据分析预处理:归一化,标准化和中心化</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -60,7 +196,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/">
@@ -108,6 +244,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -194,21 +344,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -272,18 +429,18 @@ $$
 z = \frac{x - \mu}{\sigma}
 $$
 其中u是平均值，sigma是标准差。因为我脑子不够用了，所以没办法用复杂的数学公式来实现计算，是不是真是标准差为<em>1</em>，平均值为<em>0</em>。偷懒的我在R上，自己写了一个函数。来验证一下，果真如此。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.3 win 10</span>
-scales&lt;-<span style="color:#06b;font-weight:bold">function</span>(x){
-  <span style="color:#06b;font-weight:bold">return</span>((x-<span style="color:#06b;font-weight:bold">mean</span>(x))/<span style="color:#06b;font-weight:bold">sd</span>(x))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.3 win 10</span>
+scales<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">function</span>(x){
+  <span style="color:#a6e22e">return</span>((x<span style="color:#f92672">-</span><span style="color:#a6e22e">mean</span>(x))<span style="color:#f92672">/</span><span style="color:#a6e22e">sd</span>(x))
 }
-dat &lt;- <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#00d;font-weight:bold">10000</span>,<span style="color:#00d;font-weight:bold">300</span>)
-dat1 &lt;- <span style="color:#06b;font-weight:bold">scales</span>(dat)
-<span style="color:#06b;font-weight:bold">as.integer</span>(<span style="color:#06b;font-weight:bold">mean</span>(dat1))
-<span style="color:#06b;font-weight:bold">sd</span>(dat1)
+dat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#ae81ff">10000</span>,<span style="color:#ae81ff">300</span>)
+dat1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">scales</span>(dat)
+<span style="color:#a6e22e">as.integer</span>(<span style="color:#a6e22e">mean</span>(dat1))
+<span style="color:#a6e22e">sd</span>(dat1)
 
-d&lt;-<span style="color:#06b;font-weight:bold">density</span>(dat1)
-<span style="color:#06b;font-weight:bold">plot</span>(d)
-<span style="color:#06b;font-weight:bold">plot</span>(d,main = <span style="color:#d20;background-color:#fff0f0">&#34;数据标准化（scale）&#34;</span>)
+d<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">density</span>(dat1)
+<span style="color:#a6e22e">plot</span>(d)
+<span style="color:#a6e22e">plot</span>(d,main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;数据标准化（scale）&#34;</span>)
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553598676492.png" alt="1553598676492"></p>
 <h2 id="归一化normalization">归一化（Normalization）</h2>
 <p><strong>归一化：<strong>把数据变成(０，１)或者（1,1）之间的小数。这样可以将数据的变异范围局限在一定范围，同时保存了数据之间原有的变异度。在某些</strong>图像算法</strong>和<strong>神经网络算法</strong>中用的比较多。</p>
@@ -293,14 +450,14 @@ X_{norm} = \frac{X - X_{min}}{X_{max}-X_{min}}
 $$
 上述的公式还是比较好理解的，就是看特征值在极差范围内的<strong>排序</strong>。在这种方法中，数据被缩放到固定范围[0,1]，作为被限定边界的补偿，得到的是，与标准化相反，归一化最终会得到较小的标准偏差，这可以抑制异常值的影响。</p>
 <p>这点我们通过<em>R</em>很容易就可以发现</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; Norm &lt;-<span style="color:#06b;font-weight:bold">function</span>(x){
-     <span style="color:#06b;font-weight:bold">return</span>((x-<span style="color:#06b;font-weight:bold">min</span>(x))/(<span style="color:#06b;font-weight:bold">max</span>(x)-<span style="color:#06b;font-weight:bold">min</span>(x)))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> Norm <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">function</span>(x){
+     <span style="color:#a6e22e">return</span>((x<span style="color:#f92672">-</span><span style="color:#a6e22e">min</span>(x))<span style="color:#f92672">/</span>(<span style="color:#a6e22e">max</span>(x)<span style="color:#f92672">-</span><span style="color:#a6e22e">min</span>(x)))
 }
-&gt; dat2 &lt;- <span style="color:#06b;font-weight:bold">Norm</span>(dat)
-&gt; <span style="color:#06b;font-weight:bold">mean</span>(dat2)
-[1] <span style="color:#00d;font-weight:bold">0.516856</span>
-&gt; <span style="color:#06b;font-weight:bold">sd</span>(dat2)
-[1] <span style="color:#00d;font-weight:bold">0.2819505</span>
+<span style="color:#f92672">&gt;</span> dat2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Norm</span>(dat)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mean</span>(dat2)
+[1] <span style="color:#ae81ff">0.516856</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sd</span>(dat2)
+[1] <span style="color:#ae81ff">0.2819505</span>
 
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553600051347.png" alt="1553600051347"></p>
 <p>可以看到上述的归一化的标准差sd 要比标准化处理的标准差sd要小很多，这也代表着归一化可以极大的抑制异常值对数据分析的影响。</p>
@@ -323,11 +480,11 @@ $$
 [1] 2804.562
 </code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601528491.png" alt="1553601528491"></p>
 <p>在看看中心化处理后的数据分布</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">&gt; dat3 &lt;- <span style="color:#06b;font-weight:bold">center</span>(dat)
-&gt; <span style="color:#06b;font-weight:bold">mean</span>(dat3)
-[1] <span style="color:#00d;font-weight:bold">-3.033596e-13</span>
-&gt; <span style="color:#06b;font-weight:bold">sd</span>(dat3)
-[1] <span style="color:#00d;font-weight:bold">2804.562</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> dat3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">center</span>(dat)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mean</span>(dat3)
+[1] <span style="color:#ae81ff">-3.033596e-13</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sd</span>(dat3)
+[1] <span style="color:#ae81ff">2804.562</span>
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553601864693.png" alt="1553601864693"></p>
 <h1 id="总结">总结</h1>
 <p>大数据分析，有事没事来个标准化（scales），出现调整不了的异常值，就用归一化（Normalization），线性归一化不行，就用非线性的。</p>
@@ -379,7 +536,7 @@ $$
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

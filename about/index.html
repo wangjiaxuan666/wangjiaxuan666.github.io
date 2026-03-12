@@ -6,16 +6,152 @@
 
   
   <title>
-  吐槽 | 王家轩的博客
+  吐槽 &amp; 关于 | 王家轩的博客
 </title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -54,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/about/">
@@ -102,6 +238,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -180,21 +330,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
            is-active
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -223,20 +380,100 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">吐槽</h1>
+      <h1 class="post-title">吐槽 &amp; 关于</h1>
     </header>
-    <article class="post-content"><p>网站最早是19年的时候就开始搭建了，当时还花了100多买了个域名，就是现在这个网站在用的
-域名。</p>
-<p>用的主题是hugo的nuo主题，但是这个作者已经有几年没更新了，可怜的自己一边适应hugo的版本更新，
-一边看到牛逼的模块和功能想着能不能移植到自己的网站上。</p>
-<p>苦逼的我对html和css只是皮毛了解。硬着头皮学习看别人代码。苦不堪言。</p>
-<p>惨~~~</p>
-<p>如果你对本网站的内容感兴趣，或者想进一步了解，欢迎邮箱<a href="mailto:poormouse@126.com">poormouse@126.com</a>沟通。</p>
+    <article class="post-content"><style>
+  /* 极客终端风格卡片 */
+  .about-terminal {
+    background: #282a36;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    color: #f8f8f2;
+    font-family: 'Fira Code', Consolas, Monaco, monospace;
+    padding: 20px;
+    margin: 30px 0;
+    position: relative;
+    line-height: 1.6;
+  }
+  
+  /* Mac 视窗红黄绿小圆点 */
+  .about-terminal::before {
+    content: " ";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: #fc625d;
+    border-radius: 50%;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  }
+  
+  .about-terminal-header {
+    text-align: center;
+    color: #6272a4;
+    font-size: 0.85rem;
+    margin-top: -5px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #44475a;
+    padding-bottom: 10px;
+  }
+  
+  .prompt { color: #50fa7b; font-weight: bold; }
+  .path { color: #8be9fd; font-weight: bold; }
+  .command { color: #f1fa8c; }
+  .output { color: #f8f8f2; margin-top: 10px; margin-bottom: 20px; }
+
+  /* 吐槽专属卡片 */
+  .rant-card {
+    background: #fff;
+    border-left: 5px solid #ffb86c;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin: 30px 0;
+    color: #2c3e50;
+  }
+  .rant-card h3 { margin-top: 0; color: #e67e22; border: none; padding: 0; background: transparent; }
+  .rant-card p { margin: 0 0 10px 0; line-height: 1.8; }
+  .rant-card p:last-child { margin: 0; }
+</style>
+<div class="about-terminal">
+  <div class="about-terminal-header">jiaxuan@abego:~</div>
+  <div><span class="prompt">➜</span> <span class="path">~</span> <span class="command">whoami</span></div>
+  <div class="output">
+    王家轩 (Jiaxuan Wang)<br>
+    👨‍💻 生物信息研究员 / 数据可视化爱好者<br>
+    🧬 致力于在多组学与肿瘤微环境的数据海中寻找临床转化真相。<br>
+    🛠 技能树：R | Python | Shell | WDL | Tidyverse
+  </div>
+  <div><span class="prompt">➜</span> <span class="path">~</span> <span class="command">cat blog_status.txt</span></div>
+  <div class="output" style="margin-bottom: 0;">
+    [OK] 域名已续费 (since 2019)<br>
+    [WARNING] HTML/CSS 技能加载缓慢...<br>
+    [INFO] 正在硬着头皮持续折腾中...
+  </div>
+</div>
+<div class="rant-card">
+  <h3>💬 站长吐槽大会</h3>
+  <p>网站最早是 19 年的时候就开始搭建了，当时还花了 100 多买了个域名，就是现在这个 <code>abego.cn</code>。</p>
+  <p>当时一眼相中了 Hugo 的 <strong>Nuo 主题</strong>，极简、好看。但是，原作者已经好几年没更新了！可怜的我只能一边适应 Hugo 版本的无情更迭，一边看着别人牛逼的模块和功能，想着能不能“偷”移植到自己的网站上。</p>
+  <p>苦逼的我对 HTML 和 CSS 只是皮毛了解。硬着头皮学习，看别人的代码，改错一个标点整个页面就崩溃……苦不堪言。惨~~~ 😭</p>
+</div>
+<h3 id="-找到我">📬 找到我</h3>
+<p>如果你对本网站的内容（或者我惨痛的建站经历）感兴趣，或者想进一步交流生信分析、R 语言等技术，欢迎沟通：</p>
+<ul>
+<li><strong>Email</strong>: <a href="mailto:poormouse@126.com">poormouse@126.com</a></li>
+<li><strong>Github</strong>: <a href="https://github.com/wangjiaxuan666">wangjiaxuan666</a></li>
+</ul>
+<blockquote>
+<p>&ldquo;生命不息，折腾不止。&rdquo; —— 记录每一个被 Bug 折磨的深夜。</p>
+</blockquote>
 </article>
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

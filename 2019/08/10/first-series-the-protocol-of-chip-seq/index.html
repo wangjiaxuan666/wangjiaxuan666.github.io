@@ -8,12 +8,148 @@
   <title>ChIP-seq的实验设计-第一个系列</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -235,7 +392,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">ChIP-seq的实验设计-第一个系列</h1>
-      <p class="post-meta">@Jiaxuan Wang · Aug 10, 2019 · 8 min read</p>
+      <p class="post-meta">@Jiaxuan Wang · Aug 10, 2019 · 9 min read</p>
     </header>
     
     <article class="post-content"><p>染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.</p>
@@ -245,7 +402,7 @@
 <p>ChIP-seq可以用于寻找转录因子结合的DNA区域，以及寻找发生组蛋白修饰的基因组位置。</p>
 </blockquote>
 <p>尽管ChIP-seq做的人不少, 想做的人也不少，但如何进行ChIP-seq的实验设计，如何对结果进行分析和质量评估, 以及如何将数据和原始数据存档以方便后来的研究者可以使用. 目前为止都不是特别的明确, 不同的实验室在这些方面存在相当大的差异。</p>
-<p>问题就在于, 这些实验设计的差异最终都会影响ChIP实验的质量和结果。所以<a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟(后文简称ENCODE联盟). 为ChIP实验制定了一套<a href="https://genome.cshlp.org/content/22/9/1813.full">工作标准和指南</a>，这些标准和指南会定期更新。目前ENCODE联盟的实验指南包括<!-- raw HTML omitted -->抗体验证<!-- raw HTML omitted -->，<!-- raw HTML omitted -->生物学重复<!-- raw HTML omitted -->，<!-- raw HTML omitted -->测序深度<!-- raw HTML omitted -->，<!-- raw HTML omitted -->数据质量评估<!-- raw HTML omitted -->。今天重点就是围绕这个这个指南<!-- raw HTML omitted --><a href="#ref01">1</a><!-- raw HTML omitted -->,  弄清楚ChIP-seq那点事。</p>
+<p>问题就在于, 这些实验设计的差异最终都会影响ChIP实验的质量和结果。所以<a href="http://encodeproject.org/ENCODE/">ENCODE</a>和<a href="http://www.modencode.org/">modENCODE</a>联盟(后文简称ENCODE联盟). 为ChIP实验制定了一套<a href="https://genome.cshlp.org/content/22/9/1813.full">工作标准和指南</a>，这些标准和指南会定期更新。目前ENCODE联盟的实验指南包括<red>抗体验证</red>，<orange>生物学重复</orange>，<purple>测序深度</purple>，<green>数据质量评估</green>。今天重点就是围绕这个这个指南<sup><a href="#ref01">1</a></sup>,  弄清楚ChIP-seq那点事。</p>
 <h2 id="快速通道">快速通道</h2>
 <ul>
 <li><a href="#section-01">生物学重复</a></li>
@@ -273,13 +430,14 @@
 <h1 id="chip概述">ChIP概述</h1>
 <p>染色质免疫沉淀（ChIP）技术距今已经发展了十多年了。在ChIP-seq中，通过来对免疫沉淀技术来富集转录因子，辅因子或其他染色质蛋白能结合的DNA片段。</p>
 <p>早期是通过DNA杂交或者微芯片（ChIP-芯片）来鉴定chip富集到基因组DNA位点. 但是随着高通量测序技术(NGS)的快速发展. 目前常用的是运用二代测序仪器进行DNA测序, 这也是所谓的ChIP-seq技术。ChIP-seq现在已广泛用于许多转录因子，组蛋白修饰，染色质修饰复合物和其他染色质相关蛋白在各种生物体中的应用。</p>
-<p>全基因组ChIP实验的目标是绘制靶蛋白的结合位点，首先用化学试剂（通常是甲醛）处理细胞或组织，以使蛋白质与DNA共价交联。然后进行细胞破碎和超声处理. 消化完后, 利用核酸酶将染色质剪切成100-300bp的目标大小。然后通过用对<!-- raw HTML omitted -->目标因子<!-- raw HTML omitted -->特异的抗体纯化.</p>
+<p>全基因组ChIP实验的目标是绘制靶蛋白的结合位点，首先用化学试剂（通常是甲醛）处理细胞或组织，以使蛋白质与DNA共价交联。然后进行细胞破碎和超声处理. 消化完后, 利用核酸酶将染色质剪切成100-300bp的目标大小。然后通过用对<red>目标因子</red>特异的抗体纯化.</p>
 <p>这种方法适用于能与染色质结合的蛋白质（转录因子，修饰的组蛋白，RNA聚合酶等. 但是有些蛋白并没有特异抗体, 或者制备抗体的难度很高.  也可以通过融合表达标签,  产生具有标签的标记因子，并通过对标签特异的抗体来进行富集.</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884024137.png" alt="1563884024137"></p>
-<!-- raw HTML omitted -->
+<title>图1 ChIP-seq的实验流程</title>
+ChIP-seq实验的好坏主要取绝于抗体的特异性和对目标分子的亲和能力. 抗体常出现的问题有两类, 第一个是对靶标的亲和能力不足, 另一个就是非特异性结合. 
 <p>正是因为这些因素. 所以需要对抗体识别抗原的效率和准确性进行验证. 验证方法至少要做到定性的维度. 常用的是qPCR验证和跑蛋白胶 . 在转录因子的ChIP-seq实验中推荐的是对IP下来的蛋白样品，跑蛋白胶. 比如下图A中, 用针对SIN3B的抗体进行IP实验, 跑胶结果显示如下, 左边是成功的, 右边是失败的.</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1563884849741.png" alt="1563884849741"></p>
-<!-- raw HTML omitted -->
+<title> ChIP-seq的流程图</title>
 <p>上图中的B图也是一种检验方法, 不过新增了阴性对照和上清液的检测.</p>
 <ul>
 <li>其中line1是input样本, 就是不做富集的DNA文库</li>
@@ -333,11 +491,11 @@ $$
 <p>这是第一篇主要还是纠结前期的实验设计上. 第二篇想涉及一下分析的内容. 第三篇(如果有的话, 想具体看一篇文章, 解读一下文章的思路)</p>
 <p>完结撒花!</p>
 <h1 id="参考文献">参考文献:</h1>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted --></article>
+<p id = "ref01">[1] [《ENCODE和modENCODE联盟的ChIP-seq指南和实践》](https://www.ncbi.nlm.nih.gov/pubmed/22955991)。 _PubMed_ NCBI
+<p id = "ref02">[2] [《Galaxy Platform Directory: Servers, Clouds, and Deployable Resources》](https://galaxyproject.Nord, Alex)
+<p id = "ref03">[3] 《Mapping DNA-Protein   Interactions via ChIP-Seq》
+<p id = "ref04">[4] [《Mapping Genome-Wide Transcription-Factor Binding Sites Using DAP-Seq》](https://doi.org/10.1038/nprot.2017.055). *Nature Protocols* 12, 期 8 (2017年8月): 1659–72.
+<p id = "ref05">[5] [《chip-seq原理-详细》](http://fg.cns.utexas.edu/fg/course_notebook_chapter_ten.html). 见于 2019年7月11日</article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -382,7 +540,7 @@ $$
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

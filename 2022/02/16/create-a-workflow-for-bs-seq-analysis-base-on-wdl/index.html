@@ -8,12 +8,148 @@
   <title>BSseq-WDL：基于WDl的甲基化分析流程搭建和心得</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -301,7 +458,7 @@
 <h2 id="流程运行">流程运行🐚</h2>
 <h3 id="软件下载">软件下载</h3>
 <p>下载Github仓库，解压，在联网环境下，运行<code>download_cromwell.sh</code>脚本，下载<code>cromwell-58.jar</code>☕,如果已经有<code>cromwell</code>☕其他版本的可以不用下载，可以自行尝试是否版本兼容。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash download_cromwell.sh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash download_cromwell.sh
 </code></pre></div><h3 id="配制文件">配制文件</h3>
 <p>输入文件有两个，一个控制参数的<code>json</code>文件，一个是记录样本名称和fq序列文件路径的<code>tsv</code>表格.</p>
 <h3 id="tsv-表格">tsv 表格</h3>
@@ -314,55 +471,55 @@ sample_B	./test/sample_B.test.1k.R1.fq.gz	./test/sample_B.test.1k.R2.fq.gz
 </blockquote>
 <h3 id="json文件">json文件</h3>
 <p>需要一些参数才能运行：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.genome_index&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;error_path_just_for_test/test.fa_bowtie2/&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.python_file&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;wangjiaxuan/biosoft/miniconda3/envs/py27/bin/python&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_util_dir&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;wangjiaxuan/biosoft/BSseeker&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.refer_fa&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;./test/test.fa&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.alig_software&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;bowtie2&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.fastq_table&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;./test/input_sample_fq.tsv&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.step02_fq_qc&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;true&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.step03_bsseeker_align&#34;</span> : <span style="color:#d20;background-color:#fff0f0">&#34;true&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;bsseq.genome_index&#34;</span> : <span style="color:#e6db74">&#34;error_path_just_for_test/test.fa_bowtie2/&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.python_file&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/miniconda3/envs/py27/bin/python&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.bsseeker_util_dir&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/BSseeker&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.refer_fa&#34;</span> : <span style="color:#e6db74">&#34;./test/test.fa&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.alig_software&#34;</span> : <span style="color:#e6db74">&#34;bowtie2&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.fastq_table&#34;</span> : <span style="color:#e6db74">&#34;./test/input_sample_fq.tsv&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.step02_fq_qc&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.step03_bsseeker_align&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>
 }
 </code></pre></div><p>其中<code>genome_index</code>是基因组索引文件，这个是要BSseeker构建的。如果之前没有构建过，这个参数可以不写或者给了错误的地址。**流程都会自动根据参数<code>refer_fa</code>来进行基因组索引构建，只是需要的时间和内存都会比较大。</p>
 <p>另外参数<code>refer_fa</code>是必须参数，除此以外，必须的参数还有python2.7路径的<code>python_file</code>，BSseeker的脚本目录<code>bsseeker_util_dir</code>，输入上文提到的tsv表格的<code>fastq_table</code>，以及比对软件<code>alig_software</code>。</p>
 <h3 id="运行">运行</h3>
 <h4 id="方法一">方法一🐍</h4>
 <p>运行流程, 我写了一个python的外包，运行<code>./bsseq-run -i bsseq.input.json</code>就可以开始分析，参数<code>-i</code>控制输入的json文件，<code>-c</code>是指定的cromwell.jar的路径，默认是在WDL文件下的。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 参数</span>
-<span style="color:#888"># usage: bsseq-run [-h] --input INPUT [--cromwell CROMWELL] [--version]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 参数</span>
+<span style="color:#75715e"># usage: bsseq-run [-h] --input INPUT [--cromwell CROMWELL] [--version]</span>
 
-<span style="color:#888"># BS-seq analysis workflow base on bsseeker and CGmaptools</span>
+<span style="color:#75715e"># BS-seq analysis workflow base on bsseeker and CGmaptools</span>
 
-<span style="color:#888"># optional arguments:</span>
-<span style="color:#888">#  -h, --help            show this help message and exit</span>
-<span style="color:#888">#  --input INPUT, -i INPUT</span>
-<span style="color:#888">#                       the input json</span>
-<span style="color:#888">#  --cromwell CROMWELL, -c CROMWELL</span>
-<span style="color:#888">#                       Optional path to cromwell jar file</span>
-<span style="color:#888">#  --version, -v         show version tag: 0.1</span>
+<span style="color:#75715e"># optional arguments:</span>
+<span style="color:#75715e">#  -h, --help            show this help message and exit</span>
+<span style="color:#75715e">#  --input INPUT, -i INPUT</span>
+<span style="color:#75715e">#                       the input json</span>
+<span style="color:#75715e">#  --cromwell CROMWELL, -c CROMWELL</span>
+<span style="color:#75715e">#                       Optional path to cromwell jar file</span>
+<span style="color:#75715e">#  --version, -v         show version tag: 0.1</span>
 </code></pre></div><h4 id="方法二-">方法二 ☕</h4>
 <p>当然外包的python又需要python3的环境，而运行BSseeker是python2的环境，我也没无奈，因为我不会python2，所以嫌麻烦也可以直接运行命令行：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -jar WDL/WDL/cromwell-58.jar run WDL/bsseq.wdl -i bsseq.input.json -m bsseq.output.json
-<span style="color:#888"># -m 参数是输出文件，可以不写，但是不写后续分析很麻烦</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -jar WDL/WDL/cromwell-58.jar run WDL/bsseq.wdl -i bsseq.input.json -m bsseq.output.json
+<span style="color:#75715e"># -m 参数是输出文件，可以不写，但是不写后续分析很麻烦</span>
 </code></pre></div><h3 id="结果解读">结果解读🍵</h3>
 <p>结果可能有点疑惑，但这也是wdl的特性，输出文件都会在cromwell-executions文件里，里面根据task来进行分文件，又进一步细分为input和execution。但是看<code>bsseq.output.json</code>就不会疑惑了。</p>
 <p>有用的信息，我都output了</p>
 <p>Example：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#d20;background-color:#fff0f0">&#34;outputs&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_call_methylation_bam_bai&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;sort_rmSX.bam.bai&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;sort_rmSX.bam.bai&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_call_methylation_bam&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;sort_rmSX.bam&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.sample&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;sample_A&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;sample_B&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.fastp_filter_fq1&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;sample_B.filter.R1.fq.gz&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_methy_CGmap&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;merge.CGmap&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_index&#34;</span>: <span style="color:#d20;background-color:#fff0f0">&#34;test.fa_bowtie2&#34;</span>,
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_methy_wig&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;merge.wig&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.cgmaptools_methy_snv&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;bayes.snv&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.fastp_filter_fq2&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;sample_B.filter.R2.fq.gz&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.cgmaptools_methy_vcf&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;bayes.vcf&#34;</span>],
-    <span style="color:#b06;font-weight:bold">&#34;bsseq.bsseeker_methy_ATCGmap&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;merge.ATCGmap&#34;</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#e6db74">&#34;outputs&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam_bai&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>, <span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.sample&#34;</span>: [<span style="color:#e6db74">&#34;sample_A&#34;</span>, <span style="color:#e6db74">&#34;sample_B&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq1&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R1.fq.gz&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_CGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.CGmap&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.bsseeker_index&#34;</span>: <span style="color:#e6db74">&#34;test.fa_bowtie2&#34;</span>,
+    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_wig&#34;</span>: [<span style="color:#e6db74">&#34;merge.wig&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_snv&#34;</span>: [<span style="color:#e6db74">&#34;bayes.snv&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq2&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R2.fq.gz&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_vcf&#34;</span>: [<span style="color:#e6db74">&#34;bayes.vcf&#34;</span>],
+    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_ATCGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.ATCGmap&#34;</span>]
     }
-<span style="color:#a61717;background-color:#e3d2d2">#</span> <span style="color:#a61717;background-color:#e3d2d2">信息匿去部分信息，本身是按照样本输出的</span>
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">信息匿去部分信息，本身是按照样本输出的</span>
 </code></pre></div><h3 id="甲基化结果文件展示">甲基化结果文件展示：🍸</h3>
 <p>我们拿ATCGmap文件举例，结果是文本格式，包含甲基化位点和甲基化水平 <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202202161753521645005232A6WlOximage-20220216175351916.png" alt="image-20220216175351916"></p>
 <p>具体每一列的详细信息如下：</p>
@@ -371,21 +528,21 @@ sample_B	./test/sample_B.test.1k.R1.fq.gz	./test/sample_B.test.1k.R2.fq.gz
 <h3 id="安装bsseeker2">安装BSseeker2</h3>
 <p>按照BSseeker的<a href="http://pellegrini-legacy.mcdb.ucla.edu/bs_seeker2/">网址</a>上的介绍安装和使用
 简单点话就是</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/BSSeeker/BSseeker2
-<span style="color:#038">cd</span> BSseeker2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/BSSeeker/BSseeker2
+cd BSseeker2
 </code></pre></div><p>就可以看到其中的py脚本，但是亲测python 3.8不能用，只能用conda创建一个python2.7的环境，同时需要环境中有bowtie, bowtie2, soap三个软件中任意一个都可以。python环境也要有<code>pysam</code>模块。</p>
 <h3 id="安装cgmaptools">安装CGmapTools</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/guoweilong/cgmaptools
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/guoweilong/cgmaptools
 bash install.sh
-<span style="color:#888"># add cgmaptools to your system PATH if necessary</span>
-<span style="color:#888"># open ~/.bashrc</span>
+<span style="color:#75715e"># add cgmaptools to your system PATH if necessary</span>
+<span style="color:#75715e"># open ~/.bashrc</span>
 vi ~/.bashrc
-<span style="color:#888"># add the following lines to the end of ~/.bashrc</span>
-<span style="color:#038">export</span> <span style="color:#369">PATH</span>=/path/to/cgmaptools/:<span style="color:#369">$PATH</span>
-<span style="color:#888"># then, souce your ~/.bashrc</span>
-<span style="color:#038">source</span> ~/.bashrc
+<span style="color:#75715e"># add the following lines to the end of ~/.bashrc</span>
+export PATH<span style="color:#f92672">=</span>/path/to/cgmaptools/:$PATH
+<span style="color:#75715e"># then, souce your ~/.bashrc</span>
+source ~/.bashrc
 </code></pre></div><p>还需要在python2.7的环境中安装pysam和scipy</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda activate py27
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda activate py27
 pip install pysam
 pip install scipy
 </code></pre></div><h2 id="资料来源">资料来源⚓</h2>
@@ -440,7 +597,7 @@ pip install scipy
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

@@ -8,12 +8,148 @@
   <title>用R计算离散系数寻找转录组中的内参基因</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/08/12/the-cv-of-gene-expression/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -279,34 +436,34 @@
 <p>我好喜欢这个<code>sublime</code>，哈哈哈</p>
 <h3 id="用r计算离散系数">用R计算离散系数</h3>
 <p>注释看代码行</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888"># R 3.5.2 win 10</span>
-<span style="color:#06b;font-weight:bold">require</span>(tidyverse)
-<span style="color:#06b;font-weight:bold">require</span>(matrixStats)<span style="color:#888">#这个包有rowSds函数，计算一行的sd标准差</span>
-path = <span style="color:#d20;background-color:#fff0f0">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#888"># 这是我的工作目录桌面</span>
-inname = <span style="color:#d20;background-color:#fff0f0">&#34;all.sample.annot.xls&#34;</span>
-<span style="color:#06b;font-weight:bold">setwd</span>(path)
-dat=<span style="color:#06b;font-weight:bold">read_tsv</span>(inname, col_names = T)
-nms &lt;- <span style="color:#06b;font-weight:bold">str_subset</span>(<span style="color:#06b;font-weight:bold">colnames</span>(dat),pattern = <span style="color:#d20;background-color:#fff0f0">&#34;pm|km&#34;</span>)
-<span style="color:#06b;font-weight:bold">dim</span>(dat)
-dat_m &lt;- dat %&gt;% <span style="color:#06b;font-weight:bold">filter</span>(<span style="color:#06b;font-weight:bold">rowSums</span>(.[nms]) != <span style="color:#00d;font-weight:bold">0</span>) %&gt;%
-         <span style="color:#06b;font-weight:bold">mutate</span>(mean = <span style="color:#06b;font-weight:bold">rowMeans</span>(.[nms]),sd = <span style="color:#06b;font-weight:bold">rowSds</span>(<span style="color:#06b;font-weight:bold">as.matrix</span>(.[nms]))) %&gt;%
-         <span style="color:#06b;font-weight:bold">mutate</span>(CV = sd/mean)
-dat_cv &lt;- dat_m
-<span style="color:#06b;font-weight:bold">write_tsv</span>(dat_cv,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv.xls&#34;</span>,col_names = T)
-dat_quan &lt;- <span style="color:#06b;font-weight:bold">quantile</span>(dat_cv[[<span style="color:#d20;background-color:#fff0f0">&#34;CV&#34;</span>]],prob = <span style="color:#00d;font-weight:bold">0.01</span>)<span style="color:#888">#寻找排名前1%的最小CV值基因</span>
-dat_cv_fit &lt;- dat_cv %&gt;% <span style="color:#06b;font-weight:bold">arrange</span>(CV) %&gt;% <span style="color:#06b;font-weight:bold">filter</span>(mean &gt;= <span style="color:#00d;font-weight:bold">100</span>, CV &lt;= dat_quan)
-<span style="color:#06b;font-weight:bold">write_tsv</span>(dat_cv_fit,<span style="color:#d20;background-color:#fff0f0">&#34;unigene_cv_filter.xls&#34;</span>,col_names = T)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.2 win 10</span>
+<span style="color:#a6e22e">require</span>(tidyverse)
+<span style="color:#a6e22e">require</span>(matrixStats)<span style="color:#75715e">#这个包有rowSds函数，计算一行的sd标准差</span>
+path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#75715e"># 这是我的工作目录桌面</span>
+inname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all.sample.annot.xls&#34;</span>
+<span style="color:#a6e22e">setwd</span>(path)
+dat<span style="color:#f92672">=</span><span style="color:#a6e22e">read_tsv</span>(inname, col_names <span style="color:#f92672">=</span> T)
+nms <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">str_subset</span>(<span style="color:#a6e22e">colnames</span>(dat),pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pm|km&#34;</span>)
+<span style="color:#a6e22e">dim</span>(dat)
+dat_m <span style="color:#f92672">&lt;-</span> dat <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">rowSums</span>(.[nms]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span>
+         <span style="color:#a6e22e">mutate</span>(mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowMeans</span>(.[nms]),sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowSds</span>(<span style="color:#a6e22e">as.matrix</span>(.[nms]))) <span style="color:#f92672">%&gt;%</span>
+         <span style="color:#a6e22e">mutate</span>(CV <span style="color:#f92672">=</span> sd<span style="color:#f92672">/</span>mean)
+dat_cv <span style="color:#f92672">&lt;-</span> dat_m
+<span style="color:#a6e22e">write_tsv</span>(dat_cv,<span style="color:#e6db74">&#34;unigene_cv.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
+dat_quan <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quantile</span>(dat_cv[[<span style="color:#e6db74">&#34;CV&#34;</span>]],prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)<span style="color:#75715e">#寻找排名前1%的最小CV值基因</span>
+dat_cv_fit <span style="color:#f92672">&lt;-</span> dat_cv <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">arrange</span>(CV) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(mean <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>, CV <span style="color:#f92672">&lt;=</span> dat_quan)
+<span style="color:#a6e22e">write_tsv</span>(dat_cv_fit,<span style="color:#e6db74">&#34;unigene_cv_filter.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
 </code></pre></div><p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
 <h3 id="绘制图形">绘制图形</h3>
 <p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#888">#绘制图形</span>
-p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(dat =dat_cv_fit, mapping = <span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd))+
-  <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv,<span style="color:#06b;font-weight:bold">aes</span>(x = mean, y = sd),fill = <span style="color:#d20;background-color:#fff0f0">&#34;skyblue&#34;</span>,size = <span style="color:#00d;font-weight:bold">0.5</span>)+
-  <span style="color:#06b;font-weight:bold">geom_point</span>(dat = dat_cv_fit,<span style="color:#06b;font-weight:bold">aes</span>(fill = id),shape = <span style="color:#00d;font-weight:bold">21</span>,color =<span style="color:#d20;background-color:#fff0f0">&#34;red&#34;</span>,size = <span style="color:#00d;font-weight:bold">3</span>)+
-  <span style="color:#06b;font-weight:bold">labs</span>(x = <span style="color:#d20;background-color:#fff0f0">&#34;The mean of Unigene RPKM&#34;</span>,y = <span style="color:#d20;background-color:#fff0f0">&#34;The stdev of Unigene RPKM&#34;</span> ,title = <span style="color:#d20;background-color:#fff0f0">&#34;The CV value&#34;</span>)+
-  <span style="color:#06b;font-weight:bold">geom_vline</span>(xintercept = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">100</span>,<span style="color:#00d;font-weight:bold">2000</span>),linetype = <span style="color:#00d;font-weight:bold">4</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;grey&#34;</span>)
-<span style="color:#888">#进行一点调整</span>
-p2 &lt;- p1 + <span style="color:#06b;font-weight:bold">theme_bw</span>()+ <span style="color:#06b;font-weight:bold">theme</span>(legend.position = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#绘制图形</span>
+p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(dat <span style="color:#f92672">=</span>dat_cv_fit, mapping <span style="color:#f92672">=</span> <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd))<span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv,<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd),fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv_fit,<span style="color:#a6e22e">aes</span>(fill <span style="color:#f92672">=</span> id),shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The mean of Unigene RPKM&#34;</span>,y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The stdev of Unigene RPKM&#34;</span> ,title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CV value&#34;</span>)<span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_vline</span>(xintercept <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">2000</span>),linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey&#34;</span>)
+<span style="color:#75715e">#进行一点调整</span>
+p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme_bw</span>()<span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138"></p>
 <h2 id="检验结果">检验结果</h2>
 <p>毕竟是自己的脚本，<em>R</em>实现的优势是速度快，但是只要其中一个命令出错，就可能导致结果的差异。对于自己不熟悉的东西，尤其是计算类的，还是小心一点比较好。</p>
@@ -469,7 +626,7 @@ p2 &lt;- p1 + <span style="color:#06b;font-weight:bold">theme_bw</span>()+ <span
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

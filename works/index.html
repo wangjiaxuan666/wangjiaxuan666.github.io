@@ -6,9 +6,7 @@
 
   
   <title>
-  Tag → chip
-  
-   | 王家轩的博客
+  开源战绩 (Open Source) | Woney&#39;s Blog
 </title>
 
   
@@ -186,7 +184,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="王家轩的博客">
   <meta property="og:description" content="记录点滴收获~">
-  <meta property="og:url" content="https://abego.cn/tags/chip/">
+  <meta property="og:url" content="https://abego.cn/works/">
   <meta property="og:image" content="/images/avatar.png">
 
 
@@ -195,8 +193,7 @@
 <meta name="generator" content="Hugo 0.89.4">
 
 
-<link rel="canonical" href="https://abego.cn/tags/chip/">
-<link rel="alternate" type="application/rss+xml" href="https://abego.cn/tags/chip/index.xml" title="Woney's Blog">
+<link rel="canonical" href="https://abego.cn/works/">
 
 <meta name="renderer" content="webkit">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -337,7 +334,7 @@
         </li>
       
         <li class="menu-item
-          
+           is-active
           
           ">
           <a href="https://abego.cn/works/">开源战绩</a>
@@ -381,181 +378,190 @@
   </nav>
 </header>
 
-  <section class="main post-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">Posts List</h2>
-    </header>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+
+  <style>
+     
+    .github-wrapper {
+      background-color: #e2e8f0; 
+      padding: 40px 15px;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .github-showcase {
+      width: 100%;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      padding: 40px;
+      position: relative;
+    }
     
+     
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+      text-align: center;
+      border-bottom: 2px dashed #e2e8f0;
+      padding-bottom: 25px;
+    }
+
+     
+    .gh-avatar-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 15px;
+    }
+    .gh-avatar-container::before {
+      content: '';
+      position: absolute;
+      top: -5px; left: -5px; right: -5px; bottom: -5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00ab6b, #1abc9c);
+      z-index: 0;
+      animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      100% { transform: scale(1.15); opacity: 0; }
+    }
     
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/" class="post-link">用R包DEseq分析差异表达基因</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 8 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/r.jpg" alt="用R包DEseq分析差异表达基因" lazyload="on">
-  
-  <p class="post-summary">最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷10x单细胞，自己跑了单细胞分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析DESeq2。
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/">Read More →</a>
-  </footer>
-</article>
+    #gh-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      border: 3px solid #fff;
+      background: #f1f5f9;  
+    }
 
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/" class="post-link">来一点高级的venn图</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 3 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/dataviz.jpg" alt="来一点高级的venn图" lazyload="on">
-  
-  <p class="post-summary">在研究生的时候，就用R绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了9例转录组的数据，只好硬着头皮去学习了。所以当时还是根据excel的vlookup函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用VennDiagram包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/">Read More →</a>
-  </footer>
-</article>
+    #gh-name { font-size: 2rem; color: #2c3e50; margin: 0 0 10px 0; font-weight: 800; border: none; }
+    #gh-bio { color: #64748b; font-size: 1.05rem; font-family: 'Fira Code', Consolas, monospace; margin: 0; }
 
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/" class="post-link">数据分析预处理:归一化,标准化和中心化</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 5 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/dataviz.jpg" alt="数据分析预处理:归一化,标准化和中心化" lazyload="on">
-  
-  <p class="post-summary">其实如果我们深入去学习生物信息，最核心根本不是你会不会R，能不能用perl写脚本，或者用最潮最新的python去开发一个新的生信软件。
-而是懂算法, 懂原理!
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/" class="post-link">图论好难, Network理论和WGCNA分析</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 20 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/wenxian.jpg" alt="图论好难, Network理论和WGCNA分析" lazyload="on">
-  
-  <p class="post-summary">前言：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/" class="post-link">&#39;R&#39;包MetaCycle研究节律相关的调控基因</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 31, 2019 · 9 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/r.jpg" alt="&#39;R&#39;包MetaCycle研究节律相关的调控基因" lazyload="on">
-  
-  <p class="post-summary">想研究生物钟和细胞周期？研究基因节律变化的R包MetaCycle不能错过！
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/" class="post-link">重要!相关性分析如何计算和理解</a></h3>
-    <p class="post-meta">@Jiaxuan · May 25, 2019 · 10 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/r.jpg" alt="重要!相关性分析如何计算和理解" lazyload="on">
-  
-  <p class="post-summary">1. 前言 接触组学多了，感觉分析主要有两类，一个是基于被研究对象的位置和序列。一类是基于算法。前者比如说lncRNA与mRNA的antisens</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/25/1/" class="post-link">了解一下甲基化测序</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 25, 2019 · 18 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/wenxian.jpg" alt="了解一下甲基化测序" lazyload="on">
-  
-  <p class="post-summary">了解一下甲基化 重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组*DNA中的</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/25/1/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/" class="post-link">R语言绘图之ggplot2入门ppt</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 25, 2019 · 4 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/dataviz.jpg" alt="R语言绘图之ggplot2入门ppt" lazyload="on">
-  
-  <p class="post-summary">为什么我做这个PPT 主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/" class="post-link">BBC 团队开发的bbc_style让你的图高大上起来</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · May 25, 2019 · 16 min read</p>
-  </header>
-  
-    <img class="post-cover" src="https://abego.cn/media/dataviz.jpg" alt="BBC 团队开发的bbc_style让你的图高大上起来" lazyload="on">
-  
-  <p class="post-summary">用于R图形的BBC视觉和数据新闻手册 如何创建BBC风格的图形 在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/">Read More →</a>
-  </footer>
-</article>
-
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="https://abego.cn/2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/" class="post-link">Hugo 主题 Nuo 文章样式预览</a></h3>
-    <p class="post-meta">@Jiaxuan Wang · Jul 17, 2017 · 3 min read</p>
-  </header>
-  
-  <p class="post-summary">这篇文章集中说明本人博客主题所支持的 Markdown 语法和 Hugo Shortcodes插件，你也可以在这里预览到他们的样子。如果你不喜欢某些部分的样式，可以去修改 content.scss 和 shortcodes.scss 这两个文件。预告一下，我所用的这个名为 Nuo 的 Hugo 也将于近期发布，敬请期待。
-</p>
-  <footer class="post-footer">
-    <a class="read-more" href="https://abego.cn/2017/07/17/hugo-%E4%B8%BB%E9%A2%98-nuo-%E6%96%87%E7%AB%A0%E6%A0%B7%E5%BC%8F%E9%A2%84%E8%A7%88/">Read More →</a>
-  </footer>
-</article>
-
-      
+     
+    .readme-container {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 40px;
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid #00ab6b;
+      color: #334155;
+      line-height: 1.7;
+    }
     
+     
+    .readme-container img { max-width: 100%; border-radius: 6px; }
+    .readme-container h1, .readme-container h2, .readme-container h3 { 
+      color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 0; 
+    }
+    .readme-container pre { background: #1e1e2e; color: #cdd6f4; padding: 15px; border-radius: 6px; overflow-x: auto; }
+
+     
+    .stats-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+    .stats-grid img { max-width: 100%; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: transform 0.3s; }
+    .stats-grid img:hover { transform: translateY(-5px) scale(1.02); }
+
+     
+    .btn-github-launch {
+      display: flex; justify-content: center; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #24292e, #040d21);
+      color: #ffffff !important; padding: 16px 45px; border-radius: 50px;
+      font-size: 1.15rem; font-weight: bold; text-decoration: none;
+      box-shadow: 0 10px 25px rgba(36, 41, 46, 0.3); transition: all 0.4s;
+      width: fit-content; margin: 0 auto;
+    }
+    .btn-github-launch:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 171, 107, 0.4);
+      background: #00ab6b; 
+    }
     
-      <footer class="list-footer">
-        <nav class="pagination">
-          <h3 class="offscreen">Pagination</h3>
-          
-            <a class="pagination-previous" href="https://abego.cn/tags/chip/page/2/">← "上一页"</a>
-          
-          
-        </nav>
-      </footer>
-    
+     
+    .loading-text { text-align: center; color: #00ab6b; font-weight: bold; font-family: monospace; animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0.5; } }
+  </style>
+
+  <section class="main github-wrapper">
+    <div class="github-showcase">
+      
+      <div class="profile-header">
+        <div class="gh-avatar-container">
+          <img id="gh-avatar" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Avatar Loading...">
+        </div>
+        <h2 id="gh-name">Connecting...</h2>
+        <p id="gh-bio"><i class="fas fa-terminal"></i> Fetching data from GitHub API...</p>
+      </div>
+
+      <div class="readme-container" id="gh-readme">
+        <div class="loading-text">> 正在跃迁至 GitHub 仓库提取 README.md 档案...</div>
+      </div>
+      <div class="stats-grid">
+        <img src="https://github-readme-stats.vercel.app/api?username=wangjiaxuan666&show_icons=true&theme=dracula&hide_border=true&title_color=00ab6b&icon_color=00ab6b" alt="Jiaxuan's GitHub Stats">
+        
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangjiaxuan666&layout=compact&theme=dracula&hide_border=true&title_color=00ab6b" alt="Top Languages">
+      </div>
+
+      <a href="https://github.com/wangjiaxuan666" target="_blank" class="btn-github-launch">
+        <i class="fas fa-rocket"></i> 启动跃迁，前往完整 Github 主页
+      </a>
+    </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const username = 'wangjiaxuan666';
+      
+      try {
+        
+        const userResponse = await fetch(`https:
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          document.getElementById('gh-avatar').src = userData.avatar_url;
+          document.getElementById('gh-name').innerHTML = `<i class="fab fa-github"></i> ${userData.name || userData.login}`;
+          document.getElementById('gh-bio').innerText = `> ${userData.bio || "Talk is cheap. Show me the code."}`;
+        }
+
+        // 2. 抓取你同名仓库 (Profile) 的 README.md
+        
+        let readmeResponse = await fetch(`https:
+        
+        
+        if (!readmeResponse.ok) {
+          readmeResponse = await fetch(`https:
+        }
+
+        if (readmeResponse.ok) {
+          const readmeMarkdown = await readmeResponse.text();
+          
+          document.getElementById('gh-readme').innerHTML = marked.parse(readmeMarkdown);
+        } else {
+          document.getElementById('gh-readme').innerHTML = `<p style="color:#e74c3c;">未能读取到同名仓库的 README.md 档案。请确认你在 GitHub 上创建了 ${username}/${username} 仓库。</p>`;
+        }
+      } catch (error) {
+        console.error("API 请求失败:", error);
+        document.getElementById('gh-readme').innerHTML = `<p style="color:#e74c3c;">网络跃迁中断：无法连接到 GitHub 服务器。这可能是受限于您当前的网络环境。</p>`;
+      }
+    });
+  </script>
+
   
 <footer class="site-footer">
   <p>© 2019-2026 Woney&#39;s Blog</p>

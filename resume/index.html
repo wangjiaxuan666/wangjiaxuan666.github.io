@@ -6,19 +6,152 @@
 
   
   <title>
-  Resume |
-  
-    王家轩的博客
-  
+  Resume | 王家轩的博客
 </title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/resume/">
@@ -105,6 +238,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -183,21 +330,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -224,248 +378,364 @@
   </nav>
 </header>
 
-  <section class="main">
-    <header class="offscreen">
-      <h2>Resume</h2>
-    </header>
-    <div class="resume">
-    
-    <h2>
-      王家轩
-    </h2>
-    
+  
+  <style>
+     
+    .cv-wrapper * { box-sizing: border-box; }
 
-    
-    <ul class="contact">
-      
-        <li><a href="mailto:poormouse@126.com">poormouse@126.com</a></li>
-      
-        <li><a href="#ZgotmplZ">&#43;18 185-xxxx-5807</a></li>
-      
-        <li><a href="//github.com/wangjiaxuan666">我的Github</a></li>
-      
-        <li><a href="https://wangjiaxuan666.github.io/">Abego blog</a></li>
-      
-    </ul>
-    
+     
+    .site-header {
+      position: fixed;
+      max-height: 100vh;
+      overflow-y: auto !important;
+      z-index: 100;
+    }
+    .site-header::-webkit-scrollbar { width: 0; }
 
-    
-    <h3>Education</h3>
-    
-      <div class="meta">
-        <div class="upper-row">
-          <span class="job-title">理学硕士: 生物学 </span>
-          <div class="year">2015 - 2018</div>
-        </div>
-        <div class="school">Xiamen University: 厦门大学</div>
-      </div>
-    
-      <div class="meta">
-        <div class="upper-row">
-          <span class="job-title">工学学士: 生物工程</span>
-          <div class="year">2011 - 2015</div>
-        </div>
-        <div class="school">Wuyi University: 武夷学院</div>
-      </div>
-    
-    
+     
+    :root {
+      --cv-primary: #1a3a5a; 
+      --cv-accent: #c0392b; 
+      --cv-bg-sidebar: #f8fafc;
+      --cv-text: #2c3e50;
+    }
 
-    
-    <h3>Experiences</h3>
-    
-      <div class="meta">
-        <div class="upper-row">
-          <span class="job-title">检验医学部中心实验室, 科研助理</span>
-          <div class="year">202107 - Today</div>
-        </div>
-        <div class="company">南方医科大学附属珠江医院, 广州 广东 中国</div>
-      </div>
-      <div class="details">
-      
-        <ul>
-        
-          <li> 分析流程研发和搭建 </li>
-        
-          <li> 合作项目生信分析流程. </li>
-        
-        </ul>
-      
-      </div>
-    
-      <div class="meta">
-        <div class="upper-row">
-          <span class="job-title">精准所病原组学研究中心, 生物信息副研究员(一级)</span>
-          <div class="year">202103 - 202207</div>
-        </div>
-        <div class="company">深圳华大生命科学研究院, 深圳 广东 中国</div>
-      </div>
-      <div class="details">
-      
-        <ul>
-        
-          <li> 负责空间组、单细胞、病毒整合、病毒组装、病毒进化等 分析流程研发和搭建. </li>
-        
-          <li> 合作项目生信分析流程. </li>
-        
-          <li> 协助课题项目调研及文章写作 </li>
-        
-          <li> 负责项目组集群盘阵管理 </li>
-        
-        </ul>
-      
-      </div>
-    
-      <div class="meta">
-        <div class="upper-row">
-          <span class="job-title">支撑部 , 技术支撑 </span>
-          <div class="year">201807 - 202103</div>
-        </div>
-        <div class="company">广州基迪奥生物科技有限公司, 广州 广东 中国</div>
-      </div>
-      <div class="details">
-      
-        <ul>
-        
-          <li> 产品优化支撑部负责人, 工作内容主要是与产品部和分析部，沟通分析流程中问题和优化建议. </li>
-        
-          <li> 东北区域技术支撑组长(黑吉辽京津翼蒙).负责区域项目，宣讲交流、推广组学等. </li>
-        
-          <li> 全产品线熟悉, 业务线全接触,主要负责「RNA」,「扩增子测序」,「表观遗传」，「单细胞」等业务线,处理项目问题能力强. </li>
-        
-        </ul>
-      
-      </div>
-    
-    
+    .cv-wrapper {
+      background-color: #e2e8f0; 
+      padding: 40px 20px;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-    
-    <h3>Skills</h3>
-    <ul class="skill">
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fab fa-r-project"></i>
-            </font>
-            R
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="85%" style="width: 85%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fas fa-pen-square"></i>
-            </font>
-            Shell &amp; WDl
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="75%" style="width: 75%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fab fa-python"></i>
-            </font>
-            Python
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="70%" style="width: 70%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fab fa-adobe"></i>
-            </font>
-            Photosh &amp; AI
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="70%" style="width: 70%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fas fa-flask"></i>
-            </font>
-            生物学
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="70%" style="width: 70%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fas fa-dna"></i>
-            </font>
-            高通量测序
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="80%" style="width: 80%">
-            </div>
-        </div>
-        </div>
-    
-        <div class="item">
-            <span class="level-title">
-            <font style="font-size: 2em; color: rgb(0, 171, 107);">
-            <i class="fas fa-fist-raised"></i>
-            </font>
-            Html5 &amp; CSS &amp; Markdown
-            </span>
-            <div class="level-bar">
-                <div class="level-bar-inner" data-level="50%" style="width: 50%">
-            </div>
-        </div>
-        </div>
-    
-    </ul>
-    
+    .cv-paper {
+      width: 100%;
+      max-width: 1000px; 
+      min-height: 1414px; 
+      background: #fff;
+      display: flex;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+      border-radius: 2px; 
+      overflow: hidden;
+      color: var(--cv-text);
+      line-height: 1.6;
+    }
 
-    
-    <h3>Languages</h3>
-    <ul>
-      
-      <li> English (CET-6: 445) </li>
-      
-    </ul>
-    
+    .cv-aside {
+      width: 32%;
+      background-color: var(--cv-bg-sidebar);
+      padding: 40px 25px;
+      border-right: 1px solid #e2e8f0;
+    }
 
+    .cv-main {
+      width: 68%;
+      padding: 45px 40px;
+    }
+
+     
+    .cv-avatar {
+      width: 150px; height: 150px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .cv-contact { font-size: 0.9rem; line-height: 1.8; color: #4a5568; margin-bottom: 30px; }
+    .cv-contact a { color: #4a5568; text-decoration: none; transition: color 0.3s; }
+    .cv-contact a:hover { color: var(--cv-primary); }
+
+     
+    .cv-aside h2 { font-size: 1.15rem; color: var(--cv-primary); border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; margin: 25px 0 15px; }
+    .cv-main h2 { 
+      font-size: 1.3rem; 
+      color: var(--cv-primary); 
+      border-left: 4px solid var(--cv-primary); 
+      padding-left: 12px; 
+      background: #f1f5f9; 
+      padding: 8px 12px; 
+      margin: 30px 0 20px; 
+      border-radius: 0 4px 4px 0;
+    }
+    .cv-main h1 { font-size: 2.4rem; color: var(--cv-primary); margin: 0 0 5px; letter-spacing: 2px; }
+
+     
+    .cv-item { margin-bottom: 20px; }
+    .cv-item-title { font-weight: bold; color: var(--cv-primary); font-size: 1rem; }
+    .cv-item-meta { color: #718096; font-size: 0.85rem; margin: 4px 0 8px; }
+    .cv-item-desc { font-size: 0.9rem; color: #4a5568; text-align: justify; }
+    .cv-item-desc ul { padding-left: 18px; margin: 6px 0 0; }
+    .cv-item-desc li { margin-bottom: 5px; }
+
+     
+    .paper-header { display: flex; justify-content: space-between; align-items: baseline; font-weight: bold; font-size: 1.05rem; }
+    .paper-if { color: var(--cv-accent); font-weight: 900; }
+    .paper-eng { font-family: "Georgia", serif; font-style: italic; color: #2d3748; font-size: 0.95rem; display: block; margin: 6px 0; }
+    .paper-tag { background: #e2e8f0; padding: 3px 8px; border-radius: 4px; font-size: 0.85rem; margin-right: 8px; font-weight: bold; color: var(--cv-primary); }
     
-    <h3>Interests</h3>
-    <ul>
+    .cv-note {
+      background: #ecfdf5;
+      border-left: 3px solid #10b981;
+      color: #047857;
+      font-size: 0.85rem;
+      padding: 6px 10px;
+      margin: 8px 0;
+      border-radius: 0 4px 4px 0;
+      font-weight: bold;
+    }
+
+     
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9rem; }
+    .cv-grid-item { background: #f8fafc; padding: 12px; border-radius: 5px; border: 1px solid #e2e8f0; }
+    .cv-grid-item strong { color: var(--cv-primary); display: block; margin-bottom: 4px; font-size: 0.95rem; }
+
+     
+    .cv-action-bar { margin-top: 30px; width: 100%; display: flex; justify-content: center; }
+    .cv-download-btn {
+      background-color: var(--cv-primary); color: #fff; border: none; padding: 12px 30px;
+      border-radius: 50px; font-size: 1rem; font-weight: bold; cursor: pointer;
+      box-shadow: 0 6px 15px rgba(26, 58, 90, 0.3); transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .cv-download-btn:hover { background-color: #122b42; transform: translateY(-3px); }
+
+     
+    @media print {
+      @page {
+        size: A4 portrait;  
+        margin: 0 !important;  
+      }
       
-      <li> 生物信息 </li>
+      html, body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+      }
+
+       
+      .site-header, .site-footer, .cv-action-bar, .menu-toggle { display: none !important; }
       
-      <li> NGS </li>
+      .cv-wrapper { 
+        background: none !important; 
+        padding: 0 !important; 
+        margin: 0 !important; 
+        width: 210mm !important;
+        height: 297mm !important;
+      }
       
-      <li> 生物学 </li>
+      .cv-paper { 
+        box-shadow: none !important; 
+        width: 210mm !important; 
+        height: 297mm !important;
+        max-width: 210mm !important;
+        margin: 0 !important; 
+        border-radius: 0 !important;
+        overflow: hidden !important;  
+      }
       
-      <li> R语言 </li>
+       
+      .cv-aside { width: 32% !important; padding: 12mm 8mm !important; }
+      .cv-main { width: 68% !important; padding: 12mm 15mm !important; }
       
-      <li> 数据可视化 </li>
+       
+      .cv-main h1 { font-size: 26pt !important; margin-bottom: 2mm !important; }
+      .cv-main h2 { font-size: 13pt !important; margin: 8mm 0 4mm !important; padding: 1.5mm 3mm !important; }
+      .cv-aside h2 { font-size: 12pt !important; margin: 8mm 0 4mm !important; padding-bottom: 1.5mm !important; }
       
-    </ul>
+      .cv-item { margin-bottom: 5mm !important; }
+      .cv-item-title, .paper-header { font-size: 11pt !important; }
+      .cv-item-desc, .cv-grid, .cv-contact, .cv-item-meta { font-size: 9.5pt !important; line-height: 1.45 !important; }
+      
+      .paper-eng { font-size: 9.5pt !important; margin: 2mm 0 !important; }
+      .paper-tag { font-size: 9pt !important; padding: 1mm 2mm !important; }
+      .cv-note { font-size: 9pt !important; padding: 1.5mm 3mm !important; margin: 2mm 0 !important; }
+      
+      .cv-avatar { width: 35mm !important; height: 35mm !important; margin-bottom: 5mm !important;}
+      .cv-grid { gap: 4mm !important; }
+      .cv-grid-item { padding: 3mm !important; }
+
+       
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    }
+  </style>
+
+  <section class="main cv-wrapper">
     
+    <div class="cv-paper">
+      <aside class="cv-aside">
+        <img src="https://www.keaitupian.cn/cjpic/frombd/2/253/2562602647/3238706850.jpg" alt="王家轩" class="cv-avatar">
+        
+        <h2>联系方式</h2>
+        <div class="cv-contact">
+          <div>📱 <a href="tel:181XXXX4578">181XXXX4578</a></div>
+          <div>🔖 <a href="mailto:wangjiaxuan666@qq.com">wangjiaxuan666@qq.com</a></div>
+          <div>🔗 <a href="https://github.com/wangjiaxuan666" target="_blank">github.com/wangjiaxuan666</a></div>
+          <div>🌐 <a href="https://abego.cn" target="_blank">abego.cn</a></div>
+          <div>📍 广东 · 广州</div>
+        </div>
+
+        <h2>岗位履历</h2>
+        <div class="cv-item">
+          <div class="cv-item-title">南方医科大学珠江医院检验医学部</div>
+          <div class="cv-item-meta">2022.07 – 至今 | 研究实习员</div>
+          <div class="cv-item-desc">
+            参与科室的队列项目，协助开展数据分析，负责生信流程和集群管理
+            <ul>
+              <li>处理纵向临床数据</li>
+              <li>部署组学分析流程，生信流程值班</li>
+              <li>负责集群与存储阵列的运维管理</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-title">深圳华大生命科学研究院精准所</div>
+          <div class="cv-item-meta">2021.03 – 2022.07 | 生信分析</div>
+          <div class="cv-item-desc">
+            开展科研合作，共同参与项目立项、数据分析、文章撰写。
+            <ul>
+              <li>负责分析流程研发和搭建</li>
+              <li>项目的数据分析</li>
+              <li>负责项目组集群盘阵管理</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-title">广州基迪奥生物科技有限公司</div>
+          <div class="cv-item-meta">2018.04 – 2021.03 | 技术组长</div>
+          <div class="cv-item-desc">
+            负责组学科研方案设计及数据解读。
+            <ul>
+              <li>科服项目协助文章发表</li>
+              <li>宣讲交流，推广组学项目</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>教育背景</h2>
+        <div class="cv-item">
+          <div class="cv-item-title">厦门大学 | 生物学</div>
+          <div class="cv-item-meta">理学硕士 | 2015.09 – 2018.06</div>
+          <div class="cv-item-desc">掌握 qPCR、BIFC、LSCM、WB 等分子生物学实验技术。</div>
+        </div>
+        <div class="cv-item">
+          <div class="cv-item-title">武夷学院 | 生物工程</div>
+          <div class="cv-item-meta">工学学士 | 2011.09 – 2015.06</div>
+          <div class="cv-item-desc">生物工程与分子生物学理论基础。</div>
+        </div>
+      </aside>
+
+      <main class="cv-main">
+        <header style="border-bottom: 2px solid var(--cv-primary); padding-bottom: 12px; margin-bottom: 25px;">
+          <h1>王家轩</h1>
+          <div style="display: flex; justify-content: space-between; color: var(--cv-accent); font-weight: bold; font-size: 0.95rem; margin-top: 8px;">
+            <span>简历版本 V0.1</span>
+            <span>兴趣是最好的导师</span>
+          </div>
+          <p style="font-size: 0.9rem; color: #4a5568; margin-top: 15px; text-align: justify; line-height: 1.6;">
+            拥有七年高通量测序及生信行业经验。近期以共同第一作者身份在 Cell Host & Microbe (2026) 发表论文。专注于组学数据分析与可视化，期望通过数据驱动解决临床实际问题。
+          </p>
+        </header>
+
+        <h2>代表性学术成果 (Major Achievements)</h2>
+        
+        <div class="cv-item" style="margin-bottom: 25px;">
+          <div class="paper-header">
+            <span>成果 I：抗生素介导早产儿晚发性败血症的微生态途径</span>
+            <span class="paper-if">IF: 18.6</span>
+          </div>
+          <div class="cv-note">💡 个人批注：目前个人最高分析力，文章全部图都是独立完成</div>
+          <span class="paper-eng">Gut microbiota immaturity with DL-endopeptidase deficiency links antibiotic use to preterm late-onset sepsis</span>
+          <div style="margin: 6px 0; font-size: 0.85rem;">
+            <span class="paper-tag">Cell Host & Microbe (2026)</span> 共一第三
+          </div>
+          <div class="cv-item-desc">
+            <ul>
+              <li><strong>多中心大队列：</strong>整合中、美、英早产儿队列，建立普适性肠道菌群演变图谱。</li>
+              <li><strong>预警模型：</strong>构建微生物年龄预测模型，证明发育迟缓是败血症独立风险因子。中介分析显示菌群成熟度解释了36%的抗生素-败血症关联效应。</li>
+              <li><strong>机制与转化：</strong>单细胞数据分析揭示 MDP-NOD2-CYLD 轴调节免疫耐受机制。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-item" style="margin-bottom: 25px;">
+          <div class="paper-header">
+            <span>成果 II：空间组与单细胞解析宫颈癌肿瘤微环境...</span>
+            <span class="paper-if">IF: 14.3</span>
+          </div>
+          <div class="cv-note">💡 个人批注：华大的各位领导待我真不错，这个文章也是当时燃尽了</div>
+          <span class="paper-eng">Single Nucleus RNA Sequencing and Spatial Transcriptomics Reveal the Immunological Microenvironment of Cervical Squamous Cell Carcinoma</span>
+          <div style="margin: 6px 0; font-size: 0.85rem;">
+            <span class="paper-tag">Advanced Science (2022)</span> 共一第七
+          </div>
+          <div class="cv-item-desc">
+            <ul>
+              <li><strong>多维整合策略：</strong>联合应用单细胞与空间转录组学技术，精准绘制宫颈鳞癌 (CSCC) 时空免疫图谱。</li>
+              <li><strong>免疫逃逸挖掘：</strong>通过分析基质互作，识别并揭示了介导免疫逃逸的关键细胞亚群 CAFs。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-item" style="margin-bottom: 25px;">
+          <div class="paper-header">
+            <span>成果 III：剖析肥胖与多发性硬化症之间的共享遗传架构</span>
+            <span class="paper-if">IF: 9.7</span>
+          </div>
+          <div class="cv-note">💡 个人批注：我不懂这方面分析，只会跑结果，全靠大腿带</div>
+          <span class="paper-eng">Dissecting shared genetic architecture between obesity and multiple sclerosis</span>
+          <div style="margin: 6px 0; font-size: 0.85rem;">
+            <span class="paper-tag">eBioMedicine (2023)</span> 共一第四
+          </div>
+          <div class="cv-item-desc">
+            <ul>
+              <li><strong>大规模人群队列：</strong>利用 GWAS 汇总数据，量化了肥胖与多发性硬化症的遗传相关性。</li>
+              <li><strong>多效性识别：</strong>应用 LDSC 等算法，精准定位两者共享的多效性遗传位点。</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>核心专业技能 (Core Skills)</h2>
+        <div class="cv-grid" style="margin-bottom: 10px;">
+          <div class="cv-grid-item">
+            <strong>算法与建模</strong>
+            熟练运用机器学习处理复杂的纵向临床数据。
+          </div>
+          <div class="cv-grid-item">
+            <strong>全管线开发</strong>
+            精通 R/Python/Shell，具备独立开发分析流程的能力。
+          </div>
+          <div class="cv-grid-item">
+            <strong>数据工程</strong>
+            具有大规模宏基因组分析及跨批次数据整合处理经验。
+          </div>
+          <div class="cv-grid-item">
+            <strong>实验验证</strong>
+            掌握分子生物学实验 (WB, qPCR)，能解读“湿实验”结果。
+          </div>
+        </div>
+
+      </main>
     </div>
+
+    <div class="cv-action-bar">
+      <button onclick="window.print()" class="cv-download-btn">
+        <i class="fas fa-file-pdf" style="font-size: 1.2rem;"></i> 一键导出 / 打印 PDF 简历
+      </button>
+    </div>
+
   </section>
+
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

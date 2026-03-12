@@ -8,12 +8,148 @@
   <title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -245,34 +402,34 @@
 <p><a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder">CTAT-VirusIntegrationFinder</a>是<a href="https://github.com/NCIP/Trinity_CTAT/wiki">Trinity Cancer Transcriptome Analysis Toolkit</a> 工具套件其中一个模块，CTAT-VirusIntegrationFinder顾名思义，主要是做病毒基因整合的检测。而整个套件中其他模块有做融合基因，有作突变位点，也有做CNV和SV的。总之就是很强大。</p>
 <h3 id="安装">安装</h3>
 <p>现在<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder/releases">Releases · broadinstitute/CTAT-VirusIntegrationFinder (github.com)</a>上下载软件包，然后解压缩，看到一个download的sh文件，bash运行，注意要在联网环境下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zxvf CTAT-VirusIntegrationFinder-v1.0.1.FULL.tar.gz
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zxvf CTAT-VirusIntegrationFinder-v1.0.1.FULL.tar.gz
 bash  download_cromwell.sh
 </code></pre></div><p>注意，cromwell 必须要jdk 1.8.0+ 的环境，具体可以看我当时提的<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder/issues/41">issue</a>.这第一个坑，卡我了至少三天。</p>
 <p>下载好后，就可以用<code>make</code>命令编译，如果没有报错，那么恭喜你你已经跳过安装最大的坑了，如果报错了，需要根据报错信息，进行环境的补全，可能文章后面的0.04版本的安装会给一些提示。</p>
 <h3 id="基因组索引">基因组索引</h3>
 <p>基因组索引需要在[网站](<a href="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/">Index of /Trinity/CTAT_RESOURCE_LIB (broadinstitute.org)</a>)下载基本的源文件, 虽然解压缩后，这个文件夹里有很多文件，但是还是需要重新构建（你敢信，这个又卡了我三天，我以为直接可以用！！！，脸上笑眯眯，心里MMP）</p>
 <p>从<a href="https://github.com/NCIP/ctat-genome-lib-builder/">Github</a>上下载构建索引的脚本:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/NCIP/ctat-genome-lib-builder/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/NCIP/ctat-genome-lib-builder/
 ls ctat-genome-lib-builder/prep_genome_lib.pl
-<span style="color:#888"># 查看位置</span>
-ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--genome_fa GRCh38.primary_assembly.genome.fa <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--gtf gencode.v37.annotation.gtf <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--dfam_db human <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--fusion_annot_lib fusion_lib.Mar2021.dat.gz <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--human_gencode_filter <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--pfam_db current
+<span style="color:#75715e"># 查看位置</span>
+ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--genome_fa GRCh38.primary_assembly.genome.fa <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--gtf gencode.v37.annotation.gtf <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--dfam_db human <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--fusion_annot_lib fusion_lib.Mar2021.dat.gz <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--human_gencode_filter <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--pfam_db current
 </code></pre></div><p>当这个运行可以构建基因，但是我的环境好像少了perl环境，服气了。</p>
 <blockquote>
 <p>我还是直接从网站down构建好的基因组吧,果然下载构建好的基因，运行直接成功了。虽然这个构建好的基因组index有31G的大小，贼难下载的说。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/wangjiaxuan/biosoft/CTAT-vif/ctat-vif <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--left ./genome_lib/test.fq   <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--genome_lib_dir ~/CTAT-vif/genome_lib/ctat_genome_lib_build_dir <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--sample_id yesimola <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>-O ./test <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--cpu <span style="color:#00d;font-weight:bold">2</span> <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>--virus_type hpv33 <span style="color:#888"># 这个参数是我自己加上的，原软件是没有的</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/wangjiaxuan/biosoft/CTAT-vif/ctat-vif <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--left ./genome_lib/test.fq   <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--genome_lib_dir ~/CTAT-vif/genome_lib/ctat_genome_lib_build_dir <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--sample_id yesimola <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>-O ./test <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--cpu <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--virus_type hpv33 <span style="color:#75715e"># 这个参数是我自己加上的，原软件是没有的</span>
 </code></pre></div><p>以上就会运行成功，结果预览：</p>
 <blockquote>
 <p>注意：因为脚本会默认用的是<code>,</code>来分割read，所以如果你的fq文件的reads名字增加了一些特殊字符是回报错的。所以针对这点需要在此基础上修改脚本，比如我就是修改成以<code>~</code>来作为分割符。</p>
@@ -281,10 +438,10 @@ ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#04d;background-co
 <p>最早期的时候安装过这个软件，但是踩了很多坑，后面作者更新（因为我们和作者联系，希望增加SE测序的支持，正好作者准备更新），所以我就重新走了一遍安装和索引流程，但我觉得之前的坑排雷经验也很重要，留下来做个备份。</p>
 <p><strong>也许对于其他环境的问题，之前的坑还在，只不过我这次更新，已经把之前的坑填了而已。</strong></p>
 <p>言归正传、<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder">CTAT-VirusIntegrationFinder</a>需要在Github上下载，下载（先别下载有坑！看后面），运行参数很简单：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tat-VIF.py --left_fq reads_1.fastq <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>            --right_fq reads_2.fastq <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>            --genome_lib_dir /path/to/ctat_genome_lib_dir <span style="color:#04d;background-color:#fff0f0">\
-</span><span style="color:#04d;background-color:#fff0f0"></span>            --viral_db_fasta viruses.fasta
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tat-VIF.py --left_fq reads_1.fastq <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            --right_fq reads_2.fastq <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            --genome_lib_dir /path/to/ctat_genome_lib_dir <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>            --viral_db_fasta viruses.fasta
 </code></pre></div><p>但其中主要是这个genome_lib_dir的文件需要构建参考库、当然也可以直接从已经构建上的<a href="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/">数据库</a>上下载。但是已经构建好的索引库太大，所以最好是下载其中源文件，然后自己进行构建库。具体可以看其他人的<a href="https://cloud.tencent.com/developer/article/1625294">文章</a>。</p>
 <p>好了，当构建好索引库，也不是万事大吉。首先因为该软件的Github仓库中有子模块，所以基本上你下载下来后，还是会发现少了一些文件。</p>
 <p>解决方法看知乎上<a href="https://zhuanlan.zhihu.com/p/361136073">文章</a>。 然后就算你用他的方法下载后，还是会发现<code>CTAT-VirusIntegrationFinder/util/bamsifter</code>中的htslib文件夹还有一个隐藏的子模块，所以上述操作还要再来一遍。下载完成后，你看在htslib文件中发现有个<code>makefile</code>的文件，终端输入<code>make</code>进行编译。</p>
@@ -345,7 +502,7 @@ export LD_LIBRARY_PATH=&quot;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&quot;
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

@@ -8,12 +8,148 @@
   <title>想画密度热点图没R包？没事，自己造</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -242,7 +399,7 @@
 <h2 id="密度热点图">密度热点图</h2>
 <p>这个事情起因是客户想要一个能够展现单细胞数据和普通转录组数据之间相似性的图。我推荐客户，可以考虑画一个散点图， 横坐标是单细胞数据，纵坐标是普通转录组数据。再用相关性来做检验相似性强弱。</p>
 <p>最开始是没想画密度热点图的，但是因为后面又看到一个文章。觉得自己想尝试一下，就用<code>ggplot2</code>包的<code>geom_hex</code>和<code>stat</code>包 的<code>cor.text</code>以及<code>lm</code>进行了尝试了。结果还可以！下图就是我自己造的数据生成的例图。大概就是这个样子的。只是细节可能还会调整一些。</p>
-<!-- raw HTML omitted -->
+<img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20200503152649499.png" alt="image-20200503152649499" style="zoom:20%;" />
 <p>但是 <code>geom_hex</code>并不是我想象中最优解，只是当时客户催的紧要结果，而且实话说我也没有太多时间去摸索。就交付了。觉得不是最优解的原因是</p>
 <ol>
 <li>geom_hex统计每一个六边形区域内的点数，并不是每一个数值都有一个点在图中。简单理解，就是你有1000个数据画图，geom_hex可能就给你10个六边形（这是完全可能的），数据多的时候不明显，数据一旦少了就会非常明显。</li>
@@ -254,42 +411,42 @@
 <p>R包，我取名为<code>xbox</code>,目前收录了做数据框的列之间的T检验的``col_ttest<code>，以及转置数据框，让行列互相颠倒的</code>df_t<code>, 还有根据KO id,给出KEGG数据库三个层级注释的</code>koid_to_pathway<code>，其次还有</code>tibble<code>和</code>data.frame<code>之间转换的</code>get_tb<code>和</code>get_df`。具体的用处和例子可以看帮助文档或者Github上的说明。点击<strong>阅读原文</strong>可以跳转Github。</p>
 <p>今天新增的功能就是画密度热点图的<code>heatpoint</code>和<code>plot</code></p>
 <p>例子如下：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">points = <span style="color:#00d;font-weight:bold">5000</span>
-x = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rnorm</span>(points/<span style="color:#00d;font-weight:bold">2</span>))
-y = x + <span style="color:#06b;font-weight:bold">rnorm</span>(points/<span style="color:#00d;font-weight:bold">2</span>,sd=<span style="color:#00d;font-weight:bold">0.8</span>)
-x = <span style="color:#06b;font-weight:bold">sign</span>(x)*<span style="color:#06b;font-weight:bold">abs</span>(x)^1.3
-<span style="color:#06b;font-weight:bold">heatpoint</span>(x,y) -&gt; dat_result
-<span style="color:#06b;font-weight:bold">str</span>(dat_result)
-<span style="color:#888">#&gt; List of 3</span>
-<span style="color:#888">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
-<span style="color:#888">#&gt;  $ cor.result:List of 3</span>
-<span style="color:#888">#&gt;  $ lm.result :List of 3</span>
-<span style="color:#888">#including the three list the plot data</span>
-<span style="color:#06b;font-weight:bold">head</span>(dat_result$plot.data)
-<span style="color:#888">#&gt;              x           y    Density</span>
-<span style="color:#888">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
-<span style="color:#888">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
-<span style="color:#888">#&gt; 3 -0.229579517 -0.90045187 0.14522626</span>
-<span style="color:#888">#&gt; 4  1.381172256  1.48550963 0.05487725</span>
-<span style="color:#888">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
-<span style="color:#888">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
-<span style="color:#888"># and the result of cor</span>
-<span style="color:#06b;font-weight:bold">data.frame</span>(dat_result$cor.result)
-<span style="color:#888">#&gt;         cor pvalue                               method</span>
-<span style="color:#888">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
-<span style="color:#888"># and the result of lm</span>
-<span style="color:#06b;font-weight:bold">str</span>(dat_result$lm.result)
-<span style="color:#888">#&gt; List of 3</span>
-<span style="color:#888">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
-<span style="color:#888">#&gt;  $ method : symbol lm</span>
-<span style="color:#888">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">points <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>
+x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
+y <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,sd<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>)
+x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x)<span style="color:#f92672">*</span><span style="color:#a6e22e">abs</span>(x)^1.3
+<span style="color:#a6e22e">heatpoint</span>(x,y) <span style="color:#f92672">-&gt;</span> dat_result
+<span style="color:#a6e22e">str</span>(dat_result)
+<span style="color:#75715e">#&gt; List of 3</span>
+<span style="color:#75715e">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
+<span style="color:#75715e">#&gt;  $ cor.result:List of 3</span>
+<span style="color:#75715e">#&gt;  $ lm.result :List of 3</span>
+<span style="color:#75715e">#including the three list the plot data</span>
+<span style="color:#a6e22e">head</span>(dat_result<span style="color:#f92672">$</span>plot.data)
+<span style="color:#75715e">#&gt;              x           y    Density</span>
+<span style="color:#75715e">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
+<span style="color:#75715e">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
+<span style="color:#75715e">#&gt; 3 -0.229579517 -0.90045187 0.14522626</span>
+<span style="color:#75715e">#&gt; 4  1.381172256  1.48550963 0.05487725</span>
+<span style="color:#75715e">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
+<span style="color:#75715e">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
+<span style="color:#75715e"># and the result of cor</span>
+<span style="color:#a6e22e">data.frame</span>(dat_result<span style="color:#f92672">$</span>cor.result)
+<span style="color:#75715e">#&gt;         cor pvalue                               method</span>
+<span style="color:#75715e">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
+<span style="color:#75715e"># and the result of lm</span>
+<span style="color:#a6e22e">str</span>(dat_result<span style="color:#f92672">$</span>lm.result)
+<span style="color:#75715e">#&gt; List of 3</span>
+<span style="color:#75715e">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
+<span style="color:#75715e">#&gt;  $ method : symbol lm</span>
+<span style="color:#75715e">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span>
 </code></pre></div><p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">plot</span>(dat_result)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">plot</span>(dat_result)
 </code></pre></div><p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/README-plot-1.png" alt=""></p>
 <h2 id="heatpoint参数">Heatpoint参数</h2>
 <p><code>plot</code>没设置什么参数，但是<code>heatpoint</code>设置了很多参数了。只是大部分参数都设置了默认值。其实<code>heatpoint(x,y) -&gt; dat_result</code>等价于：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result &lt;- <span style="color:#06b;font-weight:bold">heatpoint</span>(x,y,xlim = <span style="color:#080;font-weight:bold">NULL</span>,ylim = <span style="color:#080;font-weight:bold">NULL</span>,log = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>,grid = <span style="color:#00d;font-weight:bold">100</span>,only = <span style="color:#d20;background-color:#fff0f0">&#34;none&#34;</span>,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>,formula = y ~ x,<span style="color:#080;font-weight:bold">...</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">heatpoint</span>(x,y,xlim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,ylim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,log <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,grid <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,only <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>,method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pearson&#34;</span>,formula <span style="color:#f92672">=</span> y <span style="color:#f92672">~</span> x,<span style="color:#66d9ef">...</span>)
 </code></pre></div><p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
 <h2 id="附">附</h2>
 <p>最开始没想造R包的，本质上是当个调包侠的。但是搜来搜去都没有什么好答案。最贴近的答案是网上一个叫Kamil Slowikowski的教程。链接是<a href="https://slowkow.com/notes/ggplot2-color-by-density/">https://slowkow.com/notes/ggplot2-color-by-density/</a>.</p>
@@ -343,7 +500,7 @@ x = <span style="color:#06b;font-weight:bold">sign</span>(x)*<span style="color:
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

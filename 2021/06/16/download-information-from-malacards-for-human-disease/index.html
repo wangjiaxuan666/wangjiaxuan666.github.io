@@ -8,12 +8,148 @@
   <title>用python读取下载到本地的网页-反[反爬虫]机制</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -54,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/">
@@ -102,6 +238,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -188,21 +338,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -275,30 +432,30 @@
 <p>那么除了疾病相关的基因以外，还收录了和疾病相关的结构变异（SNV）以及拷贝数变异（CNV），简直了，只能说一句：“”强强强“。</p>
 <p>当然GO，KEGG的注释分析当然也不会少。可见MalaCards是非常值得爬虫（贱兮兮笑下）。</p>
 <p>但其实我之前写过爬虫🐛准备爬GeneCards的功能注释信息，但是很不幸。GeneCards应该有反爬虫机制，所以爬虫时而成功时而失败。关键是当时爬取的是基因的功能注释，也就是说每查找一次基因就需要刷新窗口一次，几百个基因，这种动不动就报错的脚本，这谁顶得住，遂放弃。</p>
-<p>但是这次只是需要一个网页就可以收集所有信息，为了应对发爬虫机制。选择直接在浏览器上点击，<!-- raw HTML omitted -->ctrl+S<!-- raw HTML omitted -->下载，就是这么流畅。</p>
+<p>但是这次只是需要一个网页就可以收集所有信息，为了应对发爬虫机制。选择直接在浏览器上点击，<kbd>ctrl+S</kbd>下载，就是这么流畅。</p>
 <p>Python脚本放在<a href="https://raw.githubusercontent.com/wangjiaxuan666/WeChat-pubword/master/get_info_from_malacard.py">GIthub</a>上,微信公众号需要点击<strong>阅读原文</strong>可直达Github。下载好Python脚本后，将脚本移到工作目录，建议malacards的本地网页也放在同一目录下。</p>
 <p>强烈安利Vscode 宇宙第一代码编辑器🐍。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 需要把get_info_from_malacard.py放到工作目录下</span>
-<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">get_info_from_malacard</span> <span style="color:#080;font-weight:bold">as</span> <span style="color:#b06;font-weight:bold">gf</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 需要把get_info_from_malacard.py放到工作目录下</span>
+<span style="color:#f92672">import</span> get_info_from_malacard <span style="color:#66d9ef">as</span> gf
 
-<span style="color:#888"># 读取本地下载的html文件</span>
-html = <span style="color:#d20;background-color:#fff0f0">&#34;~/xxxx/xxxx/malacards.html&#34;</span>
-soup = gf.read_file(html)
-<span style="color:#888"># id是想要调取的信息，我已经整理好了</span>
-<span style="color:#038">id</span> = [<span style="color:#d20;background-color:#fff0f0">&#34;RelatedDiseases-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;MaladiesUnifiedCompounds-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;ClinicalTrial-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;Publications-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;RelatedGenes-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;ClinVarVariations-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;CnvdVariations-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;de_genes-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;Pathway-table&#34;</span>,
-          <span style="color:#d20;background-color:#fff0f0">&#34;go_proc-table&#34;</span>
+<span style="color:#75715e"># 读取本地下载的html文件</span>
+html <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;~/xxxx/xxxx/malacards.html&#34;</span>
+soup <span style="color:#f92672">=</span> gf<span style="color:#f92672">.</span>read_file(html)
+<span style="color:#75715e"># id是想要调取的信息，我已经整理好了</span>
+id <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;RelatedDiseases-table&#34;</span>,
+          <span style="color:#e6db74">&#34;MaladiesUnifiedCompounds-table&#34;</span>,
+          <span style="color:#e6db74">&#34;ClinicalTrial-table&#34;</span>,
+          <span style="color:#e6db74">&#34;Publications-table&#34;</span>,
+          <span style="color:#e6db74">&#34;RelatedGenes-table&#34;</span>,
+          <span style="color:#e6db74">&#34;ClinVarVariations-table&#34;</span>,
+          <span style="color:#e6db74">&#34;CnvdVariations-table&#34;</span>,
+          <span style="color:#e6db74">&#34;de_genes-table&#34;</span>,
+          <span style="color:#e6db74">&#34;Pathway-table&#34;</span>,
+          <span style="color:#e6db74">&#34;go_proc-table&#34;</span>
           ]
-<span style="color:#080;font-weight:bold">for</span> <span style="color:#038">id</span> <span style="color:#080">in</span> <span style="color:#038">id</span>:
-        gf.get_info(soup,<span style="color:#038">id</span>)
-<span style="color:#888"># 自动生成结果文件，保存在工作目录下的excel文件中</span>
+<span style="color:#66d9ef">for</span> id <span style="color:#f92672">in</span> id:
+        gf<span style="color:#f92672">.</span>get_info(soup,id)
+<span style="color:#75715e"># 自动生成结果文件，保存在工作目录下的excel文件中</span>
 </code></pre></div><p>今天就到这里了，完结~，欢迎交流！</p>
 </article>
     <footer class="post-footer">
@@ -349,7 +506,7 @@ soup = gf.read_file(html)
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

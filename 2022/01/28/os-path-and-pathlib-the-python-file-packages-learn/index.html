@@ -8,12 +8,148 @@
   <title>python中的文件路径操作，学习os.path和pathlib</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -246,20 +403,20 @@
 <h3 id="ospath-学习">os.path 学习</h3>
 <p>我搜索了下，python中有两个包都可以做到路径操作，一个是万能的os包中的path模块，一个是适用于高端操作的pathlib。两个都可以了解下。</p>
 <h3 id="加载环境">加载环境</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">os</span>
-<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">pathlib</span>
-<span style="color:#888"># pyshell 是我自己写的的，运行shell命令，但用的是subprocess模块的功能</span>
-<span style="color:#080;font-weight:bold">import</span> <span style="color:#b06;font-weight:bold">pyshell</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> pathlib
+<span style="color:#75715e"># pyshell 是我自己写的的，运行shell命令，但用的是subprocess模块的功能</span>
+<span style="color:#f92672">import</span> pyshell
 </code></pre></div><p>首先获得目前所在的工作目录是什么，可以<code>os.getcwd</code>获得。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.getcwd()
-===============OUTPUT================
-<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os<span style="color:#f92672">.</span>getcwd()
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+<span style="color:#e6db74">&#39;/Users/dalena/Data/test&#39;</span>
 </code></pre></div><p>其次是知道现有的目录结构，好进行一些文件操作的演练</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#038">print</span>(pyshell.run_shell(<span style="color:#d20;background-color:#fff0f0">&#34;ls&#34;</span>)[<span style="color:#00d;font-weight:bold">1</span>])
-===============OUTPUT================
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">print(pyshell<span style="color:#f92672">.</span>run_shell(<span style="color:#e6db74">&#34;ls&#34;</span>)[<span style="color:#ae81ff">1</span>])
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
 __pycache__
-file_sum.md5  input1  input2  pivot.xlsx  pyshell.py  step1.res 
-tes test.file test.ipynb test.sh test1.sh
+file_sum<span style="color:#f92672">.</span>md5  input1  input2  pivot<span style="color:#f92672">.</span>xlsx  pyshell<span style="color:#f92672">.</span>py  step1<span style="color:#f92672">.</span>res 
+tes test<span style="color:#f92672">.</span>file test<span style="color:#f92672">.</span>ipynb test<span style="color:#f92672">.</span>sh test1<span style="color:#f92672">.</span>sh
 </code></pre></div><p>可以看到目前的目录下有这些个文件，下面就开始具体的操作</p>
 <h4 id="获得绝对路径">获得绝对路径</h4>
 <p>这个重要性不言而喻，写脚本最怕的就是依赖文件的路径随着工作目录的更改而找不到，导致报错。所以这个应该是最重要的功能</p>
@@ -269,28 +426,28 @@ tes test.file test.ipynb test.sh test1.sh
 </code></pre><p>可以看到我们得到了一个sh脚本的绝对路径，再也不用担心工作路径的变化导致脚本报错了，用了都说好。</p>
 <h4 id="路径判断">路径判断</h4>
 <p>其次针对路径的操作，常常需要判断目标路径的读入和写出是否正常，是否存在，如果不存在肯定直接报错。以下函数都是非常重要且常用的os.path的命令</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 判断文件</span>
-os.path.exists(<span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>)
-<span style="color:#888"># 判断文件夹</span>
-os.path.exists(<span style="color:#d20;background-color:#fff0f0">&#34;tes&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 判断文件</span>
+os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(<span style="color:#e6db74">&#34;test.sh&#34;</span>)
+<span style="color:#75715e"># 判断文件夹</span>
+os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(<span style="color:#e6db74">&#34;tes&#34;</span>)
 </code></pre></div><h4 id="分割和合并路径">分割和合并路径</h4>
 <p>还有就是我们经常会遇到一些需要合并路径的操作，比如我们知道<code>test</code>文件夹下面有个<code>test.sh</code>的文件，如何得到路径呢。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.path.join(os.path.abspath(<span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span>),<span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>)
-===============OUTPUT================
-<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test/test.sh&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(<span style="color:#e6db74">&#34;test&#34;</span>),<span style="color:#e6db74">&#34;test.sh&#34;</span>)
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+<span style="color:#e6db74">&#39;/Users/dalena/Data/test/test/test.sh&#39;</span>
 </code></pre></div><p>看起来好像多次一举，因为既然我都知道<code>test.sh</code>的存在，我直接写<code>test/test1.sh</code>不就行了，但如果我们想存的是个多个变量名词呢</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files = [<span style="color:#d20;background-color:#fff0f0">&#34;test1.sh&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;test2.sh&#34;</span>]
-<span style="color:#080;font-weight:bold">for</span> file <span style="color:#080">in</span> files:
-    <span style="color:#038">print</span>(os.path.join(os.path.abspath(<span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span>),file))
-===============OUTPUT================
-/Users/dalena/Data/test/test/test1.sh
-/Users/dalena/Data/test/test/test2.sh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;test1.sh&#34;</span>,<span style="color:#e6db74">&#34;test2.sh&#34;</span>]
+<span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> files:
+    print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>abspath(<span style="color:#e6db74">&#34;test&#34;</span>),file))
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+<span style="color:#f92672">/</span>Users<span style="color:#f92672">/</span>dalena<span style="color:#f92672">/</span>Data<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test1<span style="color:#f92672">.</span>sh
+<span style="color:#f92672">/</span>Users<span style="color:#f92672">/</span>dalena<span style="color:#f92672">/</span>Data<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test<span style="color:#f92672">/</span>test2<span style="color:#f92672">.</span>sh
 </code></pre></div><p>这样我们很快就了解优势之处了。</p>
 <h4 id="其他一些路径操作">其他一些路径操作</h4>
 <p>除此之外，os.path还有其他有用的命令，比如可以用<code>os.path.commonpath</code>来获得多个路径共有路径，以及<code>os.path.normpath</code>来规范路径，消除一些类似于&quot;./test/../test2&quot;这样的路径，从而达到变成“test2”这样标准路径的作用。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os.path.normpath(<span style="color:#d20;background-color:#fff0f0">&#34;./test/../test2&#34;</span>)
-===============OUTPUT================
-<span style="color:#d20;background-color:#fff0f0">&#39;test2&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>normpath(<span style="color:#e6db74">&#34;./test/../test2&#34;</span>)
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+<span style="color:#e6db74">&#39;test2&#39;</span>
 </code></pre></div><h4 id="路径信息">路径信息</h4>
 <p>关于目标文件的信息，我也需要获得，比如文件的创建，修改，访问时间，或者文件的大小。以及根据文件的后缀名判断文件类型是否正常等等。这个时候就需要利用下述函数来进行操作了。</p>
 <table>
@@ -347,64 +504,64 @@ os.path.exists(<span style="color:#d20;background-color:#fff0f0">&#34;tes&#34;</
 <p>但对象这个概念在R里面也有，比如同名不同类的s3 method，或者搭建木的s4 object。只是一般使用R语言的人不太关注，当然也不需要深入了解，R是一个数据科学语言，不需要和编程思维扯太多，既是优势，也是劣势。</p>
 <p>不过下文的pathlib操作，就和R不太一样了</p>
 <h3 id="创建一个path对象">创建一个Path对象</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;Data&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> pathlib<span style="color:#f92672">.</span>Path(<span style="color:#e6db74">&#34;/Users/dalena&#34;</span>,<span style="color:#e6db74">&#34;Data&#34;</span>)
 p
-===============OUTPUT================
-PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data&#39;</span>)
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+PosixPath(<span style="color:#e6db74">&#39;/Users/dalena/Data&#39;</span>)
 </code></pre></div><p>现在p已经是个Path对象了，我们看其输出的结果显示<code>PosixPath</code>,这是因为我在Mac 上进行运行和分析，如果是windows上，就会变成WindosPath，毕竟要知道linux和windows的文件路径差异很大的，斜杠方向都不一样，而且windows还分盘，还忽略大小写。Path对象的的属性和函数可以通过<code>p.__dict__</code>去查看，也可以跟着这篇文章一点点去探索。</p>
 <p>Path对象具有诸多属性，但熟悉属性之前，先了解创建Path的方式</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#888"># 可以直接输入路径全民</span>
-p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena/Data&#34;</span>)
-<span style="color:#888"># 可以输入多个字符，会自动合并</span>
-p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena“，”Data&#34;</span>)
-<span style="color:#888"># 也可以用运算符 &#39;/&#39;</span>
-p = pathlib.Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena&#34;</span>) / <span style="color:#d20;background-color:#fff0f0">&#34;Data&#34;</span> / <span style="color:#d20;background-color:#fff0f0">&#34;test&#34;</span> / <span style="color:#d20;background-color:#fff0f0">&#34;test.sh&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 可以直接输入路径全民</span>
+p <span style="color:#f92672">=</span> pathlib<span style="color:#f92672">.</span>Path(<span style="color:#e6db74">&#34;/Users/dalena/Data&#34;</span>)
+<span style="color:#75715e"># 可以输入多个字符，会自动合并</span>
+p <span style="color:#f92672">=</span> pathlib<span style="color:#f92672">.</span>Path(<span style="color:#e6db74">&#34;/Users/dalena“，”Data&#34;</span>)
+<span style="color:#75715e"># 也可以用运算符 &#39;/&#39;</span>
+p <span style="color:#f92672">=</span> pathlib<span style="color:#f92672">.</span>Path(<span style="color:#e6db74">&#34;/Users/dalena&#34;</span>) <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;Data&#34;</span> <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;test&#34;</span> <span style="color:#f92672">/</span> <span style="color:#e6db74">&#34;test.sh&#34;</span>
 p
-===============OUTPUT================
-PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test.sh&#39;</span>)
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+PosixPath(<span style="color:#e6db74">&#39;/Users/dalena/Data/test/test.sh&#39;</span>)
 </code></pre></div><h3 id="path对象的重要属性">Path对象的重要属性</h3>
 <p>说实话，精力有限，也不可能把一个包全部学会，只要了解其中最常用的部分，剩下的就是遇到问题再来搜索。这样才会最节省时间。 我只能列举一些我个人认为比较常用的一些功能</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p.parts
-<span style="color:#888"># 可以获得目录各层级的名称</span>
-p.root
-<span style="color:#888"># 可以获得根目录</span>
-p.parents[<span style="color:#00d;font-weight:bold">0</span>]
-<span style="color:#888"># 可以获得上级目录,数字以此增加，层级越来越高</span>
-p.name
-<span style="color:#888"># 可以获得最后的文件名称</span>
-p.suffixes[<span style="color:#00d;font-weight:bold">0</span>]
-<span style="color:#888"># 可以得到多个后缀名，数字越大，越靠前面</span>
-p.stem
-<span style="color:#888"># 可以获得文件的名称（不包括后缀名）,但是只能去掉最后一个后缀名</span>
-===============OUTPUT================
-<span style="color:#d20;background-color:#fff0f0">&#39;test&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p<span style="color:#f92672">.</span>parts
+<span style="color:#75715e"># 可以获得目录各层级的名称</span>
+p<span style="color:#f92672">.</span>root
+<span style="color:#75715e"># 可以获得根目录</span>
+p<span style="color:#f92672">.</span>parents[<span style="color:#ae81ff">0</span>]
+<span style="color:#75715e"># 可以获得上级目录,数字以此增加，层级越来越高</span>
+p<span style="color:#f92672">.</span>name
+<span style="color:#75715e"># 可以获得最后的文件名称</span>
+p<span style="color:#f92672">.</span>suffixes[<span style="color:#ae81ff">0</span>]
+<span style="color:#75715e"># 可以得到多个后缀名，数字越大，越靠前面</span>
+p<span style="color:#f92672">.</span>stem
+<span style="color:#75715e"># 可以获得文件的名称（不包括后缀名）,但是只能去掉最后一个后缀名</span>
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+<span style="color:#e6db74">&#39;test&#39;</span>
 </code></pre></div><h3 id="path的高阶功能">Path的高阶功能</h3>
 <p>除了以上属性以外，Path还有一些用于判断，统计，修改的功能函数，下面列举了一些比较重要的功能。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p.is_absolute()
-<span style="color:#888"># 可以判断是否是绝对路径</span>
-p.match(<span style="color:#d20;background-color:#fff0f0">&#34;te*/*.sh&#34;</span>)
-<span style="color:#888"># 判断是否满足匹配条件</span>
-p.relative_to(<span style="color:#d20;background-color:#fff0f0">&#34;/Users&#34;</span>)
-<span style="color:#888"># p对象路径相对于输入的字符的，相对路径，很合适工作目录和脚本目录之间的操作</span>
-p.with_name(<span style="color:#d20;background-color:#fff0f0">&#34;change.sh&#34;</span>)
-<span style="color:#888"># 直接更改最后的文件名</span>
-p.with_stem(<span style="color:#d20;background-color:#fff0f0">&#34;change1&#34;</span>)
-<span style="color:#888"># 不更换后缀名，但是更改文件名</span>
-p.with_suffix(<span style="color:#d20;background-color:#fff0f0">&#34;.py&#34;</span>)
-<span style="color:#888"># 不更改文件名，但是更改后缀名</span>
-===============OUTPUT================
-PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;/Users/dalena/Data/test/test.py&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p<span style="color:#f92672">.</span>is_absolute()
+<span style="color:#75715e"># 可以判断是否是绝对路径</span>
+p<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#34;te*/*.sh&#34;</span>)
+<span style="color:#75715e"># 判断是否满足匹配条件</span>
+p<span style="color:#f92672">.</span>relative_to(<span style="color:#e6db74">&#34;/Users&#34;</span>)
+<span style="color:#75715e"># p对象路径相对于输入的字符的，相对路径，很合适工作目录和脚本目录之间的操作</span>
+p<span style="color:#f92672">.</span>with_name(<span style="color:#e6db74">&#34;change.sh&#34;</span>)
+<span style="color:#75715e"># 直接更改最后的文件名</span>
+p<span style="color:#f92672">.</span>with_stem(<span style="color:#e6db74">&#34;change1&#34;</span>)
+<span style="color:#75715e"># 不更换后缀名，但是更改文件名</span>
+p<span style="color:#f92672">.</span>with_suffix(<span style="color:#e6db74">&#34;.py&#34;</span>)
+<span style="color:#75715e"># 不更改文件名，但是更改后缀名</span>
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+PosixPath(<span style="color:#e6db74">&#39;/Users/dalena/Data/test/test.py&#39;</span>)
 </code></pre></div><h3 id="path的高级功能">Path的高级功能</h3>
 <p>上述功能都是针对文件，和路径的单纯操作，但是一个路径，会有内容，其内的文件会有属性，而这些操作都需要pathlib更高级的功能。会有可以用<code>iterdir</code>列举文件夹下的所有内容，例如：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = Path(<span style="color:#d20;background-color:#fff0f0">&#34;../&#34;</span>)
-[x <span style="color:#080;font-weight:bold">for</span> x <span style="color:#080">in</span> p.iterdir() <span style="color:#080;font-weight:bold">if</span> x.is_dir()]
-===============OUTPUT================
-PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;../test&#39;</span>), PosixPath(<span style="color:#d20;background-color:#fff0f0">&#39;../Rdata&#39;</span>)]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> Path(<span style="color:#e6db74">&#34;../&#34;</span>)
+[x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> p<span style="color:#f92672">.</span>iterdir() <span style="color:#66d9ef">if</span> x<span style="color:#f92672">.</span>is_dir()]
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+PosixPath(<span style="color:#e6db74">&#39;../test&#39;</span>), PosixPath(<span style="color:#e6db74">&#39;../Rdata&#39;</span>)]
 </code></pre></div><p>针对其中的文件可以匹配检验下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p = Path(<span style="color:#d20;background-color:#fff0f0">&#34;/Users/dalena/Data/test&#34;</span>)
-<span style="color:#038">list</span>(p.glob(<span style="color:#d20;background-color:#fff0f0">&#34;*.sh&#34;</span>))
-===============OUTPUT================
-dalena<span style="color:#d20;background-color:#fff0f0">&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> Path(<span style="color:#e6db74">&#34;/Users/dalena/Data/test&#34;</span>)
+list(p<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;*.sh&#34;</span>))
+<span style="color:#f92672">===============</span>OUTPUT<span style="color:#f92672">================</span>
+dalena<span style="color:#e6db74">&#39;</span>
 </code></pre></div><p>当然，pathlib还有很多其他的用法，但是这个一般也不常用，或者有其他的方式可以做到。所以学习python路径操作就到这里结束了</p>
 <p>完结撒花</p></article>
     <footer class="post-footer">
@@ -451,7 +608,7 @@ dalena<span style="color:#d20;background-color:#fff0f0">&#39;</span>
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

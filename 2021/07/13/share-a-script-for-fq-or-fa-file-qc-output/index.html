@@ -8,12 +8,148 @@
   <title>分享一个统计Q20和Q30的小脚本</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -54,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/">
@@ -102,6 +238,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -188,21 +338,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -270,22 +427,22 @@
 <p>打包好的文件放在Github<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/fastq_stat.tar.gz">wangjiaxuan666/WeChat-pubword/fastq_stat.tar.gz</a>上，也可以点击<strong>阅读原文</strong>直达。如果Github被屏蔽了，可以在微信公众号对话框中输入<strong>序列质控</strong>或者<strong>质控</strong>，获得腾讯云下载链接。但是腾讯云存储按照访问流量，会收我钱😨，哈哈，最好还是别让我本就贫穷的日子雪上加霜了💔。</p>
 <h3 id="优化后的安装步骤">优化后的安装步骤</h3>
 <p>因为我做了一些优化，所以安装过程和输出结果要比上面的文章更方便一些。在我的Github上下载文件后，创建新的文件夹，然后解压</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir <span style="color:#038">test</span>
-mv fastq_stat.tar.gz <span style="color:#038">test</span>
-<span style="color:#038">cd</span> <span style="color:#038">test</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir test
+mv fastq_stat.tar.gz test
+cd test
 tar -zxvf fastq_stat.tar.gz
 </code></pre></div><p>运行安装程序，并用<code>test.fq.gz</code>文件做测试结果。<code>fastq_stat.sh</code>同时支持-i 参数和直接参数（反正就一个参数）帮助文档可以用-h。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash install.sh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash install.sh
 bash fastq_stat.sh test.fq.gz
-<span style="color:#888"># test.fq.gz	10	1000	964(96.4%)	886(88.6%)	411(41.1%)</span>
-<span style="color:#888"># bash fastq_stat.sh -i test.fq.gz</span>
-<span style="color:#888"># 同时支持-i参数</span>
+<span style="color:#75715e"># test.fq.gz	10	1000	964(96.4%)	886(88.6%)	411(41.1%)</span>
+<span style="color:#75715e"># bash fastq_stat.sh -i test.fq.gz</span>
+<span style="color:#75715e"># 同时支持-i参数</span>
 bash fastq_stat.sh -h
-<span style="color:#888"># The script created by Jiaxuan Wang 20210712</span>
-<span style="color:#888"># Usage:</span>
-<span style="color:#888"># [-h]: The help document:</span>
-<span style="color:#888"># [-i]: The script only support a file input ,</span>
-<span style="color:#888"># the file can be fastq or fasta</span>
+<span style="color:#75715e"># The script created by Jiaxuan Wang 20210712</span>
+<span style="color:#75715e"># Usage:</span>
+<span style="color:#75715e"># [-h]: The help document:</span>
+<span style="color:#75715e"># [-i]: The script only support a file input ,</span>
+<span style="color:#75715e"># the file can be fastq or fasta</span>
 </code></pre></div><p>所有过程均在centos 7.0集群上和本地的Macos上测试。理论上Windows的WSL也是可以运行的。欢迎尝试！</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsf9e0m1yuj31920mstbb.jpg" alt=""></p>
 <blockquote>
@@ -299,28 +456,28 @@ bash fastq_stat.sh -h
 <h3 id="step01-">step01 🍐</h3>
 <p>先创建一个文件夹，还是将Github下载的文件放入其中，然后在终端进行操作，在centos 7.0和Mac os亲测成功。
 `</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#888"># 下载在新建的文件中</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载在新建的文件中</span>
 mkdir fq_stat
-<span style="color:#038">cd</span> fa_stat
+cd fa_stat
 unzip fq.zip
 ls 
-<span style="color:#888"># Makefile    kseq.h      kseq_test.c parse.c     test.fq.gz</span>
-<span style="color:#888"># 解压后会发现其中有四个文件，sh是我自己写的，不是原来的</span>
+<span style="color:#75715e"># Makefile    kseq.h      kseq_test.c parse.c     test.fq.gz</span>
+<span style="color:#75715e"># 解压后会发现其中有四个文件，sh是我自己写的，不是原来的</span>
 </code></pre></div><h3 id="step02-">step02 🍑</h3>
 <p>解压后，还是在刚刚创建，解压的文件中，用gcc编译，输入</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc -o fastq_stat parse.c -lz
-<span style="color:#888"># 没有报错就是安装成功</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc -o fastq_stat parse.c -lz
+<span style="color:#75715e"># 没有报错就是安装成功</span>
 ls 
-<span style="color:#888"># Makefile    fastq_stat  kseq.h      kseq_test.c parse.c     test.fq.gz</span>
+<span style="color:#75715e"># Makefile    fastq_stat  kseq.h      kseq_test.c parse.c     test.fq.gz</span>
 </code></pre></div><h3 id="step03-">step03 🍓</h3>
 <p>这个时候就会发现gcc编译后出现了一个新的文件<code>fastq_stst</code>,这是一个可执行文件，简单测试下效果：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./fastq_stat test.fq.gz
-<span style="color:#888"># 10	1000	964	886	411</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./fastq_stat test.fq.gz
+<span style="color:#75715e"># 10	1000	964	886	411</span>
 </code></pre></div><p>输出结果的意思分别是，reads数目，碱基数目，Q20的碱基数目，Q30的碱基数目，以及是G或者C的碱基数目（GC含量）。</p>
 <p>但其实这个这个结果并不人性化，可以简单利用awk命令来更改下输出</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#c00;font-weight:bold">#!bin/sh
-</span><span style="color:#c00;font-weight:bold"></span>./fastq_stat test.fq.gz | awk <span style="color:#d20;background-color:#fff0f0">&#39;{print $1,$2,$3&#34;(&#34;$3/$2*100&#34;%)&#34;,$4&#34;(&#34;$4/$2*100&#34;%)&#34;,$5&#34;(&#34;$5/$2*100&#34;%)&#34;}&#39;</span>
-<span style="color:#888"># 10 1000 964(96.4%) 886(88.6%) 411(41.1%)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!bin/sh
+</span><span style="color:#75715e"></span>./fastq_stat test.fq.gz | awk <span style="color:#e6db74">&#39;{print $1,$2,$3&#34;(&#34;$3/$2*100&#34;%)&#34;,$4&#34;(&#34;$4/$2*100&#34;%)&#34;,$5&#34;(&#34;$5/$2*100&#34;%)&#34;}&#39;</span>
+<span style="color:#75715e"># 10 1000 964(96.4%) 886(88.6%) 411(41.1%)</span>
 </code></pre></div><p>这样一来输出结果就好认识多了。以上就是我做的所有优化的分分解过程。其实就是：</p>
 <ol>
 <li>优化安装过程</li>
@@ -375,7 +532,7 @@ ls
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

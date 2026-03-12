@@ -8,12 +8,148 @@
   <title>来一点高级的venn图</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -57,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/">
@@ -105,6 +241,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -191,21 +341,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -260,40 +417,40 @@
 <p>发现了一个R包，说牛逼是真牛逼，画的韦恩图不局限6组分，而是可以实现任意组分，并且是基于<strong>拓扑学</strong>运算的，图形高大上。说傻也傻，画的图不能展现在R自带的绘图窗中，必须展现在<strong>AI</strong>等<code>svg</code>编辑器中。巨麻烦，我都懒的整理自己的数据来写公众号，因此这个我也不会标原创，虽然我是翻译的，哈哈哈。</p>
 <p>浪费我两个小时摸索这个<em>R</em>包。我也是<strong>傻包</strong></p>
 <h2 id="画少数组分的韦恩图">画少数组分的韦恩图</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">library</span>(nVennR)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(nVennR)
 exampledf
-<span style="color:#888">#&gt;    Employee SAS Python R</span>
-<span style="color:#888">#&gt; 1      A001   Y      Y Y</span>
-<span style="color:#888">#&gt; 2      A002   N      Y Y</span>
-<span style="color:#888">#&gt; 3      A003   Y      Y N</span>
-<span style="color:#888">#&gt; 4      A004   Y      Y Y</span>
-<span style="color:#888">#&gt; 5      A005   Y      N N</span>
-<span style="color:#888">#&gt; 6      A006   Y      N Y</span>
-<span style="color:#888">#&gt; 7      A007   N      N N</span>
-<span style="color:#888">#&gt; 8      A008   Y      N N</span>
-<span style="color:#888">#&gt; 9      A009   N      N Y</span>
-<span style="color:#888">#&gt; 10     A010   N      N Y</span>
-<span style="color:#888">#&gt; 11     A011   Y      Y Y</span>
-<span style="color:#888">#&gt; 12     A012   Y      Y Y</span>
-<span style="color:#888">#&gt; 13     A013   Y      N Y</span>
-<span style="color:#888">#&gt; 14     A014   Y      N Y</span>
-<span style="color:#888">#&gt; 15     A015   N      N Y</span>
-<span style="color:#888">#&gt; 16     A016   N      N Y</span>
-<span style="color:#888">#&gt; 17     A017   N      Y N</span>
-<span style="color:#888">#&gt; 18     A018   N      Y N</span>
-sas &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, SAS == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-python &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, Python == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-rr &lt;- <span style="color:#06b;font-weight:bold">subset</span>(exampledf, R == <span style="color:#d20;background-color:#fff0f0">&#34;Y&#34;</span>)$Employee
-myV &lt;- <span style="color:#06b;font-weight:bold">plotVenn</span>(<span style="color:#06b;font-weight:bold">list</span>(SAS=sas, PYTHON=python, R=rr), nCycles = <span style="color:#00d;font-weight:bold">2000</span>, outFile = <span style="color:#d20;background-color:#fff0f0">&#34;niubi.svg&#34;</span>)
+<span style="color:#75715e">#&gt;    Employee SAS Python R</span>
+<span style="color:#75715e">#&gt; 1      A001   Y      Y Y</span>
+<span style="color:#75715e">#&gt; 2      A002   N      Y Y</span>
+<span style="color:#75715e">#&gt; 3      A003   Y      Y N</span>
+<span style="color:#75715e">#&gt; 4      A004   Y      Y Y</span>
+<span style="color:#75715e">#&gt; 5      A005   Y      N N</span>
+<span style="color:#75715e">#&gt; 6      A006   Y      N Y</span>
+<span style="color:#75715e">#&gt; 7      A007   N      N N</span>
+<span style="color:#75715e">#&gt; 8      A008   Y      N N</span>
+<span style="color:#75715e">#&gt; 9      A009   N      N Y</span>
+<span style="color:#75715e">#&gt; 10     A010   N      N Y</span>
+<span style="color:#75715e">#&gt; 11     A011   Y      Y Y</span>
+<span style="color:#75715e">#&gt; 12     A012   Y      Y Y</span>
+<span style="color:#75715e">#&gt; 13     A013   Y      N Y</span>
+<span style="color:#75715e">#&gt; 14     A014   Y      N Y</span>
+<span style="color:#75715e">#&gt; 15     A015   N      N Y</span>
+<span style="color:#75715e">#&gt; 16     A016   N      N Y</span>
+<span style="color:#75715e">#&gt; 17     A017   N      Y N</span>
+<span style="color:#75715e">#&gt; 18     A018   N      Y N</span>
+sas <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(exampledf, SAS <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
+python <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(exampledf, Python <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
+rr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(exampledf, R <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Y&#34;</span>)<span style="color:#f92672">$</span>Employee
+myV <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">plotVenn</span>(<span style="color:#a6e22e">list</span>(SAS<span style="color:#f92672">=</span>sas, PYTHON<span style="color:#f92672">=</span>python, R<span style="color:#f92672">=</span>rr), nCycles <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, outFile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;niubi.svg&#34;</span>)
 </code></pre></div><p>绘制的图形如下：</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757458631.png" alt="1552757458631"></p>
 <p>这个图不得不说是很高大上的。但是人类不友好啊，各位要是为了这么一张图，发表在文章中，花点时间是值得的，我就不研究了。没那个刚需。</p>
 <h2 id="美化图形">美化图形</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 &lt;- <span style="color:#06b;font-weight:bold">createVennObj</span>(nSets = <span style="color:#00d;font-weight:bold">5</span>, sSizes = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#06b;font-weight:bold">rep</span>(<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">32</span>)))
-<span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, opacity = <span style="color:#00d;font-weight:bold">0.1</span>, borderWidth = <span style="color:#00d;font-weight:bold">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">myV3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">createVennObj</span>(nSets <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, sSizes <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">32</span>)))
+<span style="color:#a6e22e">showSVG</span>(nVennObj <span style="color:#f92672">=</span> myV3, opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, borderWidth <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
 </code></pre></div><p>设置透明度和边界宽度</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757806458.png" alt="1552757806458"></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#06b;font-weight:bold">showSVG</span>(nVennObj = myV3, setColors = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#39;#d7100b&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;teal&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;yellow&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;black&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;#2b55b7&#39;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">showSVG</span>(nVennObj <span style="color:#f92672">=</span> myV3, setColors <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;#d7100b&#39;</span>, <span style="color:#e6db74">&#39;teal&#39;</span>, <span style="color:#e6db74">&#39;yellow&#39;</span>, <span style="color:#e6db74">&#39;black&#39;</span>, <span style="color:#e6db74">&#39;#2b55b7&#39;</span>))
 </code></pre></div><p>设置颜色</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1552757905357.png" alt="1552757905357"></p>
 <p>这个包还是先养肥再杀吧，希望作者能记得更新迭代下，目前真的很不优化。但是如果要在文章中展现，花点时间是研究是值得的</p>
@@ -344,7 +501,7 @@ myV &lt;- <span style="color:#06b;font-weight:bold">plotVenn</span>(<span style=
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   

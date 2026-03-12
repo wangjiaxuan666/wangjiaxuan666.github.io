@@ -8,12 +8,148 @@
   <title>重要!相关性分析如何计算和理解</title>
 
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dracula.min.css">
   
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/dracula.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/r.min.js"></script>
-  <script>hljs.highlightAll();</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <style>
+     
+    .post-content pre {
+      background: #0a2b3f !important;  
+      border-radius: 8px;
+      padding: 35px 15px 15px 15px !important;  
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin: 25px 0;
+    }
+    
+     
+    .post-content pre::before {
+      content: " ";
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      background: #fc625d;  
+      border-radius: 50%;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;  
+    }
+
+     
+    .post-content pre code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f9f9f9;
+    }
+
+     
+    .post-content pre::-webkit-scrollbar {
+      height: 8px;
+    }
+    .post-content pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .post-content pre::-webkit-scrollbar-thumb {
+      background: #6272a4; 
+      border-radius: 4px;
+    }
+  </style>
+
+<style>
+   
+  .site-header .avatar {
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 3px solid #fff;
+  }
+  .site-header a:hover .avatar {
+    transform: rotate(360deg) scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 171, 107, 0.4);
+    border-color: #00ab6b;
+  }
+
+   
+   
+  .site-menu .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;  
+    margin-top: 15px;
+    padding: 0;
+  }
+  
+  .site-menu .menu-item a {
+    transition: all 0.3s ease;
+    display: block; 
+    padding: 8px 15px;  
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-size: 1.15rem;  
+    font-weight: 700;    
+    color: #2c3e50;      
+  }
+  
+   
+  .site-menu .menu-item a::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,171,107,0.15) 0%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+  }
+  
+   
+  .site-menu .menu-item a:hover {
+    color: #00ab6b !important;
+    transform: translateX(10px);  
+    letter-spacing: 2px;  
+  }
+  .site-menu .menu-item a:hover::before {
+    left: 0;  
+  }
+
+   
+  .social-menu .social-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+  }
+  .social-menu .social-item a {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: #f1f5f9; 
+    color: #64748b;
+  }
+  .social-menu .social-item a:hover {
+    color: #fff !important;
+    background: #00ab6b;
+    transform: scale(1.2) translateY(-6px); 
+    box-shadow: 0 10px 15px rgba(0, 171, 107, 0.3);
+  }
+</style>
 
   
   <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
@@ -54,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2">
+<meta name="generator" content="Hugo 0.89.4">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/">
@@ -102,6 +238,20 @@
   body {
     background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
   }
+
+   
+.site-header {
+    max-height: 100vh;  
+    overflow-y: auto;   
+    -webkit-overflow-scrolling: touch;  
+}
+
+ 
+.site-header::-webkit-scrollbar {
+    display: none;
+}
+
+
 </style>
 <link rel="stylesheet" href="https://abego.cn/styles/main-rendered.min.css">
 
@@ -188,21 +338,28 @@
           
           
           ">
-          <a href="https://abego.cn/links/">Links</a>
+          <a href="https://abego.cn/works/">代码</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://github.com/wangjiaxuan666">代码</a>
+          <a href="https://abego.cn/works/">开源战绩</a>
         </li>
       
         <li class="menu-item
           
           
           ">
-          <a href="https://abego.cn/about/">吐槽</a>
+          <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://abego.cn/links/">外链</a>
         </li>
       
     </ul>
@@ -259,15 +416,15 @@ markdown preview
 </ul>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553865854356.png" alt="1553865854356"></p>
 <p>本次我们用<em>R</em>来进行计算和绘图，所用的数据是<em>R</em>自带的<code>mtcars</code>数据</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">&gt; mtcars
-&gt; <span style="color:#06b;font-weight:bold">head</span>(mtcars)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#f92672">&gt;</span> mtcars
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">head</span>(mtcars)
                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4         <span style="color:#00d;font-weight:bold">21.0</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">160</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.90</span> <span style="color:#00d;font-weight:bold">2.620</span> <span style="color:#00d;font-weight:bold">16.46</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">4</span>
-Mazda RX4 Wag     <span style="color:#00d;font-weight:bold">21.0</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">160</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.90</span> <span style="color:#00d;font-weight:bold">2.875</span> <span style="color:#00d;font-weight:bold">17.02</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">4</span>
-Datsun <span style="color:#00d;font-weight:bold">710</span>        <span style="color:#00d;font-weight:bold">22.8</span>   <span style="color:#00d;font-weight:bold">4</span>  <span style="color:#00d;font-weight:bold">108</span>  <span style="color:#00d;font-weight:bold">93</span> <span style="color:#00d;font-weight:bold">3.85</span> <span style="color:#00d;font-weight:bold">2.320</span> <span style="color:#00d;font-weight:bold">18.61</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">1</span>    <span style="color:#00d;font-weight:bold">4</span>    <span style="color:#00d;font-weight:bold">1</span>
-Hornet <span style="color:#00d;font-weight:bold">4</span> Drive    <span style="color:#00d;font-weight:bold">21.4</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">258</span> <span style="color:#00d;font-weight:bold">110</span> <span style="color:#00d;font-weight:bold">3.08</span> <span style="color:#00d;font-weight:bold">3.215</span> <span style="color:#00d;font-weight:bold">19.44</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">1</span>
-Hornet Sportabout <span style="color:#00d;font-weight:bold">18.7</span>   <span style="color:#00d;font-weight:bold">8</span>  <span style="color:#00d;font-weight:bold">360</span> <span style="color:#00d;font-weight:bold">175</span> <span style="color:#00d;font-weight:bold">3.15</span> <span style="color:#00d;font-weight:bold">3.440</span> <span style="color:#00d;font-weight:bold">17.02</span>  <span style="color:#00d;font-weight:bold">0</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">2</span>
-Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span style="color:#00d;font-weight:bold">6</span>  <span style="color:#00d;font-weight:bold">225</span> <span style="color:#00d;font-weight:bold">105</span> <span style="color:#00d;font-weight:bold">2.76</span> <span style="color:#00d;font-weight:bold">3.460</span> <span style="color:#00d;font-weight:bold">20.22</span>  <span style="color:#00d;font-weight:bold">1</span>  <span style="color:#00d;font-weight:bold">0</span>    <span style="color:#00d;font-weight:bold">3</span>    <span style="color:#00d;font-weight:bold">1</span>
+Mazda RX4         <span style="color:#ae81ff">21.0</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">160</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.90</span> <span style="color:#ae81ff">2.620</span> <span style="color:#ae81ff">16.46</span>  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">4</span>
+Mazda RX4 Wag     <span style="color:#ae81ff">21.0</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">160</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.90</span> <span style="color:#ae81ff">2.875</span> <span style="color:#ae81ff">17.02</span>  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">4</span>
+Datsun <span style="color:#ae81ff">710</span>        <span style="color:#ae81ff">22.8</span>   <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">108</span>  <span style="color:#ae81ff">93</span> <span style="color:#ae81ff">3.85</span> <span style="color:#ae81ff">2.320</span> <span style="color:#ae81ff">18.61</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">1</span>
+Hornet <span style="color:#ae81ff">4</span> Drive    <span style="color:#ae81ff">21.4</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">258</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.08</span> <span style="color:#ae81ff">3.215</span> <span style="color:#ae81ff">19.44</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">1</span>
+Hornet Sportabout <span style="color:#ae81ff">18.7</span>   <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">360</span> <span style="color:#ae81ff">175</span> <span style="color:#ae81ff">3.15</span> <span style="color:#ae81ff">3.440</span> <span style="color:#ae81ff">17.02</span>  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">2</span>
+Valiant           <span style="color:#ae81ff">18.1</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">225</span> <span style="color:#ae81ff">105</span> <span style="color:#ae81ff">2.76</span> <span style="color:#ae81ff">3.460</span> <span style="color:#ae81ff">20.22</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">1</span>
 </code></pre></div><p>那么行名我们知道是汽车的型号。那么列名呢，</p>
 <table>
 <thead>
@@ -291,29 +448,29 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 </table>
 <p>从上述列名中，我们可以简单得到<code>排量</code>（disp）与<code>马力</code>（hp）呈现正相关性，而与每加仑汽油行驶的<code>里程</code>是负相关性。</p>
 <p>那么我们就可以用<em>R</em>的<code>cor函数</code>来计算两个变量之间的相关性。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#06b;font-weight:bold">library</span>(ggplot2)
- r &lt;- <span style="color:#06b;font-weight:bold">cor</span>(mtcars$disp,mtcars$mpg,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
- p1 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = mtcars, <span style="color:#06b;font-weight:bold">aes</span>(x = disp, y = mpg)) + 
-         <span style="color:#06b;font-weight:bold">geom_point</span>(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) +
-         <span style="color:#06b;font-weight:bold">theme_bw</span>()
- r1 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(mtcars$disp,mtcars$hp,method = <span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
- p2 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = mtcars, <span style="color:#06b;font-weight:bold">aes</span>(x = disp, y = hp)) + 
-         <span style="color:#06b;font-weight:bold">geom_point</span>(color = <span style="color:#d20;background-color:#fff0f0">&#34;#d7191c&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">400</span>, y = <span style="color:#00d;font-weight:bold">32</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r1,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">theme_bw</span>()
- cowplot::<span style="color:#06b;font-weight:bold">plot_grid</span>(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"> <span style="color:#a6e22e">library</span>(ggplot2)
+ r <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cor</span>(mtcars<span style="color:#f92672">$</span>disp,mtcars<span style="color:#f92672">$</span>mpg,method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pearson&#34;</span>)
+ p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> mtcars, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> disp, y <span style="color:#f92672">=</span> mpg)) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_point</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#d7191c&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_smooth</span>(method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1a9641&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>,label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;R&#34;</span> ,<span style="color:#e6db74">&#34;=&#34;</span>,<span style="color:#a6e22e">signif</span>(r,<span style="color:#ae81ff">3</span>),seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)),color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fdae61&#34;</span>) <span style="color:#f92672">+</span>
+         <span style="color:#a6e22e">theme_bw</span>()
+ r1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cor</span>(mtcars<span style="color:#f92672">$</span>disp,mtcars<span style="color:#f92672">$</span>hp,method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pearson&#34;</span>)
+ p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> mtcars, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> disp, y <span style="color:#f92672">=</span> hp)) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_point</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#d7191c&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_smooth</span>(method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1a9641&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">400</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>,label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;R&#34;</span> ,<span style="color:#e6db74">&#34;=&#34;</span>,<span style="color:#a6e22e">signif</span>(r1,<span style="color:#ae81ff">3</span>),seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)),color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fdae61&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">theme_bw</span>()
+ cowplot<span style="color:#f92672">::</span><span style="color:#a6e22e">plot_grid</span>(p1,p2,nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;p1&#34;</span>,<span style="color:#e6db74">&#34;p2&#34;</span>),hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>)
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553877671595.png" alt="1553877671595"></p>
 <h2 id="22-相关分析的局限">2.2 相关分析的局限</h2>
 <p>刚刚我们知道了，相关性分为<code>正相关</code>和<code>负相关</code>。但这里，我们之说的是<code>线性相关</code>。因为<code>非线性相关</code>的话，更适合建模拟合<code>多元回归</code>。这个还是很牛的领域，只是我还没涉及，上次去<code>青岛</code>做<code>生信培训</code>，就有老师想构建四因素的<code>多元回归分析</code>。这个领域我完全没有了解。就不说了。</p>
 <p>但是用<em>R</em>中<code>cor</code>函数来计算相关性也是有局限的。首先第一点，不能计算非线性模型，</p>
 <p>例如我们先看一组简化的数据，<code>icecream</code>是冰激凌的销售额。<code>sunglass</code>是太阳镜的销售额。<code>tem</code>是温度。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
- icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
- tem &lt;- <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">40</span>,<span style="color:#00d;font-weight:bold">0.5</span>)
- dat &lt;- <span style="color:#06b;font-weight:bold">data.frame</span>(sunglass, icecream, tem)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">213</span>,<span style="color:#ae81ff">233</span>,<span style="color:#ae81ff">296</span>,<span style="color:#ae81ff">345</span>,<span style="color:#ae81ff">645</span>,<span style="color:#ae81ff">644</span>,<span style="color:#ae81ff">492</span>,<span style="color:#ae81ff">691</span>,<span style="color:#ae81ff">790</span>,<span style="color:#ae81ff">667</span>,<span style="color:#ae81ff">645</span>,<span style="color:#ae81ff">546</span>,<span style="color:#ae81ff">506</span>,<span style="color:#ae81ff">524</span>,<span style="color:#ae81ff">434</span>,<span style="color:#ae81ff">383</span>,<span style="color:#ae81ff">282</span>,<span style="color:#ae81ff">181</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">30</span>)
+ icecream <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">215</span>,<span style="color:#ae81ff">236</span>,<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">350</span>,<span style="color:#ae81ff">651</span>,<span style="color:#ae81ff">651</span>,<span style="color:#ae81ff">500</span>,<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">800</span>,<span style="color:#ae81ff">678</span>,<span style="color:#ae81ff">657</span>,<span style="color:#ae81ff">559</span>,<span style="color:#ae81ff">520</span>,<span style="color:#ae81ff">539</span>,<span style="color:#ae81ff">450</span>,<span style="color:#ae81ff">400</span>,<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>)
+ tem <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">0.5</span>)
+ dat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(sunglass, icecream, tem)
 </code></pre></div><p>我们先看在温度低于<em>35</em>时候的<code>冰激凌销售</code>与<code>温度</code>之间的关系。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"> require(magrittr)
  dat_low &lt;- dat %&gt;% dplyr::filter(tem &lt; 35)
@@ -325,12 +482,12 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
          theme_bw()
 </code></pre><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553879883381.png" alt="1553879883381"></p>
 <p>这个时候，我们可以看到当<code>温度</code>低于<em>35</em>度的时候，<code>冰激凌销量</code>是和<code>温度</code>正相关的。但是随着天气炎热，大家都不愿出远门，这时候<code>冰激凌</code>的销售就下来了。温度在30度到40度之间的时候，<code>温度</code>和<code>冰淇淋销量</code>之间的相关性是怎么样呢。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 &lt;- <span style="color:#06b;font-weight:bold">cor</span>(dat$icecream,dat$tem)
- p4 &lt;- <span style="color:#06b;font-weight:bold">ggplot</span>(data = dat, <span style="color:#06b;font-weight:bold">aes</span>(x = tem, y = icecream)) + 
-         <span style="color:#06b;font-weight:bold">geom_point</span>() + 
-         <span style="color:#06b;font-weight:bold">geom_smooth</span>(method = <span style="color:#d20;background-color:#fff0f0">&#34;lm&#34;</span>,color = <span style="color:#d20;background-color:#fff0f0">&#34;#1a9641&#34;</span>) +
-         <span style="color:#06b;font-weight:bold">geom_text</span>(<span style="color:#06b;font-weight:bold">aes</span>(x = <span style="color:#00d;font-weight:bold">39</span>, y = <span style="color:#00d;font-weight:bold">500</span>,label = <span style="color:#06b;font-weight:bold">paste</span>(<span style="color:#d20;background-color:#fff0f0">&#34;R&#34;</span> ,<span style="color:#d20;background-color:#fff0f0">&#34;=&#34;</span>,<span style="color:#06b;font-weight:bold">signif</span>(r3,<span style="color:#00d;font-weight:bold">3</span>),seq = <span style="color:#d20;background-color:#fff0f0">&#34;&#34;</span>)),color =<span style="color:#d20;background-color:#fff0f0">&#34;#fdae61&#34;</span>) + 
-         <span style="color:#06b;font-weight:bold">theme_bw</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> r3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cor</span>(dat<span style="color:#f92672">$</span>icecream,dat<span style="color:#f92672">$</span>tem)
+ p4 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(data <span style="color:#f92672">=</span> dat, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> tem, y <span style="color:#f92672">=</span> icecream)) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">geom_smooth</span>(method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lm&#34;</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1a9641&#34;</span>) <span style="color:#f92672">+</span>
+         <span style="color:#a6e22e">geom_text</span>(<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">39</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>,label <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;R&#34;</span> ,<span style="color:#e6db74">&#34;=&#34;</span>,<span style="color:#a6e22e">signif</span>(r3,<span style="color:#ae81ff">3</span>),seq <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)),color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fdae61&#34;</span>) <span style="color:#f92672">+</span> 
+         <span style="color:#a6e22e">theme_bw</span>()
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553880123952.png" alt="1553880123952"></p>
 <p>其实我们就可以发现问题，这里的<code>温度</code>和<code>冰激凌销量</code>是有很强的相关性的，我们甚至可以用脑子拟合出一个抛物曲线。虽然这个相关性不是线性的。但是如果我们继续用<em>R</em>中<code>cor</code>函数来计算，用线性相关性分析显然是不正确的。数值才*-0.39*</p>
 <p>另外，相关性强，也不等于<code>因果关系</code>。例如我们可以看到<code>太阳眼镜</code>的销量和<code>冰激凌</code>的销量之间的关系。</p>
@@ -344,7 +501,7 @@ Valiant           <span style="color:#00d;font-weight:bold">18.1</span>   <span 
 <p>可以看到，就算<code>太阳镜</code>和<code>冰淇淋</code>的销量相关性是<em>0.99</em>,也不能体现两者是因果关系。就是说，相关<strong>不</strong>代表一个现象导致另一个（相关可能有其他的原因，比如太阳的直射时间）</p>
 <h2 id="23-相关性计算">2.3 相关性计算</h2>
 <p><code>cor</code>函数的完整语法如下：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y = <span style="color:#080;font-weight:bold">NULL</span>，use =“everything”，method = c（“pearson”，“kendall”，“spearman”））
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">cor（x，y <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>，use <span style="color:#f92672">=</span>“everything”，method <span style="color:#f92672">=</span> c（“pearson”，“kendall”，“spearman”））
 </code></pre></div><p>也就是说像关系计算，有三种方法，<code>pearson</code>,<code>kendall</code>,<code>spearman</code>三种</p>
 <h3 id="231-pearson相关系数">2.3.1 pearson相关系数</h3>
 <p>算法如下：</p>
@@ -393,15 +550,15 @@ $$
 <p>根据上述，我们知道了<code>协方差</code>可以获得，两个变量之间的<code>协同变化程度</code>。标准差可以知道变量的变化范围。</p>
 <p>协方差虽然可以衡量变化程度，但是还缺少一个统一的量纲，否则不能进行比较。</p>
 <p>例如：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">213</span>,<span style="color:#00d;font-weight:bold">233</span>,<span style="color:#00d;font-weight:bold">296</span>,<span style="color:#00d;font-weight:bold">345</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">644</span>,<span style="color:#00d;font-weight:bold">492</span>,<span style="color:#00d;font-weight:bold">691</span>,<span style="color:#00d;font-weight:bold">790</span>,<span style="color:#00d;font-weight:bold">667</span>,<span style="color:#00d;font-weight:bold">645</span>,<span style="color:#00d;font-weight:bold">546</span>,<span style="color:#00d;font-weight:bold">506</span>,<span style="color:#00d;font-weight:bold">524</span>,<span style="color:#00d;font-weight:bold">434</span>,<span style="color:#00d;font-weight:bold">383</span>,<span style="color:#00d;font-weight:bold">282</span>,<span style="color:#00d;font-weight:bold">181</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>)
- icecream &lt;- <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#00d;font-weight:bold">215</span>,<span style="color:#00d;font-weight:bold">236</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">350</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">651</span>,<span style="color:#00d;font-weight:bold">500</span>,<span style="color:#00d;font-weight:bold">700</span>,<span style="color:#00d;font-weight:bold">800</span>,<span style="color:#00d;font-weight:bold">678</span>,<span style="color:#00d;font-weight:bold">657</span>,<span style="color:#00d;font-weight:bold">559</span>,<span style="color:#00d;font-weight:bold">520</span>,<span style="color:#00d;font-weight:bold">539</span>,<span style="color:#00d;font-weight:bold">450</span>,<span style="color:#00d;font-weight:bold">400</span>,<span style="color:#00d;font-weight:bold">300</span>,<span style="color:#00d;font-weight:bold">200</span>,<span style="color:#00d;font-weight:bold">50</span>,<span style="color:#00d;font-weight:bold">30</span>,<span style="color:#00d;font-weight:bold">50</span>)
- <span style="color:#06b;font-weight:bold">cov</span>(sunglass,icecream)
-<span style="color:#888">#[1] 54091</span>
- <span style="color:#06b;font-weight:bold">cov</span>(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
-<span style="color:#888">#[1] 5.4091</span>
- p1 &lt;- <span style="color:#06b;font-weight:bold">qplot</span>(sunglass,icecream)
- p2 &lt;- <span style="color:#06b;font-weight:bold">qplot</span>(((sunglass)*<span style="color:#00d;font-weight:bold">0.01</span>), ((icecream)*<span style="color:#00d;font-weight:bold">0.01</span>))
- cowplot::<span style="color:#06b;font-weight:bold">plot_grid</span>(p1,p2,nrow = <span style="color:#00d;font-weight:bold">1</span>,labels = <span style="color:#06b;font-weight:bold">c</span>(<span style="color:#d20;background-color:#fff0f0">&#34;p1&#34;</span>,<span style="color:#d20;background-color:#fff0f0">&#34;p2&#34;</span>),hjust = <span style="color:#00d;font-weight:bold">0.05</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"> sunglass <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">213</span>,<span style="color:#ae81ff">233</span>,<span style="color:#ae81ff">296</span>,<span style="color:#ae81ff">345</span>,<span style="color:#ae81ff">645</span>,<span style="color:#ae81ff">644</span>,<span style="color:#ae81ff">492</span>,<span style="color:#ae81ff">691</span>,<span style="color:#ae81ff">790</span>,<span style="color:#ae81ff">667</span>,<span style="color:#ae81ff">645</span>,<span style="color:#ae81ff">546</span>,<span style="color:#ae81ff">506</span>,<span style="color:#ae81ff">524</span>,<span style="color:#ae81ff">434</span>,<span style="color:#ae81ff">383</span>,<span style="color:#ae81ff">282</span>,<span style="color:#ae81ff">181</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">30</span>)
+ icecream <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">215</span>,<span style="color:#ae81ff">236</span>,<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">350</span>,<span style="color:#ae81ff">651</span>,<span style="color:#ae81ff">651</span>,<span style="color:#ae81ff">500</span>,<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">800</span>,<span style="color:#ae81ff">678</span>,<span style="color:#ae81ff">657</span>,<span style="color:#ae81ff">559</span>,<span style="color:#ae81ff">520</span>,<span style="color:#ae81ff">539</span>,<span style="color:#ae81ff">450</span>,<span style="color:#ae81ff">400</span>,<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">50</span>)
+ <span style="color:#a6e22e">cov</span>(sunglass,icecream)
+<span style="color:#75715e">#[1] 54091</span>
+ <span style="color:#a6e22e">cov</span>(((sunglass)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.01</span>), ((icecream)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.01</span>))
+<span style="color:#75715e">#[1] 5.4091</span>
+ p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">qplot</span>(sunglass,icecream)
+ p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">qplot</span>(((sunglass)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.01</span>), ((icecream)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.01</span>))
+ cowplot<span style="color:#f92672">::</span><span style="color:#a6e22e">plot_grid</span>(p1,p2,nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;p1&#34;</span>,<span style="color:#e6db74">&#34;p2&#34;</span>),hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>)
 </code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1553924809306.png" alt="1553924809306"></p>
 <p>发现问题了吧，明明<code>icecream</code>和<code>sunglass</code>之间是一样的变化协同程度，但是因为波动范围的取值大小，就导致了<code>cov(sunglass,icecream)</code>是<em>54091</em>，而<code>cov(((sunglass)*0.01), ((icecream)*0.01))</code>就变成了<em>5.4091</em></p>
 <p>但是明明是<code>趋势</code>和<code>相关性程度</code>是一致的。这就意味着协方差没有考虑<code>原始数据</code>的分布范围。因此我们还需要将这个值数放在一个<code>量纲</code>下，最好的<code>量纲</code>就是自己的原始数据分布情况。</p>
@@ -422,8 +579,8 @@ $$
 <p>我们知道了排名后，其实计算公式还是<code>person</code>那套算法</p>
 <p><img src="http://statistics.laerd.com/statistical-guides/img/spearman-3.jpg" alt="img"></p>
 <p>但是我们也可以发现。这样将直接计算排名，会那些<code>非线性</code>的相关性就会非常友好了。此外，还可以适用于<code>非正态分布</code>的数据。但作用也是有限的。不然你试试。</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;spearman&#34;</span>)
-<span style="color:#06b;font-weight:bold">cor</span>(tem,icecream,method =<span style="color:#d20;background-color:#fff0f0">&#34;pearson&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">cor</span>(tem,icecream,method <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;spearman&#34;</span>)
+<span style="color:#a6e22e">cor</span>(tem,icecream,method <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pearson&#34;</span>)
 </code></pre></div><p>所以至于选择<code>spearman</code>还是选择<code>pearson</code>来计算相关性。这个还要结合数据来说话。因此推荐先用<code>pearson</code>来计算，如果结果不好，就可以试试<code>spearman</code>.</p>
 <h3 id="233-cos余弦相似性">2.3.3 cos余弦相似性</h3>
 <p>余弦相似性测量两个<em>n</em>维样本向量的方向，而与其大小无关。它由两个<code>数值向量</code>的点积计算，并且通过<code>向量长度</code>的乘积进行归一化，因此接近<em>1</em>的输出值表示高相似性。
@@ -500,7 +657,7 @@ $$</p>
   </section>
   
 <footer class="site-footer">
-  <p>© 2019-2023 Woney&#39;s Blog</p>
+  <p>© 2019-2026 Woney&#39;s Blog</p>
   Powered by , the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
