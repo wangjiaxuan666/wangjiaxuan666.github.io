@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最近的一点思考-关于AI的事情</title>
+      <link>https://abego.cn/2026/03/12/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-%E5%85%B3%E4%BA%8E%E8%AF%BB%E5%8D%9A/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://abego.cn/2026/03/12/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-%E5%85%B3%E4%BA%8E%E8%AF%BB%E5%8D%9A/</guid>
+      <description>&lt;p&gt;最近在考虑读博的事情，想到以前做这个网站主要是技术分享，也是督促自己学习。但是目前AI的发展太快了，今天我还在想，好像没有必要学习新东西了，&lt;strong&gt;因为再怎么学习，都赶不上AI到时候直接给你打包处理了。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>合并多个文件中一列内容到新文件的py脚本</title>
       <link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link>
