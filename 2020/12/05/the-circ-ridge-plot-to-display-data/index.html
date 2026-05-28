@@ -169,7 +169,7 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="发现变弯真是个好的点子！！！
+  <meta name="description" content="发现变弯真是个好的点子！！！
 ">
 
   
@@ -177,7 +177,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="R绘图展示数据分布情况之ta弯了—圆波图">
-    <meta name="twitter:description" content="发现变弯真是个好的点子！！！
+    <meta name="twitter:description" content="发现变弯真是个好的点子！！！
 ">
     <meta name="twitter:image" content="https://abego.cn/media/r.jpg">
   
@@ -185,7 +185,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="R绘图展示数据分布情况之ta弯了—圆波图">
-  <meta property="og:description" content="发现变弯真是个好的点子！！！
+  <meta property="og:description" content="发现变弯真是个好的点子！！！
 ">
   <meta property="og:url" content="https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/">
   <meta property="og:image" content="https://abego.cn/media/r.jpg">
@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/">
@@ -461,7 +461,17 @@
       <p class="post-meta">@Wang Jiaxuan · Dec 5, 2020 · 3 min read</p>
     </header>
     
-    <article class="post-content"><p>最近发现一个好玩的图形，可以展现不同分组的数据分布规律。其实图形展示可能不够一目了然，但是颜值还是挺高的。画图就是以“颜值”为目标。毕竟现在想搞一些好的文章，不仅实验设计好，分析厉害，对结果展示也要求一些高逼格的图表展示。</p>
+    <article class="post-content"><script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>发现变弯真是个好的点子！！！</p>
+
+
+
+
+<p>最近发现一个好玩的图形，可以展现不同分组的数据分布规律。其实图形展示可能不够一目了然，但是颜值还是挺高的。画图就是以“颜值”为目标。毕竟现在想搞一些好的文章，不仅实验设计好，分析厉害，对结果展示也要求一些高逼格的图表展示。</p>
 <p>圆波图是我自己随便命名的，反正图形是圆形，数据是波浪形的，简称圆波图。完美！</p>
 <p>其实我们一般在展现不同分组的数据分布的时候，常用的是柱形图，箱线图，或者小提琴图，或者更高级一点的云雨图。类似于下图。</p>
 <p>我们利用R包<code>ggridges</code>自带的数据<code>lincoln_weather</code>来进行数据展示。这也就意味这首先你得先按照今天的主角R包<code>ggridges</code>，才能开始。</p>
@@ -560,8 +570,7 @@ p8 &lt;- p6+coord_polar(theta = &quot;x&quot;)+theme_circ()
 patchwork &lt;- p7+p8+plot_annotation(tag_levels = &#39;A&#39;)
 print(patchwork&amp;labs(x = &quot; &quot;,y = &quot; &quot;,color = &quot;Month&quot;,fill = &quot;Month&quot;,x = &quot; &quot;,y = &quot; &quot;))</code></pre>
 <p><img src="https://abego.cn/post/2020-12-05-the-circ-ridge-plot-to-display-data/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>当然了，实际作图的时候，肯定是比这些更精雕细琢一些，但是作为使用的方案，基本都和上面差不多。完结撒花！</p>
-</article>
+<p>当然了，实际作图的时候，肯定是比这些更精雕细琢一些，但是作为使用的方案，基本都和上面差不多。完结撒花！</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -582,8 +591,8 @@ print(patchwork&amp;labs(x = &quot; &quot;,y = &quot; &quot;,color = &quot;Month
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -599,8 +608,9 @@ print(patchwork&amp;labs(x = &quot; &quot;,y = &quot; &quot;,color = &quot;Month
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -659,17 +669,6 @@ print(patchwork&amp;labs(x = &quot; &quot;,y = &quot; &quot;,color = &quot;Month
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

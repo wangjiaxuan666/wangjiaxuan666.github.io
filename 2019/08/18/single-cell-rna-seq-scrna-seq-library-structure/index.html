@@ -169,28 +169,28 @@
 
   
   <meta name="author" content="Jiaxuan Wang">
-  <meta name="description" content="">
+  <meta name="description" content="">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="关于不同单细胞测序技术之间的比较">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="">
     <meta name="twitter:image" content="https://abego.cn/media/r.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="关于不同单细胞测序技术之间的比较">
-  <meta property="og:description" content="">
+  <meta property="og:description" content="">
   <meta property="og:url" content="https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/">
   <meta property="og:image" content="https://abego.cn/media/r.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/">
@@ -455,10 +455,29 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">关于不同单细胞测序技术之间的比较</h1>
-      <p class="post-meta">@Jiaxuan Wang · Aug 18, 2019 · 10 min read</p>
+      <p class="post-meta">@Jiaxuan Wang · Aug 18, 2019 · 2 min read</p>
     </header>
     
-    <article class="post-content"><div id="section" class="section level1">
+    <article class="post-content"><script src="https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://abego.cn/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/selectize/selectize.min.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+
+
+
+
+
+
+<div id="section" class="section level1">
 <h1>背景</h1>
 <p>我在之前的文章<a href="https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/">《单细胞分析软件和原理笔记大全》</a>里也写了关于我最近会看的<a href="https://teichlab.github.io/scg_lib_structs/">文章</a>, 昨天也是花了时间大概浏览了一遍. 最终还是决定先从不同单细胞测序技术的比较上入手. 先初步学习一下可能需要比较的技术.</p>
 <p>另外最近也从网上学到了一些比较有意思的R包, 这些R包都是某个大神开发的R包, 非常有意思的是,他并不是传统的R语言家,而更像一个Javascript的专业程序员.所以他开发的R包都是基于Javascript的, 虽然R统计和计算非常强大. 但是在可视化上其实还是比Javascript稍微弱上一些.尤其是在交互和网上阅览的时候.</p>
@@ -753,8 +772,7 @@ svg.selectAll('rect.rect-outline').remove();
 </script>
 </body>
 <p>展现自己学来的骚操作后, 就要好好的认真整理了单细胞技术之间的区别了.</p>
-</div>
-</article>
+</div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -779,8 +797,8 @@ svg.selectAll('rect.rect-outline').remove();
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -796,8 +814,9 @@ svg.selectAll('rect.rect-outline').remove();
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -856,17 +875,6 @@ svg.selectAll('rect.rect-outline').remove();
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

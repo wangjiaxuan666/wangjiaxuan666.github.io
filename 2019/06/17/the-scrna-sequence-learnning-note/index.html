@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/">
@@ -500,34 +500,34 @@
 </blockquote>
 <p>我们主要介绍<code>10x</code>技术的建库测序和分析内容</p>
 <table>
-<thead>
-<tr>
-<th>10X Genomics   単细胞DNA</th>
-<th>10X Genomics 单细胞RNA</th>
-<th>10X Genomics 単细胞免疫组库</th>
-<th>BD Rhapsody 单细胞</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>単细胞CNV检测</td>
-<td>单细胞3&rsquo;转录组测序检测</td>
-<td>单细胞TCR+5&rsquo;基因表达检测</td>
-<td>定制灵活单细胞靶向基因表达检测</td>
-</tr>
-<tr>
-<td>单细胞ATAC检测</td>
-<td>单细胞5”转录组测序检测</td>
-<td>单细胞BCR+5&rsquo;基因表达检测</td>
-<td>单细胞蛋白组及转录组联合检测</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>单细胞TCR+BCR+5&rsquo;基因表达检测</td>
-<td></td>
-</tr>
-</tbody>
+	<thead>
+			<tr>
+					<th>10X Genomics   単细胞DNA</th>
+					<th>10X Genomics 单细胞RNA</th>
+					<th>10X Genomics 単细胞免疫组库</th>
+					<th>BD Rhapsody 单细胞</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>単细胞CNV检测</td>
+					<td>单细胞3&rsquo;转录组测序检测</td>
+					<td>单细胞TCR+5&rsquo;基因表达检测</td>
+					<td>定制灵活单细胞靶向基因表达检测</td>
+			</tr>
+			<tr>
+					<td>单细胞ATAC检测</td>
+					<td>单细胞5”转录组测序检测</td>
+					<td>单细胞BCR+5&rsquo;基因表达检测</td>
+					<td>单细胞蛋白组及转录组联合检测</td>
+			</tr>
+			<tr>
+					<td></td>
+					<td></td>
+					<td>单细胞TCR+BCR+5&rsquo;基因表达检测</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <h1 id="提取和建库">提取和建库</h1>
 <p>目前主要用的10x的<em>The Chromium Single Cell Gene Expression Solution</em>。所以下面主要讲的是10x的<code>Chromium</code>文库制备。</p>
@@ -570,7 +570,7 @@
 </ol>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551858225268.png" alt="1551858225268"></p>
 <h2 id="步骤4-文库测序">步骤4 文库测序</h2>
-<p>构建完成的文库包含完整的 Illumina P5和P7末端。单细胞3'  V2 <em>16bp</em>的<code>barcades</code>位于<code>Read1</code>的起始点。样本 Index 称为 i7 index read。Read1和Read2是标准的，用于成对的测序引物位点。Read1用于<em>16bp</em> Barcode和<em>10bp</em>的UM测序，反之，Read2 用于插入的 cDNA 测序。而区分样本的<code>sample index</code>则本身就有已经平衡的<em>8bp</em>的核酸序列。</p>
+<p>构建完成的文库包含完整的 Illumina P5和P7末端。单细胞3&rsquo;  V2 <em>16bp</em>的<code>barcades</code>位于<code>Read1</code>的起始点。样本 Index 称为 i7 index read。Read1和Read2是标准的，用于成对的测序引物位点。Read1用于<em>16bp</em> Barcode和<em>10bp</em>的UM测序，反之，Read2 用于插入的 cDNA 测序。而区分样本的<code>sample index</code>则本身就有已经平衡的<em>8bp</em>的核酸序列。</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551862299572.png" alt="1551862299572"></p>
 <p>单细胞转录组的文库的测序覆盖度一般推荐是<em>50000</em> raw reads/细胞。根据选用的测序平合,调整上样浓度单细胞文库。其实这一步就是就是普通的二代测序了，已验证的测序平台有<code>illumina  Miseq</code>、 <code>Nextseq500/550</code>和 <code>Hiseq 2500</code>。</p>
 <p>建议测序长度（循环，这个循环不是PCR循环，而是SBS测序系统中的合成—洗脱—合成）</p>
@@ -604,8 +604,8 @@
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -621,8 +621,9 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -681,17 +682,6 @@
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

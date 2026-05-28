@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/">
@@ -494,71 +494,71 @@
 <p>了解生信分析软件，最关键的是输入文件和输出文件。</p>
 <p><code>DESeq2</code>的输入文件有两个，一个是<strong>count值计数文件</strong>，count值就是比对上这个基因的reads数目。一般公司给的结果都有的，这次我也是用公司给的表格数据来做的。因为我不会linux，自然也不会hisat2等比对软件咯。所以上游是断，只有从已有的公司结果出发。不过我相信大部分公司都会给count值的。比如我所在的公司就是在表达量总表里。</p>
 <p><code>DESeq2</code>需要的输入文件是这样的，行为基因名称，列为样本，值为count值</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">##             untreated1 untreated2 untreated3   treated1 treated2
-## FBgn0000003          0          0          0          0        0
-## FBgn0000008         92        161         76         70      140
-## .....
-</code></pre><p>另一个就是<strong>样本设计的表格</strong>，也就是分组信息，当然也可以多个分组，从而计算批次效应。</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">##              condition        type
-## treated1fb     treated single-read
-## treated2fb     treated  paired-end
-## treated3fb     treated  paired-end
-## untreated1fb untreated single-read
-## untreated2fb untreated single-read
-## untreated3fb untreated  paired-end
-## untreated4fb untreated  paired-end
-</code></pre><h2 id="表格整理">表格整理</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">##             untreated1 untreated2 untreated3   treated1 treated2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## FBgn0000003          0          0          0          0        0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## FBgn0000008         92        161         76         70      140</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## .....</span>
+</span></span></code></pre></div><p>另一个就是<strong>样本设计的表格</strong>，也就是分组信息，当然也可以多个分组，从而计算批次效应。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">##              condition        type</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## treated1fb     treated single-read</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## treated2fb     treated  paired-end</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## treated3fb     treated  paired-end</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## untreated1fb untreated single-read</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## untreated2fb untreated single-read</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## untreated3fb untreated  paired-end</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## untreated4fb untreated  paired-end</span>
+</span></span></code></pre></div><h2 id="表格整理">表格整理</h2>
 <p>知道了输入文件的格式，就努力整理数据表格吧。</p>
 <p>相信了解的R的人，处理起来是不难的，要是实在不行，就用excel</p>
 <p>我的命令如下，其实也是半自动化的，理论上，只要count值那一列的名词里有“count”，行是基因名词的数据，应该都可以的。有兴趣的话，可以用自己的数据试试，如果出错，很可能是正则表达式的错误用法。</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># R 3.5.2 win 10
-library(&quot;`DESeq2`&quot;,quietly = TRUE)
-library(magrittr)
-library(stringr)
-#browseVignettes(&quot;`DESeq2`&quot;),这是官方说明文档，不看说明文档的生信分析就是耍流氓
-#处理原始数据，要看公司给的那个表格中有count值的信息
-#把infile设置为这个包含count值的表格，复制到工作目录下
-infile &lt;- &quot;all.genes.expression.xls&quot;#读取的count数文件
-path &lt;- &quot;C:/Users/woney/Desktop&quot;#这是我的桌面路径，注意windows自带的反斜杠和R认为的反过来的
-setwd(path)#设置工作路径
-expstat = readr::read_tsv(infile, col_names = T) %&gt;% tibble::column_to_rownames(var = &quot;id&quot;)
-#用readr的包是因为read.table老是出各种叉子
-sample &lt;- colnames(expstat)[stringr::str_detect(colnames(expstat),&quot;count&quot;)]#这里用str_subset()会更好，但我懒得改了
-#读取count数据
-count &lt;- expstat[,sample]#只读取表达量总表中的有count值的列
-count = round(count,0)#`DESeq2`只能处理整数的count值
-</code></pre><p>当然我不能保证上面的命令，粘贴复制就管用，所以学习R，弄懂每一行命令的含义最重要。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># R 3.5.2 win 10</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;`DESeq2`&#34;</span>,quietly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(magrittr)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(stringr)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#browseVignettes(&#34;`DESeq2`&#34;),这是官方说明文档，不看说明文档的生信分析就是耍流氓</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#处理原始数据，要看公司给的那个表格中有count值的信息</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#把infile设置为这个包含count值的表格，复制到工作目录下</span>
+</span></span><span style="display:flex;"><span>infile <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;all.genes.expression.xls&#34;</span><span style="color:#75715e">#读取的count数文件</span>
+</span></span><span style="display:flex;"><span>path <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span><span style="color:#75715e">#这是我的桌面路径，注意windows自带的反斜杠和R认为的反过来的</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setwd</span>(path)<span style="color:#75715e">#设置工作路径</span>
+</span></span><span style="display:flex;"><span>expstat <span style="color:#f92672">=</span> readr<span style="color:#f92672">::</span><span style="color:#a6e22e">read_tsv</span>(infile, col_names <span style="color:#f92672">=</span> T) <span style="color:#f92672">%&gt;%</span> tibble<span style="color:#f92672">::</span><span style="color:#a6e22e">column_to_rownames</span>(var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;id&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#用readr的包是因为read.table老是出各种叉子</span>
+</span></span><span style="display:flex;"><span>sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colnames</span>(expstat)[stringr<span style="color:#f92672">::</span><span style="color:#a6e22e">str_detect</span>(<span style="color:#a6e22e">colnames</span>(expstat),<span style="color:#e6db74">&#34;count&#34;</span>)]<span style="color:#75715e">#这里用str_subset()会更好，但我懒得改了</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#读取count数据</span>
+</span></span><span style="display:flex;"><span>count <span style="color:#f92672">&lt;-</span> expstat[,sample]<span style="color:#75715e">#只读取表达量总表中的有count值的列</span>
+</span></span><span style="display:flex;"><span>count <span style="color:#f92672">=</span> <span style="color:#a6e22e">round</span>(count,<span style="color:#ae81ff">0</span>)<span style="color:#75715e">#`DESeq2`只能处理整数的count值</span>
+</span></span></code></pre></div><p>当然我不能保证上面的命令，粘贴复制就管用，所以学习R，弄懂每一行命令的含义最重要。</p>
 <p>上面我们已经读取了count值得数据，下面就要设置样品分组的colData数据了</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#设置分组colData的信息
-sample &lt;- stringr::str_replace_all(sample, &quot;_count&quot;,&quot;&quot;)
-colnames(count) &lt;- sample
-group &lt;- stringr::str_replace_all(sample,&quot;-.*&quot;,&quot;&quot;)
-condition &lt;- as.factor(group)#一定要是因子类型的向量，切记
-colData = data.frame(row.names=sample,condition)
-</code></pre><p>那么设置好输入文件后，就要进入差异分析了。但是差异分析前，要设置好参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">#设置分组colData的信息</span>
+</span></span><span style="display:flex;"><span>sample <span style="color:#f92672">&lt;-</span> stringr<span style="color:#f92672">::</span><span style="color:#a6e22e">str_replace_all</span>(sample, <span style="color:#e6db74">&#34;_count&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">colnames</span>(count) <span style="color:#f92672">&lt;-</span> sample
+</span></span><span style="display:flex;"><span>group <span style="color:#f92672">&lt;-</span> stringr<span style="color:#f92672">::</span><span style="color:#a6e22e">str_replace_all</span>(sample,<span style="color:#e6db74">&#34;-.*&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>condition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.factor</span>(group)<span style="color:#75715e">#一定要是因子类型的向量，切记</span>
+</span></span><span style="display:flex;"><span>colData <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(row.names<span style="color:#f92672">=</span>sample,condition)
+</span></span></code></pre></div><p>那么设置好输入文件后，就要进入差异分析了。但是差异分析前，要设置好参数</p>
 <h2 id="参数设置">参数设置</h2>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">diff_set &lt;- &quot;PBS_VS_GFP&quot; #设置比较，后面比前面，PBS是对照
-diff &lt;- unlist(str_split(diff_set,&quot;_VS_&quot;))
-cutfc &lt;- 1 #差异倍数的阈值，默认是是差异两倍，也就是log2的1
-test &lt;- &quot;FDR&quot; # &quot;PValue&quot;根据p值筛选，就换成test &lt;- &quot;PValue&quot; 
-cutp &lt;- 0.05 #统计检验值，小于0.05认为统计上显著
-</code></pre><h2 id="差异分析">差异分析</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>diff_set <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;PBS_VS_GFP&#34;</span> <span style="color:#75715e">#设置比较，后面比前面，PBS是对照</span>
+</span></span><span style="display:flex;"><span>diff <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">unlist</span>(<span style="color:#a6e22e">str_split</span>(diff_set,<span style="color:#e6db74">&#34;_VS_&#34;</span>))
+</span></span><span style="display:flex;"><span>cutfc <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#差异倍数的阈值，默认是是差异两倍，也就是log2的1</span>
+</span></span><span style="display:flex;"><span>test <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;FDR&#34;</span> <span style="color:#75715e"># &#34;PValue&#34;根据p值筛选，就换成test &lt;- &#34;PValue&#34; </span>
+</span></span><span style="display:flex;"><span>cutp <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0.05</span> <span style="color:#75715e">#统计检验值，小于0.05认为统计上显著</span>
+</span></span></code></pre></div><h2 id="差异分析">差异分析</h2>
 <p>我这里只是列举了简单的差异分析，不列举参数，因为我还没了解明白</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">## 差异分析
-dds &lt;- DESeqDataSetFromMatrix(count, colData, design= ~ condition)
-dds$condition &lt;- relevel(dds$condition, ref = diff[1])
-dds &lt;- DESeq(dds)
-#以下都是差异分析中的步骤，列举出来有助于我们了解其内在的分析流程
-#estimating size factors
-#estimating dispersions
-#gene-wise dispersion estimates
-#mean-dispersion relationship
-#final dispersion estimates
-#fitting model and testing
-res &lt;- results(dds, contrast=c(&quot;condition&quot;,diff[2],diff[1]))
-</code></pre><p>res就是差异分析的结果，但是大家输入res就会发现，<code>DESeq2</code>的输出结果中没有表达量的信息，但是有log2FC和P值、Q值的信息。一般来讲，做差异分析，肯定是想知道表达量的。然后再进行差异分析。但是其实这里面不是承上启下的流程。而是输入count值，出来差异倍数和检验值。虽然根据</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">diff_gene_`DESeq2` &lt;-subset(res, padj &lt; 0.05 &amp; abs(log2FoldChange) &gt; 1)
-</code></pre><p>也能得到差异基因的列表，但是没有类似于FPKM等表达量信息，没有表达量就没有其他那些基于表达量的信息了啊。但是<code>DESeq2</code>就是没输出，我觉得可能是表达量的计算方法有很多，而<code>edgeR</code>和<code>DESeq2</code>都是根据CPM来计算的，因为CPM不矫正基因的长度，所以基因的表达量的绝对大小会有比较大的波动。这意味着有大量的信息可用于离散估计和差异测试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">## 差异分析</span>
+</span></span><span style="display:flex;"><span>dds <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DESeqDataSetFromMatrix</span>(count, colData, design<span style="color:#f92672">=</span> <span style="color:#f92672">~</span> condition)
+</span></span><span style="display:flex;"><span>dds<span style="color:#f92672">$</span>condition <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">relevel</span>(dds<span style="color:#f92672">$</span>condition, ref <span style="color:#f92672">=</span> diff[1])
+</span></span><span style="display:flex;"><span>dds <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DESeq</span>(dds)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#以下都是差异分析中的步骤，列举出来有助于我们了解其内在的分析流程</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#estimating size factors</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#estimating dispersions</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#gene-wise dispersion estimates</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#mean-dispersion relationship</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#final dispersion estimates</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#fitting model and testing</span>
+</span></span><span style="display:flex;"><span>res <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">results</span>(dds, contrast<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;condition&#34;</span>,diff[2],diff[1]))
+</span></span></code></pre></div><p>res就是差异分析的结果，但是大家输入res就会发现，<code>DESeq2</code>的输出结果中没有表达量的信息，但是有log2FC和P值、Q值的信息。一般来讲，做差异分析，肯定是想知道表达量的。然后再进行差异分析。但是其实这里面不是承上启下的流程。而是输入count值，出来差异倍数和检验值。虽然根据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>diff_gene_`DESeq2` <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">subset</span>(res, padj <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.05</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">abs</span>(log2FoldChange) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>也能得到差异基因的列表，但是没有类似于FPKM等表达量信息，没有表达量就没有其他那些基于表达量的信息了啊。但是<code>DESeq2</code>就是没输出，我觉得可能是表达量的计算方法有很多，而<code>edgeR</code>和<code>DESeq2</code>都是根据CPM来计算的，因为CPM不矫正基因的长度，所以基因的表达量的绝对大小会有比较大的波动。这意味着有大量的信息可用于离散估计和差异测试。</p>
 <p>同时说实话，大家都是比较同一个基因，都是一个基因，矫正长度有什么用，都是一样的长度。</p>
 <p>所以说实话，这也是FPKM等对长度进行矫正的表达量公式地位下降的原因。</p>
 <p>总之，我们需要表达量，那么就要计算表达量。不同样本间的同一个基因比较，跟长度关系不大，直接用CPM来计算，为什么呢，因为我没有基因长度信息。R语言处理DNA序列，天生就不强，再说我也不会。更不会用其他非R软件去计算。</p>
@@ -566,34 +566,34 @@ res &lt;- results(dds, contrast=c(&quot;condition&quot;,diff[2],diff[1]))
 <p>CPM与FPKM的比较：https://support.bioconductor.org/p/69433/</p>
 </blockquote>
 <h2 id="表达量计算">表达量计算</h2>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#计算表达量
-diff_sample &lt;- str_subset(nms,pattern = paste0(diff[1],&quot;|&quot;,diff[2]))
-data = count[,diff_sample]
-## cal cpm 
-data2=data
-allcols &lt;- length(diff_sample)
-for(i in 1:allcols){
-  data2[,i] = round(data[,i]*1000000/sum(data[,i]),2)
-  colnames(data2)[i] = paste(colnames(data)[i],&quot;_CPM&quot;,sep=&quot;&quot;)
-}
-## mean 
-C_number = length(diff[1])
-data3=data2[,1:2]
-data3[,1] = apply(data.frame(data2[,1:C_number]), 1, mean )
-data3[,2] = apply(data.frame(data2[,(C_number+1):allcols]), 1, mean)
-data3[which(data3[,1]==0),1]=0.001
-data3[which(data3[,2]==0),2]=0.001
-log2fc=round(log2(data3[,2]/data3[,1]),4)
-colnames(data3)=paste(diff,&quot;_mean&quot;,sep=&quot;&quot;)
-## ouput file, id,count,log2(fc),pvalue,qvalue
-data4=data.frame(rownames(data),data,data2,data3,check.names=FALSE)
-colnames(data4)[1] = &quot;id&quot;
-data4$'log2(fc)' = log2fc
-data4$PValue = (res@listData)$pvalue
-data4$PValue[is.na(data4$PValue)] = 1
-data4$FDR = (res@listData)$padj
-data4$FDR[is.na(data4$FDR)] = 1
-</code></pre><p>这就有了表达量、count值，差异倍数，和检验值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">#计算表达量</span>
+</span></span><span style="display:flex;"><span>diff_sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">str_subset</span>(nms,pattern <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste0</span>(diff[1],<span style="color:#e6db74">&#34;|&#34;</span>,diff[2]))
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> count[,diff_sample]
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## cal cpm </span>
+</span></span><span style="display:flex;"><span>data2<span style="color:#f92672">=</span>data
+</span></span><span style="display:flex;"><span>allcols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">length</span>(diff_sample)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>allcols){
+</span></span><span style="display:flex;"><span>  data2[,i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">round</span>(data[,i]<span style="color:#f92672">*</span><span style="color:#ae81ff">1000000</span><span style="color:#f92672">/</span><span style="color:#a6e22e">sum</span>(data[,i]),<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">colnames</span>(data2)[i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">colnames</span>(data)[i],<span style="color:#e6db74">&#34;_CPM&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## mean </span>
+</span></span><span style="display:flex;"><span>C_number <span style="color:#f92672">=</span> <span style="color:#a6e22e">length</span>(diff[1])
+</span></span><span style="display:flex;"><span>data3<span style="color:#f92672">=</span>data2[,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>data3[,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">data.frame</span>(data2[,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>C_number]), <span style="color:#ae81ff">1</span>, mean )
+</span></span><span style="display:flex;"><span>data3[,<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">data.frame</span>(data2[,(C_number<span style="color:#ae81ff">+1</span>)<span style="color:#f92672">:</span>allcols]), <span style="color:#ae81ff">1</span>, mean)
+</span></span><span style="display:flex;"><span>data3<span style="color:#a6e22e">[which</span>(data3[,<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>
+</span></span><span style="display:flex;"><span>data3<span style="color:#a6e22e">[which</span>(data3[,<span style="color:#ae81ff">2</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>),<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>
+</span></span><span style="display:flex;"><span>log2fc<span style="color:#f92672">=</span><span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">log2</span>(data3[,<span style="color:#ae81ff">2</span>]<span style="color:#f92672">/</span>data3[,<span style="color:#ae81ff">1</span>]),<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">colnames</span>(data3)<span style="color:#f92672">=</span><span style="color:#a6e22e">paste</span>(diff,<span style="color:#e6db74">&#34;_mean&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## ouput file, id,count,log2(fc),pvalue,qvalue</span>
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">=</span><span style="color:#a6e22e">data.frame</span>(<span style="color:#a6e22e">rownames</span>(data),data,data2,data3,check.names<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">colnames</span>(data4)[1] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">$</span><span style="color:#e6db74">&#39;log2(fc)&#39;</span> <span style="color:#f92672">=</span> log2fc
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">$</span>PValue <span style="color:#f92672">=</span> (res<span style="color:#f92672">@</span>listData)<span style="color:#f92672">$</span>pvalue
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">$</span>PValue<span style="color:#a6e22e">[is.na</span>(data4<span style="color:#f92672">$</span>PValue)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">$</span>FDR <span style="color:#f92672">=</span> (res<span style="color:#f92672">@</span>listData)<span style="color:#f92672">$</span>padj
+</span></span><span style="display:flex;"><span>data4<span style="color:#f92672">$</span>FDR<span style="color:#a6e22e">[is.na</span>(data4<span style="color:#f92672">$</span>FDR)] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>这就有了表达量、count值，差异倍数，和检验值。</p>
 <p>但如果你仔细看，就有疑虑，这个疑虑我现在不能说，看一下就好。</p>
 <h1 id="结果检验">结果检验</h1>
 <p>因为我同时还有<code>edgeR</code>进行分析。以及根据<code>DESeq2</code>的结果直接进行分析。以及根据<code>DESeq2</code>和检验值，和我自己算的表达量都进行计算。</p>
@@ -602,20 +602,20 @@ data4$FDR[is.na(data4$FDR)] = 1
 <p>同样的差异分析阈值，FDR &lt; 0.05 和 log2|FC| &gt; 1，得到的差异基因数目如下：</p>
 <p>忘了保存了，导致忘了具体的）</p>
 <table>
-<thead>
-<tr>
-<th>edgeR</th>
-<th>DESeq2</th>
-<th>myFC + DESeq2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>~2500</td>
-<td>~2400</td>
-<td>~2300</td>
-</tr>
-</tbody>
+	<thead>
+			<tr>
+					<th>edgeR</th>
+					<th>DESeq2</th>
+					<th>myFC + DESeq2</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>~2500</td>
+					<td>~2400</td>
+					<td>~2300</td>
+			</tr>
+	</tbody>
 </table>
 <p>交集在各自的图中，没有韦恩图可视化，因为我还在摸索韦恩图的R包</p>
 <p>简而言之，我的感觉是</p>
@@ -640,8 +640,8 @@ data4$FDR[is.na(data4$FDR)] = 1
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -657,8 +657,9 @@ data4$FDR[is.na(data4$FDR)] = 1
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -717,17 +718,6 @@ data4$FDR[is.na(data4$FDR)] = 1
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

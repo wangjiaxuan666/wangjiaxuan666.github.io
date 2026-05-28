@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2019/08/12/the-cv-of-gene-expression/">
@@ -502,148 +502,148 @@
 <p>我好喜欢这个<code>sublime</code>，哈哈哈</p>
 <h3 id="用r计算离散系数">用R计算离散系数</h3>
 <p>注释看代码行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># R 3.5.2 win 10</span>
-<span style="color:#a6e22e">require</span>(tidyverse)
-<span style="color:#a6e22e">require</span>(matrixStats)<span style="color:#75715e">#这个包有rowSds函数，计算一行的sd标准差</span>
-path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#75715e"># 这是我的工作目录桌面</span>
-inname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all.sample.annot.xls&#34;</span>
-<span style="color:#a6e22e">setwd</span>(path)
-dat<span style="color:#f92672">=</span><span style="color:#a6e22e">read_tsv</span>(inname, col_names <span style="color:#f92672">=</span> T)
-nms <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">str_subset</span>(<span style="color:#a6e22e">colnames</span>(dat),pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pm|km&#34;</span>)
-<span style="color:#a6e22e">dim</span>(dat)
-dat_m <span style="color:#f92672">&lt;-</span> dat <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">rowSums</span>(.[nms]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span>
-         <span style="color:#a6e22e">mutate</span>(mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowMeans</span>(.[nms]),sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowSds</span>(<span style="color:#a6e22e">as.matrix</span>(.[nms]))) <span style="color:#f92672">%&gt;%</span>
-         <span style="color:#a6e22e">mutate</span>(CV <span style="color:#f92672">=</span> sd<span style="color:#f92672">/</span>mean)
-dat_cv <span style="color:#f92672">&lt;-</span> dat_m
-<span style="color:#a6e22e">write_tsv</span>(dat_cv,<span style="color:#e6db74">&#34;unigene_cv.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
-dat_quan <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quantile</span>(dat_cv[[<span style="color:#e6db74">&#34;CV&#34;</span>]],prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)<span style="color:#75715e">#寻找排名前1%的最小CV值基因</span>
-dat_cv_fit <span style="color:#f92672">&lt;-</span> dat_cv <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">arrange</span>(CV) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(mean <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>, CV <span style="color:#f92672">&lt;=</span> dat_quan)
-<span style="color:#a6e22e">write_tsv</span>(dat_cv_fit,<span style="color:#e6db74">&#34;unigene_cv_filter.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
-</code></pre></div><p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e"># R 3.5.2 win 10</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(matrixStats)<span style="color:#75715e">#这个包有rowSds函数，计算一行的sd标准差</span>
+</span></span><span style="display:flex;"><span>path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/woney/Desktop&#34;</span> <span style="color:#75715e"># 这是我的工作目录桌面</span>
+</span></span><span style="display:flex;"><span>inname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;all.sample.annot.xls&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setwd</span>(path)
+</span></span><span style="display:flex;"><span>dat<span style="color:#f92672">=</span><span style="color:#a6e22e">read_tsv</span>(inname, col_names <span style="color:#f92672">=</span> T)
+</span></span><span style="display:flex;"><span>nms <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">str_subset</span>(<span style="color:#a6e22e">colnames</span>(dat),pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pm|km&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dim</span>(dat)
+</span></span><span style="display:flex;"><span>dat_m <span style="color:#f92672">&lt;-</span> dat <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">rowSums</span>(.[nms]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">mutate</span>(mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowMeans</span>(.[nms]),sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">rowSds</span>(<span style="color:#a6e22e">as.matrix</span>(.[nms]))) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">mutate</span>(CV <span style="color:#f92672">=</span> sd<span style="color:#f92672">/</span>mean)
+</span></span><span style="display:flex;"><span>dat_cv <span style="color:#f92672">&lt;-</span> dat_m
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write_tsv</span>(dat_cv,<span style="color:#e6db74">&#34;unigene_cv.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
+</span></span><span style="display:flex;"><span>dat_quan <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quantile</span>(dat_cv[[<span style="color:#e6db74">&#34;CV&#34;</span>]],prob <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)<span style="color:#75715e">#寻找排名前1%的最小CV值基因</span>
+</span></span><span style="display:flex;"><span>dat_cv_fit <span style="color:#f92672">&lt;-</span> dat_cv <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">arrange</span>(CV) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">filter</span>(mean <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>, CV <span style="color:#f92672">&lt;=</span> dat_quan)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write_tsv</span>(dat_cv_fit,<span style="color:#e6db74">&#34;unigene_cv_filter.xls&#34;</span>,col_names <span style="color:#f92672">=</span> T)
+</span></span></code></pre></div><p>到此，我们就得到了一个完整结果的文件，一个我们筛选后的表格，但是感觉还是缺一个图形。</p>
 <h3 id="绘制图形">绘制图形</h3>
 <p>对于这个目标结果的可视化，我没什么好的经验。所以暂且用散点图来绘制，但是感觉不太匹配，要是有好的建议，可以分享一下，一起学习和进步。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#绘制图形</span>
-p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(dat <span style="color:#f92672">=</span>dat_cv_fit, mapping <span style="color:#f92672">=</span> <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd))<span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv,<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd),fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv_fit,<span style="color:#a6e22e">aes</span>(fill <span style="color:#f92672">=</span> id),shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The mean of Unigene RPKM&#34;</span>,y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The stdev of Unigene RPKM&#34;</span> ,title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CV value&#34;</span>)<span style="color:#f92672">+</span>
-  <span style="color:#a6e22e">geom_vline</span>(xintercept <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">2000</span>),linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey&#34;</span>)
-<span style="color:#75715e">#进行一点调整</span>
-p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme_bw</span>()<span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)
-</code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">#绘制图形</span>
+</span></span><span style="display:flex;"><span>p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(dat <span style="color:#f92672">=</span>dat_cv_fit, mapping <span style="color:#f92672">=</span> <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd))<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv,<span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> mean, y <span style="color:#f92672">=</span> sd),fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skyblue&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_point</span>(dat <span style="color:#f92672">=</span> dat_cv_fit,<span style="color:#a6e22e">aes</span>(fill <span style="color:#f92672">=</span> id),shape <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,color <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>,size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The mean of Unigene RPKM&#34;</span>,y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The stdev of Unigene RPKM&#34;</span> ,title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;The CV value&#34;</span>)<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_vline</span>(xintercept <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">2000</span>),linetype <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;grey&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#进行一点调整</span>
+</span></span><span style="display:flex;"><span>p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme_bw</span>()<span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)
+</span></span></code></pre></div><p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/1551558278138.png" alt="1551558278138"></p>
 <h2 id="检验结果">检验结果</h2>
 <p>毕竟是自己的脚本，<em>R</em>实现的优势是速度快，但是只要其中一个命令出错，就可能导致结果的差异。对于自己不熟悉的东西，尤其是计算类的，还是小心一点比较好。</p>
 <p>所以我在excel上，还是检查了一下，我的结果。还是一致的。可靠！</p>
 <table>
-<thead>
-<tr>
-<th>id</th>
-<th>mean</th>
-<th>sd</th>
-<th>sd</th>
-<th>CV</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unigene0047702</td>
-<td>105.8204</td>
-<td>8.716806</td>
-<td>8.716806</td>
-<td>0.082374</td>
-</tr>
-<tr>
-<td>Unigene0071345</td>
-<td>110.7748</td>
-<td>11.24985</td>
-<td>11.24985</td>
-<td>0.101556</td>
-</tr>
-<tr>
-<td>Unigene0024038</td>
-<td>235.0149</td>
-<td>26.4493</td>
-<td>26.4493</td>
-<td>0.112543</td>
-</tr>
-<tr>
-<td>Unigene0054875</td>
-<td>224.0919</td>
-<td>26.61498</td>
-<td>26.61498</td>
-<td>0.118768</td>
-</tr>
-<tr>
-<td>Unigene0003494</td>
-<td>143.8802</td>
-<td>18.38708</td>
-<td>18.38708</td>
-<td>0.127794</td>
-</tr>
-<tr>
-<td>Unigene0001501</td>
-<td>136.5825</td>
-<td>17.94474</td>
-<td>17.94474</td>
-<td>0.131384</td>
-</tr>
-<tr>
-<td>Unigene0061046</td>
-<td>132.6634</td>
-<td>17.51517</td>
-<td>17.51517</td>
-<td>0.132027</td>
-</tr>
-<tr>
-<td>Unigene0051467</td>
-<td>224.9567</td>
-<td>29.70607</td>
-<td>29.70607</td>
-<td>0.132052</td>
-</tr>
-<tr>
-<td>Unigene0002648</td>
-<td>635.3467</td>
-<td>84.06525</td>
-<td>84.06525</td>
-<td>0.132314</td>
-</tr>
-<tr>
-<td>Unigene0018474</td>
-<td>315.5729</td>
-<td>43.3001</td>
-<td>43.3001</td>
-<td>0.137211</td>
-</tr>
-<tr>
-<td>Unigene0064436</td>
-<td>179.2159</td>
-<td>24.72725</td>
-<td>24.72725</td>
-<td>0.137975</td>
-</tr>
-<tr>
-<td>Unigene0058797</td>
-<td>126.3847</td>
-<td>17.8765</td>
-<td>17.8765</td>
-<td>0.141445</td>
-</tr>
-<tr>
-<td>Unigene0053692</td>
-<td>139.5825</td>
-<td>20.52212</td>
-<td>20.52212</td>
-<td>0.147025</td>
-</tr>
-<tr>
-<td>……………..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
+	<thead>
+			<tr>
+					<th>id</th>
+					<th>mean</th>
+					<th>sd</th>
+					<th>sd</th>
+					<th>CV</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Unigene0047702</td>
+					<td>105.8204</td>
+					<td>8.716806</td>
+					<td>8.716806</td>
+					<td>0.082374</td>
+			</tr>
+			<tr>
+					<td>Unigene0071345</td>
+					<td>110.7748</td>
+					<td>11.24985</td>
+					<td>11.24985</td>
+					<td>0.101556</td>
+			</tr>
+			<tr>
+					<td>Unigene0024038</td>
+					<td>235.0149</td>
+					<td>26.4493</td>
+					<td>26.4493</td>
+					<td>0.112543</td>
+			</tr>
+			<tr>
+					<td>Unigene0054875</td>
+					<td>224.0919</td>
+					<td>26.61498</td>
+					<td>26.61498</td>
+					<td>0.118768</td>
+			</tr>
+			<tr>
+					<td>Unigene0003494</td>
+					<td>143.8802</td>
+					<td>18.38708</td>
+					<td>18.38708</td>
+					<td>0.127794</td>
+			</tr>
+			<tr>
+					<td>Unigene0001501</td>
+					<td>136.5825</td>
+					<td>17.94474</td>
+					<td>17.94474</td>
+					<td>0.131384</td>
+			</tr>
+			<tr>
+					<td>Unigene0061046</td>
+					<td>132.6634</td>
+					<td>17.51517</td>
+					<td>17.51517</td>
+					<td>0.132027</td>
+			</tr>
+			<tr>
+					<td>Unigene0051467</td>
+					<td>224.9567</td>
+					<td>29.70607</td>
+					<td>29.70607</td>
+					<td>0.132052</td>
+			</tr>
+			<tr>
+					<td>Unigene0002648</td>
+					<td>635.3467</td>
+					<td>84.06525</td>
+					<td>84.06525</td>
+					<td>0.132314</td>
+			</tr>
+			<tr>
+					<td>Unigene0018474</td>
+					<td>315.5729</td>
+					<td>43.3001</td>
+					<td>43.3001</td>
+					<td>0.137211</td>
+			</tr>
+			<tr>
+					<td>Unigene0064436</td>
+					<td>179.2159</td>
+					<td>24.72725</td>
+					<td>24.72725</td>
+					<td>0.137975</td>
+			</tr>
+			<tr>
+					<td>Unigene0058797</td>
+					<td>126.3847</td>
+					<td>17.8765</td>
+					<td>17.8765</td>
+					<td>0.141445</td>
+			</tr>
+			<tr>
+					<td>Unigene0053692</td>
+					<td>139.5825</td>
+					<td>20.52212</td>
+					<td>20.52212</td>
+					<td>0.147025</td>
+			</tr>
+			<tr>
+					<td>……………..</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <h1 id="后言">后言</h1>
 <p>其实，用<em>R</em>做离散系数的分析，就到此完结撒花了。</p>
@@ -668,8 +668,8 @@ p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</sp
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -685,8 +685,9 @@ p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</sp
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -745,17 +746,6 @@ p2 <span style="color:#f92672">&lt;-</span> p1 <span style="color:#f92672">+</sp
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

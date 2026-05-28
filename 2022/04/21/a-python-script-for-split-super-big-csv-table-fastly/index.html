@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/">
@@ -467,9 +467,9 @@
 想想还有什么其他路子，后面就准备用AWK命令并行处理。因为脚本不具有通用型所以只能将脚本分解步骤进行描述。</p>
 <p>文件是很大的，所以具体的过程是：
 先构建一个包含列名的分组信息的索引，然后根据索引批量的用AWk命令去对表格进行分割。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">awk <span style="color:#e6db74">&#39;NR==1{print$0}&#39;</span> test.csv | sed <span style="color:#e6db74">&#39;s:&#34;::g&#39;</span> | sed <span style="color:#e6db74">&#39;s:,:\n:g&#39;</span> &gt; id.list
-head id.list
-</code></pre></div><pre tabindex="0"><code>eid
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;NR==1{print$0}&#39;</span> test.csv | sed <span style="color:#e6db74">&#39;s:&#34;::g&#39;</span> | sed <span style="color:#e6db74">&#39;s:,:\n:g&#39;</span> &gt; id.list
+</span></span><span style="display:flex;"><span>head id.list
+</span></span></code></pre></div><pre tabindex="0"><code>eid
 3-0.0
 3-1.0
 3-2.0
@@ -481,28 +481,28 @@ head id.list
 5-0.0
 </code></pre><p>可以看到列名的，是如上所示的，所以根据我们要求，假设我想按照3-xx，4-xx这样分类进行切割，那就需要一个对应分割组的索引。
 可以通过python来建立</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
-<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
-</code></pre></div><p>结合之前生成的列名文件（已经将其形成一竖排的表格形式），通过pandas读取列名文件和数据库文件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -------</span>
-infile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test.csv&#34;</span>
-idlist <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;id.list&#34;</span>
-</code></pre></div><ol>
-<li>将其按照'-&lsquo;进行分割，形成多列，例如3-xx变成3和xx两列</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span></code></pre></div><p>结合之前生成的列名文件（已经将其形成一竖排的表格形式），通过pandas读取列名文件和数据库文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># -------</span>
+</span></span><span style="display:flex;"><span>infile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test.csv&#34;</span>
+</span></span><span style="display:flex;"><span>idlist <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;id.list&#34;</span>
+</span></span></code></pre></div><ol>
+<li>将其按照&rsquo;-&lsquo;进行分割，形成多列，例如3-xx变成3和xx两列</li>
 <li>既然就是根据&rsquo;-&lsquo;之前的字符分组，就可以删掉其余列</li>
 <li>增加一列列数的索引，因为awk就是按照列数来进行分割的</li>
 <li>分组</li>
 <li>计算每个分组的列数范围</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">id_list <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(idlist, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
-id_list <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;-&#34;</span>, expand<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-id_list[<span style="color:#e6db74">&#39;colnum&#39;</span>] <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
-<span style="color:#66d9ef">del</span> id_list[<span style="color:#ae81ff">1</span>]
-colmin <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>groupby(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>min()
-colmax <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>groupby(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>max()
-id_loc <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(colmin, colmax, suffixes<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;_min&#34;</span>, <span style="color:#e6db74">&#34;_max&#34;</span>), how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>, left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-id_loc<span style="color:#f92672">.</span>head()
-</code></pre></div><table border="1" class="dataframe">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>id_list <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(idlist, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+</span></span><span style="display:flex;"><span>id_list <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>iloc[:, <span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>str<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;-&#34;</span>, expand<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>id_list[<span style="color:#e6db74">&#39;colnum&#39;</span>] <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>index <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> id_list[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>colmin <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>groupby(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>min()
+</span></span><span style="display:flex;"><span>colmax <span style="color:#f92672">=</span> id_list<span style="color:#f92672">.</span>groupby(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>max()
+</span></span><span style="display:flex;"><span>id_loc <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(colmin, colmax, suffixes<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;_min&#34;</span>, <span style="color:#e6db74">&#34;_max&#34;</span>), how<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;inner&#39;</span>, left_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, right_index<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>id_loc<span style="color:#f92672">.</span>head()
+</span></span></code></pre></div><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -544,21 +544,21 @@ id_loc<span style="color:#f92672">.</span>head()
   </tbody>
 </table>
 最后我们可以看到，最终是生成了一个三列矩阵，分别是分组名称，最小行数索引，最大行数索引。有了这个信息就可以进行进行AWK的脚本操作了
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">with</span> open(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(idlist) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_output.sh&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> file:
-    file<span style="color:#f92672">.</span>write(
-        <span style="color:#e6db74">&#34;#!/bin/bash</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    command <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;nohup awk -v FPAT=&#39;([^,]*)|(&#34;[^&#34;]+&#34;)&#39; -v OFS=&#39;,&#39; &#39;{print$1,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">}&#39; </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> &gt; split_0405/</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.csv &amp; </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
-    <span style="color:#75715e"># command = &#39;&#39;&#39;awk -v FPAT=&#34;([^,]+)|(\&#34;[^\&#34;]+\&#34;)&#34; -v OFS=&#39;,&#39; &#39;{print$1,%s}&#39; %s &gt; split_0405/%s.csv&#39;&#39;&#39;</span>
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(id_loc)):
-        col <span style="color:#f92672">=</span> range(id_loc<span style="color:#f92672">.</span>iloc[i, <span style="color:#ae81ff">0</span>], id_loc<span style="color:#f92672">.</span>iloc[i, <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
-        cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">+</span> str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> col]
-        file<span style="color:#f92672">.</span>write(command <span style="color:#f92672">%</span> (<span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">.</span>join(cols), infile, str(id_loc<span style="color:#f92672">.</span>index[i])))
-    file<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;wait</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-</code></pre></div><p>可以简单看下结果：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">head -n <span style="color:#ae81ff">3</span> id.list_output.sh
-</code></pre></div><pre tabindex="0"><code>#!/bin/bash
-nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16873,$16874,$16875,$16876,$16877}' test.csv &gt; split_0405/100001.csv &amp; 
-nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16878,$16879,$16880,$16881,$16882}' test.csv &gt; split_0405/100002.csv &amp; 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(idlist) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_output.sh&#39;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> file:
+</span></span><span style="display:flex;"><span>    file<span style="color:#f92672">.</span>write(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;#!/bin/bash</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    command <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;nohup awk -v FPAT=&#39;([^,]*)|(&#34;[^&#34;]+&#34;)&#39; -v OFS=&#39;,&#39; &#39;{print$1,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">}&#39; </span><span style="color:#e6db74">%s</span><span style="color:#e6db74"> &gt; split_0405/</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">.csv &amp; </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># command = &#39;&#39;&#39;awk -v FPAT=&#34;([^,]+)|(\&#34;[^\&#34;]+\&#34;)&#34; -v OFS=&#39;,&#39; &#39;{print$1,%s}&#39; %s &gt; split_0405/%s.csv&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(id_loc)):
+</span></span><span style="display:flex;"><span>        col <span style="color:#f92672">=</span> range(id_loc<span style="color:#f92672">.</span>iloc[i, <span style="color:#ae81ff">0</span>], id_loc<span style="color:#f92672">.</span>iloc[i, <span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;$&#39;</span> <span style="color:#f92672">+</span> str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> col]
+</span></span><span style="display:flex;"><span>        file<span style="color:#f92672">.</span>write(command <span style="color:#f92672">%</span> (<span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">.</span>join(cols), infile, str(id_loc<span style="color:#f92672">.</span>index[i])))
+</span></span><span style="display:flex;"><span>    file<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;wait</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>可以简单看下结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>head -n <span style="color:#ae81ff">3</span> id.list_output.sh
+</span></span></code></pre></div><pre tabindex="0"><code>#!/bin/bash
+nohup awk -v FPAT=&#39;([^,]*)|(&#34;[^&#34;]+&#34;)&#39; -v OFS=&#39;,&#39; &#39;{print$1,$16873,$16874,$16875,$16876,$16877}&#39; test.csv &gt; split_0405/100001.csv &amp; 
+nohup awk -v FPAT=&#39;([^,]*)|(&#34;[^&#34;]+&#34;)&#39; -v OFS=&#39;,&#39; &#39;{print$1,$16878,$16879,$16880,$16881,$16882}&#39; test.csv &gt; split_0405/100002.csv &amp; 
 </code></pre><p>好了，现在就可以愉快的用qsub或者sbatch批量的投递任务了，速度贼快，我看了下，100G的文件，分割成3000多个小文件，用了一个小时就搞定了。
 非常流畅</p>
 <p>希望我写的这个小脚本，对各位的分析有所帮助</p></article>
@@ -582,8 +582,8 @@ nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16878
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -599,8 +599,9 @@ nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16878
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -659,17 +660,6 @@ nohup awk -v FPAT='([^,]*)|(&quot;[^&quot;]+&quot;)' -v OFS=',' '{print$1,$16878
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

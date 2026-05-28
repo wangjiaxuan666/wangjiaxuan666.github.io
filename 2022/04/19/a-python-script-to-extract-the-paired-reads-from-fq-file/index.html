@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/">
@@ -476,20 +476,20 @@
 <p>嗯，总之感觉这个脚本写的很一般～，算了，自己还是用pysam重新写个吧。脚本放在<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/paired_Read.py">Github</a>上.可以直接copy下来或者下载下来。</p>
 <h3 id="使用">使用</h3>
 <p>使用起来比较简单，只有三个参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Extract the paired read from the PE platfrom reads
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --read1 READ1, -1 READ1
-                        the read1 file
-  --read2 READ2, -2 READ2
-                        the read2 file
-  --pattern PATTERN, -p PATTERN
-                        the python re module regrex expression which distinguish two read file like @read29299<span style="color:#f92672">[</span>.1<span style="color:#f92672">]</span> and @read29299<span style="color:#f92672">[</span>.2<span style="color:#f92672">]</span>, <span style="color:#66d9ef">then</span> the paremeter should be
-                        <span style="color:#e6db74">&#39;\.[1-2]$&#39;</span>,the default value is noting to replace
-</code></pre></div><p>可以直接输入进行运行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python paired_Read.py -1 文件1 -2 文件2
-</code></pre></div><p>而<code>pattern</code>参数则不是必须的，但是非常重要，例如read1 file 和read2 file 的reads名称是一模一样的，那直接不用设置这个参数，但是如果两个reads文件的reads name 是有后缀的不同，那就需要用正则匹配删掉不同的后缀。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Extract the paired read from the PE platfrom reads
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>optional arguments:
+</span></span><span style="display:flex;"><span>  -h, --help            show this help message and exit
+</span></span><span style="display:flex;"><span>  --read1 READ1, -1 READ1
+</span></span><span style="display:flex;"><span>                        the read1 file
+</span></span><span style="display:flex;"><span>  --read2 READ2, -2 READ2
+</span></span><span style="display:flex;"><span>                        the read2 file
+</span></span><span style="display:flex;"><span>  --pattern PATTERN, -p PATTERN
+</span></span><span style="display:flex;"><span>                        the python re module regrex expression which distinguish two read file like @read29299<span style="color:#f92672">[</span>.1<span style="color:#f92672">]</span> and @read29299<span style="color:#f92672">[</span>.2<span style="color:#f92672">]</span>, <span style="color:#66d9ef">then</span> the paremeter should be
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;\.[1-2]$&#39;</span>,the default value is noting to replace
+</span></span></code></pre></div><p>可以直接输入进行运行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python paired_Read.py -1 文件1 -2 文件2
+</span></span></code></pre></div><p>而<code>pattern</code>参数则不是必须的，但是非常重要，例如read1 file 和read2 file 的reads名称是一模一样的，那直接不用设置这个参数，但是如果两个reads文件的reads name 是有后缀的不同，那就需要用正则匹配删掉不同的后缀。</p>
 <p>例如read1文件的名字都是read29299xxx.1, 而read2文件的名字都是read29299xxx.2，那这个时候就需要<code>pattern</code>参数，去掉后面的<code>.1和.2</code>,正则匹配中的<code>\.[1-2]$</code>就可以很好的去掉后缀，从而判断成对reads。</p>
 <h3 id="例子">例子</h3>
 <p>先创建两个FastQ文件，<code>test.R1.fq</code>内容如下</p>
@@ -536,7 +536,6 @@ AAFFFJJJFJJJJJJ&lt;AJJJJJJJJJJJJJJJAJJJFJJJJF&lt;FJJF-FJ-FJJFA--AFFJFJJ&lt;JJJFJ
 CTATCCGAATTCCCACAAAAACAACCAATTTCCATCAACAAACACTCGCACTACACAAAACACTAAACTAAACTCAATAAAAAAAAAAACCCAAAAAAAAAACACTTACCCCTCAAAATCATAATATCACAACCTAAAATTCCGTCTTCC
 +
 AAFFFFJFFJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJFFFJJJJJJJJJJFAAAJJJAJJJAFJJFJF-AJFJJJJFJJJFJJJJAJA&lt;FFJJAFFJJ&lt;FJ-FA&lt;FJJFJ-&lt;FF&lt;A&lt;FFAA&lt;F
-
 </code></pre><h3 id="后记">后记</h3>
 <p>因为我使用了python的集合函数，速度应该更快一些，同时考虑reads name的通配问题，以及保留了对fasta文件的支持。后续可以根据需要修改。</p>
 <p>总体上感觉写个脚本半个小时，锻炼一下python水平，还挺好的。</p></article>
@@ -562,8 +561,8 @@ AAFFFFJFFJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJFFFJJJJJJJJJJFAA
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -579,8 +578,9 @@ AAFFFFJFFJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJFFFJJJJJJJJJJFAA
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -639,17 +639,6 @@ AAFFFFJFFJJJJJJJJJJJJJJJJJJFJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJFJJFFFJJJJJJJJJJFAA
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

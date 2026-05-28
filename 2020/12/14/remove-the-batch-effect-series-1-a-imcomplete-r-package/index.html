@@ -169,28 +169,28 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+  <meta name="description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="处理批次效应连续剧第一集(失败的R包)">
-    <meta name="twitter:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+    <meta name="twitter:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
     <meta name="twitter:image" content="https://abego.cn/media/r.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="处理批次效应连续剧第一集(失败的R包)">
-  <meta property="og:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
+  <meta property="og:description" content="事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。">
   <meta property="og:url" content="https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/">
   <meta property="og:image" content="https://abego.cn/media/r.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/">
@@ -458,7 +458,17 @@
       <p class="post-meta">@Wang Jiaxuan · Dec 14, 2020 · 6 min read</p>
     </header>
     
-    <article class="post-content"></p>
+    <article class="post-content"><script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。
+
+
+
+
+</p>
 <div id="遇到项目问题了" class="section level1">
 <h1>遇到项目问题了</h1>
 <p>事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。</p>
@@ -586,8 +596,7 @@ print(p1+p2+plot_annotation(tag_levels = &#39;A&#39;))</code></pre>
 </ol>
 <p>等我改好了，倒是再看看效果。</p>
 <p>加油，干饭人！</p>
-</div>
-</article>
+</div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -610,8 +619,8 @@ print(p1+p2+plot_annotation(tag_levels = &#39;A&#39;))</code></pre>
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -627,8 +636,9 @@ print(p1+p2+plot_annotation(tag_levels = &#39;A&#39;))</code></pre>
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -687,17 +697,6 @@ print(p1+p2+plot_annotation(tag_levels = &#39;A&#39;))</code></pre>
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

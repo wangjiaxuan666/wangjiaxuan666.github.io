@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/">
@@ -458,20 +458,20 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">M1芯片的电脑如何安装jdk-1.8.0</h1>
-      <p class="post-meta">@Wang Jiaxuan · Jan 11, 2022 · 1 min read</p>
+      <p class="post-meta">@Wang Jiaxuan · Jan 11, 2022 · 2 min read</p>
     </header>
     
     <article class="post-content"><p>解决下苹果M1自带的java报错问题</p>
 <h1 id="m1芯片的电脑如何安装">M1芯片的电脑如何安装</h1>
 <p>其实本身Mac是自带java的，但是我之前都没用过，因为很少在Mac上做分析。但是最近因为在学习cromwell，所以才发现，自带的java是加载不了的。不知道我这个情况是不是M1 Mac统一的。</p>
 <p>简而言之，就是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">which java
-<span style="color:#75715e">#/usr/bin/java</span>
-java -version
-<span style="color:#75715e">#The operation couldn’t be completed. Unable to locate a Java Runtime. Please visit http://www.java.com for information on installing Java.</span>
-</code></pre></div><p>就是报错，提示操作不完全，神奇！😳😳</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>which java
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#/usr/bin/java</span>
+</span></span><span style="display:flex;"><span>java -version
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#The operation couldn’t be completed. Unable to locate a Java Runtime. Please visit http://www.java.com for information on installing Java.</span>
+</span></span></code></pre></div><p>就是报错，提示操作不完全，神奇！&#x1f633;&#x1f633;</p>
 <h2 id="如何解决">如何解决</h2>
-<p>当然知道可以用conda 或者brew安装个新的，关键是我既不想冗余，比如创建环境，多个版本等，简洁yyds！在网上搜了<a href="https://code2care.org/q/install-native-java-jdk-jre-on-apple-silicon-m1-mac">资料</a>,发现还是可以解决的。👍👍👍</p>
+<p>当然知道可以用conda 或者brew安装个新的，关键是我既不想冗余，比如创建环境，多个版本等，简洁yyds！在网上搜了<a href="https://code2care.org/q/install-native-java-jdk-jre-on-apple-silicon-m1-mac">资料</a>,发现还是可以解决的。&#x1f44d;&#x1f44d;&#x1f44d;</p>
 <p>首先在网站上下载jdk，然后安装即可，具体步骤如下：</p>
 <ol>
 <li><a href="https://www.azul.com/downloads/zulu-community/?package=jdk">https://www.azul.com/downloads/zulu-community/?package=jdk</a> .网页打开</li>
@@ -483,12 +483,12 @@ java -version
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201101402311641794551hJLhzegKIBsB.png" alt="img"></p>
 <h3 id="安装jdk">安装JDK</h3>
 <p>下载完成后，双击下载好的dmg文件，既可以开始安装，期间可能会验证密码和指纹。安装成功后，重新再试试就会发现已经可以成功运行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -version
-<span style="color:#75715e">#openjdk version &#34;1.8.0_312&#34;</span>
-<span style="color:#75715e">#OpenJDK Runtime Environment (Zulu 8.58.0.13-CA-macos-aarch64) (build 1.8.0_312-b07)</span>
-<span style="color:#75715e">#OpenJDK 64-Bit Server VM (Zulu 8.58.0.13-CA-macos-aarch64) (build 25.312-b07, mixed mode)</span>
-</code></pre></div><h2 id="后记">后记</h2>
-<p>现在就可以正常使用java了，😸😸😸</p></article>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -version
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#openjdk version &#34;1.8.0_312&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#OpenJDK Runtime Environment (Zulu 8.58.0.13-CA-macos-aarch64) (build 1.8.0_312-b07)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#OpenJDK 64-Bit Server VM (Zulu 8.58.0.13-CA-macos-aarch64) (build 25.312-b07, mixed mode)</span>
+</span></span></code></pre></div><h2 id="后记">后记</h2>
+<p>现在就可以正常使用java了，&#x1f638;&#x1f638;&#x1f638;</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -511,8 +511,8 @@ java -version
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -528,8 +528,9 @@ java -version
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -588,17 +589,6 @@ java -version
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

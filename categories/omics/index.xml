@@ -1,209 +1,152 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Omics on Woney&#39;s Blog</title>
-    <link>https://abego.cn/categories/omics/</link>
-    <description>Recent content in Omics on Woney&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
-    <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/categories/omics/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
-      <link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
-      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
-      <description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>在Windows上安装和学习linux系统——安装WSL2</title>
-      <link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link>
-      <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid>
-      <description>因为我自己的电脑花了一千多大洋更新了内存条和硬盘💾。现在已经溜的起飞✈️，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，</description>
-    </item>
-    
-    <item>
-      <title>分享一个统计Q20和Q30的小脚本</title>
-      <link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link>
-      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid>
-      <description>分享一个统计Q20和Q30的小脚本📦 生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实</description>
-    </item>
-    
-    <item>
-      <title>从Nucleotide下载小基因组的Gtf注释文件</title>
-      <link>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</link>
-      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</guid>
-      <description>脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直</description>
-    </item>
-    
-    <item>
-      <title>什么是差异基因？差异基因少意味着什么</title>
-      <link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link>
-      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid>
-      <description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;
-&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
-&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>单细胞分析上游-Cellranger分析单细胞数据</title>
-      <link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link>
-      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid>
-      <description>生信软件学习-CellRanger的安装和使用 最近因为换了工作，真正的做了一名分析💻，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑</description>
-    </item>
-    
-    <item>
-      <title>处理批次效应连续剧第三集（R包基本OK）</title>
-      <link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
-      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
-      <description>
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>蛋白质谱研究细胞膜蛋白-实验提取方法</title>
-      <link>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link>
-      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid>
-      <description>&lt;p&gt;膜蛋白的分析由于它们的疏水性，复杂的翻译后修饰（PTM）以及它们以低丰度，一直以来都是蛋白研究的难点。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>基因转录组调控途径（译文）</title>
-      <link>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</link>
-      <pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</guid>
-      <description>&lt;p&gt;其中, 启动子凝聚物是在细胞核中的自发产生的瞬时动态结构，其形成主要依靠转录因子的浓度。相分离的浓缩假说解释了不同的转录因子如何能够招募相同的Pol II聚合酶。启动子凝聚物是高度动态的，并且可以在细胞核内, 发生位点改变，收缩和重整。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>关于不同单细胞测序技术之间的比较</title>
-      <link>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link>
-      <pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid>
-      <description>
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
-
-
-</description>
-    </item>
-    
-    <item>
-      <title>单细胞分析软件和原理笔记大全</title>
-      <link>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link>
-      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid>
-      <description>&lt;p&gt;本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>qPCR验证小RNA的表达量</title>
-      <link>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</link>
-      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</guid>
-      <description>&lt;p&gt;但miRNA与mRNA不同，成熟的miRNA的长度只有24nt左右，非常短，通常正向引物就足以覆盖其全长甚至有余，反向引物就无处安放了。那么如何实现miRNA的qPCR扩增呢？解决方案就是在逆转录的时候设法增加逆转录产物长度。普遍的方法有两种，加尾法和茎环法。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>如何解读KEGG网络图</title>
-      <link>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link>
-      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid>
-      <description>&lt;p&gt;根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>ChIP-seq的实验设计-第一个系列</title>
-      <link>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</link>
-      <pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
-      <description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>免疫细胞基因重组与免疫组测序</title>
-      <link>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link>
-      <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid>
-      <description>&lt;p&gt;作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>单细胞测序的拟时分析原理学习笔记</title>
-      <link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
-      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
-      <description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>单细胞测序技术的学习笔记-原理</title>
-      <link>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</link>
-      <pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</guid>
-      <description>&lt;p&gt;单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>图论好难, Network理论和WGCNA分析</title>
-      <link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link>
-      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>数据分析预处理:归一化,标准化和中心化</title>
-      <link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link>
-      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
-      <description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
-&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Omics on Woney&#39;s Blog</title>
+		<link>https://abego.cn/categories/omics/</link>
+		<description>Recent content in Omics on Woney&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-Hans</language>
+		
+		
+		
+			<copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
+		
+		
+			<lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://abego.cn/categories/omics/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
+				<link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
+				<pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
+				<description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>在Windows上安装和学习linux系统——安装WSL2</title>
+				<link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link>
+				<pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid>
+				<description>&lt;p&gt;因为我自己的电脑花了一千多大洋更新了内存条和硬盘&amp;#x1f4be;。现在已经溜的起飞&amp;#x2708;&amp;#xfe0f;，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，起飞&amp;#x2708;&amp;#xfe0f;！我18年买的电脑&amp;#x1f4bb;，感觉还可以再战三年~&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>分享一个统计Q20和Q30的小脚本</title>
+				<link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link>
+				<pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid>
+				<description>&lt;h1 id=&#34;分享一个统计q20和q30的小脚本package&#34;&gt;分享一个统计Q20和Q30的小脚本&amp;#x1f4e6;&lt;/h1&gt;&#xA;&lt;p&gt;生信往往会统计fa或者fq文件的reads数目&amp;#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如&lt;code&gt;fastaqc&lt;/code&gt;或者&lt;code&gt;fastq&lt;/code&gt;等。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>从Nucleotide下载小基因组的Gtf注释文件</title>
+				<link>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</link>
+				<pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</guid>
+				<description>&lt;h2 id=&#34;脚本的目的&#34;&gt;脚本的目的&lt;/h2&gt;&#xA;&lt;p&gt;大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/genome/&#34;&gt;NCBI-Genome&lt;/a&gt;或者&lt;a href=&#34;https://asia.ensembl.org/index.html&#34;&gt;Ensembl&lt;/a&gt;这些基因组网站上直接点击链接就可以了吗。&lt;/p&gt;&#xA;&lt;p&gt;其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/nuccore/941241313&#34;&gt;网页&lt;/a&gt;是这样子的：&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>什么是差异基因？差异基因少意味着什么</title>
+				<link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link>
+				<pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid>
+				<description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;&#xA;&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;&#xA;&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>单细胞分析上游-Cellranger分析单细胞数据</title>
+				<link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link>
+				<pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid>
+				<description>&lt;h2 id=&#34;生信软件学习-cellranger的安装和使用&#34;&gt;生信软件学习-CellRanger的安装和使用&lt;/h2&gt;&#xA;&lt;p&gt;最近因为换了工作，真正的做了一名分析&amp;#x1f4bb;，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑工作。但这终究不是个办法。所以除了工作内的分析单细胞和空转的内容外，我大概也有自己的计划&amp;#x1f4d5;：&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>处理批次效应连续剧第三集（R包基本OK）</title>
+				<link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
+				<pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
+				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>蛋白质谱研究细胞膜蛋白-实验提取方法</title>
+				<link>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link>
+				<pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid>
+				<description>&lt;p&gt;膜蛋白的分析由于它们的疏水性，复杂的翻译后修饰（PTM）以及它们以低丰度，一直以来都是蛋白研究的难点。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>基因转录组调控途径（译文）</title>
+				<link>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</link>
+				<pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</guid>
+				<description>&lt;p&gt;其中, 启动子凝聚物是在细胞核中的自发产生的瞬时动态结构，其形成主要依靠转录因子的浓度。相分离的浓缩假说解释了不同的转录因子如何能够招募相同的Pol II聚合酶。启动子凝聚物是高度动态的，并且可以在细胞核内, 发生位点改变，收缩和重整。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>关于不同单细胞测序技术之间的比较</title>
+				<link>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link>
+				<pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid>
+				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;</description>
+			</item>
+			<item>
+				<title>单细胞分析软件和原理笔记大全</title>
+				<link>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link>
+				<pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid>
+				<description>&lt;p&gt;本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>qPCR验证小RNA的表达量</title>
+				<link>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</link>
+				<pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</guid>
+				<description>&lt;p&gt;但miRNA与mRNA不同，成熟的miRNA的长度只有24nt左右，非常短，通常正向引物就足以覆盖其全长甚至有余，反向引物就无处安放了。那么如何实现miRNA的qPCR扩增呢？解决方案就是在逆转录的时候设法增加逆转录产物长度。普遍的方法有两种，加尾法和茎环法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>如何解读KEGG网络图</title>
+				<link>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link>
+				<pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid>
+				<description>&lt;p&gt;根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>ChIP-seq的实验设计-第一个系列</title>
+				<link>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</link>
+				<pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
+				<description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>免疫细胞基因重组与免疫组测序</title>
+				<link>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link>
+				<pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid>
+				<description>&lt;p&gt;作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>单细胞测序的拟时分析原理学习笔记</title>
+				<link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
+				<pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
+				<description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>单细胞测序技术的学习笔记-原理</title>
+				<link>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</link>
+				<pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</guid>
+				<description>&lt;p&gt;单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>图论好难, Network理论和WGCNA分析</title>
+				<link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link>
+				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>数据分析预处理:归一化,标准化和中心化</title>
+				<link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link>
+				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
+				<description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;&#xA;&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

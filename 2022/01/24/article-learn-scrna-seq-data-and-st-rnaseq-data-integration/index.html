@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/">
@@ -467,9 +467,9 @@
 <h2 id="空间组可以解决的生物学问题">空间组可以解决的生物学问题</h2>
 <p>作者提出一个比较新颖的名词<strong>Tissue homeostasis</strong>，姑且先称之为<strong>组织稳态</strong>吧，作者将组织稳态分别分为：</p>
 <ul>
-<li>1️⃣ Tissue development</li>
-<li>2️⃣ Disease microenvironment</li>
-<li>3️⃣ Tumour microenvironment</li>
+<li>&#x31;&#xfe0f;&#x20e3; Tissue development</li>
+<li>&#x32;&#xfe0f;&#x20e3; Disease microenvironment</li>
+<li>&#x33;&#xfe0f;&#x20e3; Tumour microenvironment</li>
 </ul>
 <p><strong>Tissue development</strong>是指研究在组织发育的关键阶段，空间转录组如何在组织中发生变化。<strong>Disease microenvironment</strong>是指阐明患病和受伤组织生态位中的空间转录组，着眼于接近相关的生物学特征，例如，接近阿尔茨海默病患者脑组织中的淀粉样蛋白斑块。<strong>Tumour microenvironment</strong>是指研究肿瘤的空间结构及其与环境中其他细胞亚型的界面和交流。</p>
 <blockquote>
@@ -491,7 +491,7 @@
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/2022012416204816430124480hsYezimage-20220124162048376.png" alt="image-20220124162048376"></p>
 <p>那么问题的关键就比较清晰，<strong>如何把单细胞的细胞类型映射在空间芯片上，得到细胞类型的位置关系？</strong></p>
 <h2 id="单细胞和空间足的整合分析策略">单细胞和空间足的整合分析策略</h2>
-<h3 id="1-反卷积">1. 反卷积🐘</h3>
+<h3 id="1-反卷积elephant">1. 反卷积&#x1f418;</h3>
 <p>可以通过对来自每个捕获点的mRNA转录本混合物进行解卷积来定位细胞亚群，以预测每个点处细胞混合物中每种细胞类型的比例，评估功效的更方便的策略是通过组合来自多个表征良好的scRNA-seq细胞的转录本测量值来在计算机中创建混合物。</p>
 <p>这类方法中比较著名的是SPOTlight，作者也是比较赞赏该软件：</p>
 <div class = "panel-warning">
@@ -508,7 +508,7 @@
     </div>
 </div>
 <p>所以我觉得下一篇文章更新SPOTlight的分析教程</p>
-<h3 id="2富集分数">2.富集分数🐥</h3>
+<h3 id="2富集分数hatched_chick">2.富集分数&#x1f425;</h3>
 <p>基于scRNA-seq的Spot score 不必局限于对细胞类型进行评分——人们可以对细胞周期期、组织类型、癌性与非癌性以及特异性基因表达方案等特征进行评分。这种评分方法的局限性在于找到由感兴趣的细胞类型表达的真正独特的基因，因为重叠的基因可能会混淆评分。</p>
 <p>这类方法中比较著名的有GSVA的<em>Gene Set Variation Analysis</em>函数，Seurat的<em>AddModuleScore</em>函数 、或者采用MIA（<em>multimodal intersection analysis</em>）来进行分析。</p>
 <blockquote>
@@ -521,7 +521,7 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
     
   </footer>
 </blockquote>
-<h3 id="3-映射">3. 映射🐒</h3>
+<h3 id="3-映射monkey">3. 映射&#x1f412;</h3>
 <p>这里说的映射特指的思路是：根据找到一些anchor gene，来做样本或者实验质检的批次矫正。这类软件最常用在多个样本的整合中，和批次效应矫正中。最早运用这个技术来做组学技术之间的关联分析应该是Seurat 中10x scRNA和10x ATAC的关联分析中。除了Seurat的整合函数外，还有Harmony ，LIGER等批次校正scRNA-seq批次的软件，也证明了能够在单细胞分辨率空间数据中的成功应用数据整合。</p>
 <blockquote>
 <p>但我总觉这类软件容易存在矫正过枉，但是还是从结果出发，白猫黑猫，逮到耗子就是好猫。</p>
@@ -529,13 +529,13 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
 <p>大致原理看起来，LIGER的算法好像高级一点，Harmony最次，但可能有出其不意的效果，Seurat最常用。</p>
 <ul>
 <li>
-<p>1️⃣Harmony -&gt; 低纬-&gt; kmeans 聚类</p>
+<p>&#x31;&#xfe0f;&#x20e3;Harmony -&gt; 低纬-&gt; kmeans 聚类</p>
 </li>
 <li>
-<p>2️⃣Seurat -&gt; 低纬-&gt; MNN</p>
+<p>&#x32;&#xfe0f;&#x20e3;Seurat -&gt; 低纬-&gt; MNN</p>
 </li>
 <li>
-<p>3️⃣LIGER-&gt;NMF</p>
+<p>&#x33;&#xfe0f;&#x20e3;LIGER-&gt;NMF</p>
 </li>
 </ul>
 <blockquote>
@@ -543,11 +543,11 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
 <p>注意：这个插补我没用过，不知道具体效果，只能说插补挺新奇的，但是应用很少。</p>
 </blockquote>
 <h2 id="矫正效果的预期">矫正效果的预期</h2>
-<p>任何软件都是有自己的局限性，有句老话怎么说，再牛逼的生信也解决不了失败的实验🏃‍♂️🏃‍♂️🏃‍♂️。</p>
+<p>任何软件都是有自己的局限性，有句老话怎么说，再牛逼的生信也解决不了失败的实验&#x1f3c3;&#x1f3c3;&#x1f3c3;。</p>
 <p>关联分析也会出现，数据整合效果的问题，这个问题从广义上讲，不匹配可能是由于预测序步骤和/或测序后分析中的错误引起的。此外，当使用独立的scRNA-seq图谱作为参考时，如果其组织条件与新生成的空间数据不能很好的一致，则不匹配可能会加剧。</p>
 <p>具体原因可能包括：</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202201241656181643014578wfFV92image-20220124165618390.png" alt="image-20220124165618390"></p>
-<p>好叻，本期完结撒花！😏😏😏</p>
+<p>好叻，本期完结撒花！&#x1f60f;&#x1f60f;&#x1f60f;</p>
 <p>下一篇《SPOTlight分析教程与自己对其中一些源码的改进》预告！</p></article>
     <footer class="post-footer">
       
@@ -571,8 +571,8 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -588,8 +588,9 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -648,17 +649,6 @@ MIA 分析在NBT的2020年七月刊上,一篇研究胰腺导管癌的研究性�
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

@@ -169,28 +169,31 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="分享一个统计Q20和Q30的小脚本📦 生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实">
+  <meta name="description" content="分享一个统计Q20和Q30的小脚本&#x1f4e6; 生信往往会统计fa或者fq文件的reads数目&#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如fastaqc或者fastq等。
+">
 
   
   
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="分享一个统计Q20和Q30的小脚本">
-    <meta name="twitter:description" content="分享一个统计Q20和Q30的小脚本📦 生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实">
+    <meta name="twitter:description" content="分享一个统计Q20和Q30的小脚本&#x1f4e6; 生信往往会统计fa或者fq文件的reads数目&#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如fastaqc或者fastq等。
+">
     <meta name="twitter:image" content="https://abego.cn/media/wenxian.jpg">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="分享一个统计Q20和Q30的小脚本">
-  <meta property="og:description" content="分享一个统计Q20和Q30的小脚本📦 生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实">
+  <meta property="og:description" content="分享一个统计Q20和Q30的小脚本&#x1f4e6; 生信往往会统计fa或者fq文件的reads数目&#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如fastaqc或者fastq等。
+">
   <meta property="og:url" content="https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/">
   <meta property="og:image" content="https://abego.cn/media/wenxian.jpg">
 
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/">
@@ -455,17 +458,17 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">分享一个统计Q20和Q30的小脚本</h1>
-      <p class="post-meta">@Wang Jiaxuan · Jul 13, 2021 · 4 min read</p>
+      <p class="post-meta">@Wang Jiaxuan · Jul 13, 2021 · 5 min read</p>
     </header>
     
-    <article class="post-content"><h1 id="分享一个统计q20和q30的小脚本">分享一个统计Q20和Q30的小脚本📦</h1>
-<p>生信往往会统计fa或者fq文件的reads数目🉑，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如<code>fastaqc</code>或者<code>fastq</code>等。</p>
-<p>当然，这些软件统计指标是质控软件附带的，毕竟质控软件主要还是为了过滤低质量的reads和去接头。那么假设我们现在对已经质控后的fq文件进行了额外的操作，例如去重，或者其他神奇操作😏😏。</p>
+    <article class="post-content"><h1 id="分享一个统计q20和q30的小脚本package">分享一个统计Q20和Q30的小脚本&#x1f4e6;</h1>
+<p>生信往往会统计fa或者fq文件的reads数目&#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如<code>fastaqc</code>或者<code>fastq</code>等。</p>
+<p>当然，这些软件统计指标是质控软件附带的，毕竟质控软件主要还是为了过滤低质量的reads和去接头。那么假设我们现在对已经质控后的fq文件进行了额外的操作，例如去重，或者其他神奇操作&#x1f60f;&#x1f60f;。</p>
 <p>那这个时候难道我们要重新输入<code>fastq</code>再进一波指控吗，仅仅为了四个质控指标。也可以，但就是太麻烦。</p>
 <blockquote>
 <p>当然也可以将额外的fq文件操作放在质控软件分析之前，这样就可以避免这个问题。但是问题在于万一呢，所以单独做质控数目统计。</p>
 </blockquote>
-<p>这个时候，就很需要找一种专门做Q20，Q30计算的小脚本📘，最好是更小，更快速，更便捷🏃🏃。</p>
+<p>这个时候，就很需要找一种专门做Q20，Q30计算的小脚本&#x1f4d8;，最好是更小，更快速，更便捷&#x1f3c3;&#x1f3c3;。</p>
 <div class = "panel-warning">
     <div class = "panel-heading">
     <span class = "panel-title" data-toc-skip="">
@@ -480,7 +483,7 @@
     </div>
 </div>
 <p>经过在网上的一番查找，总觉得结果不是很满意，基本英文和中文的搜索结果都是说用C写的kseq.h来进行统计Q20和Q30，但是其中具体步骤言之不详，会浪费不少时间在摸索和尝试上。</p>
-<p>我在搜索资料的基础上，进行自己的更改，应该说自己也是一种代码练习了。更改后的脚本，可以一步安装，并且优化输出结果的可读性。另外我自己在安装在集群上，并测试了一下数据结果，其统计结果和<code>fastq</code>的输出结果是一样的。也证明了该方法的准确性。我做了下包装📦📦。放在自己的Github上，分享给有需要的人。</p>
+<p>我在搜索资料的基础上，进行自己的更改，应该说自己也是一种代码练习了。更改后的脚本，可以一步安装，并且优化输出结果的可读性。另外我自己在安装在集群上，并测试了一下数据结果，其统计结果和<code>fastq</code>的输出结果是一样的。也证明了该方法的准确性。我做了下包装&#x1f4e6;&#x1f4e6;。放在自己的Github上，分享给有需要的人。</p>
 <p>方法原文链接：</p>
 <ol>
 <li><a href="https://www.programmersought.com/article/47244571262/">https://www.programmersought.com/article/47244571262/</a></li>
@@ -489,27 +492,27 @@
 <li><a href="https://stackoverflow.com/questions/19390245/how-to-parse-a-fasta-file-using-kseq-h">https://stackoverflow.com/questions/19390245/how-to-parse-a-fasta-file-using-kseq-h</a></li>
 <li><a href="https://www.geek-share.com/detail/2698055361.html">https://www.geek-share.com/detail/2698055361.html</a></li>
 </ol>
-<h2 id="安装步骤一步法推荐">安装步骤（一步法推荐👍）</h2>
-<p>打包好的文件放在Github<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/fastq_stat.tar.gz">wangjiaxuan666/WeChat-pubword/fastq_stat.tar.gz</a>上，也可以点击<strong>阅读原文</strong>直达。如果Github被屏蔽了，可以在微信公众号对话框中输入<strong>序列质控</strong>或者<strong>质控</strong>，获得腾讯云下载链接。但是腾讯云存储按照访问流量，会收我钱😨，哈哈，最好还是别让我本就贫穷的日子雪上加霜了💔。</p>
+<h2 id="安装步骤一步法推荐thumbsup">安装步骤（一步法推荐&#x1f44d;）</h2>
+<p>打包好的文件放在Github<a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/fastq_stat.tar.gz">wangjiaxuan666/WeChat-pubword/fastq_stat.tar.gz</a>上，也可以点击<strong>阅读原文</strong>直达。如果Github被屏蔽了，可以在微信公众号对话框中输入<strong>序列质控</strong>或者<strong>质控</strong>，获得腾讯云下载链接。但是腾讯云存储按照访问流量，会收我钱&#x1f628;，哈哈，最好还是别让我本就贫穷的日子雪上加霜了&#x1f494;。</p>
 <h3 id="优化后的安装步骤">优化后的安装步骤</h3>
 <p>因为我做了一些优化，所以安装过程和输出结果要比上面的文章更方便一些。在我的Github上下载文件后，创建新的文件夹，然后解压</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir test
-mv fastq_stat.tar.gz test
-cd test
-tar -zxvf fastq_stat.tar.gz
-</code></pre></div><p>运行安装程序，并用<code>test.fq.gz</code>文件做测试结果。<code>fastq_stat.sh</code>同时支持-i 参数和直接参数（反正就一个参数）帮助文档可以用-h。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash install.sh
-bash fastq_stat.sh test.fq.gz
-<span style="color:#75715e"># test.fq.gz	10	1000	964(96.4%)	886(88.6%)	411(41.1%)</span>
-<span style="color:#75715e"># bash fastq_stat.sh -i test.fq.gz</span>
-<span style="color:#75715e"># 同时支持-i参数</span>
-bash fastq_stat.sh -h
-<span style="color:#75715e"># The script created by Jiaxuan Wang 20210712</span>
-<span style="color:#75715e"># Usage:</span>
-<span style="color:#75715e"># [-h]: The help document:</span>
-<span style="color:#75715e"># [-i]: The script only support a file input ,</span>
-<span style="color:#75715e"># the file can be fastq or fasta</span>
-</code></pre></div><p>所有过程均在centos 7.0集群上和本地的Macos上测试。理论上Windows的WSL也是可以运行的。欢迎尝试！</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir test
+</span></span><span style="display:flex;"><span>mv fastq_stat.tar.gz test
+</span></span><span style="display:flex;"><span>cd test
+</span></span><span style="display:flex;"><span>tar -zxvf fastq_stat.tar.gz
+</span></span></code></pre></div><p>运行安装程序，并用<code>test.fq.gz</code>文件做测试结果。<code>fastq_stat.sh</code>同时支持-i 参数和直接参数（反正就一个参数）帮助文档可以用-h。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash install.sh
+</span></span><span style="display:flex;"><span>bash fastq_stat.sh test.fq.gz
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># test.fq.gz	10	1000	964(96.4%)	886(88.6%)	411(41.1%)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># bash fastq_stat.sh -i test.fq.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 同时支持-i参数</span>
+</span></span><span style="display:flex;"><span>bash fastq_stat.sh -h
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The script created by Jiaxuan Wang 20210712</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># [-h]: The help document:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># [-i]: The script only support a file input ,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># the file can be fastq or fasta</span>
+</span></span></code></pre></div><p>所有过程均在centos 7.0集群上和本地的Macos上测试。理论上Windows的WSL也是可以运行的。欢迎尝试！</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gsf9e0m1yuj31920mstbb.jpg" alt=""></p>
 <blockquote>
 <p>如果你已经上述运行成功，就不用看下面，下面简述只是把步骤分解重复一遍。</p>
@@ -519,32 +522,32 @@ bash fastq_stat.sh -h
 <blockquote>
 <p>但是如果安装下面方法操作，最好重新开始操作。避免报错。</p>
 </blockquote>
-<h3 id="step01-">step01 🍐</h3>
+<h3 id="step01-pear">step01 &#x1f350;</h3>
 <p>先创建一个文件夹，还是将Github下载的文件放入其中，然后在终端进行操作，在centos 7.0和Mac os亲测成功。
 `</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 下载在新建的文件中</span>
-mkdir fq_stat
-cd fa_stat
-unzip fq.zip
-ls 
-<span style="color:#75715e"># Makefile    kseq.h      kseq_test.c parse.c     test.fq.gz</span>
-<span style="color:#75715e"># 解压后会发现其中有四个文件，sh是我自己写的，不是原来的</span>
-</code></pre></div><h3 id="step02-">step02 🍑</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 下载在新建的文件中</span>
+</span></span><span style="display:flex;"><span>mkdir fq_stat
+</span></span><span style="display:flex;"><span>cd fa_stat
+</span></span><span style="display:flex;"><span>unzip fq.zip
+</span></span><span style="display:flex;"><span>ls 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Makefile    kseq.h      kseq_test.c parse.c     test.fq.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 解压后会发现其中有四个文件，sh是我自己写的，不是原来的</span>
+</span></span></code></pre></div><h3 id="step02-peach">step02 &#x1f351;</h3>
 <p>解压后，还是在刚刚创建，解压的文件中，用gcc编译，输入</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">gcc -o fastq_stat parse.c -lz
-<span style="color:#75715e"># 没有报错就是安装成功</span>
-ls 
-<span style="color:#75715e"># Makefile    fastq_stat  kseq.h      kseq_test.c parse.c     test.fq.gz</span>
-</code></pre></div><h3 id="step03-">step03 🍓</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gcc -o fastq_stat parse.c -lz
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 没有报错就是安装成功</span>
+</span></span><span style="display:flex;"><span>ls 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Makefile    fastq_stat  kseq.h      kseq_test.c parse.c     test.fq.gz</span>
+</span></span></code></pre></div><h3 id="step03-strawberry">step03 &#x1f353;</h3>
 <p>这个时候就会发现gcc编译后出现了一个新的文件<code>fastq_stst</code>,这是一个可执行文件，简单测试下效果：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./fastq_stat test.fq.gz
-<span style="color:#75715e"># 10	1000	964	886	411</span>
-</code></pre></div><p>输出结果的意思分别是，reads数目，碱基数目，Q20的碱基数目，Q30的碱基数目，以及是G或者C的碱基数目（GC含量）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./fastq_stat test.fq.gz
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 10	1000	964	886	411</span>
+</span></span></code></pre></div><p>输出结果的意思分别是，reads数目，碱基数目，Q20的碱基数目，Q30的碱基数目，以及是G或者C的碱基数目（GC含量）。</p>
 <p>但其实这个这个结果并不人性化，可以简单利用awk命令来更改下输出</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!bin/sh
-</span><span style="color:#75715e"></span>./fastq_stat test.fq.gz | awk <span style="color:#e6db74">&#39;{print $1,$2,$3&#34;(&#34;$3/$2*100&#34;%)&#34;,$4&#34;(&#34;$4/$2*100&#34;%)&#34;,$5&#34;(&#34;$5/$2*100&#34;%)&#34;}&#39;</span>
-<span style="color:#75715e"># 10 1000 964(96.4%) 886(88.6%) 411(41.1%)</span>
-</code></pre></div><p>这样一来输出结果就好认识多了。以上就是我做的所有优化的分分解过程。其实就是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!bin/sh
+</span></span></span><span style="display:flex;"><span>./fastq_stat test.fq.gz | awk <span style="color:#e6db74">&#39;{print $1,$2,$3&#34;(&#34;$3/$2*100&#34;%)&#34;,$4&#34;(&#34;$4/$2*100&#34;%)&#34;,$5&#34;(&#34;$5/$2*100&#34;%)&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 10 1000 964(96.4%) 886(88.6%) 411(41.1%)</span>
+</span></span></code></pre></div><p>这样一来输出结果就好认识多了。以上就是我做的所有优化的分分解过程。其实就是：</p>
 <ol>
 <li>优化安装过程</li>
 <li>sh脚本中输出fastq_stat文件的绝对路径。意味着<code>fastq_stat.sh</code>的脚本就算你移出这个文件，放在自己其他工作目录下，<code>fastq_stat.sh</code>依然可以运作。甚至可以将软件目录当成变量放入<code>.bashrc</code>中，随时可以用<code>bash $xxx/fastq_stat.sh</code>来调用。方便</li>
@@ -574,8 +577,8 @@ ls
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -591,8 +594,9 @@ ls
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -651,17 +655,6 @@ ls
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

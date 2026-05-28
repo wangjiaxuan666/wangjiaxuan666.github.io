@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>software install on Woney&#39;s Blog</title>
-    <link>https://abego.cn/tags/software-install/</link>
-    <description>Recent content in software install on Woney&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
-    <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Wed, 16 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/software-install/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>BSseq-WDL：基于WDl的甲基化分析流程搭建和心得</title>
-      <link>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</link>
-      <pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</guid>
-      <description>&lt;p&gt;做整合分析的时候，看到broad研究所大佬👨写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程😸。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
-      <link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
-      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
-      <description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>M1芯片的电脑如何安装jdk-1.8.0</title>
-      <link>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</link>
-      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</guid>
-      <description>&lt;p&gt;解决下苹果M1自带的java报错问题&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>TCGA数据库分析内容整理</title>
-      <link>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</link>
-      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</guid>
-      <description>&lt;p&gt;嗯，我是有脚本的&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Software Install on Woney&#39;s Blog</title>
+		<link>https://abego.cn/tags/software-install/</link>
+		<description>Recent content in Software Install on Woney&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-Hans</language>
+		
+		
+		
+			<copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
+		
+		
+			<lastBuildDate>Wed, 16 Feb 2022 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://abego.cn/tags/software-install/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>BSseq-WDL：基于WDl的甲基化分析流程搭建和心得</title>
+				<link>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</link>
+				<pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</guid>
+				<description>&lt;p&gt;做整合分析的时候，看到broad研究所大佬&amp;#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&amp;#x1f638;。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
+				<link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
+				<pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
+				<description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>M1芯片的电脑如何安装jdk-1.8.0</title>
+				<link>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</link>
+				<pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</guid>
+				<description>&lt;p&gt;解决下苹果M1自带的java报错问题&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>TCGA数据库分析内容整理</title>
+				<link>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</link>
+				<pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</guid>
+				<description>&lt;p&gt;嗯，我是有脚本的&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

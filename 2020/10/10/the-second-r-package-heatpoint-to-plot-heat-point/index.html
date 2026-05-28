@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/">
@@ -477,43 +477,43 @@
 <p>R包，我取名为<code>xbox</code>,目前收录了做数据框的列之间的T检验的``col_ttest<code>，以及转置数据框，让行列互相颠倒的</code>df_t<code>, 还有根据KO id,给出KEGG数据库三个层级注释的</code>koid_to_pathway<code>，其次还有</code>tibble<code>和</code>data.frame<code>之间转换的</code>get_tb<code>和</code>get_df`。具体的用处和例子可以看帮助文档或者Github上的说明。点击<strong>阅读原文</strong>可以跳转Github。</p>
 <p>今天新增的功能就是画密度热点图的<code>heatpoint</code>和<code>plot</code></p>
 <p>例子如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">points <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>
-x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
-y <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,sd<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>)
-x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x)<span style="color:#f92672">*</span><span style="color:#a6e22e">abs</span>(x)^1.3
-<span style="color:#a6e22e">heatpoint</span>(x,y) <span style="color:#f92672">-&gt;</span> dat_result
-<span style="color:#a6e22e">str</span>(dat_result)
-<span style="color:#75715e">#&gt; List of 3</span>
-<span style="color:#75715e">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
-<span style="color:#75715e">#&gt;  $ cor.result:List of 3</span>
-<span style="color:#75715e">#&gt;  $ lm.result :List of 3</span>
-<span style="color:#75715e">#including the three list the plot data</span>
-<span style="color:#a6e22e">head</span>(dat_result<span style="color:#f92672">$</span>plot.data)
-<span style="color:#75715e">#&gt;              x           y    Density</span>
-<span style="color:#75715e">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
-<span style="color:#75715e">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
-<span style="color:#75715e">#&gt; 3 -0.229579517 -0.90045187 0.14522626</span>
-<span style="color:#75715e">#&gt; 4  1.381172256  1.48550963 0.05487725</span>
-<span style="color:#75715e">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
-<span style="color:#75715e">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
-<span style="color:#75715e"># and the result of cor</span>
-<span style="color:#a6e22e">data.frame</span>(dat_result<span style="color:#f92672">$</span>cor.result)
-<span style="color:#75715e">#&gt;         cor pvalue                               method</span>
-<span style="color:#75715e">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
-<span style="color:#75715e"># and the result of lm</span>
-<span style="color:#a6e22e">str</span>(dat_result<span style="color:#f92672">$</span>lm.result)
-<span style="color:#75715e">#&gt; List of 3</span>
-<span style="color:#75715e">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
-<span style="color:#75715e">#&gt;  $ method : symbol lm</span>
-<span style="color:#75715e">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span>
-</code></pre></div><p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">plot</span>(dat_result)
-</code></pre></div><p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>points <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#a6e22e">rnorm</span>(points<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,sd<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>)
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x)<span style="color:#f92672">*</span><span style="color:#a6e22e">abs</span>(x)^1.3
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">heatpoint</span>(x,y) <span style="color:#f92672">-&gt;</span> dat_result
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">str</span>(dat_result)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; List of 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ plot.data :&#39;data.frame&#39;:  2500 obs. of  3 variables:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ cor.result:List of 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ lm.result :List of 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#including the three list the plot data</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">head</span>(dat_result<span style="color:#f92672">$</span>plot.data)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;              x           y    Density</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1 -0.115142560 -0.08891457 0.20889658</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 2  0.001437608 -1.24490133 0.08753891</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 3 -0.229579517 -0.90045187 0.14522626</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 4  1.381172256  1.48550963 0.05487725</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 5  1.114704663  2.09831530 0.03998420</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 6 -0.910906938 -0.25959069 0.07883229</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and the result of cor</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">data.frame</span>(dat_result<span style="color:#f92672">$</span>cor.result)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;         cor pvalue                               method</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; 1 0.7552128      0 Pearson&#39;s product-moment correlation</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and the result of lm</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">str</span>(dat_result<span style="color:#f92672">$</span>lm.result)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; List of 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ formula: Named num [1:2] 0.0228 0.866</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ method : symbol lm</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;  $ exp    :Class &#39;formula&#39;  language y ~ x</span>
+</span></span></code></pre></div><p>可以看到，<code>heatpoint</code>给出了相关性检验的数据以及线性回归的表达式以及画图数据，如果这个时候，你对R语言中的画图已经有了一定基础，完全可以自己用<code>ggplot2</code>或者<code>base</code>来进行绘图。简单点的话，可以直接用我做好的<code>plot</code>进行绘图，一键出图！</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">plot</span>(dat_result)
+</span></span></code></pre></div><p>当然，自动化也有自动化的傻点，检验数值是根据画图的长宽来自动调整的，改变图片宽度，既可以规避表达式和点重合。</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/README-plot-1.png" alt=""></p>
 <h2 id="heatpoint参数">Heatpoint参数</h2>
 <p><code>plot</code>没设置什么参数，但是<code>heatpoint</code>设置了很多参数了。只是大部分参数都设置了默认值。其实<code>heatpoint(x,y) -&gt; dat_result</code>等价于：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">dat_result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">heatpoint</span>(x,y,xlim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,ylim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,log <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,grid <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,only <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>,method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pearson&#34;</span>,formula <span style="color:#f92672">=</span> y <span style="color:#f92672">~</span> x,<span style="color:#66d9ef">...</span>)
-</code></pre></div><p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>dat_result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">heatpoint</span>(x,y,xlim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,ylim <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,log <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,grid <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,only <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>,method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pearson&#34;</span>,formula <span style="color:#f92672">=</span> y <span style="color:#f92672">~</span> x,<span style="color:#66d9ef">...</span>)
+</span></span></code></pre></div><p>其中xlim和ylim是设置计算的范围，原因在于并不是所有输入的数据都希望被计算密度。而log是是否需要对数据进行log10标准化。这个对组学数据是很常用的，毕竟大部分数据都是很小的，只有极少数基因是高表达的。如果想尽可能把低表达基因和高表达基因放在一起展示。那么log10标准化是必不可少的。grid就是设置分区的参数，简单来讲就是把输入数据分成几个部分，分别计算密度。一个区域内的点共享密度值。method和formula就分别是相关性的方法和线性回归的表达式了。</p>
 <h2 id="附">附</h2>
 <p>最开始没想造R包的，本质上是当个调包侠的。但是搜来搜去都没有什么好答案。最贴近的答案是网上一个叫Kamil Slowikowski的教程。链接是<a href="https://slowkow.com/notes/ggplot2-color-by-density/">https://slowkow.com/notes/ggplot2-color-by-density/</a>.</p>
 <p>BUT 我好像没测试成功在我的数据上，也就是说你跑他提供的例子是没问题的，但是我自己的数据就不行了。所以继续寻找。最后找到了一个非常牛的R包-LSD。讲实话，我看这个LSD的源代码看了挺久的，我觉得这个作者真的是很牛。以后继续学习吧。</p>
@@ -542,8 +542,8 @@ x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -559,8 +559,9 @@ x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -619,17 +620,6 @@ x <span style="color:#f92672">=</span> <span style="color:#a6e22e">sign</span>(x
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

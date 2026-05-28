@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/">
@@ -492,119 +492,119 @@
 <p>所以我想用<code>base</code>函数族来实现目标，但是搜到的都是<code>split</code>+<code>apply</code>的解决思路。我觉得太繁琐了，缺乏美感。我就去看<code>sva</code>的源码，发现别人写的代码就是好看。赞叹不已，然后推敲了一段时间，偷学了三行命令。</p>
 <p>自己在此基础上完成了构思，目前更新的R包<code>fixbatch</code>已经重新放在<code>GIthub</code>了。</p>
 <p>效果非常赞！心满意足，开心到爆炸！</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># BiocManager::install(&quot;edgeR&quot;)
-# BiocManager::install(&quot;preprocessCore&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/autopca&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/xbox&quot;)
-# devtools::install_github(&quot;wangjiaxuan666/fixbatch&quot;)
-# install.packages(&quot;patchwork&quot;)
-# set workdir
-
-# 记得更新我的R包奥，要不然以前的BUG，得让你怀疑人生
-devtools::update_packages(&quot;autopca&quot;)
-devtools::update_packages(&quot;xbox&quot;)
-devtools::update_packages(&quot;fixbatch&quot;)
-# 加载R包
-require(autopca)
-require(xbox)
-require(fixbatch)
-require(tidyverse)
-require(preprocessCore)
-require(patchwork)
-</code></pre><p>因为我自己构建的数据，离群的是&quot;A-CK-1,A-2,AT-1,AT-3,A-3&quot;样本，所以批次分组如下设计。一定要记得和数据的列名排序对应！</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># BiocManager::install(&#34;edgeR&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># BiocManager::install(&#34;preprocessCore&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># devtools::install_github(&#34;wangjiaxuan666/autopca&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># devtools::install_github(&#34;wangjiaxuan666/xbox&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># devtools::install_github(&#34;wangjiaxuan666/fixbatch&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># install.packages(&#34;patchwork&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># set workdir</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记得更新我的R包奥，要不然以前的BUG，得让你怀疑人生</span>
+</span></span><span style="display:flex;"><span>devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">update_packages</span>(<span style="color:#e6db74">&#34;autopca&#34;</span>)
+</span></span><span style="display:flex;"><span>devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">update_packages</span>(<span style="color:#e6db74">&#34;xbox&#34;</span>)
+</span></span><span style="display:flex;"><span>devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">update_packages</span>(<span style="color:#e6db74">&#34;fixbatch&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 加载R包</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(autopca)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(xbox)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(fixbatch)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(preprocessCore)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">require</span>(patchwork)
+</span></span></code></pre></div><p>因为我自己构建的数据，离群的是&quot;A-CK-1,A-2,AT-1,AT-3,A-3&quot;样本，所以批次分组如下设计。一定要记得和数据的列名排序对应！</p>
 <table>
-<thead>
-<tr>
-<th>样本</th>
-<th>批次</th>
-<th>样本</th>
-<th>批次</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A-1_fpkm</td>
-<td>1</td>
-<td>B-1_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>A-2_fpkm</td>
-<td>2</td>
-<td>B-2_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>A-3_fpkm</td>
-<td>2</td>
-<td>B-3_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>AT-1_fpkm</td>
-<td>2</td>
-<td>BT-1_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>AT-2_fpkm</td>
-<td>1</td>
-<td>BT-2_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>AT-3_fpkm</td>
-<td>2</td>
-<td>BT-3_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>A-CK-1_fpkm</td>
-<td>2</td>
-<td>BCK-1_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>A-CK-2_fpkm</td>
-<td>1</td>
-<td>BCK-2_fpkm</td>
-<td>1</td>
-</tr>
-<tr>
-<td>A-CK-3_fpkm</td>
-<td>1</td>
-<td>BCK-3_fpkm</td>
-<td>1</td>
-</tr>
-</tbody>
+	<thead>
+			<tr>
+					<th>样本</th>
+					<th>批次</th>
+					<th>样本</th>
+					<th>批次</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A-1_fpkm</td>
+					<td>1</td>
+					<td>B-1_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A-2_fpkm</td>
+					<td>2</td>
+					<td>B-2_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A-3_fpkm</td>
+					<td>2</td>
+					<td>B-3_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>AT-1_fpkm</td>
+					<td>2</td>
+					<td>BT-1_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>AT-2_fpkm</td>
+					<td>1</td>
+					<td>BT-2_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>AT-3_fpkm</td>
+					<td>2</td>
+					<td>BT-3_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A-CK-1_fpkm</td>
+					<td>2</td>
+					<td>BCK-1_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A-CK-2_fpkm</td>
+					<td>1</td>
+					<td>BCK-2_fpkm</td>
+					<td>1</td>
+			</tr>
+			<tr>
+					<td>A-CK-3_fpkm</td>
+					<td>1</td>
+					<td>BCK-3_fpkm</td>
+					<td>1</td>
+			</tr>
+	</tbody>
 </table>
 <p>下面就是设计批次分组，并开始中位数矫正了</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">#不矫正的结果
-dat_pca_nofix = pca_data_tidy(dat)
-p1 &lt;- pca(dat_pca_nofix,rename = &quot;replace&quot;,
-          str_sample = &quot;_fpkm&quot;,
-          str_group = &quot;-\\d$&quot;,
-          display_sample = T,
-          add_ploy = T) + 
-      ggtitle(&quot;Unnormalised dat&quot;)
-
-#矫正的结果
-bath = c(1L, 2L, 2L, 2L, 1L, 2L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L)#设置批次分组
-dat_df = get_df(dat)#change into data.frame
-
-dat_fix2 = norm_fix(dat_df,bath,expcv = 0.5, exphigh = 0.8, explow = 0.4)
-
-dat_pca_fix = pca_data_tidy(dat_fix2)
-
-p2 &lt;- pca(dat_pca_fix,rename = &quot;replace&quot;,
-          str_sample = &quot;_fpkm&quot;,
-          str_group = &quot;-\\d$&quot;,
-          display_sample = T,
-          add_ploy = T) + 
-      ggtitle(&quot;Normalised dat&quot;)
-
-p1+p2+plot_annotation(tag_levels = 'A')
-</code></pre><p>可以看到效果是不错的，开心了，后续我会从GEO数据库里下载一些数据，做下进一步测试，以及利用PC的坐标来做下矫正效果的展示，毕竟现在完全是看图，主观性强。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">#不矫正的结果</span>
+</span></span><span style="display:flex;"><span>dat_pca_nofix <span style="color:#f92672">=</span> <span style="color:#a6e22e">pca_data_tidy</span>(dat)
+</span></span><span style="display:flex;"><span>p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">pca</span>(dat_pca_nofix,rename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;replace&#34;</span>,
+</span></span><span style="display:flex;"><span>          str_sample <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;_fpkm&#34;</span>,
+</span></span><span style="display:flex;"><span>          str_group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-\\d$&#34;</span>,
+</span></span><span style="display:flex;"><span>          display_sample <span style="color:#f92672">=</span> T,
+</span></span><span style="display:flex;"><span>          add_ploy <span style="color:#f92672">=</span> T) <span style="color:#f92672">+</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ggtitle</span>(<span style="color:#e6db74">&#34;Unnormalised dat&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#矫正的结果</span>
+</span></span><span style="display:flex;"><span>bath <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">2L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>, <span style="color:#ae81ff">1L</span>)<span style="color:#75715e">#设置批次分组</span>
+</span></span><span style="display:flex;"><span>dat_df <span style="color:#f92672">=</span> <span style="color:#a6e22e">get_df</span>(dat)<span style="color:#75715e">#change into data.frame</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dat_fix2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">norm_fix</span>(dat_df,bath,expcv <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, exphigh <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, explow <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dat_pca_fix <span style="color:#f92672">=</span> <span style="color:#a6e22e">pca_data_tidy</span>(dat_fix2)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">pca</span>(dat_pca_fix,rename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;replace&#34;</span>,
+</span></span><span style="display:flex;"><span>          str_sample <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;_fpkm&#34;</span>,
+</span></span><span style="display:flex;"><span>          str_group <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-\\d$&#34;</span>,
+</span></span><span style="display:flex;"><span>          display_sample <span style="color:#f92672">=</span> T,
+</span></span><span style="display:flex;"><span>          add_ploy <span style="color:#f92672">=</span> T) <span style="color:#f92672">+</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ggtitle</span>(<span style="color:#e6db74">&#34;Normalised dat&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p1<span style="color:#f92672">+</span>p2<span style="color:#f92672">+</span><span style="color:#a6e22e">plot_annotation</span>(tag_levels <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>)
+</span></span></code></pre></div><p>可以看到效果是不错的，开心了，后续我会从GEO数据库里下载一些数据，做下进一步测试，以及利用PC的坐标来做下矫正效果的展示，毕竟现在完全是看图，主观性强。</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20201218183724770.png" alt="image-20201218183724770"></p>
 <p>不过现在我也是心满意足了, 毕竟<code>fixbatch</code>这个矫正的脚本算是目前,我最高最水平的脚本之一, 脚本复杂倒是不高, 但好在这个期间, 不断开发自己的想法, 并用一种比较满意的代码(越简单越满意)去实现. 感觉还是非常傲娇的.</p>
 <p>具体的代码,大家可以点击原文链接, 到我的<a href="https://github.com/wangjiaxuan666/fixbatch/blob/main/R/batch_housekeep.R">Github</a>上查看, 错误之处多谢指点.</p></article>
@@ -630,8 +630,8 @@ p1+p2+plot_annotation(tag_levels = 'A')
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -647,8 +647,9 @@ p1+p2+plot_annotation(tag_levels = 'A')
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -707,17 +708,6 @@ p1+p2+plot_annotation(tag_levels = 'A')
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

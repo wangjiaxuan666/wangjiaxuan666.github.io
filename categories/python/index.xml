@@ -1,66 +1,61 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Python on Woney&#39;s Blog</title>
-    <link>https://abego.cn/categories/python/</link>
-    <description>Recent content in Python on Woney&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
-    <copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-    <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/categories/python/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>合并多个文件中一列内容到新文件的py脚本</title>
-      <link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link>
-      <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</guid>
-      <description>&lt;p&gt;新的Python脚本出炉了&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>写一个支持超大文件的快速列分割的的python脚本</title>
-      <link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link>
-      <pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</guid>
-      <description>&lt;p&gt;之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>写个Python脚本从FastQ文件中抽取成对的Reads</title>
-      <link>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</link>
-      <pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</guid>
-      <description>&lt;p&gt;最开始，师妹来问我的，如何处理BWA的报错。看报错信息提示是因为输入的Read1和Read2的Fastq文件中有不成对的Read。原因在于这两个fq文件来自之前的分析过程中的bam文件抽取得来。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>python中的文件路径操作，学习os.path和pathlib</title>
-      <link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link>
-      <pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</guid>
-      <description>&lt;p&gt;学习python中的系统路径操作&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>用python读取下载到本地的网页-反[反爬虫]机制</title>
-      <link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
-      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid>
-      <description>从MalaCardsa爬虫收集疾病相关的研究信息📄 MalaCardsa数据库📘，我今天也是第一次知道，感觉这个网站太牛🐃了，收集了各种人类👫</description>
-    </item>
-    
-    <item>
-      <title>写个python脚本根据ID号调取PubMed的信息</title>
-      <link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
-      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</guid>
-      <description>最近在学python 至于为什么最近在学python，主要是自己最近刚换了职业，现在主要是搞生信。还专门问了几个老同事，都建议说python，</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Python on Woney&#39;s Blog</title>
+		<link>https://abego.cn/categories/python/</link>
+		<description>Recent content in Python on Woney&#39;s Blog</description>
+		<generator>Hugo</generator>
+		<language>zh-Hans</language>
+		
+		
+		
+			<copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
+		
+		
+			<lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://abego.cn/categories/python/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>合并多个文件中一列内容到新文件的py脚本</title>
+				<link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link>
+				<pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</guid>
+				<description>&lt;p&gt;新的Python脚本出炉了&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>写一个支持超大文件的快速列分割的的python脚本</title>
+				<link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link>
+				<pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</guid>
+				<description>&lt;p&gt;之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>写个Python脚本从FastQ文件中抽取成对的Reads</title>
+				<link>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</link>
+				<pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</guid>
+				<description>&lt;p&gt;最开始，师妹来问我的，如何处理BWA的报错。看报错信息提示是因为输入的Read1和Read2的Fastq文件中有不成对的Read。原因在于这两个fq文件来自之前的分析过程中的bam文件抽取得来。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>python中的文件路径操作，学习os.path和pathlib</title>
+				<link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link>
+				<pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</guid>
+				<description>&lt;p&gt;学习python中的系统路径操作&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>用python读取下载到本地的网页-反[反爬虫]机制</title>
+				<link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
+				<pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid>
+				<description>&lt;h1 id=&#34;从malacardsa爬虫收集疾病相关的研究信息page_facing_up&#34;&gt;从MalaCardsa爬虫收集疾病相关的研究信息&amp;#x1f4c4;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.malacards.org/&#34;&gt;MalaCardsa&lt;/a&gt;数据库&amp;#x1f4d8;，我今天也是第一次知道，感觉这个网站太牛&amp;#x1f403;了，收集了各种人类&amp;#x1f46b;疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。&lt;/p&gt;&#xA;&lt;p&gt;近期本身就是在搞空间转录组的项目&amp;#x1f4ca;，在做细胞&amp;#x1f315;类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>写个python脚本根据ID号调取PubMed的信息</title>
+				<link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
+				<pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+				<guid>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</guid>
+				<description>&lt;h2 id=&#34;最近在学python&#34;&gt;最近在学python&lt;/h2&gt;&#xA;&lt;p&gt;至于为什么最近在学python，主要是自己最近刚换了职业，现在主要是搞生信。还专门问了几个老同事，都建议说python，哪怕这些同事大部分都是perl玩的溜，其中一个同事就说，虽然你的R水平可以了，但是还是要专门学一个流程性的语言，要么学perl要么学个python。&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

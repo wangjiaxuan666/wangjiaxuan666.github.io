@@ -169,7 +169,7 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="做整合分析的时候，看到broad研究所大佬👨写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程😸。
+  <meta name="description" content="做整合分析的时候，看到broad研究所大佬&#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&#x1f638;。
 ">
 
   
@@ -177,7 +177,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="BSseq-WDL：基于WDl的甲基化分析流程搭建和心得">
-    <meta name="twitter:description" content="做整合分析的时候，看到broad研究所大佬👨写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程😸。
+    <meta name="twitter:description" content="做整合分析的时候，看到broad研究所大佬&#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&#x1f638;。
 ">
     <meta name="twitter:image" content="https://abego.cn/media/cover.jpg">
   
@@ -185,7 +185,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="BSseq-WDL：基于WDl的甲基化分析流程搭建和心得">
-  <meta property="og:description" content="做整合分析的时候，看到broad研究所大佬👨写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程😸。
+  <meta property="og:description" content="做整合分析的时候，看到broad研究所大佬&#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&#x1f638;。
 ">
   <meta property="og:url" content="https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/">
   <meta property="og:image" content="https://abego.cn/media/cover.jpg">
@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/">
@@ -461,9 +461,9 @@
       <p class="post-meta">@Wang Jiaxuan · Feb 16, 2022 · 6 min read</p>
     </header>
     
-    <article class="post-content"><p>做整合分析的时候，看到broad研究所大佬👨写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程😸。</p>
-<h1 id="bsseq-wdl流程介绍">BSseq-WDl流程介绍📖</h1>
-<h2 id="背景-">背景 🌁</h2>
+    <article class="post-content"><p>做整合分析的时候，看到broad研究所大佬&#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&#x1f638;。</p>
+<h1 id="bsseq-wdl流程介绍book">BSseq-WDl流程介绍&#x1f4d6;</h1>
+<h2 id="背景-foggy">背景 &#x1f301;</h2>
 <p>BSseq-WDl 是我根据 BS-seeker2 + CGmapTools 为基础搭建的甲基化分析主要流程。说是主要，其实就是输出到甲基化结果文件（甲基化位点和甲基化率）。</p>
 <div class = "panel-warning">
     <div class = "panel-heading">
@@ -478,14 +478,14 @@
    	 可以类比为RNA-seq输出了表达矩阵，但是后续的差异，可视化这些我都没开始弄。原因主要是工作是做单细胞和空间组的。而且表观基因组学一直是我认为组学里面最难的。所以如果想做的完善，肯定要投入很多时间和精力，我只是业余时间搞的，后续有时间再搞。但是输出表达矩阵应该对很多分析是够用
     </div>
 </div>
-<h2 id="该流程的优点">该流程的优点🏆</h2>
+<h2 id="该流程的优点trophy">该流程的优点&#x1f3c6;</h2>
 <p>说这个流程的优点，其实就是说wdl的优点，相比于之前用shell写的。我觉得wdl最大优点就是：</p>
 <ul>
 <li>彻底不用管文件的归档和存放，文件的输出和输入实现流程化控制</li>
 <li>任务的并行运行，以及多个任务的多次调用比较方便</li>
 <li>搭建虽然辛苦，但是维护起来比较简单</li>
 </ul>
-<h2 id="该流程的缺点">该流程的缺点📕</h2>
+<h2 id="该流程的缺点closed_book">该流程的缺点&#x1f4d5;</h2>
 <p><em>但是说完优点，也要说缺点，真的也是有点难以忍受</em></p>
 <ul>
 <li>没有积极活跃的社区，用户少，意味着问题很大概率要自己debug，让人崩溃</li>
@@ -495,11 +495,11 @@
 </ul>
 <p>其他的缺点暂时想不到了，如果一句话概括就是：</p>
 <p><strong>过程很痛苦，结果很美好，可能是流程控制语言的通病吧</strong></p>
-<h2 id="流程空间流程">流程空间流程📦</h2>
+<h2 id="流程空间流程package">流程空间流程&#x1f4e6;</h2>
 <p>用wdl编写流程，需要cromwell.jar才能运行，输入文件有两个：</p>
 <ul>
-<li>🌴参数输入文件：*.json</li>
-<li>🌵样本名称和fq路径表格文件：*.tsv</li>
+<li>&#x1f334;参数输入文件：*.json</li>
+<li>&#x1f335;样本名称和fq路径表格文件：*.tsv</li>
 </ul>
 <p>输出文件需要添加 -m 参数，详情请见<strong>运行</strong>部分，输出的json文件：
 包括了：</p>
@@ -512,7 +512,7 @@
 <p>其中<code>*.ATCGmap</code>,<code>*.CGmap</code>是主要输出结果，前者代表是多种类型的甲基化位点结果（CHH，CHG，CG），后者只有CG类型的甲基化位点信息。结果是表格形式的，分别存储有位点，绝对甲基化reads数和相对的甲基化率等数值。</p>
 <p><strong>流程采用并行的方法，大幅提高了运行速度和准确性</strong></p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202202150912001644887520Ovne4Bimage-20220215091200415.png" alt="image-20220215091200415"></p>
-<h2 id="环境要求">环境要求🍄</h2>
+<h2 id="环境要求mushroom">环境要求&#x1f344;</h2>
 <p>本流程运行需要以下环境：</p>
 <ul>
 <li>需要python 2.7（pysam）</li>
@@ -521,11 +521,11 @@
 <li>需要下载<a href="https://github.com/BSSeeker/BSseeker2">BSseeker2</a></li>
 </ul>
 <p>关于BSseeker和CGmapTools的安装示例问题，可以参考后文</p>
-<h2 id="流程运行">流程运行🐚</h2>
+<h2 id="流程运行shell">流程运行&#x1f41a;</h2>
 <h3 id="软件下载">软件下载</h3>
-<p>下载Github仓库，解压，在联网环境下，运行<code>download_cromwell.sh</code>脚本，下载<code>cromwell-58.jar</code>☕,如果已经有<code>cromwell</code>☕其他版本的可以不用下载，可以自行尝试是否版本兼容。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bash download_cromwell.sh
-</code></pre></div><h3 id="配制文件">配制文件</h3>
+<p>下载Github仓库，解压，在联网环境下，运行<code>download_cromwell.sh</code>脚本，下载<code>cromwell-58.jar</code>&#x2615;,如果已经有<code>cromwell</code>&#x2615;其他版本的可以不用下载，可以自行尝试是否版本兼容。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash download_cromwell.sh
+</span></span></code></pre></div><h3 id="配制文件">配制文件</h3>
 <p>输入文件有两个，一个控制参数的<code>json</code>文件，一个是记录样本名称和fq序列文件路径的<code>tsv</code>表格.</p>
 <h3 id="tsv-表格">tsv 表格</h3>
 <p>制表符分割的文件，有三列，分别是样本名称，read1的路径，read2的路径。</p>
@@ -537,81 +537,81 @@ sample_B	./test/sample_B.test.1k.R1.fq.gz	./test/sample_B.test.1k.R2.fq.gz
 </blockquote>
 <h3 id="json文件">json文件</h3>
 <p>需要一些参数才能运行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;bsseq.genome_index&#34;</span> : <span style="color:#e6db74">&#34;error_path_just_for_test/test.fa_bowtie2/&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.python_file&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/miniconda3/envs/py27/bin/python&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.bsseeker_util_dir&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/BSseeker&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.refer_fa&#34;</span> : <span style="color:#e6db74">&#34;./test/test.fa&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.alig_software&#34;</span> : <span style="color:#e6db74">&#34;bowtie2&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.fastq_table&#34;</span> : <span style="color:#e6db74">&#34;./test/input_sample_fq.tsv&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.step02_fq_qc&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.step03_bsseeker_align&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>
-}
-</code></pre></div><p>其中<code>genome_index</code>是基因组索引文件，这个是要BSseeker构建的。如果之前没有构建过，这个参数可以不写或者给了错误的地址。**流程都会自动根据参数<code>refer_fa</code>来进行基因组索引构建，只是需要的时间和内存都会比较大。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.genome_index&#34;</span> : <span style="color:#e6db74">&#34;error_path_just_for_test/test.fa_bowtie2/&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.python_file&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/miniconda3/envs/py27/bin/python&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_util_dir&#34;</span> : <span style="color:#e6db74">&#34;wangjiaxuan/biosoft/BSseeker&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.refer_fa&#34;</span> : <span style="color:#e6db74">&#34;./test/test.fa&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.alig_software&#34;</span> : <span style="color:#e6db74">&#34;bowtie2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.fastq_table&#34;</span> : <span style="color:#e6db74">&#34;./test/input_sample_fq.tsv&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.step02_fq_qc&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.step03_bsseeker_align&#34;</span> : <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>其中<code>genome_index</code>是基因组索引文件，这个是要BSseeker构建的。如果之前没有构建过，这个参数可以不写或者给了错误的地址。**流程都会自动根据参数<code>refer_fa</code>来进行基因组索引构建，只是需要的时间和内存都会比较大。</p>
 <p>另外参数<code>refer_fa</code>是必须参数，除此以外，必须的参数还有python2.7路径的<code>python_file</code>，BSseeker的脚本目录<code>bsseeker_util_dir</code>，输入上文提到的tsv表格的<code>fastq_table</code>，以及比对软件<code>alig_software</code>。</p>
 <h3 id="运行">运行</h3>
-<h4 id="方法一">方法一🐍</h4>
+<h4 id="方法一snake">方法一&#x1f40d;</h4>
 <p>运行流程, 我写了一个python的外包，运行<code>./bsseq-run -i bsseq.input.json</code>就可以开始分析，参数<code>-i</code>控制输入的json文件，<code>-c</code>是指定的cromwell.jar的路径，默认是在WDL文件下的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 参数</span>
-<span style="color:#75715e"># usage: bsseq-run [-h] --input INPUT [--cromwell CROMWELL] [--version]</span>
-
-<span style="color:#75715e"># BS-seq analysis workflow base on bsseeker and CGmaptools</span>
-
-<span style="color:#75715e"># optional arguments:</span>
-<span style="color:#75715e">#  -h, --help            show this help message and exit</span>
-<span style="color:#75715e">#  --input INPUT, -i INPUT</span>
-<span style="color:#75715e">#                       the input json</span>
-<span style="color:#75715e">#  --cromwell CROMWELL, -c CROMWELL</span>
-<span style="color:#75715e">#                       Optional path to cromwell jar file</span>
-<span style="color:#75715e">#  --version, -v         show version tag: 0.1</span>
-</code></pre></div><h4 id="方法二-">方法二 ☕</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># usage: bsseq-run [-h] --input INPUT [--cromwell CROMWELL] [--version]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># BS-seq analysis workflow base on bsseeker and CGmaptools</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># optional arguments:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  -h, --help            show this help message and exit</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  --input INPUT, -i INPUT</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                       the input json</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  --cromwell CROMWELL, -c CROMWELL</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                       Optional path to cromwell jar file</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  --version, -v         show version tag: 0.1</span>
+</span></span></code></pre></div><h4 id="方法二-coffee">方法二 &#x2615;</h4>
 <p>当然外包的python又需要python3的环境，而运行BSseeker是python2的环境，我也没无奈，因为我不会python2，所以嫌麻烦也可以直接运行命令行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">java -jar WDL/WDL/cromwell-58.jar run WDL/bsseq.wdl -i bsseq.input.json -m bsseq.output.json
-<span style="color:#75715e"># -m 参数是输出文件，可以不写，但是不写后续分析很麻烦</span>
-</code></pre></div><h3 id="结果解读">结果解读🍵</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -jar WDL/WDL/cromwell-58.jar run WDL/bsseq.wdl -i bsseq.input.json -m bsseq.output.json
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -m 参数是输出文件，可以不写，但是不写后续分析很麻烦</span>
+</span></span></code></pre></div><h3 id="结果解读tea">结果解读&#x1f375;</h3>
 <p>结果可能有点疑惑，但这也是wdl的特性，输出文件都会在cromwell-executions文件里，里面根据task来进行分文件，又进一步细分为input和execution。但是看<code>bsseq.output.json</code>就不会疑惑了。</p>
 <p>有用的信息，我都output了</p>
 <p>Example：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">  <span style="color:#e6db74">&#34;outputs&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
-    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam_bai&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>, <span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.sample&#34;</span>: [<span style="color:#e6db74">&#34;sample_A&#34;</span>, <span style="color:#e6db74">&#34;sample_B&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq1&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R1.fq.gz&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_CGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.CGmap&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.bsseeker_index&#34;</span>: <span style="color:#e6db74">&#34;test.fa_bowtie2&#34;</span>,
-    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_wig&#34;</span>: [<span style="color:#e6db74">&#34;merge.wig&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_snv&#34;</span>: [<span style="color:#e6db74">&#34;bayes.snv&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq2&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R2.fq.gz&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_vcf&#34;</span>: [<span style="color:#e6db74">&#34;bayes.vcf&#34;</span>],
-    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_ATCGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.ATCGmap&#34;</span>]
-    }
-<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">信息匿去部分信息，本身是按照样本输出的</span>
-</code></pre></div><h3 id="甲基化结果文件展示">甲基化结果文件展示：🍸</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;outputs&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam_bai&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>, <span style="color:#e6db74">&#34;sort_rmSX.bam.bai&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_call_methylation_bam&#34;</span>: [<span style="color:#e6db74">&#34;sort_rmSX.bam&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.sample&#34;</span>: [<span style="color:#e6db74">&#34;sample_A&#34;</span>, <span style="color:#e6db74">&#34;sample_B&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq1&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R1.fq.gz&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_CGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.CGmap&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_index&#34;</span>: <span style="color:#e6db74">&#34;test.fa_bowtie2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_wig&#34;</span>: [<span style="color:#e6db74">&#34;merge.wig&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_snv&#34;</span>: [<span style="color:#e6db74">&#34;bayes.snv&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.fastp_filter_fq2&#34;</span>: [<span style="color:#e6db74">&#34;sample_B.filter.R2.fq.gz&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.cgmaptools_methy_vcf&#34;</span>: [<span style="color:#e6db74">&#34;bayes.vcf&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsseq.bsseeker_methy_ATCGmap&#34;</span>: [<span style="color:#e6db74">&#34;merge.ATCGmap&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">信息匿去部分信息，本身是按照样本输出的</span>
+</span></span></code></pre></div><h3 id="甲基化结果文件展示cocktail">甲基化结果文件展示：&#x1f378;</h3>
 <p>我们拿ATCGmap文件举例，结果是文本格式，包含甲基化位点和甲基化水平 <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202202161753521645005232A6WlOximage-20220216175351916.png" alt="image-20220216175351916"></p>
 <p>具体每一列的详细信息如下：</p>
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/202202161755271645005327t10sDximage-20220216175527691.png" alt="image-20220216175527691"></p>
-<h2 id="安装-">安装 ⛵</h2>
+<h2 id="安装-boat">安装 &#x26f5;</h2>
 <h3 id="安装bsseeker2">安装BSseeker2</h3>
 <p>按照BSseeker的<a href="http://pellegrini-legacy.mcdb.ucla.edu/bs_seeker2/">网址</a>上的介绍安装和使用
 简单点话就是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/BSSeeker/BSseeker2
-cd BSseeker2
-</code></pre></div><p>就可以看到其中的py脚本，但是亲测python 3.8不能用，只能用conda创建一个python2.7的环境，同时需要环境中有bowtie, bowtie2, soap三个软件中任意一个都可以。python环境也要有<code>pysam</code>模块。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/BSSeeker/BSseeker2
+</span></span><span style="display:flex;"><span>cd BSseeker2
+</span></span></code></pre></div><p>就可以看到其中的py脚本，但是亲测python 3.8不能用，只能用conda创建一个python2.7的环境，同时需要环境中有bowtie, bowtie2, soap三个软件中任意一个都可以。python环境也要有<code>pysam</code>模块。</p>
 <h3 id="安装cgmaptools">安装CGmapTools</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/guoweilong/cgmaptools
-bash install.sh
-<span style="color:#75715e"># add cgmaptools to your system PATH if necessary</span>
-<span style="color:#75715e"># open ~/.bashrc</span>
-vi ~/.bashrc
-<span style="color:#75715e"># add the following lines to the end of ~/.bashrc</span>
-export PATH<span style="color:#f92672">=</span>/path/to/cgmaptools/:$PATH
-<span style="color:#75715e"># then, souce your ~/.bashrc</span>
-source ~/.bashrc
-</code></pre></div><p>还需要在python2.7的环境中安装pysam和scipy</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda activate py27
-pip install pysam
-pip install scipy
-</code></pre></div><h2 id="资料来源">资料来源⚓</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/guoweilong/cgmaptools
+</span></span><span style="display:flex;"><span>bash install.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># add cgmaptools to your system PATH if necessary</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># open ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>vi ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># add the following lines to the end of ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>/path/to/cgmaptools/:$PATH
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># then, souce your ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div><p>还需要在python2.7的环境中安装pysam和scipy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate py27
+</span></span><span style="display:flex;"><span>pip install pysam
+</span></span><span style="display:flex;"><span>pip install scipy
+</span></span></code></pre></div><h2 id="资料来源anchor">资料来源&#x2693;</h2>
 <p>资料主要来源黄湘仪的教程——<a href="https://guoweilong.github.io/BSseeker2_CGmapTools_tutorial_181014.pdf">18.10.04亚硫酸盐测序数据基本分析流程代码及软件</a>，当然也感谢BSseeker2 和CGmapTools开发者农大的<a href="http://guoweilong.github.io/">郭伟龙</a>博士（中国农业大学）和朱平博士（天津血研所/北京大学）等人合作开发了DNA甲基化数据分析工具包：<a href="https://cgmaptools.github.io/">CGmapTools</a>，包含40个独立的命令行工具，提供了全面的DNA甲基化数据分析和可视化功能。目前该工作已经在生物信息学著名期刊<strong>Bioinformatics</strong>上以original paper形式发表。</p>
 <blockquote>
 <p>Weilong Guo <em>, Ping Zhu</em> , et al. (2017), <a href="https://doi.org/10.1093/bioinformatics/btx595">CGmapTools improves the precision of heterozygous SNV calls and supports allele-specific methylation detection and visualization in bisulfite-sequencing data</a>.</p>
@@ -639,8 +639,8 @@ pip install scipy
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -656,8 +656,9 @@ pip install scipy
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -716,17 +717,6 @@ pip install scipy
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

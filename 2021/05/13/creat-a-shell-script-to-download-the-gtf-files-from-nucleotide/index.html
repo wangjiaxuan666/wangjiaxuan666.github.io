@@ -169,28 +169,34 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直">
+  <meta name="description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直接点击链接就可以了吗。
+其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现网页是这样子的：
+">
 
   
   
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="从Nucleotide下载小基因组的Gtf注释文件">
-    <meta name="twitter:description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直">
+    <meta name="twitter:description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直接点击链接就可以了吗。
+其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现网页是这样子的：
+">
     <meta name="twitter:image" content="/images/avatar.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="从Nucleotide下载小基因组的Gtf注释文件">
-  <meta property="og:description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直">
+  <meta property="og:description" content="脚本的目的 大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从NCBI-Genome或者Ensembl这些基因组网站上直接点击链接就可以了吗。
+其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现网页是这样子的：
+">
   <meta property="og:url" content="https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/">
   <meta property="og:image" content="/images/avatar.png">
 
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/">
@@ -455,7 +461,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">从Nucleotide下载小基因组的Gtf注释文件</h1>
-      <p class="post-meta">@Wang Jiaxuan · May 13, 2021 · 2 min read</p>
+      <p class="post-meta">@Wang Jiaxuan · May 13, 2021 · 3 min read</p>
     </header>
     
     <article class="post-content"><h2 id="脚本的目的">脚本的目的</h2>
@@ -464,25 +470,25 @@
 <p><img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/image-20210513160744707.png" alt="NCBI"></p>
 <p>简而言之，就是虽然fa文件可以网页上点击下载，但是gtf文件却找不到地方下载，所有的注释信息都是在网页上以很冗余的形式表示出来。这种情况针对特定研究领域的初学者(嗯，没错就是我自己)还是相当困扰的。我觉得这个情况肯定是很普遍的，不会只有我一个人遇到这样的问题。</p>
 <blockquote>
-<p>就拿我上份工作🏢🏢🏢来说，这种情况我都遇见过了两三次，只不过当时直接提交给分析人员。自己不做所以不操这份心。
+<p>就拿我上份工作&#x1f3e2;&#x1f3e2;&#x1f3e2;来说，这种情况我都遇见过了两三次，只不过当时直接提交给分析人员。自己不做所以不操这份心。
 <cite>不当家不知菜米油盐贵</cite></p>
 </blockquote>
-<p>但我肯定不会费大力气去写爬虫🐛🐛🐛调取的，毕竟我觉得常用的功能，应该有人写过脚本，拿来全然不费功夫。然后我相当有信心的去谷歌了。很奇怪，搜中文，没结果&hellip;。基本上没见有人提到这个问题（难道没人遇到这个问题还是说另有捷径❓❓❓）。最后搜英文，总算最终找到了解决方法，其实很简单就是一个链接输入调参而言。</p>
-<p>虽然结果很简单，但是为了这个问题搜索的过程却不是那么轻轻愉悦的，做个分享利己利人💾💾💾，如果有需要的朋友，可以去我的Github上下载<red><a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/down_genome_from_nucleotide.sh">down_genome_from_nucleotide.sh</a></red>，<a href="https://github.com/wangjiaxuan666/WeChat-pubword/">链接点此</a>。</p>
+<p>但我肯定不会费大力气去写爬虫&#x1f41b;&#x1f41b;&#x1f41b;调取的，毕竟我觉得常用的功能，应该有人写过脚本，拿来全然不费功夫。然后我相当有信心的去谷歌了。很奇怪，搜中文，没结果&hellip;。基本上没见有人提到这个问题（难道没人遇到这个问题还是说另有捷径&#x2753;&#x2753;&#x2753;）。最后搜英文，总算最终找到了解决方法，其实很简单就是一个链接输入调参而言。</p>
+<p>虽然结果很简单，但是为了这个问题搜索的过程却不是那么轻轻愉悦的，做个分享利己利人&#x1f4be;&#x1f4be;&#x1f4be;，如果有需要的朋友，可以去我的Github上下载<red><a href="https://github.com/wangjiaxuan666/WeChat-pubword/blob/master/down_genome_from_nucleotide.sh">down_genome_from_nucleotide.sh</a></red>，<a href="https://github.com/wangjiaxuan666/WeChat-pubword/">链接点此</a>。</p>
 <h2 id="脚本的使用">脚本的使用</h2>
-<p>因为是纯shell脚本📗📗📗，可以直接用在Linux系统上运行，用Windows的同学需要在Win10下面安装WSL，也就是Win10的linux子系统，效果是一样的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># wget &#34;https://raw.githubusercontent.com/wangjiaxuan666/WeChat-pubword/master/down_genome_from_nucleotide.sh&#34;</span>
-<span style="color:#75715e"># 下载好后，当面目录下会出现down_genome_from_nucleotide.sh文件</span>
-<span style="color:#75715e"># run</span>
-bash down_genome_from_nucletide -i NC_003977.2 <span style="color:#75715e"># NC_003977.2就是需要输入ID，见上图的红线处标识</span>
-<span style="color:#75715e"># ok</span>
-</code></pre></div><p>一步搞定！运行完成后，会在屏幕上显示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">==================</span>
-
-The genome has download in NC_003977.2 files !
-
-<span style="color:#f92672">==================</span>
-</code></pre></div><p>这个时候，检查当前目录就会多了一个NC_003977.2的文件夹🐍，其中就会有我们需要download的基因组序列文件.fa和基因组注释文件.gtf。</p>
+<p>因为是纯shell脚本&#x1f4d7;&#x1f4d7;&#x1f4d7;，可以直接用在Linux系统上运行，用Windows的同学需要在Win10下面安装WSL，也就是Win10的linux子系统，效果是一样的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># wget &#34;https://raw.githubusercontent.com/wangjiaxuan666/WeChat-pubword/master/down_genome_from_nucleotide.sh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 下载好后，当面目录下会出现down_genome_from_nucleotide.sh文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run</span>
+</span></span><span style="display:flex;"><span>bash down_genome_from_nucletide -i NC_003977.2 <span style="color:#75715e"># NC_003977.2就是需要输入ID，见上图的红线处标识</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ok</span>
+</span></span></code></pre></div><p>一步搞定！运行完成后，会在屏幕上显示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">==================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The genome has download in NC_003977.2 files !
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==================</span>
+</span></span></code></pre></div><p>这个时候，检查当前目录就会多了一个NC_003977.2的文件夹&#x1f40d;，其中就会有我们需要download的基因组序列文件.fa和基因组注释文件.gtf。</p>
 <div class="alert danger ">
   <p>
   	<span style="font-size: 1em; color: Tomato;">
@@ -492,12 +498,12 @@ The genome has download in NC_003977.2 files !
   </p>
 </div>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">==================</span>
-
-please check the <span style="color:#e6db74">&#39;-i name&#39;</span> again
-
-<span style="color:#f92672">==================</span>
-</code></pre></div><p>注意name是NCBI Reference Sequence的编号，可以在Nucleotide的结果网页中查到。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">==================</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>please check the <span style="color:#e6db74">&#39;-i name&#39;</span> again
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==================</span>
+</span></span></code></pre></div><p>注意name是NCBI Reference Sequence的编号，可以在Nucleotide的结果网页中查到。</p>
 <p>今天就到此结束了，撒花！</p>
 </article>
     <footer class="post-footer">
@@ -520,8 +526,8 @@ please check the <span style="color:#e6db74">&#39;-i name&#39;</span> again
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -537,8 +543,9 @@ please check the <span style="color:#e6db74">&#39;-i name&#39;</span> again
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -597,17 +604,6 @@ please check the <span style="color:#e6db74">&#39;-i name&#39;</span> again
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

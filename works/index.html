@@ -190,7 +190,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/works/">
@@ -597,7 +597,7 @@
       
       try {
         
-        const userResponse = await fetch(`https:
+        const userResponse = await fetch(`https://api.github.com/users/${username}`);
         if (userResponse.ok) {
           const userData = await userResponse.json();
           document.getElementById('gh-avatar').src = userData.avatar_url;
@@ -605,13 +605,13 @@
           document.getElementById('gh-bio').innerText = `> ${userData.bio || "Talk is cheap. Show me the code."}`;
         }
 
-        // 2. 抓取你同名仓库 (Profile) 的 README.md
         
-        let readmeResponse = await fetch(`https:
+        
+        let readmeResponse = await fetch(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`);
         
         
         if (!readmeResponse.ok) {
-          readmeResponse = await fetch(`https:
+          readmeResponse = await fetch(`https://raw.githubusercontent.com/${username}/${username}/master/README.md`);
         }
 
         if (readmeResponse.ok) {
@@ -658,17 +658,6 @@
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

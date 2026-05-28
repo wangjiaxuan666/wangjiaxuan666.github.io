@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/">
@@ -466,11 +466,11 @@
 <h2 id="背景知识">背景知识</h2>
 <p>在脊椎动物中🐒🐘, T/B细胞是适应性免疫系统的两大细胞群，在抗体的产生, 和免疫反应中具有非常重要的地位. 抗体多样性是免疫系统的重要特性。自然界的抗原种类极多，每种抗原还有不同的抗原决定簇，因此具有多种特异性的免疫球蛋白分子的种类也必定是极其众多的，可以有几百万种。可是，脊椎动物基因组内所有的基因总共不过几万个左右。因此，决不可能有那么多的免疫球蛋白基因去编码每一种特定的免疫球蛋白分子。</p>
 <p>所以为了产生足够多样的抗体, 脊椎动物🐻和人🤰的淋巴细胞在其成熟过程中会发生抗体基因的重排, 其目的是为了增加特异性识别抗体的多样性.</p>
-<p>但是在细胞高度特异和分化的动物, 基因发生重拍就意味着基因结构和编码产物发生变化. 这是一个非常危险⛔的<red>行为</red>. 但是面对外部环境多种多样的病原微生物的侵染, 以及为了能镇压自身细胞的叛变和清除衰老细胞. 多样性的特意识别分析-<red>抗体</red> 又是必不可少的.</p>
-<p>那么就要认真了解下, 生命是如何在这样的钢丝线上走的又稳又快. 🐟 和 🐻 掌兼得的. 又如何通过免疫组库测序(IR-seq)来进行研究.</p>
+<p>但是在细胞高度特异和分化的动物, 基因发生重拍就意味着基因结构和编码产物发生变化. 这是一个非常危险&#x26d4;的<red>行为</red>. 但是面对外部环境多种多样的病原微生物的侵染, 以及为了能镇压自身细胞的叛变和清除衰老细胞. 多样性的特意识别分析-<red>抗体</red> 又是必不可少的.</p>
+<p>那么就要认真了解下, 生命是如何在这样的钢丝线上走的又稳又快. &#x1f41f; 和 &#x1f43b; 掌兼得的. 又如何通过免疫组库测序(IR-seq)来进行研究.</p>
 <center>😂😂😂</center>
 <h2 id="免疫球蛋白的基因重排">免疫球蛋白的基因重排</h2>
-<p>首先是, 脊椎动物🐻淋巴细胞在其细胞成熟过程中会发生基因的重排已经是普识. 利根川进(<em>Tonegawa S</em>) 👨, 还因为揭示了免疫基因的重排基因获得了1987年的诺贝尔生理与医学奖🏆. 
+<p>首先是, 脊椎动物🐻淋巴细胞在其细胞成熟过程中会发生基因的重排已经是普识. 利根川进(<em>Tonegawa S</em>) &#x1f468;, 还因为揭示了免疫基因的重排基因获得了1987年的诺贝尔生理与医学奖🏆.
 <blockquote>
   <p>
 1987年，利根川教授因“发现抗体多样性的遗传学原理”成为首位亚洲/日本籍诺贝尔生理学或医学奖得主，也是免疫学领域“独得诺贝尔奖”的唯一一人。
@@ -518,7 +518,7 @@
 <center>🙉🙉🙉</center>
 <h3 id="免疫组测序的选择">免疫组测序的选择</h3>
 <p>目前主流的大多数方法只是针对针对单个亚基（通常是BCR重链，TCR a或TCR b链）。同时目前测序的区域主要集中在CDR3区, 这是因为目前最主流的测序平台illumina的最大读长是PE250, 也就是只能测通500bp的片段长短. 而一个全长的轻链和重链都不至于于此.</p>
-<p>但是, CDR3靶向策略可能不适用于某些应用，例如检查完整的SHM谱和/或大量突变的BCR.虽然CDR3是作用最关键的区域, 并且在J片段的上游和V区的下游涉及引物可以避免来自染色体上的非重组序列的污染. 但是还是读长太短了,得不到完整的全长序列. 
+<p>但是, CDR3靶向策略可能不适用于某些应用，例如检查完整的SHM谱和/或大量突变的BCR.虽然CDR3是作用最关键的区域, 并且在J片段的上游和V区的下游涉及引物可以避免来自染色体上的非重组序列的污染. 但是还是读长太短了,得不到完整的全长序列.
 <blockquote class="pullquote left">
 	<p> 
 另一个主要需要注意的是测序文库的核酸类型：基因组DNA还是转录物RNA。基因组DNA文库通常包含所有V-D-J受体重组体，无论它们是否最终编码成蛋白。
@@ -575,8 +575,8 @@ HTS数据集中非生产性序列的存在对于研究淋巴细胞发育中的�
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -592,8 +592,9 @@ HTS数据集中非生产性序列的存在对于研究淋巴细胞发育中的�
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -652,17 +653,6 @@ HTS数据集中非生产性序列的存在对于研究淋巴细胞发育中的�
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

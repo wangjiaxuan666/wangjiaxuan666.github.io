@@ -169,7 +169,7 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+  <meta name="description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
 ">
 
   
@@ -177,7 +177,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="处理批次效应连续剧第三集（R包基本OK）">
-    <meta name="twitter:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+    <meta name="twitter:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
 ">
     <meta name="twitter:image" content="https://abego.cn/media/r.jpg">
   
@@ -185,7 +185,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="处理批次效应连续剧第三集（R包基本OK）">
-  <meta property="og:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
+  <meta property="og:description" content="最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。
 ">
   <meta property="og:url" content="https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/">
   <meta property="og:image" content="https://abego.cn/media/r.jpg">
@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/">
@@ -461,7 +461,17 @@
       <p class="post-meta">@Wang Jiaxuan · Dec 24, 2020 · 8 min read</p>
     </header>
     
-    <article class="post-content"><div id="前言" class="section level2">
+    <article class="post-content"><script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。</p>
+
+
+
+
+<div id="前言" class="section level2">
 <h2>前言</h2>
 <p>主要是<code>fixbatch</code>做了下更新：</p>
 <ol style="list-style-type: decimal">
@@ -667,8 +677,7 @@ topTableF(eb, adjust=&quot;BH&quot;)</code></pre>
 <p>后续我找到答案，我也会及时更新的。</p>
 <p>总结下：目前<code>fixbatch</code>也算小有成就，不仅包含了<code>norm_fix</code>,<code>edger_fix</code>,以及<code>combat_fix</code>这些批次矫正的脚本，还有<code>pvca</code>这种探究因素效应的神器。在批次矫正中，应该是足够用了，功能暂时不想更新了。后续就是完善说明文档和补BUG吧。</p>
 </div>
-</div>
-</article>
+</div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -693,8 +702,8 @@ topTableF(eb, adjust=&quot;BH&quot;)</code></pre>
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -710,8 +719,9 @@ topTableF(eb, adjust=&quot;BH&quot;)</code></pre>
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -770,17 +780,6 @@ topTableF(eb, adjust=&quot;BH&quot;)</code></pre>
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

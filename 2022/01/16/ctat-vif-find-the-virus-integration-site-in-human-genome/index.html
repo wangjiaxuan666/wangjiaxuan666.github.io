@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/">
@@ -468,35 +468,35 @@
 <p><a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder">CTAT-VirusIntegrationFinder</a>是<a href="https://github.com/NCIP/Trinity_CTAT/wiki">Trinity Cancer Transcriptome Analysis Toolkit</a> 工具套件其中一个模块，CTAT-VirusIntegrationFinder顾名思义，主要是做病毒基因整合的检测。而整个套件中其他模块有做融合基因，有作突变位点，也有做CNV和SV的。总之就是很强大。</p>
 <h3 id="安装">安装</h3>
 <p>现在<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder/releases">Releases · broadinstitute/CTAT-VirusIntegrationFinder (github.com)</a>上下载软件包，然后解压缩，看到一个download的sh文件，bash运行，注意要在联网环境下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tar -zxvf CTAT-VirusIntegrationFinder-v1.0.1.FULL.tar.gz
-bash  download_cromwell.sh
-</code></pre></div><p>注意，cromwell 必须要jdk 1.8.0+ 的环境，具体可以看我当时提的<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder/issues/41">issue</a>.这第一个坑，卡我了至少三天。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar -zxvf CTAT-VirusIntegrationFinder-v1.0.1.FULL.tar.gz
+</span></span><span style="display:flex;"><span>bash  download_cromwell.sh
+</span></span></code></pre></div><p>注意，cromwell 必须要jdk 1.8.0+ 的环境，具体可以看我当时提的<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder/issues/41">issue</a>.这第一个坑，卡我了至少三天。</p>
 <p>下载好后，就可以用<code>make</code>命令编译，如果没有报错，那么恭喜你你已经跳过安装最大的坑了，如果报错了，需要根据报错信息，进行环境的补全，可能文章后面的0.04版本的安装会给一些提示。</p>
 <h3 id="基因组索引">基因组索引</h3>
 <p>基因组索引需要在[网站](<a href="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/">Index of /Trinity/CTAT_RESOURCE_LIB (broadinstitute.org)</a>)下载基本的源文件, 虽然解压缩后，这个文件夹里有很多文件，但是还是需要重新构建（你敢信，这个又卡了我三天，我以为直接可以用！！！，脸上笑眯眯，心里MMP）</p>
 <p>从<a href="https://github.com/NCIP/ctat-genome-lib-builder/">Github</a>上下载构建索引的脚本:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/NCIP/ctat-genome-lib-builder/
-ls ctat-genome-lib-builder/prep_genome_lib.pl
-<span style="color:#75715e"># 查看位置</span>
-ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--genome_fa GRCh38.primary_assembly.genome.fa <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--gtf gencode.v37.annotation.gtf <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--dfam_db human <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--fusion_annot_lib fusion_lib.Mar2021.dat.gz <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--human_gencode_filter <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--pfam_db current
-</code></pre></div><p>当这个运行可以构建基因，但是我的环境好像少了perl环境，服气了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/NCIP/ctat-genome-lib-builder/
+</span></span><span style="display:flex;"><span>ls ctat-genome-lib-builder/prep_genome_lib.pl
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看位置</span>
+</span></span><span style="display:flex;"><span>ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--genome_fa GRCh38.primary_assembly.genome.fa <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--gtf gencode.v37.annotation.gtf <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--dfam_db human <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--fusion_annot_lib fusion_lib.Mar2021.dat.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--human_gencode_filter <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--pfam_db current
+</span></span></code></pre></div><p>当这个运行可以构建基因，但是我的环境好像少了perl环境，服气了。</p>
 <blockquote>
 <p>我还是直接从网站down构建好的基因组吧,果然下载构建好的基因，运行直接成功了。虽然这个构建好的基因组index有31G的大小，贼难下载的说。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/wangjiaxuan/biosoft/CTAT-vif/ctat-vif <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--left ./genome_lib/test.fq   <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--genome_lib_dir ~/CTAT-vif/genome_lib/ctat_genome_lib_build_dir <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--sample_id yesimola <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>-O ./test <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--cpu <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>--virus_type hpv33 <span style="color:#75715e"># 这个参数是我自己加上的，原软件是没有的</span>
-</code></pre></div><p>以上就会运行成功，结果预览：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/wangjiaxuan/biosoft/CTAT-vif/ctat-vif <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--left ./genome_lib/test.fq   <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--genome_lib_dir ~/CTAT-vif/genome_lib/ctat_genome_lib_build_dir <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--sample_id yesimola <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-O ./test <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--cpu <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>--virus_type hpv33 <span style="color:#75715e"># 这个参数是我自己加上的，原软件是没有的</span>
+</span></span></code></pre></div><p>以上就会运行成功，结果预览：</p>
 <blockquote>
 <p>注意：因为脚本会默认用的是<code>,</code>来分割read，所以如果你的fq文件的reads名字增加了一些特殊字符是回报错的。所以针对这点需要在此基础上修改脚本，比如我就是修改成以<code>~</code>来作为分割符。</p>
 </blockquote>
@@ -504,11 +504,11 @@ ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#ae81ff">\
 <p>最早期的时候安装过这个软件，但是踩了很多坑，后面作者更新（因为我们和作者联系，希望增加SE测序的支持，正好作者准备更新），所以我就重新走了一遍安装和索引流程，但我觉得之前的坑排雷经验也很重要，留下来做个备份。</p>
 <p><strong>也许对于其他环境的问题，之前的坑还在，只不过我这次更新，已经把之前的坑填了而已。</strong></p>
 <p>言归正传、<a href="https://github.com/broadinstitute/CTAT-VirusIntegrationFinder">CTAT-VirusIntegrationFinder</a>需要在Github上下载，下载（先别下载有坑！看后面），运行参数很简单：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tat-VIF.py --left_fq reads_1.fastq <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>            --right_fq reads_2.fastq <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>            --genome_lib_dir /path/to/ctat_genome_lib_dir <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>            --viral_db_fasta viruses.fasta
-</code></pre></div><p>但其中主要是这个genome_lib_dir的文件需要构建参考库、当然也可以直接从已经构建上的<a href="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/">数据库</a>上下载。但是已经构建好的索引库太大，所以最好是下载其中源文件，然后自己进行构建库。具体可以看其他人的<a href="https://cloud.tencent.com/developer/article/1625294">文章</a>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tat-VIF.py --left_fq reads_1.fastq <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>            --right_fq reads_2.fastq <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>            --genome_lib_dir /path/to/ctat_genome_lib_dir <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>            --viral_db_fasta viruses.fasta
+</span></span></code></pre></div><p>但其中主要是这个genome_lib_dir的文件需要构建参考库、当然也可以直接从已经构建上的<a href="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/">数据库</a>上下载。但是已经构建好的索引库太大，所以最好是下载其中源文件，然后自己进行构建库。具体可以看其他人的<a href="https://cloud.tencent.com/developer/article/1625294">文章</a>。</p>
 <p>好了，当构建好索引库，也不是万事大吉。首先因为该软件的Github仓库中有子模块，所以基本上你下载下来后，还是会发现少了一些文件。</p>
 <p>解决方法看知乎上<a href="https://zhuanlan.zhihu.com/p/361136073">文章</a>。 然后就算你用他的方法下载后，还是会发现<code>CTAT-VirusIntegrationFinder/util/bamsifter</code>中的htslib文件夹还有一个隐藏的子模块，所以上述操作还要再来一遍。下载完成后，你看在htslib文件中发现有个<code>makefile</code>的文件，终端输入<code>make</code>进行编译。</p>
 <p>完成后，进行运行<code>ctat-VIF.py</code> ，然后就会报错，需要安装相应的python模块和R包，这个算是自己检查吧，但是接下来的才是一步步更加崩溃。</p>
@@ -516,7 +516,7 @@ ctat-genome-lib-builder/prep_genome_lib.pl <span style="color:#ae81ff">\
 <p>我是去更新了系统变量</p>
 <pre tabindex="0"><code># gcc
 export PATH=/share/app/gcc/9.3.0/bin:$PATH
-export LD_LIBRARY_PATH=&quot;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&quot;
+export LD_LIBRARY_PATH=&#34;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&#34;
 </code></pre><p>这样才解决问题。</p>
 <p>然后又报错，我检查了原始作者的py脚本，最后发现是我的samtool版本太低了，所以报错了。我简直要气爆炸了。忍忍，继续更新samtools。</p>
 <p>更新好就可以成功运行了</p></article>
@@ -544,8 +544,8 @@ export LD_LIBRARY_PATH=&quot;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&quot;
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -561,8 +561,9 @@ export LD_LIBRARY_PATH=&quot;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&quot;
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -621,17 +622,6 @@ export LD_LIBRARY_PATH=&quot;/share/app/gcc/9.3.0/lib64:$LD_LIBRARY_PATH&quot;
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

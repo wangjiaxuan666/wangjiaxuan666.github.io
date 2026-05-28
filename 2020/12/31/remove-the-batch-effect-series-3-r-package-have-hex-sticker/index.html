@@ -169,7 +169,7 @@
 
   
   <meta name="author" content="Wang Jiaxuan">
-  <meta name="description" content="R包有logo, 快乐起飞！
+  <meta name="description" content="R包有logo, 快乐起飞！
 ">
 
   
@@ -177,7 +177,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@abego13">
     <meta name="twitter:title" content="处理批次效应连续剧第四集（R包有logo了）">
-    <meta name="twitter:description" content="R包有logo, 快乐起飞！
+    <meta name="twitter:description" content="R包有logo, 快乐起飞！
 ">
     <meta name="twitter:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png">
   
@@ -185,7 +185,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="处理批次效应连续剧第四集（R包有logo了）">
-  <meta property="og:description" content="R包有logo, 快乐起飞！
+  <meta property="og:description" content="R包有logo, 快乐起飞！
 ">
   <meta property="og:url" content="https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/">
   <meta property="og:image" content="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png">
@@ -193,7 +193,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.162.0">
 
 
 <link rel="canonical" href="https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/">
@@ -461,7 +461,17 @@
       <p class="post-meta">@Wang Jiaxuan · Dec 31, 2020 · 3 min read</p>
     </header>
     
-    <article class="post-content"><p>最近也没闲着，上一篇文章中，说到了sva虽然可以计算替代变量，但是有了替代变量后只能用limma进行差异分析，并没有输出矫正后的表达量矩阵，这点还是很苦恼的。所以上次更新中只加入了能够矫正已知批次的combat_fix。</p>
+    <article class="post-content"><script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<p>R包有logo, 快乐起飞！</p>
+
+
+
+
+<p>最近也没闲着，上一篇文章中，说到了sva虽然可以计算替代变量，但是有了替代变量后只能用limma进行差异分析，并没有输出矫正后的表达量矩阵，这点还是很苦恼的。所以上次更新中只加入了能够矫正已知批次的combat_fix。</p>
 <p>但是最近又看到新的R包<code>snm</code>,这个R包更牛了，可以矫正多个批次效应，同时还可以矫正数字型批次，并且最重要的是可以返回表达量矩阵。</p>
 <p>一下子就打通了最后一公里。svn+snm组合拳简直不要太完美！</p>
 <p>至此，基本上我已经写完整个R包的功能和框架，至少我自己是觉得暂时没啥可以大修大改了。所以补充了说明文章，整理了整个R包的矫正思路。</p>
@@ -514,8 +524,7 @@ sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 
 <img src="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/img/fixbatch_hexSticker.png" alt="" />
 <p class="caption">logo</p>
 </div>
-<p>效果我个人非常满意，开心！</p>
-</article>
+<p>效果我个人非常满意，开心！</p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -538,8 +547,8 @@ sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -555,8 +564,9 @@ sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
       
     
   </section>
@@ -615,17 +625,6 @@ sticker(p, package=&quot;fixbatch&quot;, p_color = bord_color ,p_size=20, p_y = 
 
 
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-147459974-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
