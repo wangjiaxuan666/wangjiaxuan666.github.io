@@ -159,9 +159,6 @@
   
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
-  <link href="///disqus.com" rel="dns-prefetch">
-  <link href="//c.disquscdn.com" rel="dns-prefetch">
-  
   <link href="//www.google-analytics.com" rel="dns-prefetch">
   
 
@@ -293,9 +290,7 @@
     <div class="suspension">
       <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="fas fa-caret-up" aria-hidden="true"></span></a>
       
-        
-	<a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#disqus_thread"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
-        
+        <a role="button" aria-label="Go to comments" title="Go to comments" class="to-comment" href="#giscus"><span class="fas fa-comment-dots" aria-hidden="true"></span></a>
       
     </div>
     
@@ -414,13 +409,6 @@
           
           
           ">
-          <a href="https://abego.cn/works/">开源战绩</a>
-        </li>
-      
-        <li class="menu-item
-          
-          
-          ">
           <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
         </li>
       
@@ -496,28 +484,30 @@
       </p>
     </footer>
     
-      <div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "abego-cn" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-	
-      
+      <div class="post-comments">
+  <div class="comments-header">
+    <span class="comments-title">评论</span>
+    <span class="comments-subtitle">用 GitHub 账号登录即可参与讨论</span>
+  </div>
+  <div id="giscus" class="giscus-container">
+    <script src="https://giscus.app/client.js"
+          data-repo="wangjiaxuan666/wangjiaxuan666.github.io"
+          data-repo-id="MDEwOlJlcG9zaXRvcnkxODkyNDYwNDk="
+          data-category="General"
+          data-category-id="DIC_kwDOC0eqYc4C-ATB"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="zh-CN"
+          crossorigin="anonymous"
+          async>
+    </script>
+  </div>
+</div>
+
     
   </section>
   

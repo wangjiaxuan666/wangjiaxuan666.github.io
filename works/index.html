@@ -161,9 +161,6 @@
   
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
-  <link href="///disqus.com" rel="dns-prefetch">
-  <link href="//c.disquscdn.com" rel="dns-prefetch">
-  
   <link href="//www.google-analytics.com" rel="dns-prefetch">
   
 
@@ -400,13 +397,6 @@
         </li>
       
         <li class="menu-item
-           is-active
-          
-          ">
-          <a href="https://abego.cn/works/">开源战绩</a>
-        </li>
-      
-        <li class="menu-item
           
           
           ">
@@ -444,13 +434,13 @@
   </nav>
 </header>
 
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
 
   <style>
      
     .github-wrapper {
-      background-color: #e2e8f0; 
+      background-color: #e2e8f0;
       padding: 40px 15px;
       min-height: 100vh;
       font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -468,7 +458,7 @@
       padding: 40px;
       position: relative;
     }
-    
+
      
     .profile-header {
       display: flex;
@@ -500,7 +490,7 @@
       0% { transform: scale(0.95); opacity: 0.8; }
       100% { transform: scale(1.15); opacity: 0; }
     }
-    
+
     #gh-avatar {
       width: 100%;
       height: 100%;
@@ -509,7 +499,7 @@
       position: relative;
       z-index: 1;
       border: 3px solid #fff;
-      background: #f1f5f9;  
+      background: #f1f5f9;
     }
 
     #gh-name { font-size: 2rem; color: #2c3e50; margin: 0 0 10px 0; font-weight: 800; border: none; }
@@ -526,11 +516,10 @@
       color: #334155;
       line-height: 1.7;
     }
-    
-     
+
     .readme-container img { max-width: 100%; border-radius: 6px; }
-    .readme-container h1, .readme-container h2, .readme-container h3 { 
-      color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 0; 
+    .readme-container h1, .readme-container h2, .readme-container h3 {
+      color: #1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 0;
     }
     .readme-container pre { background: #1e1e2e; color: #cdd6f4; padding: 15px; border-radius: 6px; overflow-x: auto; }
 
@@ -557,9 +546,9 @@
     .btn-github-launch:hover {
       transform: scale(1.05) translateY(-3px);
       box-shadow: 0 15px 30px rgba(0, 171, 107, 0.4);
-      background: #00ab6b; 
+      background: #00ab6b;
     }
-    
+
      
     .loading-text { text-align: center; color: #00ab6b; font-weight: bold; font-family: monospace; animation: blink 1s infinite; }
     @keyframes blink { 50% { opacity: 0.5; } }
@@ -567,13 +556,13 @@
 
   <section class="main github-wrapper">
     <div class="github-showcase">
-      
+
       <div class="profile-header">
         <div class="gh-avatar-container">
-          <img id="gh-avatar" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Avatar Loading...">
+          <img id="gh-avatar" src="https://avatars.githubusercontent.com/u/47097928?v=4" alt="Avatar Loading...">
         </div>
-        <h2 id="gh-name">Connecting...</h2>
-        <p id="gh-bio"><i class="fas fa-terminal"></i> Fetching data from GitHub API...</p>
+        <h2 id="gh-name"> Wang Jiaxuan(王家轩)</h2>
+        <p id="gh-bio"><i class="fas fa-terminal"></i> Bioinformation Engineer</p>
       </div>
 
       <div class="readme-container" id="gh-readme">
@@ -581,7 +570,7 @@
       </div>
       <div class="stats-grid">
         <img src="https://github-readme-stats.vercel.app/api?username=wangjiaxuan666&show_icons=true&theme=dracula&hide_border=true&title_color=00ab6b&icon_color=00ab6b" alt="Jiaxuan's GitHub Stats">
-        
+
         <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangjiaxuan666&layout=compact&theme=dracula&hide_border=true&title_color=00ab6b" alt="Top Languages">
       </div>
 
@@ -592,38 +581,57 @@
   </section>
 
   <script>
+    function renderEmoji(text) {
+      const emojis = {
+        key: '🔑', package: '📦', guitar: '🎸',
+        rocket: '🚀', heart: '❤️', star: '⭐',
+        fire: '🔥', zap: '⚡', bulb: '💡',
+        computer: '💻', books: '📚', microscope: '🔬',
+        dna: '🧬', test_tube: '🧪', pill: '💊',
+        syringe: '💉', brain: '🧠', eye: '👁',
+        warning: '⚠️', info: 'ℹ️', check: '✅',
+        x: '❌', question: '❓', link: '🔗',
+        mail: '📧', phone: '☎️', calendar: '📅',
+        lock: '🔒', wrench: '🔧', gear: '⚙️',
+        hammer: '🔨', book: '📖', notebook: '📓',
+        chart: '📊', bar_chart: '📊', mag: '🔍',
+        speech_balloon: '💬', thought_balloon: '💭',
+        tada: '🎉', smile: '😄', laugh: '😆',
+        wink: '😉', thumbsup: '👍', clap: '👏',
+        pray: '🙏', muscle: '💪', wave: '👋',
+        coffee: '☕', beer: '🍺', pizza: '🍕',
+        earth: '🌍', sun: '☀️', moon: '🌙',
+        cloud: '☁️', rain: '🌧', snow: '❄️',
+      };
+      return text.replace(/:(\w+):/g, (m, name) => emojis[name] || m);
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
       const username = 'wangjiaxuan666';
-      
+
       try {
-        
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
+        const userResponse = await fetch('https://api.github.com/users/' + username);
         if (userResponse.ok) {
           const userData = await userResponse.json();
           document.getElementById('gh-avatar').src = userData.avatar_url;
-          document.getElementById('gh-name').innerHTML = `<i class="fab fa-github"></i> ${userData.name || userData.login}`;
-          document.getElementById('gh-bio').innerText = `> ${userData.bio || "Talk is cheap. Show me the code."}`;
+          document.getElementById('gh-name').innerHTML = '<i class="fab fa-github"></i> ' + (userData.name || userData.login);
+          document.getElementById('gh-bio').innerText = '> ' + (userData.bio || "Talk is cheap. Show me the code.");
         }
 
-        
-        
-        let readmeResponse = await fetch(`https://raw.githubusercontent.com/${username}/${username}/main/README.md`);
-        
-        
+        let readmeResponse = await fetch('https://raw.githubusercontent.com/' + username + '/' + username + '/main/README.md');
         if (!readmeResponse.ok) {
-          readmeResponse = await fetch(`https://raw.githubusercontent.com/${username}/${username}/master/README.md`);
+          readmeResponse = await fetch('https://raw.githubusercontent.com/' + username + '/' + username + '/master/README.md');
         }
 
         if (readmeResponse.ok) {
           const readmeMarkdown = await readmeResponse.text();
-          
-          document.getElementById('gh-readme').innerHTML = marked.parse(readmeMarkdown);
+          document.getElementById('gh-readme').innerHTML = marked.parse(renderEmoji(readmeMarkdown));
         } else {
-          document.getElementById('gh-readme').innerHTML = `<p style="color:#e74c3c;">未能读取到同名仓库的 README.md 档案。请确认你在 GitHub 上创建了 ${username}/${username} 仓库。</p>`;
+          document.getElementById('gh-readme').innerHTML = '<p style="color:#e74c3c;">未能读取到同名仓库的 README.md 档案。请确认你在 GitHub 上创建了 ' + username + '/' + username + ' 仓库。</p>';
         }
       } catch (error) {
         console.error("API 请求失败:", error);
-        document.getElementById('gh-readme').innerHTML = `<p style="color:#e74c3c;">网络跃迁中断：无法连接到 GitHub 服务器。这可能是受限于您当前的网络环境。</p>`;
+        document.getElementById('gh-readme').innerHTML = '<p style="color:#e74c3c;">网络跃迁中断：无法连接到 GitHub 服务器。这可能是受限于您当前的网络环境。</p>';
       }
     });
   </script>

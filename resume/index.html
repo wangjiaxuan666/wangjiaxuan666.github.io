@@ -161,9 +161,6 @@
   
   <link href="//fonts.googleapis.com" rel="dns-prefetch">
   <link href="//fonts.gstatic.com" rel="dns-prefetch">
-  <link href="///disqus.com" rel="dns-prefetch">
-  <link href="//c.disquscdn.com" rel="dns-prefetch">
-  
   <link href="//www.google-analytics.com" rel="dns-prefetch">
   
 
@@ -403,13 +400,6 @@
           
           
           ">
-          <a href="https://abego.cn/works/">开源战绩</a>
-        </li>
-      
-        <li class="menu-item
-          
-          
-          ">
           <a href="https://abego.cn/about/">吐槽 &amp; 关于</a>
         </li>
       
@@ -572,63 +562,69 @@
 
      
     @media print {
-      @page {
-        size: A4 portrait;  
-        margin: 0 !important;  
-      }
-      
-      html, body {
-        width: 210mm !important;
-        height: 297mm !important;
-        margin: 0 !important;
-        padding: 0 !important;
+      @page { size: A4; margin: 0; }
+
+       
+      * { background: transparent !important; box-shadow: none !important; }
+
+       
+      body > * { display: none !important; }
+      .cv-wrapper { display: block !important; }
+
+       
+      html, body, .cv-wrapper {
+        width: 210mm; height: 297mm;
+        margin: 0; padding: 0;
         background: #fff !important;
+        overflow: hidden;
       }
 
-       
-      .site-header, .site-footer, .cv-action-bar, .menu-toggle { display: none !important; }
-      
-      .cv-wrapper { 
-        background: none !important; 
-        padding: 0 !important; 
-        margin: 0 !important; 
-        width: 210mm !important;
-        height: 297mm !important;
+      .cv-paper {
+        width: 210mm; height: 297mm; margin: 0;
+        border-radius: 0; overflow: hidden;
+        page-break-after: avoid;
       }
-      
-      .cv-paper { 
-        box-shadow: none !important; 
-        width: 210mm !important; 
-        height: 297mm !important;
-        max-width: 210mm !important;
-        margin: 0 !important; 
-        border-radius: 0 !important;
-        overflow: hidden !important;  
-      }
-      
-       
-      .cv-aside { width: 32% !important; padding: 12mm 8mm !important; }
-      .cv-main { width: 68% !important; padding: 12mm 15mm !important; }
-      
-       
-      .cv-main h1 { font-size: 26pt !important; margin-bottom: 2mm !important; }
-      .cv-main h2 { font-size: 13pt !important; margin: 8mm 0 4mm !important; padding: 1.5mm 3mm !important; }
-      .cv-aside h2 { font-size: 12pt !important; margin: 8mm 0 4mm !important; padding-bottom: 1.5mm !important; }
-      
-      .cv-item { margin-bottom: 5mm !important; }
-      .cv-item-title, .paper-header { font-size: 11pt !important; }
-      .cv-item-desc, .cv-grid, .cv-contact, .cv-item-meta { font-size: 9.5pt !important; line-height: 1.45 !important; }
-      
-      .paper-eng { font-size: 9.5pt !important; margin: 2mm 0 !important; }
-      .paper-tag { font-size: 9pt !important; padding: 1mm 2mm !important; }
-      .cv-note { font-size: 9pt !important; padding: 1.5mm 3mm !important; margin: 2mm 0 !important; }
-      
-      .cv-avatar { width: 35mm !important; height: 35mm !important; margin-bottom: 5mm !important;}
-      .cv-grid { gap: 4mm !important; }
-      .cv-grid-item { padding: 3mm !important; }
+
+      .cv-aside { width: 30%; padding: 8mm 6mm; background: #f8fafc !important; }
+      .cv-main  { width: 70%; padding: 8mm 10mm; }
+      .cv-action-bar { display: none !important; }
 
        
-      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .cv-main h1 { font-size: 20pt; margin: 0 0 2mm; }
+      .cv-main h2 { font-size: 10pt; margin: 5mm 0 3mm; padding: 1mm 3mm; }
+      .cv-aside h2 { font-size: 9.5pt; margin: 5mm 0 3mm; padding-bottom: 1mm; }
+
+       
+      .cv-item-desc, .cv-grid, .cv-contact, .cv-item-meta { font-size: 8pt; line-height: 1.35; }
+      .cv-item { margin-bottom: 3.5mm; }
+      .cv-item-title, .paper-header { font-size: 9pt; }
+      .cv-item-desc ul { padding-left: 12px; margin: 2mm 0 0; }
+      .cv-item-desc li { margin-bottom: 1.5mm; }
+
+       
+      .paper-eng { font-size: 8pt; margin: 1mm 0; }
+      .paper-tag { font-size: 7.5pt; padding: 0.5mm 1.5mm; }
+      .cv-note { font-size: 7.5pt; padding: 1mm 2mm; margin: 1.5mm 0; }
+
+       
+      .cv-avatar { width: 25mm; height: 25mm; margin-bottom: 4mm; }
+
+       
+      .cv-grid { gap: 2.5mm; }
+      .cv-grid-item { padding: 2mm; }
+      .cv-grid-item strong { font-size: 8.5pt; margin-bottom: 1mm; }
+
+       
+      .cv-main header { padding-bottom: 6px; margin-bottom: 10px; }
+      .cv-main header p { font-size: 7.5pt; line-height: 1.3; margin-top: 6px; }
+
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+       
+      .cv-main header div[style] { margin-top: 4px; }
+
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
   </style>
 
