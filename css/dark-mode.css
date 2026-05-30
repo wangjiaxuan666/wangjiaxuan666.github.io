@@ -1,0 +1,423 @@
+/* ========== CSS Custom Properties: Light & Dark ========== */
+:root {
+  --body-bg: rgb(244, 243, 241);
+  --main-bg: #fff;
+  --text-color: rgb(74, 74, 74);
+  --text-strong: rgb(54, 54, 54);
+  --text-light: rgb(121, 121, 121);
+  --link-color: rgb(0, 171, 107);
+  --link-hover: rgb(0, 140, 90);
+  --border-color: rgba(0,0,0,0.09);
+  --box-shadow-light: rgba(0,0,0,0.04);
+  --box-shadow: rgba(0,0,0,0.15);
+  --box-shadow-heavy: rgba(0,0,0,0.3);
+  --sidebar-link: rgb(36,36,36);
+  --sidebar-link-dim: rgba(0,0,0,0.5);
+  --tag-bg: rgb(244, 243, 241);
+  --kbd-bg: rgb(250,250,250);
+  --kbd-border: rgb(219,219,219);
+  --kbd-text: rgb(74,74,74);
+  --blockquote-text: #66c2a5;
+  --blockquote-border: #009a61;
+  --blockquote-shadow: rgb(221,221,221);
+  --hr-border: rgb(219,219,219);
+  --hr-bg: #fff;
+  --table-bg: #fff;
+  --table-border: rgb(219,219,219);
+  --table-head-color: #fff;
+  --table-head-bg: #74a825;
+  --table-stripe: rgb(250,250,250);
+  --table-hover: rgb(244,243,241);
+  --social-bg: #f1f5f9;
+  --social-color: #64748b;
+  --summary-bg: #fff;
+  --summary-hover-shadow: rgba(0,0,0,0.1);
+  --paginator-bg: #fff;
+  --menu-color: #2c3e50;
+  --code-inline-bg: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] {
+  --body-bg: #1a1a2e;
+  --main-bg: #16213e;
+  --text-color: #cdd6f4;
+  --text-strong: #ececec;
+  --text-light: #a6adc8;
+  --link-color: #3be8b0;
+  --link-hover: #5ff0c8;
+  --border-color: rgba(255,255,255,0.08);
+  --box-shadow-light: rgba(0,0,0,0.3);
+  --box-shadow: rgba(0,0,0,0.5);
+  --box-shadow-heavy: rgba(0,0,0,0.7);
+  --sidebar-link: #cdd6f4;
+  --sidebar-link-dim: rgba(255,255,255,0.5);
+  --tag-bg: #1e2040;
+  --kbd-bg: #2a2a4a;
+  --kbd-border: #3a3a5a;
+  --kbd-text: #cdd6f4;
+  --blockquote-text: #8be9c8;
+  --blockquote-border: #3be8b0;
+  --blockquote-shadow: rgba(0,0,0,0.4);
+  --hr-border: #2a3a5a;
+  --hr-bg: #16213e;
+  --table-bg: #1a1f3a;
+  --table-border: #2a3050;
+  --table-head-color: #cdd6f4;
+  --table-head-bg: #2a4a3a;
+  --table-stripe: #1e2445;
+  --table-hover: #222850;
+  --social-bg: #2a3050;
+  --social-color: #a6adc8;
+  --summary-bg: #1a2540;
+  --summary-hover-shadow: rgba(0,0,0,0.4);
+  --paginator-bg: #1a2540;
+  --menu-color: #cdd6f4;
+  --code-inline-bg: rgba(255,255,255,0.1);
+}
+
+/* ========== Smooth Transition ========== */
+body, .main, .site-header, .post-content, .post-summary, table {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ========== Dark Mode Overrides ========== */
+[data-theme="dark"] body {
+  background: var(--body-bg) repeat fixed !important;
+}
+
+[data-theme="dark"] .main {
+  background: var(--main-bg);
+  border-color: var(--border-color);
+  box-shadow: 0 1px 4px var(--box-shadow-light);
+}
+
+[data-theme="dark"] .site-header a {
+  color: #e8e8f0;
+}
+[data-theme="dark"] .site-header .is-active a {
+  color: #ffffff;
+}
+[data-theme="dark"] .site-menu .menu-item a {
+  color: #d0d4e4;
+  opacity: 0.85;
+}
+[data-theme="dark"] .site-menu .menu-item a:hover {
+  color: #3be8b0 !important;
+  opacity: 1;
+}
+[data-theme="dark"] .subtitle,
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] .site-footer a {
+  color: #c0c4d4;
+}
+[data-theme="dark"] .site-header .title a {
+  color: #ffffff;
+}
+[data-theme="dark"] .site-header .avatar {
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 20px rgba(59,232,176,0.2);
+  filter: brightness(1.5);
+}
+
+[data-theme="dark"] .post-content {
+  color: var(--text-color);
+}
+[data-theme="dark"] .post-content h1,
+[data-theme="dark"] .post-content h2,
+[data-theme="dark"] .post-content h3,
+[data-theme="dark"] .post-content h4,
+[data-theme="dark"] .post-content h5,
+[data-theme="dark"] .post-content h6 {
+  color: var(--text-strong);
+}
+[data-theme="dark"] .post-content strong {
+  color: var(--text-strong);
+}
+[data-theme="dark"] .post-content em,
+[data-theme="dark"] .post-content del {
+  color: var(--text-light);
+}
+[data-theme="dark"] .post-content ins {
+  color: var(--text-strong);
+}
+[data-theme="dark"] .post-content a {
+  color: var(--link-color);
+}
+
+[data-theme="dark"] .post-content blockquote {
+  color: var(--blockquote-text);
+  border-left-color: var(--blockquote-border);
+  box-shadow: var(--blockquote-shadow) 0px 0px 12px;
+  background-color: rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .post-content blockquote cite {
+  color: var(--text-light);
+}
+
+[data-theme="dark"] .post-content hr {
+  border-top-color: var(--hr-border);
+}
+[data-theme="dark"] .post-content hr::before {
+  background-color: var(--hr-bg);
+  color: var(--hr-border);
+}
+
+[data-theme="dark"] .post-content kbd {
+  background-color: var(--kbd-bg);
+  border-color: var(--kbd-border);
+  color: var(--kbd-text);
+}
+
+[data-theme="dark"] .post-content figure img,
+[data-theme="dark"] .post-content img {
+  box-shadow: 2px 20px 40px 10px var(--box-shadow-heavy);
+}
+
+[data-theme="dark"] .post-content p code,
+[data-theme="dark"] .post-content li code,
+[data-theme="dark"] .post-content td code {
+  background: var(--code-inline-bg);
+  color: var(--text-strong);
+}
+
+[data-theme="dark"] .post-footer .post-tags li {
+  background: var(--tag-bg);
+}
+[data-theme="dark"] .post-footer .post-copyright {
+  color: var(--text-light);
+}
+.post-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.post-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.post-pageview {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #888;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.post-footer .post-tags {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 标签加边框 */
+.post-detail .post-footer .post-tags li {
+  border: 1.5px solid #00ab6b;
+  background: rgba(0,171,107,0.06);
+  transition: all 0.2s ease;
+}
+.post-detail .post-footer .post-tags li a {
+  color: #2d7d56;
+}
+.post-detail .post-footer .post-tags li:hover {
+  background: rgba(0,171,107,0.12);
+  box-shadow: 0 1px 6px rgba(0,171,107,0.2);
+}
+
+[data-theme="dark"] .post-detail .post-footer .post-tags li {
+  border-color: #3be8b0;
+  background: rgba(59,232,176,0.12);
+}
+[data-theme="dark"] .post-detail .post-footer .post-tags li a {
+  color: #3be8b0;
+}
+[data-theme="dark"] .post-detail .post-footer .post-tags li:hover {
+  background: rgba(59,232,176,0.22);
+  box-shadow: 0 1px 6px rgba(59,232,176,0.3);
+}
+
+/* 底部版权 */
+.post-copyright-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  font-size: 0.85rem;
+  color: #888;
+}
+[data-theme="dark"] .post-copyright-footer {
+  border-top-color: var(--border-color);
+  color: var(--text-light);
+}
+[data-theme="dark"] .post-copyright-footer a {
+  color: var(--link-color);
+}
+[data-theme="dark"] .post-copyright-footer strong {
+  color: var(--text-strong);
+}
+
+[data-theme="dark"] .post-pageview {
+  color: var(--text-light);
+}
+
+/* 鼠标特效 CSS 变量 */
+:root {
+  --red-0: #ff0000;
+  --red-1: #ff5252;
+  --red-2: #ff7c7c;
+  --red-3: #ffafaf;
+  --red-4: #ffd0d0;
+}
+
+[data-theme="dark"] .post-footer .post-copyright strong {
+  color: var(--text-strong);
+}
+
+[data-theme="dark"] table {
+  background: var(--table-bg);
+  border-color: var(--table-border);
+}
+[data-theme="dark"] th {
+  background: var(--table-head-bg);
+  color: var(--table-head-color);
+}
+[data-theme="dark"] td {
+  border-color: var(--table-border);
+}
+[data-theme="dark"] tr:nth-child(even) td {
+  background: var(--table-stripe);
+}
+[data-theme="dark"] tr:hover td {
+  background: var(--table-hover);
+}
+
+[data-theme="dark"] .post-summary {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .pagination .page-link {
+  background: var(--paginator-bg);
+}
+
+[data-theme="dark"] .social-menu .social-item a {
+  background: var(--social-bg);
+  color: var(--social-color);
+}
+
+[data-theme="dark"] .post-meta,
+[data-theme="dark"] .post-meta a {
+  color: var(--text-light);
+}
+[data-theme="dark"] .post-title,
+[data-theme="dark"] .post-title a,
+[data-theme="dark"] .post-detail .post-header .post-title,
+[data-theme="dark"] .post-detail .post-header .post-title a {
+  color: var(--text-strong) !important;
+}
+
+/* Homepage post listing */
+[data-theme="dark"] .post-entry {
+  color: var(--text-color);
+}
+[data-theme="dark"] .post-entry + .post-entry {
+  border-color: var(--border-color);
+}
+[data-theme="dark"] .post-entry .post-summary {
+  color: var(--text-color);
+}
+[data-theme="dark"] .post-entry .read-more {
+  color: var(--link-color);
+}
+[data-theme="dark"] .post-entry a {
+  color: var(--text-color);
+}
+[data-theme="dark"] .post-entry .post-title a {
+  color: var(--text-strong);
+}
+[data-theme="dark"] .post-entry .post-link:hover {
+  color: var(--link-color);
+}
+
+/* ================= 主题切换开关（右上角悬浮 pill） ================= */
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 15px;
+  background: #d1d5db;
+  transition: background 0.35s ease;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.12);
+}
+.toggle-track::before {
+  content: "☽";
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toggle-track::after {
+  content: "☀";
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.toggle-thumb {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:hover .toggle-track {
+  background: #c1c5cb;
+}
+.theme-toggle:active .toggle-thumb {
+  transform: scale(0.9);
+}
+
+/* Dark state: thumb slides right */
+[data-theme="dark"] .toggle-track {
+  background: #3a3a5c;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+}
+[data-theme="dark"] .toggle-thumb {
+  transform: translateX(26px);
+  background: #f1c40f;
+}
+[data-theme="dark"] .theme-toggle:hover .toggle-track {
+  background: #4a4a6c;
+}

@@ -1,145 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>数据分析 on Woney&#39;s Blog</title>
-		<link>https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
-		<description>Recent content in 数据分析 on Woney&#39;s Blog</description>
-		<generator>Hugo</generator>
-		<language>zh-Hans</language>
-		
-		
-		
-			<copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-		
-		
-			<lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate>
-		
-			<atom:link href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>分享一个统计Q20和Q30的小脚本</title>
-				<link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link>
-				<pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid>
-				<description>&lt;h1 id=&#34;分享一个统计q20和q30的小脚本package&#34;&gt;分享一个统计Q20和Q30的小脚本&amp;#x1f4e6;&lt;/h1&gt;&#xA;&lt;p&gt;生信往往会统计fa或者fq文件的reads数目&amp;#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如&lt;code&gt;fastaqc&lt;/code&gt;或者&lt;code&gt;fastq&lt;/code&gt;等。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用python读取下载到本地的网页-反[反爬虫]机制</title>
-				<link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
-				<pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid>
-				<description>&lt;h1 id=&#34;从malacardsa爬虫收集疾病相关的研究信息page_facing_up&#34;&gt;从MalaCardsa爬虫收集疾病相关的研究信息&amp;#x1f4c4;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.malacards.org/&#34;&gt;MalaCardsa&lt;/a&gt;数据库&amp;#x1f4d8;，我今天也是第一次知道，感觉这个网站太牛&amp;#x1f403;了，收集了各种人类&amp;#x1f46b;疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。&lt;/p&gt;&#xA;&lt;p&gt;近期本身就是在搞空间转录组的项目&amp;#x1f4ca;，在做细胞&amp;#x1f315;类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>什么是差异基因？差异基因少意味着什么</title>
-				<link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link>
-				<pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid>
-				<description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;&#xA;&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;&#xA;&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>单细胞分析上游-Cellranger分析单细胞数据</title>
-				<link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link>
-				<pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid>
-				<description>&lt;h2 id=&#34;生信软件学习-cellranger的安装和使用&#34;&gt;生信软件学习-CellRanger的安装和使用&lt;/h2&gt;&#xA;&lt;p&gt;最近因为换了工作，真正的做了一名分析&amp;#x1f4bb;，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑工作。但这终究不是个办法。所以除了工作内的分析单细胞和空转的内容外，我大概也有自己的计划&amp;#x1f4d5;：&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第四集（R包有logo了）</title>
-				<link>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link>
-				<pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;R包有logo, 快乐起飞！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第三集（R包基本OK）</title>
-				<link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
-				<pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第二集（R包小有成效）</title>
-				<link>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link>
-				<pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid>
-				<description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第一集(失败的R包)</title>
-				<link>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link>
-				<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。</description>
-			</item>
-			<item>
-				<title>地图可视化-新冠肺炎全球感染人数</title>
-				<link>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link>
-				<pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid>
-				<description>&lt;p&gt;地图可视化展示新冠全球流行&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>想画密度热点图没R包？没事，自己造</title>
-				<link>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link>
-				<pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid>
-				<description>&lt;p&gt;第二个R包！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>造包初体验-autopca自动分析PCA并绘图</title>
-				<link>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link>
-				<pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>单细胞测序的拟时分析原理学习笔记</title>
-				<link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
-				<pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
-				<description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>&#39;R&#39;包MetaCycle研究节律相关的调控基因</title>
-				<link>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid>
-				<description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>图论好难, Network理论和WGCNA分析</title>
-				<link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid>
-				<description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>数据分析预处理:归一化,标准化和中心化</title>
-				<link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
-				<description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;&#xA;&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用R包DEseq分析差异表达基因</title>
-				<link>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</guid>
-				<description>&lt;p&gt;最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷&lt;code&gt;10x单细胞&lt;/code&gt;，自己跑了&lt;code&gt;单细胞&lt;/code&gt;分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析&lt;code&gt;DESeq2&lt;/code&gt;。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>BBC 团队开发的bbc_style让你的图高大上起来</title>
-				<link>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid>
-				<description>&lt;!--在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。--&gt;&#xD;&#xA;&lt;h1 id=&#34;用于r图形的bbc视觉和数据新闻手册&#34;&gt;用于R图形的BBC视觉和数据新闻手册&lt;/h1&gt;&#xA;&lt;h2 id=&#34;如何创建bbc风格的图形&#34;&gt;如何创建BBC风格的图形&lt;/h2&gt;&#xA;&lt;p&gt;在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>R语言绘图之ggplot2入门ppt</title>
-				<link>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid>
-				<description>&lt;!--为什么我做这个PPT, 主要因素是因为我受不了公司每次生信培训的绘图课程--&gt;&#xD;&#xA;&lt;h1 id=&#34;为什么我做这个ppt&#34;&gt;为什么我做这个PPT&lt;/h1&gt;&#xA;&lt;p&gt;主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R自带的函数族.&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据分析 on Woney's Blog</title><link>https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link><description>Recent content in 数据分析 on Woney's Blog</description><generator>Hugo</generator><language>zh-Hans</language><copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright><lastBuildDate>Tue, 13 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml"/><item><title>分享一个统计Q20和Q30的小脚本</title><link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link><pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid><description>&lt;h1 id="分享一个统计q20和q30的小脚本package"&gt;分享一个统计Q20和Q30的小脚本&amp;#x1f4e6;&lt;/h1&gt;
+&lt;p&gt;生信往往会统计fa或者fq文件的reads数目&amp;#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如&lt;code&gt;fastaqc&lt;/code&gt;或者&lt;code&gt;fastq&lt;/code&gt;等。&lt;/p&gt;</description></item><item><title>用python读取下载到本地的网页-反[反爬虫]机制</title><link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link><pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid><description>&lt;h1 id="从malacardsa爬虫收集疾病相关的研究信息page_facing_up"&gt;从MalaCardsa爬虫收集疾病相关的研究信息&amp;#x1f4c4;&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://www.malacards.org/"&gt;MalaCardsa&lt;/a&gt;数据库&amp;#x1f4d8;，我今天也是第一次知道，感觉这个网站太牛&amp;#x1f403;了，收集了各种人类&amp;#x1f46b;疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。&lt;/p&gt;
+&lt;p&gt;近期本身就是在搞空间转录组的项目&amp;#x1f4ca;，在做细胞&amp;#x1f315;类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。&lt;/p&gt;</description></item><item><title>什么是差异基因？差异基因少意味着什么</title><link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link><pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid><description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;
+&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
+&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description></item><item><title>单细胞分析上游-Cellranger分析单细胞数据</title><link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link><pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid><description>&lt;h2 id="生信软件学习-cellranger的安装和使用"&gt;生信软件学习-CellRanger的安装和使用&lt;/h2&gt;
+&lt;p&gt;最近因为换了工作，真正的做了一名分析&amp;#x1f4bb;，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑工作。但这终究不是个办法。所以除了工作内的分析单细胞和空转的内容外，我大概也有自己的计划&amp;#x1f4d5;：&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第四集（R包有logo了）</title><link>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;R包有logo, 快乐起飞！&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第三集（R包基本OK）</title><link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link><pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第二集（R包小有成效）</title><link>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link><pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid><description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第一集(失败的R包)</title><link>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。</description></item><item><title>地图可视化-新冠肺炎全球感染人数</title><link>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link><pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid><description>&lt;p&gt;地图可视化展示新冠全球流行&lt;/p&gt;</description></item><item><title>想画密度热点图没R包？没事，自己造</title><link>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link><pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid><description>&lt;p&gt;第二个R包！&lt;/p&gt;</description></item><item><title>造包初体验-autopca自动分析PCA并绘图</title><link>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link><pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/kePrint/kePrint.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;</description></item><item><title>单细胞测序的拟时分析原理学习笔记</title><link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link><pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid><description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description></item><item><title>'R'包MetaCycle研究节律相关的调控基因</title><link>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid><description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description></item><item><title>图论好难, Network理论和WGCNA分析</title><link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid><description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description></item><item><title>数据分析预处理:归一化,标准化和中心化</title><link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid><description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
+&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description></item><item><title>用R包DEseq分析差异表达基因</title><link>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</guid><description>&lt;p&gt;最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷&lt;code&gt;10x单细胞&lt;/code&gt;，自己跑了&lt;code&gt;单细胞&lt;/code&gt;分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析&lt;code&gt;DESeq2&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>BBC 团队开发的bbc_style让你的图高大上起来</title><link>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid><description>&lt;!--在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。--&gt;
+&lt;h1 id="用于r图形的bbc视觉和数据新闻手册"&gt;用于R图形的BBC视觉和数据新闻手册&lt;/h1&gt;
+&lt;h2 id="如何创建bbc风格的图形"&gt;如何创建BBC风格的图形&lt;/h2&gt;
+&lt;p&gt;在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。&lt;/p&gt;</description></item><item><title>R语言绘图之ggplot2入门ppt</title><link>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid><description>&lt;!--为什么我做这个PPT, 主要因素是因为我受不了公司每次生信培训的绘图课程--&gt;
+&lt;h1 id="为什么我做这个ppt"&gt;为什么我做这个PPT&lt;/h1&gt;
+&lt;p&gt;主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R自带的函数族.&lt;/p&gt;</description></item></channel></rss>

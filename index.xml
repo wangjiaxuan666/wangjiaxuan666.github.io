@@ -1,397 +1,160 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Woney&#39;s Blog</title>
-		<link>https://abego.cn/</link>
-		<description>Recent content on Woney&#39;s Blog</description>
-		<generator>Hugo</generator>
-		<language>zh-Hans</language>
-		
-		
-		
-			<copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright>
-		
-		
-			<lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate>
-		
-			<atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>开源战绩</title>
-				<link>https://abego.cn/works/</link>
-				<pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/works/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>吐槽 &amp; 关于</title>
-				<link>https://abego.cn/about/</link>
-				<pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/about/</guid>
-				<description>&lt;style&gt;&#xD;&#xA;  /* 极客终端风格卡片 */&#xD;&#xA;  .about-terminal {&#xD;&#xA;    background: #282a36;&#xD;&#xA;    border-radius: 8px;&#xD;&#xA;    box-shadow: 0 10px 30px rgba(0,0,0,0.15);&#xD;&#xA;    color: #f8f8f2;&#xD;&#xA;    font-family: &#39;Fira Code&#39;, Consolas, Monaco, monospace;&#xD;&#xA;    padding: 20px;&#xD;&#xA;    margin: 30px 0;&#xD;&#xA;    position: relative;&#xD;&#xA;    line-height: 1.6;&#xD;&#xA;  }&#xD;&#xA;  &#xD;&#xA;  /* Mac 视窗红黄绿小圆点 */&#xD;&#xA;  .about-terminal::before {&#xD;&#xA;    content: &#34; &#34;;&#xD;&#xA;    position: absolute;&#xD;&#xA;    top: 15px;&#xD;&#xA;    left: 15px;&#xD;&#xA;    width: 12px;&#xD;&#xA;    height: 12px;&#xD;&#xA;    background: #fc625d;&#xD;&#xA;    border-radius: 50%;&#xD;&#xA;    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;&#xD;&#xA;  }&#xD;&#xA;  &#xD;&#xA;  .about-terminal-header {&#xD;&#xA;    text-align: center;&#xD;&#xA;    color: #6272a4;&#xD;&#xA;    font-size: 0.85rem;&#xD;&#xA;    margin-top: -5px;&#xD;&#xA;    margin-bottom: 20px;&#xD;&#xA;    border-bottom: 1px dashed #44475a;&#xD;&#xA;    padding-bottom: 10px;&#xD;&#xA;  }&#xD;&#xA;  &#xD;&#xA;  .prompt { color: #50fa7b; font-weight: bold; }&#xD;&#xA;  .path { color: #8be9fd; font-weight: bold; }&#xD;&#xA;  .command { color: #f1fa8c; }&#xD;&#xA;  .output { color: #f8f8f2; margin-top: 10px; margin-bottom: 20px; }&#xD;&#xA;&#xD;&#xA;  /* 吐槽专属卡片 */&#xD;&#xA;  .rant-card {&#xD;&#xA;    background: #fff;&#xD;&#xA;    border-left: 5px solid #ffb86c;&#xD;&#xA;    padding: 20px;&#xD;&#xA;    border-radius: 4px;&#xD;&#xA;    box-shadow: 0 4px 12px rgba(0,0,0,0.05);&#xD;&#xA;    margin: 30px 0;&#xD;&#xA;    color: #2c3e50;&#xD;&#xA;  }&#xD;&#xA;  .rant-card h3 { margin-top: 0; color: #e67e22; border: none; padding: 0; background: transparent; }&#xD;&#xA;  .rant-card p { margin: 0 0 10px 0; line-height: 1.8; }&#xD;&#xA;  .rant-card p:last-child { margin: 0; }&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;div class=&#34;about-terminal&#34;&gt;&#xD;&#xA;  &lt;div class=&#34;about-terminal-header&#34;&gt;jiaxuan@abego:~&lt;/div&gt;&#xD;&#xA;  &lt;div&gt;&lt;span class=&#34;prompt&#34;&gt;➜&lt;/span&gt; &lt;span class=&#34;path&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;command&#34;&gt;whoami&lt;/span&gt;&lt;/div&gt;&#xD;&#xA;  &lt;div class=&#34;output&#34;&gt;&#xD;&#xA;    王家轩 (Jiaxuan Wang)&lt;br&gt;&#xD;&#xA;    👨‍💻 生物信息研究员 / 数据可视化爱好者&lt;br&gt;&#xD;&#xA;    🧬 致力于在多组学与肿瘤微环境的数据海中寻找临床转化真相。&lt;br&gt;&#xD;&#xA;    🛠 技能树：R | Python | Shell | WDL | Tidyverse&#xD;&#xA;  &lt;/div&gt;&#xD;&#xA;  &lt;div&gt;&lt;span class=&#34;prompt&#34;&gt;➜&lt;/span&gt; &lt;span class=&#34;path&#34;&gt;~&lt;/span&gt; &lt;span class=&#34;command&#34;&gt;cat blog_status.txt&lt;/span&gt;&lt;/div&gt;&#xD;&#xA;  &lt;div class=&#34;output&#34; style=&#34;margin-bottom: 0;&#34;&gt;&#xD;&#xA;    [OK] 域名已续费 (since 2019)&lt;br&gt;&#xD;&#xA;    [WARNING] HTML/CSS 技能加载缓慢...&lt;br&gt;&#xD;&#xA;    [INFO] 正在硬着头皮持续折腾中...&#xD;&#xA;  &lt;/div&gt;&#xD;&#xA;&lt;/div&gt;&#xD;&#xA;&lt;div class=&#34;rant-card&#34;&gt;&#xD;&#xA;  &lt;h3&gt;💬 站长吐槽大会&lt;/h3&gt;&#xD;&#xA;  &lt;p&gt;网站最早是 19 年的时候就开始搭建了，当时还花了 100 多买了个域名，就是现在这个 &lt;code&gt;abego.cn&lt;/code&gt;。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>外链</title>
-				<link>https://abego.cn/links/</link>
-				<pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/links/</guid>
-				<description>&lt;p&gt;Wang Jiaxuan&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>最近的一点思考-关于AI的事情</title>
-				<link>https://abego.cn/2026/03/12/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-%E5%85%B3%E4%BA%8E%E8%AF%BB%E5%8D%9A/</link>
-				<pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2026/03/12/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E7%82%B9%E6%83%B3%E6%B3%95-%E5%85%B3%E4%BA%8E%E8%AF%BB%E5%8D%9A/</guid>
-				<description>&lt;p&gt;最近在考虑读博的事情，想到以前做这个网站主要是技术分享，也是督促自己学习。但是目前AI的发展太快了，今天我还在想，好像没有必要学习新东西了，&lt;strong&gt;因为再怎么学习，都赶不上AI到时候直接给你打包处理了。&lt;/strong&gt;&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>合并多个文件中一列内容到新文件的py脚本</title>
-				<link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link>
-				<pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</guid>
-				<description>&lt;p&gt;新的Python脚本出炉了&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>随想：不想更新，也不知道要更新啥</title>
-				<link>https://abego.cn/2022/11/18/side-think-1-dont-want-to-update-blog-post/</link>
-				<pubDate>Fri, 18 Nov 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/11/18/side-think-1-dont-want-to-update-blog-post/</guid>
-				<description>&lt;p&gt;随便写点吧&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>写一个支持超大文件的快速列分割的的python脚本</title>
-				<link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link>
-				<pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</guid>
-				<description>&lt;p&gt;之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>写个Python脚本从FastQ文件中抽取成对的Reads</title>
-				<link>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</link>
-				<pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</guid>
-				<description>&lt;p&gt;最开始，师妹来问我的，如何处理BWA的报错。看报错信息提示是因为输入的Read1和Read2的Fastq文件中有不成对的Read。原因在于这两个fq文件来自之前的分析过程中的bam文件抽取得来。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>BSseq-WDL：基于WDl的甲基化分析流程搭建和心得</title>
-				<link>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</link>
-				<pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</guid>
-				<description>&lt;p&gt;做整合分析的时候，看到broad研究所大佬&amp;#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&amp;#x1f638;。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>python中的文件路径操作，学习os.path和pathlib</title>
-				<link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link>
-				<pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</guid>
-				<description>&lt;p&gt;学习python中的系统路径操作&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>文献阅读-《NBT》空间组与单细胞关联分析综述</title>
-				<link>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</link>
-				<pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</guid>
-				<description>&lt;p&gt;一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title>
-				<link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link>
-				<pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid>
-				<description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>M1芯片的电脑如何安装jdk-1.8.0</title>
-				<link>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</link>
-				<pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</guid>
-				<description>&lt;p&gt;解决下苹果M1自带的java报错问题&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>TCGA数据库分析内容整理</title>
-				<link>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</link>
-				<pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</guid>
-				<description>&lt;p&gt;嗯，我是有脚本的&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>在Windows上安装和学习linux系统——安装WSL2</title>
-				<link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link>
-				<pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid>
-				<description>&lt;p&gt;因为我自己的电脑花了一千多大洋更新了内存条和硬盘&amp;#x1f4be;。现在已经溜的起飞&amp;#x2708;&amp;#xfe0f;，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，起飞&amp;#x2708;&amp;#xfe0f;！我18年买的电脑&amp;#x1f4bb;，感觉还可以再战三年~&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>分享一个统计Q20和Q30的小脚本</title>
-				<link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link>
-				<pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid>
-				<description>&lt;h1 id=&#34;分享一个统计q20和q30的小脚本package&#34;&gt;分享一个统计Q20和Q30的小脚本&amp;#x1f4e6;&lt;/h1&gt;&#xA;&lt;p&gt;生信往往会统计fa或者fq文件的reads数目&amp;#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如&lt;code&gt;fastaqc&lt;/code&gt;或者&lt;code&gt;fastq&lt;/code&gt;等。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用python读取下载到本地的网页-反[反爬虫]机制</title>
-				<link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link>
-				<pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid>
-				<description>&lt;h1 id=&#34;从malacardsa爬虫收集疾病相关的研究信息page_facing_up&#34;&gt;从MalaCardsa爬虫收集疾病相关的研究信息&amp;#x1f4c4;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.malacards.org/&#34;&gt;MalaCardsa&lt;/a&gt;数据库&amp;#x1f4d8;，我今天也是第一次知道，感觉这个网站太牛&amp;#x1f403;了，收集了各种人类&amp;#x1f46b;疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。&lt;/p&gt;&#xA;&lt;p&gt;近期本身就是在搞空间转录组的项目&amp;#x1f4ca;，在做细胞&amp;#x1f315;类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>从Nucleotide下载小基因组的Gtf注释文件</title>
-				<link>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</link>
-				<pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</guid>
-				<description>&lt;h2 id=&#34;脚本的目的&#34;&gt;脚本的目的&lt;/h2&gt;&#xA;&lt;p&gt;大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/genome/&#34;&gt;NCBI-Genome&lt;/a&gt;或者&lt;a href=&#34;https://asia.ensembl.org/index.html&#34;&gt;Ensembl&lt;/a&gt;这些基因组网站上直接点击链接就可以了吗。&lt;/p&gt;&#xA;&lt;p&gt;其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现&lt;a href=&#34;https://www.ncbi.nlm.nih.gov/nuccore/941241313&#34;&gt;网页&lt;/a&gt;是这样子的：&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>写个python脚本根据ID号调取PubMed的信息</title>
-				<link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link>
-				<pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</guid>
-				<description>&lt;h2 id=&#34;最近在学python&#34;&gt;最近在学python&lt;/h2&gt;&#xA;&lt;p&gt;至于为什么最近在学python，主要是自己最近刚换了职业，现在主要是搞生信。还专门问了几个老同事，都建议说python，哪怕这些同事大部分都是perl玩的溜，其中一个同事就说，虽然你的R水平可以了，但是还是要专门学一个流程性的语言，要么学perl要么学个python。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>什么是差异基因？差异基因少意味着什么</title>
-				<link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link>
-				<pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid>
-				<description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;&#xA;&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;&#xA;&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>单细胞分析上游-Cellranger分析单细胞数据</title>
-				<link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link>
-				<pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid>
-				<description>&lt;h2 id=&#34;生信软件学习-cellranger的安装和使用&#34;&gt;生信软件学习-CellRanger的安装和使用&lt;/h2&gt;&#xA;&lt;p&gt;最近因为换了工作，真正的做了一名分析&amp;#x1f4bb;，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑工作。但这终究不是个办法。所以除了工作内的分析单细胞和空转的内容外，我大概也有自己的计划&amp;#x1f4d5;：&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第四集（R包有logo了）</title>
-				<link>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link>
-				<pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;R包有logo, 快乐起飞！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第三集（R包基本OK）</title>
-				<link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link>
-				<pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第二集（R包小有成效）</title>
-				<link>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link>
-				<pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid>
-				<description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>处理批次效应连续剧第一集(失败的R包)</title>
-				<link>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link>
-				<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。</description>
-			</item>
-			<item>
-				<title>R绘图展示数据分布情况之ta弯了—圆波图</title>
-				<link>https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/</link>
-				<pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;发现变弯真是个好的点子！！！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>地图可视化-新冠肺炎全球感染人数</title>
-				<link>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link>
-				<pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid>
-				<description>&lt;p&gt;地图可视化展示新冠全球流行&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>想画密度热点图没R包？没事，自己造</title>
-				<link>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link>
-				<pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid>
-				<description>&lt;p&gt;第二个R包！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>造包初体验-autopca自动分析PCA并绘图</title>
-				<link>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link>
-				<pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>蛋白质谱研究细胞膜蛋白-实验提取方法</title>
-				<link>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link>
-				<pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid>
-				<description>&lt;p&gt;膜蛋白的分析由于它们的疏水性，复杂的翻译后修饰（PTM）以及它们以低丰度，一直以来都是蛋白研究的难点。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>基因转录组调控途径（译文）</title>
-				<link>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</link>
-				<pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</guid>
-				<description>&lt;p&gt;其中, 启动子凝聚物是在细胞核中的自发产生的瞬时动态结构，其形成主要依靠转录因子的浓度。相分离的浓缩假说解释了不同的转录因子如何能够招募相同的Pol II聚合酶。启动子凝聚物是高度动态的，并且可以在细胞核内, 发生位点改变，收缩和重整。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Resume</title>
-				<link>https://abego.cn/resume/</link>
-				<pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/resume/</guid>
-				<description>&lt;p&gt;这个页面一直没开发出来，这个nuo原作者已经放弃这个维护了&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用R画动图展现路线</title>
-				<link>https://abego.cn/2019/08/25/the-spring-travl-gif-made-by-r/</link>
-				<pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/25/the-spring-travl-gif-made-by-r/</guid>
-				<description>&lt;p&gt;马上就要秋季宣讲了, 之前春季宣讲自己算了下, 出差应该有个50天左右, 画个R包纪念下.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>关于不同单细胞测序技术之间的比较</title>
-				<link>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link>
-				<pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;</description>
-			</item>
-			<item>
-				<title>单细胞分析软件和原理笔记大全</title>
-				<link>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link>
-				<pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid>
-				<description>&lt;p&gt;本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>qPCR验证小RNA的表达量</title>
-				<link>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</link>
-				<pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</guid>
-				<description>&lt;p&gt;但miRNA与mRNA不同，成熟的miRNA的长度只有24nt左右，非常短，通常正向引物就足以覆盖其全长甚至有余，反向引物就无处安放了。那么如何实现miRNA的qPCR扩增呢？解决方案就是在逆转录的时候设法增加逆转录产物长度。普遍的方法有两种，加尾法和茎环法。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>如何解读KEGG网络图</title>
-				<link>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link>
-				<pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid>
-				<description>&lt;p&gt;根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用R计算离散系数寻找转录组中的内参基因</title>
-				<link>https://abego.cn/2019/08/12/the-cv-of-gene-expression/</link>
-				<pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/12/the-cv-of-gene-expression/</guid>
-				<description>&lt;p&gt;一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>ChIP-seq的实验设计-第一个系列</title>
-				<link>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</link>
-				<pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</guid>
-				<description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP.  其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用ggtree来绘制进化树</title>
-				<link>https://abego.cn/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</link>
-				<pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid>
-				<description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内&lt;em&gt;R&lt;/em&gt;开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>免疫细胞基因重组与免疫组测序</title>
-				<link>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link>
-				<pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid>
-				<description>&lt;p&gt;作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>单细胞测序的拟时分析原理学习笔记</title>
-				<link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link>
-				<pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid>
-				<description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>单细胞测序技术的学习笔记-原理</title>
-				<link>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</link>
-				<pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</guid>
-				<description>&lt;p&gt;单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>2019年春季宣讲出差记录-附R包地图可视化</title>
-				<link>https://abego.cn/2019/06/16/spring-business-travel-in-2019/</link>
-				<pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/16/spring-business-travel-in-2019/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/leaflet/leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/leaflet/leaflet.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/leafletfix/leafletfix.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/leaflet-binding/leaflet.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/leaflet-providers/leaflet-providers.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/leaflet-measure/leaflet-measure.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/leaflet-measure/leaflet-measure.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;p&gt;记录一下2019年春季宣讲的三个月,由于工作的原因，在春秋两季会集中出差一段时间。此外，还会有偶尔的生信培训班的出差任务。总之，一年总会出差个&lt;em&gt;2-3&lt;/em&gt;个月。 并且由于自己负责的区域比较远. 导致一次出差就要出差三周, 比如今天的春季宣讲,从&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;10&lt;/em&gt;号到&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;30&lt;/em&gt;日, 我在东北三省出差. 后面在广州呆了不到一个月, &lt;em&gt;5&lt;/em&gt;月&lt;em&gt;26&lt;/em&gt;日又跑到了京津翼地区外加内蒙古出差了三周, 也是刚刚在上周, 也是6月6日回到了广州. 再加上年前去的西安杨凌和山东青岛的生信培训班. 估摸着今年已经出差了三个月是足足的.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用R语言来个有意思的图-华夫瓷砖图</title>
-				<link>https://abego.cn/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</link>
-				<pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</guid>
-				<description>&lt;script src=&#34;https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/selectize/selectize.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&lt;link href=&#34;https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css&#34; rel=&#34;stylesheet&#34; /&gt;&#xD;&#xA;&lt;script src=&#34;https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;div id=&#34;section&#34; class=&#34;section level1&#34;&gt;&#xD;&#xA;&lt;h1&gt;最近的事情&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时间都在&lt;em&gt;制作&lt;/em&gt;和熟练&lt;code&gt;ppt&lt;/code&gt;中, 要不就是在准备人生大事. 当然这些都是借口, 其实主要的业务时间都是在搞博客.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>&#39;R&#39;包MetaCycle研究节律相关的调控基因</title>
-				<link>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid>
-				<description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>图论好难, Network理论和WGCNA分析</title>
-				<link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid>
-				<description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>数据分析预处理:归一化,标准化和中心化</title>
-				<link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid>
-				<description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;&#xA;&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>来一点高级的venn图</title>
-				<link>https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid>
-				<description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>用R包DEseq分析差异表达基因</title>
-				<link>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</link>
-				<pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</guid>
-				<description>&lt;p&gt;最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷&lt;code&gt;10x单细胞&lt;/code&gt;，自己跑了&lt;code&gt;单细胞&lt;/code&gt;分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析&lt;code&gt;DESeq2&lt;/code&gt;。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>BBC 团队开发的bbc_style让你的图高大上起来</title>
-				<link>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid>
-				<description>&lt;!--在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。--&gt;&#xD;&#xA;&lt;h1 id=&#34;用于r图形的bbc视觉和数据新闻手册&#34;&gt;用于R图形的BBC视觉和数据新闻手册&lt;/h1&gt;&#xA;&lt;h2 id=&#34;如何创建bbc风格的图形&#34;&gt;如何创建BBC风格的图形&lt;/h2&gt;&#xA;&lt;p&gt;在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>R语言绘图之ggplot2入门ppt</title>
-				<link>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid>
-				<description>&lt;!--为什么我做这个PPT, 主要因素是因为我受不了公司每次生信培训的绘图课程--&gt;&#xD;&#xA;&lt;h1 id=&#34;为什么我做这个ppt&#34;&gt;为什么我做这个PPT&lt;/h1&gt;&#xA;&lt;p&gt;主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R自带的函数族.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>了解一下甲基化测序</title>
-				<link>https://abego.cn/2019/05/25/1/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/1/</guid>
-				<description>&lt;!--重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组DNA中的胞嘧啶甲基化的最成熟方案。在该方法中，用重亚硫酸氢钠处理基因组DNA，经过测序，在基因组水平上提供胞嘧啶甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的C脱氨基成U，U在测序后转化为T。同时，甲基化的C拒绝脱氨作用，并被测序为C。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。DNA的亚硫酸氢盐处理将未甲基化的C转化为T，导致序列复杂性降低，这对SBS合成系为原理的illumina二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。--&gt;&#xD;&#xA;&lt;h1 id=&#34;了解一下甲基化&#34;&gt;了解一下甲基化&lt;/h1&gt;&#xA;&lt;p&gt;重亚硫酸氢盐测序（&lt;code&gt;BS-Seq&lt;/code&gt;）或全基因组亚硫酸氢盐测序（&lt;code&gt;WGBS&lt;/code&gt;）就是我们常说的甲基化测序，目前是用于检测基因组*&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;中的胞嘧啶甲基化的最成熟方案。在该方法中，用&lt;code&gt;重亚硫酸氢钠&lt;/code&gt;处理基因组&lt;/em&gt;&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;，经过测序，在基因组水平上提供&lt;code&gt;胞嘧啶&lt;/code&gt;甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的&lt;/em&gt;C&lt;em&gt;脱氨基成&lt;/em&gt;U*，&lt;em&gt;U&lt;/em&gt;在测序后转化为&lt;em&gt;T&lt;/em&gt;。同时，甲基化的&lt;em&gt;C&lt;/em&gt;拒绝脱氨作用，并被测序为&lt;em&gt;C&lt;/em&gt;。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。&lt;em&gt;&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;的亚硫酸氢盐处理将未甲基化的&lt;/em&gt;C&lt;/em&gt;转化为&lt;em&gt;T&lt;/em&gt;，导致序列复杂性降低，这对&lt;em&gt;SBS&lt;/em&gt;合成系为原理的&lt;code&gt;illumina&lt;/code&gt;二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>重要!相关性分析如何计算和理解</title>
-				<link>https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</link>
-				<pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
-				<guid>https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</guid>
-				<description>&lt;h1 id=&#34;1-前言&#34;&gt;1. 前言&lt;/h1&gt;&#xA;&lt;p&gt;接触组学多了，感觉分析主要有两类，一个是基于被研究对象的&lt;code&gt;位置&lt;/code&gt;和&lt;code&gt;序列&lt;/code&gt;。一类是基于&lt;code&gt;算法&lt;/code&gt;。前者比如说&lt;code&gt;lncRNA&lt;/code&gt;与&lt;code&gt;mRNA&lt;/code&gt;的&lt;code&gt;antisense&lt;/code&gt;和&lt;code&gt;cis&lt;/code&gt;的作用关系，&lt;code&gt;miRNA&lt;/code&gt;和&lt;code&gt;piRNA&lt;/code&gt;的&lt;strong&gt;靶向&lt;/strong&gt;基因预测等。后者就比如说&lt;code&gt;机器学习&lt;/code&gt;、&lt;code&gt;降维&lt;/code&gt;、&lt;code&gt;聚类&lt;/code&gt;等算法。&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Woney's Blog</title><link>https://abego.cn/</link><description>Recent content on Woney's Blog</description><generator>Hugo</generator><language>zh-Hans</language><copyright>© 本站内容受CC-BY-NC 4.0协议保护,著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</copyright><lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://abego.cn/index.xml" rel="self" type="application/rss+xml"/><item><title>开源战绩</title><link>https://abego.cn/works/</link><pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate><guid>https://abego.cn/works/</guid><description/></item><item><title>吐槽 &amp; 关于</title><link>https://abego.cn/about/</link><pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/about/</guid><description>&lt;style&gt;
+ /* 极客终端风格卡片 */
+ .about-terminal {
+ background: #282a36;
+ border-radius: 8px;
+ box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+ color: #f8f8f2;
+ font-family: 'Fira Code', Consolas, Monaco, monospace;
+ padding: 20px;
+ margin: 30px 0;
+ position: relative;
+ line-height: 1.6;
+ }
+ 
+ /* Mac 视窗红黄绿小圆点 */
+ .about-terminal::before {
+ content: " ";
+ position: absolute;
+ top: 15px;
+ left: 15px;
+ width: 12px;
+ height: 12px;
+ background: #fc625d;
+ border-radius: 50%;
+ box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+ }
+ 
+ .about-terminal-header {
+ text-align: center;
+ color: #6272a4;
+ font-size: 0.85rem;
+ margin-top: -5px;
+ margin-bottom: 20px;
+ border-bottom: 1px dashed #44475a;
+ padding-bottom: 10px;
+ }
+ 
+ .prompt { color: #50fa7b; font-weight: bold; }
+ .path { color: #8be9fd; font-weight: bold; }
+ .command { color: #f1fa8c; }
+ .output { color: #f8f8f2; margin-top: 10px; margin-bottom: 20px; }
+
+ /* 吐槽专属卡片 */
+ .rant-card {
+ background: #fff;
+ border-left: 5px solid #ffb86c;
+ padding: 20px;
+ border-radius: 4px;
+ box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+ margin: 30px 0;
+ color: #2c3e50;
+ }
+ .rant-card h3 { margin-top: 0; color: #e67e22; border: none; padding: 0; background: transparent; }
+ .rant-card p { margin: 0 0 10px 0; line-height: 1.8; }
+ .rant-card p:last-child { margin: 0; }
+&lt;/style&gt;
+&lt;div class="about-terminal"&gt;
+ &lt;div class="about-terminal-header"&gt;jiaxuan@abego:~&lt;/div&gt;
+ &lt;div&gt;&lt;span class="prompt"&gt;➜&lt;/span&gt; &lt;span class="path"&gt;~&lt;/span&gt; &lt;span class="command"&gt;whoami&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="output"&gt;
+ 王家轩 (Jiaxuan Wang)&lt;br&gt;
+ 👨‍💻 生物信息研究员 / 数据可视化爱好者&lt;br&gt;
+ 🧬 致力于在多组学与肿瘤微环境的数据海中寻找临床转化真相。&lt;br&gt;
+ 🛠 技能树：R | Python | Shell | WDL | Tidyverse
+ &lt;/div&gt;
+ &lt;div&gt;&lt;span class="prompt"&gt;➜&lt;/span&gt; &lt;span class="path"&gt;~&lt;/span&gt; &lt;span class="command"&gt;cat blog_status.txt&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="output" style="margin-bottom: 0;"&gt;
+ [OK] 域名已续费 (since 2019)&lt;br&gt;
+ [WARNING] HTML/CSS 技能加载缓慢...&lt;br&gt;
+ [INFO] 正在硬着头皮持续折腾中...
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="rant-card"&gt;
+ &lt;h3&gt;💬 站长吐槽大会&lt;/h3&gt;
+ &lt;p&gt;网站最早是 19 年的时候就开始搭建了，当时还花了 100 多买了个域名，就是现在这个 &lt;code&gt;abego.cn&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>外链</title><link>https://abego.cn/links/</link><pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/links/</guid><description>&lt;p&gt;Wang Jiaxuan&lt;/p&gt;</description></item><item><title>合并多个文件中一列内容到新文件的py脚本</title><link>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</link><pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate><guid>https://abego.cn/2023/02/04/merge-one-column-value-form-mutiple-files-to-a-new-file/</guid><description>&lt;p&gt;新的Python脚本出炉了&lt;/p&gt;</description></item><item><title>随想：不想更新，也不知道要更新啥</title><link>https://abego.cn/2022/11/18/side-think-1-dont-want-to-update-blog-post/</link><pubDate>Fri, 18 Nov 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/11/18/side-think-1-dont-want-to-update-blog-post/</guid><description>&lt;p&gt;随便写点吧&lt;/p&gt;</description></item><item><title>写一个支持超大文件的快速列分割的的python脚本</title><link>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</link><pubDate>Thu, 21 Apr 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/04/21/a-python-script-for-split-super-big-csv-table-fastly/</guid><description>&lt;p&gt;之前遇到一个百G级别的CSV表格，这种CSV实际就是个数据库！当时我还傻傻的想着用R和Python处理下文件。&lt;/p&gt;</description></item><item><title>写个Python脚本从FastQ文件中抽取成对的Reads</title><link>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</link><pubDate>Tue, 19 Apr 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/04/19/a-python-script-to-extract-the-paired-reads-from-fq-file/</guid><description>&lt;p&gt;最开始，师妹来问我的，如何处理BWA的报错。看报错信息提示是因为输入的Read1和Read2的Fastq文件中有不成对的Read。原因在于这两个fq文件来自之前的分析过程中的bam文件抽取得来。&lt;/p&gt;</description></item><item><title>BSseq-WDL：基于WDl的甲基化分析流程搭建和心得</title><link>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</link><pubDate>Wed, 16 Feb 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/02/16/create-a-workflow-for-bs-seq-analysis-base-on-wdl/</guid><description>&lt;p&gt;做整合分析的时候，看到broad研究所大佬&amp;#x1f468;写的软件太好:，看了很久源码，学习wdl，自我感觉小有所成，重构下之前用shell搭建的甲基化流程&amp;#x1f638;。&lt;/p&gt;</description></item><item><title>python中的文件路径操作，学习os.path和pathlib</title><link>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</link><pubDate>Fri, 28 Jan 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/01/28/os-path-and-pathlib-the-python-file-packages-learn/</guid><description>&lt;p&gt;学习python中的系统路径操作&lt;/p&gt;</description></item><item><title>文献阅读-《NBT》空间组与单细胞关联分析综述</title><link>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</link><pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/01/24/article-learn-scrna-seq-data-and-st-rnaseq-data-integration/</guid><description>&lt;p&gt;一篇Nat Rev Genet 的文章《Integrating single-cell and spatial transcriptomics to elucidate intercellular tissue dynamics》，关于单细胞和空间组数据分析&lt;/p&gt;</description></item><item><title>病毒整合位点分析软件CTAT-vif的安装排雷指南</title><link>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</link><pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/01/16/ctat-vif-find-the-virus-integration-site-in-human-genome/</guid><description>&lt;p&gt;这个软件很强大，但是坑也特别多，但是至少也比那些常年不更新，连给bug的机会都不给，因为你根本安装不上的的整合分析软件强多了！！！&lt;/p&gt;</description></item><item><title>M1芯片的电脑如何安装jdk-1.8.0</title><link>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</link><pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/01/11/how-to-fix-the-jdk-erro-in-macos/</guid><description>&lt;p&gt;解决下苹果M1自带的java报错问题&lt;/p&gt;</description></item><item><title>TCGA数据库分析内容整理</title><link>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</link><pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate><guid>https://abego.cn/2022/01/11/the_tcga_database_analysis_result_which_i_can/</guid><description>&lt;p&gt;嗯，我是有脚本的&lt;/p&gt;</description></item><item><title>在Windows上安装和学习linux系统——安装WSL2</title><link>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</link><pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/07/16/install-wsl-in-windows-for-biosoft-and-study-bioinformation/</guid><description>&lt;p&gt;因为我自己的电脑花了一千多大洋更新了内存条和硬盘&amp;#x1f4be;。现在已经溜的起飞&amp;#x2708;&amp;#xfe0f;，真的强烈建议大家如果手上电脑不行了，考虑换下内存条和加装固态硬盘，起飞&amp;#x2708;&amp;#xfe0f;！我18年买的电脑&amp;#x1f4bb;，感觉还可以再战三年~&lt;/p&gt;</description></item><item><title>分享一个统计Q20和Q30的小脚本</title><link>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</link><pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/07/13/share-a-script-for-fq-or-fa-file-qc-output/</guid><description>&lt;h1 id="分享一个统计q20和q30的小脚本package"&gt;分享一个统计Q20和Q30的小脚本&amp;#x1f4e6;&lt;/h1&gt;
+&lt;p&gt;生信往往会统计fa或者fq文件的reads数目&amp;#x1f251;，碱基数目，Q20和Q30，以作为补充材料放在附录。其实平时拿到这个质控的结果，还是挺简单的，用一些质控软件就可以快速得到这类结果。比如&lt;code&gt;fastaqc&lt;/code&gt;或者&lt;code&gt;fastq&lt;/code&gt;等。&lt;/p&gt;</description></item><item><title>用python读取下载到本地的网页-反[反爬虫]机制</title><link>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</link><pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/06/16/download-information-from-malacards-for-human-disease/</guid><description>&lt;h1 id="从malacardsa爬虫收集疾病相关的研究信息page_facing_up"&gt;从MalaCardsa爬虫收集疾病相关的研究信息&amp;#x1f4c4;&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://www.malacards.org/"&gt;MalaCardsa&lt;/a&gt;数据库&amp;#x1f4d8;，我今天也是第一次知道，感觉这个网站太牛&amp;#x1f403;了，收集了各种人类&amp;#x1f46b;疾病的相关信息。基本上把我们手上正在做的项目的背景信息一网打尽。简直就是一直堵车，突然发现捷径的感觉。&lt;/p&gt;
+&lt;p&gt;近期本身就是在搞空间转录组的项目&amp;#x1f4ca;，在做细胞&amp;#x1f315;类群注释的时候，遇到的困难还是比较大的。一直都是靠劳动力堆积来做类群注释，耗时费力，但也无可奈何。&lt;/p&gt;</description></item><item><title>从Nucleotide下载小基因组的Gtf注释文件</title><link>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</link><pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/05/13/creat-a-shell-script-to-download-the-gtf-files-from-nucleotide/</guid><description>&lt;h2 id="脚本的目的"&gt;脚本的目的&lt;/h2&gt;
+&lt;p&gt;大家首先会觉得为什么要写这种脚本。提起来就没什么用，基因组注释文件不是从&lt;a href="https://www.ncbi.nlm.nih.gov/genome/"&gt;NCBI-Genome&lt;/a&gt;或者&lt;a href="https://asia.ensembl.org/index.html"&gt;Ensembl&lt;/a&gt;这些基因组网站上直接点击链接就可以了吗。&lt;/p&gt;
+&lt;p&gt;其实这话也不全对, 如果想去下载一些病毒和细菌这类小基因组文件的时候，往往只能在NCBI的Nucleotide数据库找到。然后就会发现&lt;a href="https://www.ncbi.nlm.nih.gov/nuccore/941241313"&gt;网页&lt;/a&gt;是这样子的：&lt;/p&gt;</description></item><item><title>写个python脚本根据ID号调取PubMed的信息</title><link>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</link><pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/05/12/creat-a-python-script-to-get-the-information-from-pubmed-with-id-number/</guid><description>&lt;h2 id="最近在学python"&gt;最近在学python&lt;/h2&gt;
+&lt;p&gt;至于为什么最近在学python，主要是自己最近刚换了职业，现在主要是搞生信。还专门问了几个老同事，都建议说python，哪怕这些同事大部分都是perl玩的溜，其中一个同事就说，虽然你的R水平可以了，但是还是要专门学一个流程性的语言，要么学perl要么学个python。&lt;/p&gt;</description></item><item><title>什么是差异基因？差异基因少意味着什么</title><link>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</link><pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/05/07/what-the-different-expression-gene-represent/</guid><description>&lt;p&gt;为什么差异基因少, 差异到底是什么?&lt;/p&gt;
+&lt;p&gt;经常会碰到一些项目，差异基因少，这种情况的原因是非常多因素的。从生信分析的角度上，解决方法最常用的是调整参数。我做了技术支撑也快一年了，在这种问题上也算是有一些心得。&lt;/p&gt;
+&lt;p&gt;首先找寻问题，要从从下往上一点点寻找才是最保险的。那么差异分析的结果是怎么来的呢&lt;/p&gt;</description></item><item><title>单细胞分析上游-Cellranger分析单细胞数据</title><link>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</link><pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate><guid>https://abego.cn/2021/04/26/use-cellranger-count-to-anlysis-the-single-cell-expression/</guid><description>&lt;h2 id="生信软件学习-cellranger的安装和使用"&gt;生信软件学习-CellRanger的安装和使用&lt;/h2&gt;
+&lt;p&gt;最近因为换了工作，真正的做了一名分析&amp;#x1f4bb;，但是因为时间紧任务重，所以一直都是用自己自学的R来支撑工作。但这终究不是个办法。所以除了工作内的分析单细胞和空转的内容外，我大概也有自己的计划&amp;#x1f4d5;：&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第四集（R包有logo了）</title><link>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</link><pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/31/remove-the-batch-effect-series-3-r-package-have-hex-sticker/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;R包有logo, 快乐起飞！&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第三集（R包基本OK）</title><link>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</link><pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/24/remove-the-batch-effect-series-3-r-package-more-power/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;最近闲暇时间，对自己的富含bug包做了简单的维护（实话说，我现在很少遇到bug了，感觉修的七千八八了，但肯定还是不完善的）。&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第二集（R包小有成效）</title><link>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</link><pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/18/remove-the-batch-effect-series-2-r-package-did-it/</guid><description>&lt;p&gt;自己写的fixbatch有效果了，小小激动一下，开心&lt;/p&gt;</description></item><item><title>处理批次效应连续剧第一集(失败的R包)</title><link>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</link><pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/14/remove-the-batch-effect-series-1-a-imcomplete-r-package/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;事情是这样的，遇到了一个项目，在审核的时候。发现结果有强的批次效应。在样品重复性分析中基本上没有任何规律，差异基因也少。就想着如何解决，一边解决一边将用到的函数整理打包成一个新的R包。</description></item><item><title>R绘图展示数据分布情况之ta弯了—圆波图</title><link>https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/</link><pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/12/05/the-circ-ridge-plot-to-display-data/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/header-attrs/header-attrs.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/anchor-sections/anchor-sections.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;发现变弯真是个好的点子！！！&lt;/p&gt;</description></item><item><title>地图可视化-新冠肺炎全球感染人数</title><link>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</link><pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/10/10/the-global-pandemic-of-the-covid-19-and-the-number-of-people-infected-in-the-country/</guid><description>&lt;p&gt;地图可视化展示新冠全球流行&lt;/p&gt;</description></item><item><title>想画密度热点图没R包？没事，自己造</title><link>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</link><pubDate>Sat, 10 Oct 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/10/10/the-second-r-package-heatpoint-to-plot-heat-point/</guid><description>&lt;p&gt;第二个R包！&lt;/p&gt;</description></item><item><title>造包初体验-autopca自动分析PCA并绘图</title><link>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</link><pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate><guid>https://abego.cn/2020/04/04/the-packages-i-created-in-weekend-for-pca-and-tidy-data/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/kePrint/kePrint.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;因为需求，所以诞生了两个R包，都是自己在周末写的，还不完善&lt;/p&gt;</description></item><item><title>蛋白质谱研究细胞膜蛋白-实验提取方法</title><link>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</link><pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/09/10/the-cell-membrane-protein-identification-by-proteomics/</guid><description>&lt;p&gt;膜蛋白的分析由于它们的疏水性，复杂的翻译后修饰（PTM）以及它们以低丰度，一直以来都是蛋白研究的难点。&lt;/p&gt;</description></item><item><title>基因转录组调控途径（译文）</title><link>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</link><pubDate>Thu, 05 Sep 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/09/05/organization-and-regulation-of-gene-transcription/</guid><description>&lt;p&gt;其中, 启动子凝聚物是在细胞核中的自发产生的瞬时动态结构，其形成主要依靠转录因子的浓度。相分离的浓缩假说解释了不同的转录因子如何能够招募相同的Pol II聚合酶。启动子凝聚物是高度动态的，并且可以在细胞核内, 发生位点改变，收缩和重整。&lt;/p&gt;</description></item><item><title>Resume</title><link>https://abego.cn/resume/</link><pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/resume/</guid><description>&lt;p&gt;这个页面一直没开发出来，这个nuo原作者已经放弃这个维护了&lt;/p&gt;</description></item><item><title>用R画动图展现路线</title><link>https://abego.cn/2019/08/25/the-spring-travl-gif-made-by-r/</link><pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/25/the-spring-travl-gif-made-by-r/</guid><description>&lt;p&gt;马上就要秋季宣讲了, 之前春季宣讲自己算了下, 出差应该有个50天左右, 画个R包纪念下.&lt;/p&gt;</description></item><item><title>关于不同单细胞测序技术之间的比较</title><link>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/18/single-cell-rna-seq-scrna-seq-library-structure/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" /&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/selectize/selectize.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js"&gt;&lt;/script&gt;</description></item><item><title>单细胞分析软件和原理笔记大全</title><link>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</link><pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/17/the-scrna-sequence-analysis-pipe-and-theory/</guid><description>&lt;p&gt;本文集中收集了单细胞的软件, 原理, 文献, 但是不是完整的, 我后面会补充和整理&lt;/p&gt;</description></item><item><title>qPCR验证小RNA的表达量</title><link>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/12/the-quantitative-pcr-of-srna/</guid><description>&lt;p&gt;但miRNA与mRNA不同，成熟的miRNA的长度只有24nt左右，非常短，通常正向引物就足以覆盖其全长甚至有余，反向引物就无处安放了。那么如何实现miRNA的qPCR扩增呢？解决方案就是在逆转录的时候设法增加逆转录产物长度。普遍的方法有两种，加尾法和茎环法。&lt;/p&gt;</description></item><item><title>如何解读KEGG网络图</title><link>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/12/how-to-get-the-useful-information-for-kegg-pathway-map/</guid><description>&lt;p&gt;根据自己在公司做的团队分享整理来的, 主要是结合自己的一些售后经验,进行对KEGG数据的一个了解的深入&lt;/p&gt;</description></item><item><title>用R计算离散系数寻找转录组中的内参基因</title><link>https://abego.cn/2019/08/12/the-cv-of-gene-expression/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/12/the-cv-of-gene-expression/</guid><description>&lt;p&gt;一般转录组数据因为其通量高。一下检测几万的基因表达量，面对如此丰富的表达量信息。就为根据表达量的情况来筛选那些内参基因提供了一个很好的研究基础。&lt;/p&gt;</description></item><item><title>ChIP-seq的实验设计-第一个系列</title><link>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</link><pubDate>Sat, 10 Aug 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/08/10/first-series-the-protocol-of-chip-seq/</guid><description>&lt;p&gt;染色质免疫沉淀测序技术（ChIP-seq）, 是应用高通量DNA测序的手段对目标蛋白结合的片段进行测序的技术，可以用来验证蛋白结合的基因组位点。从实验的操作来讲主要分为两大类, 一类是X-ChIP, 一类是N-ChIP. 其中N-ChIP不不涉及甲醛交联, 所以更适合那些和DNA有强相互作用的蛋白ChIP-seq实验. 主要就是组蛋白. 而X-ChIP则采用甲醛交联就没有这个限制. 广泛适用于转录因子, 组蛋白, 聚合酶等蛋白的结合片段测序. 所以基本上的Chip-seq大部分都是X-ChIP.&lt;/p&gt;</description></item><item><title>用ggtree来绘制进化树</title><link>https://abego.cn/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</link><pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/07/10/the-r-packages-ggtree-make-the-tree-more-possible/</guid><description>&lt;p&gt;&lt;code&gt;ggtree&lt;/code&gt;是Y叔的，也是微信公众号&lt;code&gt;biobabble&lt;/code&gt;的号主，称号呢，挺多的。简而言之就是国内&lt;em&gt;R&lt;/em&gt;开发者中的佼佼者。尤其擅长的是可视化。也就是我们比较关注的绘图部分。&lt;/p&gt;</description></item><item><title>免疫细胞基因重组与免疫组测序</title><link>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</link><pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/25/the-knowlege-of-immunogenic-recombination-and-ir-seq/</guid><description>&lt;p&gt;作为适应性免疫的关键细胞效应物，T和B淋巴细胞利用专门的抗体来识别抗原，响应和中和各种外在威胁。这些受体（B淋巴细胞中的免疫球蛋白，T淋巴细胞中的T细胞受体）具有令人难以置信的序列变异.&lt;/p&gt;</description></item><item><title>单细胞测序的拟时分析原理学习笔记</title><link>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</link><pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/18/the-r-package-monocle-analysis-single-cell-pseudotemporal/</guid><description>&lt;p&gt;monocle是一个基于R的生物信息分析包 . 应用于单细胞转录组测序. 其中最厉害的是拟时分析, 研究细胞的分化轨迹, 让我们看一看拟时分析的原理.&lt;/p&gt;</description></item><item><title>单细胞测序技术的学习笔记-原理</title><link>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</link><pubDate>Mon, 17 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/17/the-scrna-sequence-learnning-note/</guid><description>&lt;p&gt;单细胞越来越火，研究的人也越来越多，相信单细胞技术会极大的推荐基础理论研究的拓展。硕士就读的学校，主要是研究医学相关的细胞生物学，当时毕业的时候就传闻学院大佬要引进单细胞测序平台。也不知道现在如何了&lt;/p&gt;</description></item><item><title>2019年春季宣讲出差记录-附R包地图可视化</title><link>https://abego.cn/2019/06/16/spring-business-travel-in-2019/</link><pubDate>Sun, 16 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/16/spring-business-travel-in-2019/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/leaflet/leaflet.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/leaflet-binding/leaflet.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/leaflet-providers/leaflet-providers.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/leaflet-providers-plugin/leaflet-providers-plugin.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/leaflet-measure/leaflet-measure.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/leaflet-measure/leaflet-measure.min.js"&gt;&lt;/script&gt;
+
+
+&lt;p&gt;记录一下2019年春季宣讲的三个月,由于工作的原因，在春秋两季会集中出差一段时间。此外，还会有偶尔的生信培训班的出差任务。总之，一年总会出差个&lt;em&gt;2-3&lt;/em&gt;个月。 并且由于自己负责的区域比较远. 导致一次出差就要出差三周, 比如今天的春季宣讲,从&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;10&lt;/em&gt;号到&lt;em&gt;4&lt;/em&gt;月&lt;em&gt;30&lt;/em&gt;日, 我在东北三省出差. 后面在广州呆了不到一个月, &lt;em&gt;5&lt;/em&gt;月&lt;em&gt;26&lt;/em&gt;日又跑到了京津翼地区外加内蒙古出差了三周, 也是刚刚在上周, 也是6月6日回到了广州. 再加上年前去的西安杨凌和山东青岛的生信培训班. 估摸着今年已经出差了三个月是足足的.&lt;/p&gt;</description></item><item><title>用R语言来个有意思的图-华夫瓷砖图</title><link>https://abego.cn/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</link><pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/06/01/waffle-plot-make-me-have-a-fun-in-weekend/</guid><description>&lt;script src="https://abego.cn/rmarkdown-libs/htmlwidgets/htmlwidgets.js"&gt;&lt;/script&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/datatables-binding/datatables.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" /&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/nouislider/jquery.nouislider.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/selectize/selectize.bootstrap3.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/selectize/selectize.min.js"&gt;&lt;/script&gt;
+&lt;link href="https://abego.cn/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" /&gt;
+&lt;script src="https://abego.cn/rmarkdown-libs/crosstalk/js/crosstalk.min.js"&gt;&lt;/script&gt;
+
+
+&lt;div id="section" class="section level1"&gt;
+&lt;h1&gt;最近的事情&lt;/h1&gt;
+&lt;p&gt;最近微信公众号很久没更新了, 其实挺对不起我那90个订阅者的.__是的,现在我的微信公众号有90个订阅者了__,但是最近忙于出差,时间都在&lt;em&gt;制作&lt;/em&gt;和熟练&lt;code&gt;ppt&lt;/code&gt;中, 要不就是在准备人生大事. 当然这些都是借口, 其实主要的业务时间都是在搞博客.&lt;/p&gt;</description></item><item><title>'R'包MetaCycle研究节律相关的调控基因</title><link>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/the-rule-of-gene-expression-in-the-day-and-nigth/</guid><description>&lt;p&gt;想研究生物钟和细胞&lt;code&gt;周期&lt;/code&gt;？研究基因节律变化的&lt;em&gt;R&lt;/em&gt;包&lt;code&gt;MetaCycle&lt;/code&gt;不能错过！&lt;/p&gt;</description></item><item><title>图论好难, Network理论和WGCNA分析</title><link>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/what-is-wgcna-when-to-use/</guid><description>&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;：这篇文章是我打字最多的了，而且对于网络图背后的图论知识，也是初涉皮毛。所以准备起来也是到处找资料。文中的观点不一定正确。但是也是目前我认为的正确。&lt;/p&gt;</description></item><item><title>数据分析预处理:归一化,标准化和中心化</title><link>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/what-should-we-do-before-the-data-analysis/</guid><description>&lt;p&gt;其实如果我们深入去学习生物信息，最核心根本不是你会不会&lt;em&gt;R&lt;/em&gt;，能不能用&lt;em&gt;perl&lt;/em&gt;写脚本，或者用最潮最新的&lt;em&gt;python&lt;/em&gt;去开发一个新的生信软件。&lt;/p&gt;
+&lt;p&gt;而是懂算法, 懂原理!&lt;/p&gt;</description></item><item><title>来一点高级的venn图</title><link>https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/a-new-r-packages-to-plot-venn-diagram/</guid><description>&lt;p&gt;在研究生的时候，就用&lt;em&gt;R&lt;/em&gt;绘制过韦恩图，正如之前所言的，我当时基本上对组学一无所知，对R也是刚知道。但是当时老板给了&lt;em&gt;9&lt;/em&gt;例转录组的数据，只好硬着头皮去学习了。所以当时还是根据&lt;code&gt;excel&lt;/code&gt;的&lt;code&gt;vlookup&lt;/code&gt;函数去比较三个比较组之间的交并集大小。最后用在网上学的一点皮毛，用&lt;code&gt;VennDiagram&lt;/code&gt;包绘制了三组分的韦恩图。当时觉得自己老牛逼了，哈哈，还一度当了头像。&lt;/p&gt;</description></item><item><title>用R包DEseq分析差异表达基因</title><link>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</link><pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/31/deseq-analysis-the-different-expression-gene/</guid><description>&lt;p&gt;最近很长时间都没写公众号了，倒不是因为工作忙，虽然这周事情确实多。不多主要原因是最近，沉迷&lt;code&gt;10x单细胞&lt;/code&gt;，自己跑了&lt;code&gt;单细胞&lt;/code&gt;分析的几个R包，确实能加深对产品的了解。此外，仅有的时间也在研究差异分析&lt;code&gt;DESeq2&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>BBC 团队开发的bbc_style让你的图高大上起来</title><link>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/bbc-style-plot-for-you-fig-can-more-better/</guid><description>&lt;!--在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。--&gt;
+&lt;h1 id="用于r图形的bbc视觉和数据新闻手册"&gt;用于R图形的BBC视觉和数据新闻手册&lt;/h1&gt;
+&lt;h2 id="如何创建bbc风格的图形"&gt;如何创建BBC风格的图形&lt;/h2&gt;
+&lt;p&gt;在BBC数据团队，我们开发了一个R包和一个R菜谱，使用R的ggplot2库，以我们的内部风格创建出版就绪图形的过程，这是一个更可重复的过程，并使新手更容易到R来创建图形。&lt;/p&gt;</description></item><item><title>R语言绘图之ggplot2入门ppt</title><link>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/the-first-class-for-newer-to-learn-ggplot2/</guid><description>&lt;!--为什么我做这个PPT, 主要因素是因为我受不了公司每次生信培训的绘图课程--&gt;
+&lt;h1 id="为什么我做这个ppt"&gt;为什么我做这个PPT&lt;/h1&gt;
+&lt;p&gt;主要因素是因为我受不了公司每次生信培训的绘图课程里，一直一来讲的都是base包绘图。什么，你不知道base包。就是安装R自带的函数族.&lt;/p&gt;</description></item><item><title>了解一下甲基化测序</title><link>https://abego.cn/2019/05/25/1/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/1/</guid><description>&lt;!--重亚硫酸氢盐测序（BS-Seq）或全基因组亚硫酸氢盐测序（WGBS）就是我们常说的甲基化测序，目前是用于检测基因组DNA中的胞嘧啶甲基化的最成熟方案。在该方法中，用重亚硫酸氢钠处理基因组DNA，经过测序，在基因组水平上提供胞嘧啶甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的C脱氨基成U，U在测序后转化为T。同时，甲基化的C拒绝脱氨作用，并被测序为C。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。DNA的亚硫酸氢盐处理将未甲基化的C转化为T，导致序列复杂性降低，这对SBS合成系为原理的illumina二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。--&gt;
+&lt;h1 id="了解一下甲基化"&gt;了解一下甲基化&lt;/h1&gt;
+&lt;p&gt;重亚硫酸氢盐测序（&lt;code&gt;BS-Seq&lt;/code&gt;）或全基因组亚硫酸氢盐测序（&lt;code&gt;WGBS&lt;/code&gt;）就是我们常说的甲基化测序，目前是用于检测基因组*&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;中的胞嘧啶甲基化的最成熟方案。在该方法中，用&lt;code&gt;重亚硫酸氢钠&lt;/code&gt;处理基因组&lt;/em&gt;&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;，经过测序，在基因组水平上提供&lt;code&gt;胞嘧啶&lt;/code&gt;甲基化的单碱基分辨率。在亚硫酸氢盐处理时，未甲基化的&lt;/em&gt;C&lt;em&gt;脱氨基成&lt;/em&gt;U*，&lt;em&gt;U&lt;/em&gt;在测序后转化为&lt;em&gt;T&lt;/em&gt;。同时，甲基化的&lt;em&gt;C&lt;/em&gt;拒绝脱氨作用，并被测序为&lt;em&gt;C&lt;/em&gt;。然后可以通过比较处理和未处理的序列来确定甲基化胞嘧啶的位置。&lt;em&gt;&lt;code&gt;DNA&lt;/code&gt;&lt;em&gt;的亚硫酸氢盐处理将未甲基化的&lt;/em&gt;C&lt;/em&gt;转化为&lt;em&gt;T&lt;/em&gt;，导致序列复杂性降低，这对&lt;em&gt;SBS&lt;/em&gt;合成系为原理的&lt;code&gt;illumina&lt;/code&gt;二代测序来说，是非常不利的。所以需要非常准确的深度测序才可以减轻这种复杂性的损失。&lt;/p&gt;</description></item><item><title>重要!相关性分析如何计算和理解</title><link>https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</link><pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate><guid>https://abego.cn/2019/05/25/%E9%87%8D%E8%A6%81%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%92%8C%E7%90%86%E8%A7%A3/</guid><description>&lt;h1 id="1-前言"&gt;1. 前言&lt;/h1&gt;
+&lt;p&gt;接触组学多了，感觉分析主要有两类，一个是基于被研究对象的&lt;code&gt;位置&lt;/code&gt;和&lt;code&gt;序列&lt;/code&gt;。一类是基于&lt;code&gt;算法&lt;/code&gt;。前者比如说&lt;code&gt;lncRNA&lt;/code&gt;与&lt;code&gt;mRNA&lt;/code&gt;的&lt;code&gt;antisense&lt;/code&gt;和&lt;code&gt;cis&lt;/code&gt;的作用关系，&lt;code&gt;miRNA&lt;/code&gt;和&lt;code&gt;piRNA&lt;/code&gt;的&lt;strong&gt;靶向&lt;/strong&gt;基因预测等。后者就比如说&lt;code&gt;机器学习&lt;/code&gt;、&lt;code&gt;降维&lt;/code&gt;、&lt;code&gt;聚类&lt;/code&gt;等算法。&lt;/p&gt;</description></item></channel></rss>
